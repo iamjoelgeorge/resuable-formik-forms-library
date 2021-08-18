@@ -1,0 +1,6 @@
+$base: 16;
+
+// Function to convert pixels to em
+@function em($pixels, $context: $base) {
+  @return #{$pixels / $context}em;
+}

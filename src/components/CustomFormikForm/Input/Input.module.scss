@@ -1,0 +1,113 @@
+@import '../../../theme/variables.scss';
+@import '../../../theme/utils.scss';
+
+.container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+  margin-top: em(30);
+
+  .inputWithTooltipContainer {
+    display: flex;
+    position: relative;
+
+    .toolTip {
+      position: absolute;
+      right: 0;
+      margin-right: em(2);
+      width: em(16);
+      height: em(16);
+      cursor: pointer;
+
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
+
+  .label {
+    color: $darkPurple;
+    font-weight: $fontWeightSemiBold;
+    position: absolute;
+    top: -5px;
+    left: 10px;
+    transition: 0.1s all ease-in-out;
+    font-size: em(14);
+  }
+
+  .slideLabel {
+    top: -15px;
+    font-size: em(11);
+  }
+
+  .input {
+    flex: 1;
+    color: $primaryDark;
+    padding: em(5) em(30) em(5) 10px;
+    background-color: $white;
+    border: none;
+    border-bottom: em(2) solid $lighterGrey;
+    outline: none;
+    transition: 0.1s all ease-in-out;
+
+    &::placeholder {
+      font-size: 14px;
+    }
+
+    &:placeholder-shown {
+      & + .label {
+        @extend .slideLabel;
+      }
+    }
+
+    &:hover {
+      border-color: $brightPurple;
+      cursor: pointer;
+    }
+
+    &:focus {
+      border-color: $brightPurple;
+      border-bottom-style: dashed;
+
+      & + .label {
+        @extend .slideLabel;
+      }
+    }
+
+    &:disabled {
+      border-bottom-color: $lighterGrey;
+      cursor: not-allowed;
+
+      & + .label {
+        font-weight: $fontWeightRegular;
+        color: $secondaryGrey;
+      }
+    }
+
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus,
+    &:-webkit-autofill:active {
+      -webkit-box-shadow: 0 0 0 30px $white inset !important;
+    }
+  }
+
+  .errorMessage {
+    color: $error;
+    font-size: em(11);
+    height: em(10);
+    margin-bottom: 0;
+    margin-top: em(3);
+    padding-left: em(14);
+  }
+
+  .labelError {
+    color: $error;
+  }
+
+  .inputError {
+    border-bottom-color: $error;
+  }
+}

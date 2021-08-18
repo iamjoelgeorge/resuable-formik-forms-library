@@ -1,0 +1,10 @@
+@import '../../../theme/variables.scss';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid $border;
+  padding: 20px;
+  padding-top: 0;
+  width: 350px;
+}

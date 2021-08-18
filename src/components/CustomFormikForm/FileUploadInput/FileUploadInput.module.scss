@@ -1,0 +1,46 @@
+@import '../../../theme/variables.scss';
+@import '../../../theme/utils.scss';
+
+.container {
+  .buttonToOpenFileUploader {
+    color: $primary;
+    cursor: pointer;
+    font: {
+      weight: $fontWeightExtraBold;
+      color: $primary;
+    }
+    width: em(124);
+    height: em(38);
+    background-color: $white;
+    border: 1px solid $fileUploadBorder;
+    border-radius: 3px;
+    box-shadow: 0 2px 2px $shadowOne;
+  }
+
+  .uploadButtonContainer {
+    margin-top: em(12);
+  }
+
+  .selectedFiles {
+    display: flex;
+    flex-wrap: wrap;
+
+    .fileNameChipContainer {
+      display: flex;
+      align-items: center;
+      margin-top: em(12);
+
+      .fileNameChip {
+        background-color: $lightPurple;
+        padding: em(4) em(12);
+        border-radius: 4px;
+        margin-right: em(8);
+      }
+
+      .deleteIcon {
+        margin-right: em(16);
+        cursor: pointer;
+      }
+    }
+  }
+}

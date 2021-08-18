@@ -1,0 +1,12 @@
+.container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 20px;
+
+  textarea {
+    border: 1px solid #e8e8e8;
+    resize: none;
+    height: 100px;
+  }
+}

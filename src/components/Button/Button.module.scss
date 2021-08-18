@@ -1,0 +1,10 @@
+@import '../../theme/variables.scss';
+
+.button {
+  border: none;
+  padding: 10px;
+  border-radius: 2px;
+  background-color: $darkPurple;
+  color: white;
+  font-weight: bold;
+}
