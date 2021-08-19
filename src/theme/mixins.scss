@@ -1,0 +1,40 @@
+.slideLabel {
+  top: -15px;
+  font-size: em(11);
+}
+
+@mixin slideLabelTest {
+  &::placeholder {
+    font-size: 14px;
+  }
+
+  &:placeholder-shown {
+    & + label {
+      @extend .slideLabel;
+    }
+  }
+
+  &:hover {
+    border-color: $brightPurple;
+    cursor: pointer;
+  }
+
+  &:focus {
+    border-color: $brightPurple;
+    border-bottom-style: dashed;
+
+    & + label {
+      @extend .slideLabel;
+    }
+  }
+
+  &:disabled {
+    border-bottom-color: $lighterGrey;
+    cursor: not-allowed;
+
+    & + .label {
+      font-weight: $fontWeightRegular;
+      color: $secondaryGrey;
+    }
+  }
+}

@@ -6,6 +6,7 @@ import styles from './Input.module.scss';
 import ToolTipIcon from '../../../assets/images/help.svg';
 import ErrorText from '../../ErrorText/ErrorText';
 import { joinClassNames } from '../../../utils/utils';
+import SlidingLabel from '../SlidingLabel/SlidingLabel';
 
 const Input = (props) => {
   const { label, name, placeholder, formik, showTooltip = false, ...rest } = props;
@@ -14,7 +15,7 @@ const Input = (props) => {
 
   const userHasVisitedTheInputField = formik.touched[name];
   const inputFieldHasErrors = formik.errors[name];
-  const addErrorClassesToLabelAndInput = userHasVisitedTheInputField && inputFieldHasErrors;
+  const addErrorClassesToLabelAndInput = !!userHasVisitedTheInputField && !!inputFieldHasErrors;
 
   const fieldClasses = addErrorClassesToLabelAndInput
     ? joinClassNames([styles.input, styles.inputError])
@@ -34,9 +35,12 @@ const Input = (props) => {
         <Field className={fieldClasses} name={name} id={name} placeholder={placeholder} {...rest} />
 
         {label && (
-          <label className={labelClasses} htmlFor={name}>
-            {label}
-          </label>
+          <SlidingLabel
+            label={label}
+            inputEntered={!!inputValue}
+            htmlFor={name}
+            showErrorStyle={addErrorClassesToLabelAndInput}
+          />
         )}
 
         {showTooltip && (

@@ -1,3 +1,6 @@
+@import '../../../theme/variables.scss';
+@import '../../../theme/utils.scss';
+
 :global {
   .react-calendar {
     .react-calendar__navigation__arrow.react-calendar__navigation__next2-button,
@@ -13,22 +16,20 @@
       padding: 10px;
     }
     .react-calendar__tile:not(.react-calendar__month-view__days__day--neighboringMonth) {
-      background-color: #fafafa !important;
+      background-color: $calendarDayBackground !important;
       cursor: unset !important;
       margin: 2px;
 
       * {
-        background-color: #fafafa !important;
+        background-color: $calendarDayBackground !important;
       }
     }
-    // .react-calendar__tile.react-calendar__month-view__days__day--neighboringMonth {
-    //   pointer-events: none;
-    // }
+
     .react-calendar__tile.react-calendar__month-view__days__day {
       border: 1px solid transparent !important;
 
       &:hover {
-        border: 1px solid #aa77ff !important;
+        border: 1px solid $brightPurple !important;
       }
     }
     .react-calendar__navigation__label {
@@ -39,7 +40,7 @@
         cursor: pointer;
         &:hover {
           text-decoration: underline;
-          text-decoration-color: #aa77ff;
+          text-decoration-color: $brightPurple;
         }
       }
     }
@@ -56,10 +57,10 @@
         font-weight: bold;
         &:hover {
           * {
-            background-color: #ece0ff !important;
+            background-color: $lightPurple !important;
           }
           color: #2d054e;
-          background-color: #ece0ff !important;
+          background-color: $lightPurple !important;
         }
       }
     }
@@ -70,10 +71,10 @@
 
       &:hover {
         * {
-          background-color: #ece0ff !important;
+          background-color: $lightPurple !important;
         }
         color: #2d054e;
-        background-color: #ece0ff !important;
+        background-color: $lightPurple !important;
       }
     }
   }
@@ -92,16 +93,35 @@
     text-overflow: ellipsis;
   }
 
+  .selectedDateContainer {
+    border-bottom: 1px solid $lighterGrey;
+
+    &:hover {
+      border-bottom-color: $brightPurpleTwo;
+    }
+
+    .selectedDate {
+      color: $secondaryGrey;
+      font-size: em(14);
+    }
+  }
+
   .calendarContainer {
-    width: 100%;
     position: absolute;
+    top: 100%;
     left: 0;
-    border-top: 5px solid #512698;
+    width: 100%;
     padding: 10px;
-    background: white;
+    background: $white;
+
+    &:hover {
+      & + .selectedDateContainer {
+        border-bottom-color: $primary;
+      }
+    }
 
     * {
-      background-color: white;
+      background-color: $white;
       border: none;
     }
   }

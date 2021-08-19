@@ -1,5 +1,6 @@
 @import '../../../theme/variables.scss';
 @import '../../../theme/utils.scss';
+@import '../../../theme/mixins.scss';
 
 .container {
   display: flex;
@@ -37,11 +38,6 @@
     font-size: em(14);
   }
 
-  .slideLabel {
-    top: -15px;
-    font-size: em(11);
-  }
-
   .input {
     flex: 1;
     color: $primaryDark;
@@ -56,11 +52,7 @@
       font-size: 14px;
     }
 
-    &:placeholder-shown {
-      & + .label {
-        @extend .slideLabel;
-      }
-    }
+    @include slideLabelTest;
 
     &:hover {
       border-color: $brightPurple;
@@ -70,10 +62,6 @@
     &:focus {
       border-color: $brightPurple;
       border-bottom-style: dashed;
-
-      & + .label {
-        @extend .slideLabel;
-      }
     }
 
     &:disabled {
@@ -90,6 +78,7 @@
     &:-webkit-autofill:hover,
     &:-webkit-autofill:focus,
     &:-webkit-autofill:active {
+      box-shadow: 0 0 0 30px $white inset !important;
       -webkit-box-shadow: 0 0 0 30px $white inset !important;
     }
   }
@@ -101,7 +90,7 @@
   .inputError {
     border-bottom-color: $error;
   }
-  
+
   .errorMessageContainer {
     padding-left: em(14);
   }

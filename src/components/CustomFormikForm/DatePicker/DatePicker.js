@@ -3,6 +3,7 @@ import { ErrorMessage, Field } from 'formik';
 import Calendar from 'react-calendar';
 
 import styles from './DatePicker.module.scss';
+import SlidingLabel from '../SlidingLabel/SlidingLabel';
 
 const DatePicker = (props) => {
   const { name, formik, ...rest } = props;
@@ -15,7 +16,7 @@ const DatePicker = (props) => {
   const renderCalendar = (value, setFieldValue) => (
     <Calendar
       className={styles.calendarContainer}
-      activeStartDate={new Date()}
+      // activeStartDate={new Date()}
       value={value}
       onChange={(val) => {
         setFieldValue(name, val);
@@ -33,8 +34,20 @@ const DatePicker = (props) => {
 
           return (
             <div>
-              <p onClick={toggleCalendar}>{value.toString()}</p>
               {isCalendarOpen && renderCalendar(value, setFieldValue)}
+
+              <div className={styles.selectedDateContainer}>
+                {/* <label htmlFor={'selectedDate'}>Departure Date</label> */}
+                <SlidingLabel
+                  label={'Departure Date'}
+                  inputEntered={!!value.toString()}
+                  htmlFor={'selectedDate'}
+                  showErrorStyle={false}
+                />
+                <p id='selectedDate' className={styles.selectedDate} onClick={toggleCalendar}>
+                  {value.toString()}
+                </p>
+              </div>
             </div>
           );
         }}
