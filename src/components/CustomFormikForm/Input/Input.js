@@ -34,9 +34,11 @@ const Input = (props) => {
       <div className={styles.inputWithTooltipContainer}>
         <Field className={fieldClasses} name={name} id={name} placeholder={placeholder} {...rest} />
 
-        <label className={labelClasses} htmlFor={name}>
-          {label}
-        </label>
+        {label && (
+          <label className={labelClasses} htmlFor={name}>
+            {label}
+          </label>
+        )}
 
         {showTooltip && (
           <span className={styles.toolTip}>

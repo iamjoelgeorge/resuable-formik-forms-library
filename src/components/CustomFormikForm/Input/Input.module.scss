@@ -93,6 +93,15 @@
       -webkit-box-shadow: 0 0 0 30px $white inset !important;
     }
   }
+
+  .labelError {
+    color: $error;
+  }
+
+  .inputError {
+    border-bottom-color: $error;
+  }
+  
   .errorMessageContainer {
     padding-left: em(14);
   }

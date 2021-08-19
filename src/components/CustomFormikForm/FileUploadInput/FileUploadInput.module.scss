@@ -2,6 +2,8 @@
 @import '../../../theme/utils.scss';
 
 .container {
+  margin-top: em(12);
+
   .buttonToOpenFileUploader {
     color: $primary;
     cursor: pointer;
@@ -11,14 +13,25 @@
     }
     width: em(124);
     height: em(38);
+    margin-top: em(12);
     background-color: $white;
     border: 1px solid $fileUploadBorder;
     border-radius: 3px;
     box-shadow: 0 2px 2px $shadowOne;
   }
 
-  .uploadButtonContainer {
-    margin-top: em(12);
+  .label {
+    color: $darkPurple;
+    font-weight: $fontWeightSemiBold;
+    font-size: em(14);
+  }
+
+  .labelError {
+    color: $error;
+  }
+
+  .inputError {
+    border-bottom-color: $error;
   }
 
   .selectedFiles {

@@ -9,19 +9,22 @@ import DeleteIcon from '../../../assets/images/cross.svg';
 import ErrorText from '../../ErrorText/ErrorText';
 
 const FileUploadInput = (props) => {
-  const { name, formik, ...rest } = props;
+  const { label, name, formik, ...rest } = props;
   const [selectedFiles, setSelectedFiles] = useState([]);
   const fileRef = useRef();
 
-  //   const userHasVisitedTheInputField = formik.touched;
-  //   const inputFieldHasErrors = formik.errors;
-  //   console.log(inputFieldHasErrors);
+  const joinClassNames = (classesArray) => classesArray.join(' ');
+
+  const userHasVisitedTheInputField = formik.touched[name];
+  const inputFieldHasErrors = formik.errors[name];
+  const addErrorClassesToLabelAndInput = userHasVisitedTheInputField && inputFieldHasErrors;
+
+  const labelClasses = addErrorClassesToLabelAndInput
+    ? joinClassNames([styles.label, styles.labelError])
+    : styles.label;
 
   const handleChange = (setFieldValue) => {
     const files = Array.from(fileRef?.current?.files);
-    // const files = fileRef?.current?.files;
-    // console.log(typeof files)
-    // console.log(files)
 
     setSelectedFiles(files);
     setFieldValue(name, files);
@@ -36,7 +39,6 @@ const FileUploadInput = (props) => {
       return file.name.trim().toLowerCase() !== fileName.trim().toLowerCase();
     });
 
-    console.log(filteredFiles);
     setSelectedFiles(filteredFiles);
     setFieldValue(name, filteredFiles);
   };
@@ -58,6 +60,12 @@ const FileUploadInput = (props) => {
 
   return (
     <div className={styles.container}>
+      {label && (
+        <label className={labelClasses} htmlFor={name}>
+          {label}
+        </label>
+      )}
+
       <Field name={name} {...rest}>
         {({ form, field }) => {
           const { setFieldValue } = form;
@@ -78,7 +86,7 @@ const FileUploadInput = (props) => {
                   type='button'
                   onClick={handleClick}
                 >
-                  Upload file
+                  Upload files
                 </button>
               </div>
               {selectedFiles.length > 0 && (
