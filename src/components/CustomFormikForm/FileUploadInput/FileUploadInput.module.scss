@@ -37,9 +37,12 @@
         margin-right: em(8);
       }
 
-      .deleteIcon {
-        margin-right: em(16);
+      .deleteFileButton {
         cursor: pointer;
+        background-color: transparent;
+        border: none;
+        margin-right: em(16);
+        padding: 0;
       }
     }
   }

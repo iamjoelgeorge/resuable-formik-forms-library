@@ -10,7 +10,6 @@ import DeleteIcon from '../../../assets/images/cross.svg';
 const FileUploadInput = (props) => {
   const { name, formik, ...rest } = props;
   const [selectedFiles, setSelectedFiles] = useState([]);
-
   const fileRef = useRef();
 
   const handleChange = (setFieldValue) => {
@@ -37,12 +36,13 @@ const FileUploadInput = (props) => {
     return selectedFiles?.map((file) => (
       <div key={uuidv4()} className={styles.fileNameChipContainer}>
         <span className={styles.fileNameChip}>{file.name}</span>
-        <img
-          className={styles.deleteIcon}
+        <button
+          type='button'
+          className={styles.deleteFileButton}
           onClick={() => handleDelete(file.name, setFieldValue)}
-          src={DeleteIcon}
-          alt='Remove file'
-        />
+        >
+          <img src={DeleteIcon} alt='Remove file' />
+        </button>
       </div>
     ));
   };
