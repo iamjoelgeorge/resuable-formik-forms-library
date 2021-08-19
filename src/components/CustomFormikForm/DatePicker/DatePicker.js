@@ -6,6 +6,7 @@ import moment from 'moment';
 
 import styles from './DatePicker.module.scss';
 import SlidingLabel from '../SlidingLabel/SlidingLabel';
+import ErrorText from '../../ErrorText/ErrorText';
 
 const DatePicker = (props) => {
   const { name, formik, ...rest } = props;
@@ -39,14 +40,14 @@ const DatePicker = (props) => {
             <div>
               {isCalendarOpen && renderCalendar(value, setFieldValue)}
 
-              <div className={styles.selectedDateContainer}>
+              <div className={styles.selectedDateContainer} onClick={toggleCalendar}>
                 <SlidingLabel
                   label={'Departure Date'}
                   inputEntered={!!value.toString()}
                   htmlFor={'selectedDate'}
                   showErrorStyle={false}
                 />
-                <p id='selectedDate' className={styles.selectedDate} onClick={toggleCalendar}>
+                <p id='selectedDate' className={styles.selectedDate}>
                   {moment(value).format(momentFormat)}
                 </p>
               </div>
@@ -54,7 +55,6 @@ const DatePicker = (props) => {
           );
         }}
       </Field>
-      <ErrorMessage name={name} component='p' />
     </div>
   );
 };

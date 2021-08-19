@@ -1,6 +1,5 @@
 @import '../../../theme/variables.scss';
 @import '../../../theme/utils.scss';
-@import '../../../theme/mixins.scss';
 
 .container {
   display: flex;
@@ -38,6 +37,11 @@
     font-size: em(14);
   }
 
+  .slideLabel {
+    top: -15px;
+    font-size: em(11);
+  }
+
   .input {
     flex: 1;
     color: $primaryDark;
@@ -52,7 +56,11 @@
       font-size: 14px;
     }
 
-    @include slideLabelTest;
+    &:placeholder-shown {
+      & + label {
+        @extend .slideLabel;
+      }
+    }
 
     &:hover {
       border-color: $brightPurple;
@@ -62,13 +70,17 @@
     &:focus {
       border-color: $brightPurple;
       border-bottom-style: dashed;
+
+      & + label {
+        @extend .slideLabel;
+      }
     }
 
     &:disabled {
       border-bottom-color: $lighterGrey;
       cursor: not-allowed;
 
-      & + .label {
+      & + label {
         font-weight: $fontWeightRegular;
         color: $secondaryGrey;
       }

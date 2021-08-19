@@ -86,13 +86,6 @@
   cursor: pointer;
   margin: 20px 0;
 
-  p {
-    margin: 10px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
   .selectedDateContainer {
     border-bottom: 1px solid $lighterGrey;
 
@@ -103,6 +96,7 @@
     .selectedDate {
       color: $secondaryGrey;
       font-size: em(14);
+      margin: 2px 0 5px 10px;
     }
   }
 
