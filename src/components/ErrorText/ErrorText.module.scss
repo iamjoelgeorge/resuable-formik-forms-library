@@ -1,0 +1,18 @@
+@import '../../theme/variables.scss';
+@import '../../theme/utils.scss';
+
+.errorMessage {
+  color: $error;
+  font-size: em(11);
+  min-height: em(10);
+  margin-bottom: 0;
+  margin-top: em(3);
+}
+
+.labelError {
+  color: $error;
+}
+
+.inputError {
+  border-bottom-color: $error;
+}

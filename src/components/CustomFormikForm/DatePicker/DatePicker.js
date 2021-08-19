@@ -25,14 +25,14 @@ const DatePicker = (props) => {
   );
 
   return (
-    <div>
+    <div className={styles.container}>
       <Field name={name} {...rest}>
         {({ form, field }) => {
           const { value } = field;
           const { setFieldValue } = form;
 
           return (
-            <div className={styles.container}>
+            <div>
               <p onClick={toggleCalendar}>{value.toString()}</p>
               {isCalendarOpen && renderCalendar(value, setFieldValue)}
             </div>

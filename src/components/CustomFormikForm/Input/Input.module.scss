@@ -93,21 +93,7 @@
       -webkit-box-shadow: 0 0 0 30px $white inset !important;
     }
   }
-
-  .errorMessage {
-    color: $error;
-    font-size: em(11);
-    height: em(10);
-    margin-bottom: 0;
-    margin-top: em(3);
+  .errorMessageContainer {
     padding-left: em(14);
-  }
-
-  .labelError {
-    color: $error;
-  }
-
-  .inputError {
-    border-bottom-color: $error;
   }
 }

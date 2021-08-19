@@ -36,6 +36,12 @@ const FormOne = () => {
       isRequired: false,
       message: 'Test error message description',
     },
+    {
+      name: 'idProofs',
+      type: 'file',
+      isRequired: true,
+      message: 'You can only upload png images.',
+    },
   ];
 
   const handleSubmit = (values) => console.log('Test Submit', values);

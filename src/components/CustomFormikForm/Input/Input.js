@@ -4,6 +4,7 @@ import { Field, ErrorMessage } from 'formik';
 
 import styles from './Input.module.scss';
 import ToolTipIcon from '../../../assets/images/help.svg';
+import ErrorText from '../../ErrorText/ErrorText';
 
 const Input = (props) => {
   const { label, name, placeholder, formik, showTooltip = false, ...rest } = props;
@@ -43,10 +44,9 @@ const Input = (props) => {
           </span>
         )}
       </div>
-
-      <p className={styles.errorMessage}>
-        <ErrorMessage name={name} />
-      </p>
+      <div className={styles.errorMessageContainer}>
+        <ErrorText fieldName={name} />
+      </div>
     </div>
   );
 };

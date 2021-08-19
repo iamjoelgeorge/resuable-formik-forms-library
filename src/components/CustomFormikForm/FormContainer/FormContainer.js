@@ -11,7 +11,7 @@ const FormContainer = (props) => {
     validateInput(item, validationObject);
   });
 
-  const validationSchema = Yup.object(validationObject);
+  const validationSchema = Yup.object().shape(validationObject);
 
   return (
     <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
