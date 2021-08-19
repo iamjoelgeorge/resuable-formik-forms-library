@@ -6,14 +6,13 @@ import { Field } from 'formik';
 
 import styles from './FileUploadInput.module.scss';
 import DeleteIcon from '../../../assets/images/cross.svg';
+import { joinClassNames } from '../../../utils/utils';
 import ErrorText from '../../ErrorText/ErrorText';
 
 const FileUploadInput = (props) => {
   const { label, name, formik, ...rest } = props;
   const [selectedFiles, setSelectedFiles] = useState([]);
   const fileRef = useRef();
-
-  const joinClassNames = (classesArray) => classesArray.join(' ');
 
   const userHasVisitedTheInputField = formik.touched[name];
   const inputFieldHasErrors = formik.errors[name];

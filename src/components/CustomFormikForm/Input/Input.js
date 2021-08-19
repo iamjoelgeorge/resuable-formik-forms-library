@@ -5,13 +5,12 @@ import { Field, ErrorMessage } from 'formik';
 import styles from './Input.module.scss';
 import ToolTipIcon from '../../../assets/images/help.svg';
 import ErrorText from '../../ErrorText/ErrorText';
+import { joinClassNames } from '../../../utils/utils';
 
 const Input = (props) => {
   const { label, name, placeholder, formik, showTooltip = false, ...rest } = props;
   const { values } = formik;
   const inputValue = values[name];
-
-  const joinClassNames = (classesArray) => classesArray.join(' ');
 
   const userHasVisitedTheInputField = formik.touched[name];
   const inputFieldHasErrors = formik.errors[name];
