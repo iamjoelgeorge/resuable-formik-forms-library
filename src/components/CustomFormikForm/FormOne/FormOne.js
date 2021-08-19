@@ -14,7 +14,7 @@ const FormOne = () => {
     test: '',
     description: '',
     license: false,
-    idProof: '',
+    idProofs: [],
     date: new Date(),
   };
   const validations = [
@@ -65,7 +65,7 @@ const FormOne = () => {
       <FormControl control='input' type='test' name='test' label='Disabled Input' disabled />
       <FormControl control='textarea' name='description' label='Description' />
       <FormControl control='checkbox' name='license' label='Do you have a license?' />
-      <FormControl control='file' name='idProof' />
+      <FormControl control='file' name='idProofs' />
       <FormControl control='datePicker' name='date' />
 
       <Button type='submit' />

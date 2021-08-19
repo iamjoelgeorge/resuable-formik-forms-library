@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 
 import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
@@ -9,13 +9,14 @@ import DeleteIcon from '../../../assets/images/cross.svg';
 
 const FileUploadInput = (props) => {
   const { name, formik, ...rest } = props;
+  const [selectedFiles, setSelectedFiles] = useState([]);
 
   const fileRef = useRef();
 
-  const getSelectedFiles = () => Array.from(fileRef?.current?.files);
-
   const handleChange = (setFieldValue) => {
-    const files = getSelectedFiles();
+    const files = Array.from(fileRef?.current?.files);
+
+    setSelectedFiles(files);
     setFieldValue(name, files);
   };
 
@@ -23,22 +24,22 @@ const FileUploadInput = (props) => {
     fileRef.current.click();
   };
 
-  const handleDelete = () => {
-    const selectedFiles = getSelectedFiles();
-    console.log(selectedFiles);
+  const handleDelete = (fileName, setFieldValue) => {
+    const filteredFiles = selectedFiles.filter(
+      (file) => file.name.trim().toLowerCase() !== fileName.trim().toLowerCase(),
+    );
+
+    setSelectedFiles(filteredFiles);
+    setFieldValue(name, filteredFiles);
   };
 
-  const renderSelectedFiles = () => {
-    const selectedFiles = getSelectedFiles();
-
-    console.log(selectedFiles); // Todo: This function needs to run only when there is a change in the input.
-
+  const renderSelectedFiles = (setFieldValue) => {
     return selectedFiles?.map((file) => (
       <div key={uuidv4()} className={styles.fileNameChipContainer}>
         <span className={styles.fileNameChip}>{file.name}</span>
         <img
           className={styles.deleteIcon}
-          onClick={handleDelete}
+          onClick={() => handleDelete(file.name, setFieldValue)}
           src={DeleteIcon}
           alt='Remove file'
         />
@@ -71,8 +72,8 @@ const FileUploadInput = (props) => {
                   Upload file
                 </button>
               </div>
-              {!!fileRef?.current?.files && (
-                <div className={styles.selectedFiles}>{renderSelectedFiles()}</div>
+              {selectedFiles.length > 0 && (
+                <div className={styles.selectedFiles}>{renderSelectedFiles(setFieldValue)}</div>
               )}
             </>
           );

@@ -1,5 +1,5 @@
 import React from 'react';
-import DatePicker from '../../DatePicker/DatePicker';
+import DatePicker from '../DatePicker/DatePicker';
 import Checkbox from '../Checkbox/Checkbox';
 import FileUploadInput from '../FileUploadInput/FileUploadInput';
 import Input from '../Input/Input';
