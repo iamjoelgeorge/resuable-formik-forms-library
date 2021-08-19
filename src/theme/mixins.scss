@@ -3,6 +3,8 @@
   font-size: em(11);
 }
 
+// use this mixin with an input element
+// the label should be the direct next sibling of the input element.
 @mixin slideLabelTest {
   &::placeholder {
     font-size: 14px;

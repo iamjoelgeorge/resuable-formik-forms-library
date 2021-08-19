@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+
 import { ErrorMessage, Field } from 'formik';
 import Calendar from 'react-calendar';
+import moment from 'moment';
 
 import styles from './DatePicker.module.scss';
 import SlidingLabel from '../SlidingLabel/SlidingLabel';
@@ -8,6 +10,7 @@ import SlidingLabel from '../SlidingLabel/SlidingLabel';
 const DatePicker = (props) => {
   const { name, formik, ...rest } = props;
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
+  const momentFormat = 'ddd, D MMM YYYY';
 
   const toggleCalendar = () => {
     setIsCalendarOpen((prevState) => !prevState);
@@ -37,7 +40,6 @@ const DatePicker = (props) => {
               {isCalendarOpen && renderCalendar(value, setFieldValue)}
 
               <div className={styles.selectedDateContainer}>
-                {/* <label htmlFor={'selectedDate'}>Departure Date</label> */}
                 <SlidingLabel
                   label={'Departure Date'}
                   inputEntered={!!value.toString()}
@@ -45,7 +47,7 @@ const DatePicker = (props) => {
                   showErrorStyle={false}
                 />
                 <p id='selectedDate' className={styles.selectedDate} onClick={toggleCalendar}>
-                  {value.toString()}
+                  {moment(value).format(momentFormat)}
                 </p>
               </div>
             </div>
