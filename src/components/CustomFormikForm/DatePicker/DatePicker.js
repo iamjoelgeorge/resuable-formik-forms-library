@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
 import { Field } from 'formik';
 import Calendar from 'react-calendar';
@@ -6,11 +6,33 @@ import moment from 'moment';
 
 import styles from './DatePicker.module.scss';
 import SlidingLabel from '../SlidingLabel/SlidingLabel';
+import { useLayoutEffect } from 'react';
 
 const DatePicker = (props) => {
   const { name, formik, ...rest } = props;
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
-  const momentFormat = 'ddd, D MMM YYYY';
+  const calendarRef = useRef();
+  const dateFormat = 'ddd, D MMM YYYY';
+
+  useLayoutEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  const handleClickOutside = (e) => {
+    const calendarNode = calendarRef.current;
+    const clickedNode = e.target;
+
+    if (calendarNode?.contains(clickedNode)) return;
+    setIsCalendarOpen(false);
+  };
+
+  const handleFocus = () => {
+    setIsCalendarOpen(true);
+  };
 
   const toggleCalendar = () => {
     setIsCalendarOpen((prevState) => !prevState);
@@ -19,9 +41,9 @@ const DatePicker = (props) => {
   const renderCalendar = (value, setFieldValue) => (
     <Calendar
       className={styles.calendarContainer}
+      showNeighboringMonth={false}
       minDate={new Date()}
       value={value}
-      showNeighboringMonth={false}
       onChange={(val) => {
         setFieldValue(name, val);
         toggleCalendar();
@@ -38,9 +60,16 @@ const DatePicker = (props) => {
 
           return (
             <div>
-              {isCalendarOpen && renderCalendar(value, setFieldValue)}
+              {isCalendarOpen && (
+                <div ref={calendarRef}>{renderCalendar(value, setFieldValue)}</div>
+              )}
 
-              <div className={styles.selectedDateContainer} onClick={toggleCalendar}>
+              <div
+                tabIndex='0'
+                className={styles.selectedDateContainer}
+                onMouseDown={toggleCalendar}
+                onFocus={handleFocus}
+              >
                 <SlidingLabel
                   label={'Departure Date'}
                   inputEntered={!!value.toString()}
@@ -48,7 +77,7 @@ const DatePicker = (props) => {
                   showErrorStyle={false}
                 />
                 <p id='selectedDate' className={styles.selectedDate}>
-                  {moment(value).format(momentFormat)}
+                  {moment(value).format(dateFormat)}
                 </p>
               </div>
             </div>

@@ -53,6 +53,7 @@ const FormOne = () => {
       containerClass={styles.container}
       onSubmit={handleSubmit}
     >
+      <FormControl control='input' type='test' name='test' label='Disabled Input' disabled />
       <FormControl control='input' type='name' name='name' label='Name' />
       <FormControl
         control='input'
@@ -69,7 +70,6 @@ const FormOne = () => {
         placeholder='Tell us how old you are'
       />
       <FormControl control='datePicker' name='date' />
-      <FormControl control='input' type='test' name='test' label='Disabled Input' disabled />
       <FormControl control='textarea' name='description' label='Description' />
       <FormControl control='checkbox' name='license' label='Do you have a license?' />
       <FormControl control='file' name='idProofs' label='Upload your documents' />

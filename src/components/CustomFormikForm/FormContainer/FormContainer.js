@@ -1,7 +1,7 @@
 import React, { Children, cloneElement } from 'react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
-import { validateInput } from '../validateInput';
+import { validateInput } from '../../../utils/validateInput';
 
 const FormContainer = (props) => {
   const { initialValues, children, validations, containerClass, onSubmit } = props;
@@ -26,4 +26,3 @@ const FormContainer = (props) => {
 };
 
 export default FormContainer;
-// done
