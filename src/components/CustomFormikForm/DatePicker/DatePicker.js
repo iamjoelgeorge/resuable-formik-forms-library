@@ -13,6 +13,10 @@ const DatePicker = (props) => {
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
   const momentFormat = 'ddd, D MMM YYYY';
 
+  const handleFocus = () => {
+    setIsCalendarOpen(true);
+  };
+
   const toggleCalendar = () => {
     setIsCalendarOpen((prevState) => !prevState);
   };
@@ -20,7 +24,7 @@ const DatePicker = (props) => {
   const renderCalendar = (value, setFieldValue) => (
     <Calendar
       className={styles.calendarContainer}
-      // activeStartDate={new Date()}
+      minDate={new Date()}
       value={value}
       onChange={(val) => {
         setFieldValue(name, val);
@@ -40,7 +44,12 @@ const DatePicker = (props) => {
             <div>
               {isCalendarOpen && renderCalendar(value, setFieldValue)}
 
-              <div className={styles.selectedDateContainer} onClick={toggleCalendar}>
+              <div
+                className={styles.selectedDateContainer}
+                onClick={toggleCalendar}
+                tabIndex='0'
+                onFocus={handleFocus}
+              >
                 <SlidingLabel
                   label={'Departure Date'}
                   inputEntered={!!value.toString()}
