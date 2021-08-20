@@ -193,9 +193,14 @@
   z-index: 1;
 
   .selectedDateContainer {
+    background-color: $white;
+    width: 100%;
+    text-align: left;
+    border: none;
     border-bottom: 1px solid $lighterGrey;
     transition: 0.1s all ease-in-out;
     outline: none;
+    cursor: pointer;
 
     &:hover,
     &:focus {

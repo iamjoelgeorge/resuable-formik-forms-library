@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useLayoutEffect } from 'react';
 
 import { Field } from 'formik';
 import Calendar from 'react-calendar';
@@ -6,7 +6,6 @@ import moment from 'moment';
 
 import styles from './DatePicker.module.scss';
 import SlidingLabel from '../SlidingLabel/SlidingLabel';
-import { useLayoutEffect } from 'react';
 
 const DatePicker = (props) => {
   const { name, formik, ...rest } = props;
@@ -16,9 +15,11 @@ const DatePicker = (props) => {
 
   useLayoutEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', handleEscKeyPress);
 
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleEscKeyPress);
     };
   }, []);
 
@@ -30,8 +31,10 @@ const DatePicker = (props) => {
     setIsCalendarOpen(false);
   };
 
-  const handleFocus = () => {
-    setIsCalendarOpen(true);
+  const handleEscKeyPress = (e) => {
+    if (e.keyCode === 27) {
+      setIsCalendarOpen(false);
+    }
   };
 
   const toggleCalendar = () => {
@@ -52,7 +55,7 @@ const DatePicker = (props) => {
   );
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} ref={calendarRef}>
       <Field name={name} {...rest}>
         {({ form, field }) => {
           const { value } = field;
@@ -60,16 +63,9 @@ const DatePicker = (props) => {
 
           return (
             <div>
-              {isCalendarOpen && (
-                <div ref={calendarRef}>{renderCalendar(value, setFieldValue)}</div>
-              )}
+              {isCalendarOpen && <div>{renderCalendar(value, setFieldValue)}</div>}
 
-              <div
-                tabIndex='0'
-                className={styles.selectedDateContainer}
-                onMouseDown={toggleCalendar}
-                onFocus={handleFocus}
-              >
+              <button className={styles.selectedDateContainer} onClick={toggleCalendar}>
                 <SlidingLabel
                   label={'Departure Date'}
                   inputEntered={!!value.toString()}
@@ -79,7 +75,7 @@ const DatePicker = (props) => {
                 <p id='selectedDate' className={styles.selectedDate}>
                   {moment(value).format(dateFormat)}
                 </p>
-              </div>
+              </button>
             </div>
           );
         }}

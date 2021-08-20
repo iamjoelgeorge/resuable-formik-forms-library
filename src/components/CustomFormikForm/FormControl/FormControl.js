@@ -1,4 +1,7 @@
 import React from 'react';
+
+import PropTypes from 'prop-types';
+
 import DatePicker from '../DatePicker/DatePicker';
 import Checkbox from '../Checkbox/Checkbox';
 import FileUploadInput from '../FileUploadInput/FileUploadInput';
@@ -22,11 +25,16 @@ const FormControl = (props) => {
       return <DatePicker {...rest} />;
 
     case 'file':
-      return <FileUploadInput {...rest} />
+      return <FileUploadInput {...rest} />;
 
     default:
       return <Input {...rest} />;
   }
+};
+
+FormControl.propTypes = {
+  control: PropTypes.string,
+  rest: PropTypes.object,
 };
 
 export default FormControl;
