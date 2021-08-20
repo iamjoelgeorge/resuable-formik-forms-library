@@ -1,5 +1,5 @@
-@import '../../../theme/variables.scss';
-@import '../../../theme/utils.scss';
+@import '../../../../theme/variables.scss';
+@import '../../../../theme/utils.scss';
 
 :global {
   .react-calendar {
@@ -225,7 +225,7 @@
 
     &:hover {
       & + .selectedDateContainer {
-        border-bottom-color: $primary;
+        border-bottom-color: $primary !important;
       }
     }
 
