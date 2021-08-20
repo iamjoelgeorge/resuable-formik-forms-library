@@ -3,44 +3,53 @@
 
 :global {
   .react-calendar {
-    .react-calendar__navigation__arrow.react-calendar__navigation__next2-button,
-    .react-calendar__navigation__arrow.react-calendar__navigation__prev2-button {
-      display: none;
+    .react-calendar__navigation__arrow {
+      &.react-calendar__navigation__next2-button,
+      &.react-calendar__navigation__prev2-button {
+        display: none;
+      }
     }
 
     .react-calendar__month-view__days {
       padding-top: 10px;
-    }
 
-    .react-calendar__tile.react-calendar__month-view__days__day {
-      padding: 10px;
-    }
-    .react-calendar__tile:not(.react-calendar__month-view__days__day--neighboringMonth) {
-      background-color: $calendarDayBackground !important;
-      cursor: unset !important;
-      margin: 2px;
+      .react-calendar__tile {
+        &.react-calendar__month-view__days__day {
+          padding: 10px;
+          margin: 2px;
+          border: 1px solid transparent !important;
 
-      * {
-        background-color: $calendarDayBackground !important;
+          &:hover {
+            border: 1px solid $brightPurple !important;
+          }
+        }
+
+        &:not(.react-calendar__month-view__days__day--neighboringMonth) {
+          background-color: $calendarDayBackground !important;
+          cursor: unset !important;
+
+          * {
+            background-color: $calendarDayBackground !important;
+          }
+        }
       }
     }
 
-    .react-calendar__tile.react-calendar__month-view__days__day {
-      border: 1px solid transparent !important;
-
-      &:hover {
-        border: 1px solid $brightPurple !important;
-      }
-    }
     .react-calendar__navigation__label {
       padding: 10px;
-      font-weight: bold;
+      font: {
+        size: em(13);
+        weight: $fontWeightBold;
+      }
 
-      .react-calendar__navigation__label__labelText.react-calendar__navigation__label__labelText--from {
-        cursor: pointer;
-        &:hover {
-          text-decoration: underline;
-          text-decoration-color: $brightPurple;
+      .react-calendar__navigation__label__labelText {
+        &.react-calendar__navigation__label__labelText--from {
+          cursor: pointer;
+
+          &:hover {
+            text-decoration: underline;
+            text-decoration-color: $brightPurple;
+          }
         }
       }
     }
@@ -50,32 +59,48 @@
       grid-template-columns: 1fr 1fr 1fr;
       grid-gap: 2px;
 
-      button.react-calendar__tile.react-calendar__year-view__months__month {
-        min-width: 100%;
-        font-size: 12px;
-        height: 44px;
-        font-weight: bold;
-        &:hover {
-          * {
+      button.react-calendar__tile {
+        &.react-calendar__year-view__months__month {
+          min-width: 100%;
+          font-size: em(13);
+          height: 44px;
+          font-weight: $fontWeightBold;
+          cursor: pointer;
+
+          &:hover {
+            * {
+              background-color: $lightPurple !important;
+            }
+            color: $darkPurple;
             background-color: $lightPurple !important;
           }
-          color: #2d054e;
-          background-color: $lightPurple !important;
         }
       }
     }
-    .react-calendar__tile.react-calendar__decade-view__years__year {
-      min-width: 100%;
-      height: 44px;
-      font-weight: bold;
 
-      &:hover {
-        * {
+    .react-calendar__century-view__decades,
+    .react-calendar__decade-view__years {
+      button {
+        font-size: em(13);
+        min-width: 100%;
+        height: 44px;
+        font-weight: $fontWeightBold;
+        cursor: pointer;
+
+        &:hover {
+          color: $darkPurple;
           background-color: $lightPurple !important;
+
+          * {
+            background-color: $lightPurple !important;
+          }
         }
-        color: #2d054e;
-        background-color: $lightPurple !important;
       }
+    }
+
+    .react-calendar__viewContainer {
+      max-height: 271px;
+      overflow: scroll;
     }
   }
 }
@@ -84,7 +109,8 @@
   max-width: 279px;
   position: relative;
   cursor: pointer;
-  margin: 20px 0;
+  margin-top: 30px;
+  z-index: 1;
 
   .selectedDateContainer {
     border-bottom: 1px solid $lighterGrey;
@@ -107,6 +133,7 @@
     width: 100%;
     padding: 10px;
     background: $white;
+    box-shadow: 0 2px 2px $borderGrey;
 
     &:hover {
       & + .selectedDateContainer {

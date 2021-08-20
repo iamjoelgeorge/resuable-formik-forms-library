@@ -68,11 +68,11 @@ const FormOne = () => {
         label='Age (with placeholder)'
         placeholder='Tell us how old you are'
       />
+      <FormControl control='datePicker' name='date' />
       <FormControl control='input' type='test' name='test' label='Disabled Input' disabled />
       <FormControl control='textarea' name='description' label='Description' />
       <FormControl control='checkbox' name='license' label='Do you have a license?' />
       <FormControl control='file' name='idProofs' label='Upload your documents' />
-      <FormControl control='datePicker' name='date' />
 
       <Button type='submit' />
     </FormContainer>
