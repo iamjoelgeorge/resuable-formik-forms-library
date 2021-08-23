@@ -6,13 +6,19 @@ import moment from 'moment';
 import PropTypes from 'prop-types';
 
 import styles from './CalendarDatePicker.module.scss';
+import ArrowIcon from '../../../../assets/images/arrow-next.svg';
 import SlidingLabel from '../../SlidingLabel/SlidingLabel';
+import { joinClassNames } from '../../../../utils/utils';
 
 const CalendarDatePicker = (props) => {
   const { name, label, formik, ...rest } = props;
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
   const dateFormat = 'ddd, D MMM YYYY';
   const calendarRef = useRef();
+
+  const dropdownIconClasses = !isCalendarOpen
+    ? styles.dropdownIcon
+    : joinClassNames([styles.dropdownIcon, styles.rotateDropdownIcon]);
 
   useLayoutEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
@@ -82,6 +88,9 @@ const CalendarDatePicker = (props) => {
                 />
                 <p id='selectedDate' className={styles.selectedDate}>
                   {moment(value).format(dateFormat)}
+                  <span className={dropdownIconClasses}>
+                    <img src={ArrowIcon} alt='Dropdown icon' />
+                  </span>
                 </p>
               </button>
             </div>

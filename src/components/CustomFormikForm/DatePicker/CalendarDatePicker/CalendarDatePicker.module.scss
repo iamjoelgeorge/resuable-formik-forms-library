@@ -207,6 +207,7 @@
     transition: 0.1s all ease-in-out;
     outline: none;
     cursor: pointer;
+    position: relative;
 
     &:hover,
     &:focus {
@@ -217,6 +218,25 @@
       color: $secondaryGrey;
       font-size: 14px;
       margin: 2px 5px 5px;
+
+      .dropdownIcon {
+        position: absolute;
+        right: 0;
+        width: 6px;
+        height: 10px;
+        transform:  rotate(90deg);
+        transform-origin: center;
+        transition: 0.5s all ease-in-out;
+
+        img {
+          width: 100%;
+          height: auto;
+        }
+      }
+
+      .rotateDropdownIcon {
+        transform: translate(-50%) rotate(-90deg);
+      }
     }
   }
 
