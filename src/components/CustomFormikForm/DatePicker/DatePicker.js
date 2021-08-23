@@ -7,7 +7,9 @@ import DropdownDatePicker from './DropdownDatePicker/DropdownDatePicker';
 const DatePicker = (props) => {
   const { dropdown = false } = props;
 
-  return <div>{dropdown ? <DropdownDatePicker /> : <CalendarDatePicker {...props} />}</div>;
+  return (
+    <div>{dropdown ? <DropdownDatePicker {...props} /> : <CalendarDatePicker {...props} />}</div>
+  );
 };
 
 DatePicker.propTypes = {

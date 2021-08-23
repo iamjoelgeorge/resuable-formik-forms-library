@@ -1,11 +1,21 @@
-import React from 'react'
+import { Field } from 'formik';
+import React from 'react';
 
-const DropdownDatePicker = () => {
-    return (
-        <div>
-            Dropdown DatePicker
-        </div>
-    )
-}
+const DropdownDatePicker = (props) => {
+  const { name, label, ...rest } = props;
 
-export default DropdownDatePicker
+  return (
+    <div>
+      <Field name={name} {...rest}>
+        {({ form, field }) => {
+          const { value } = field;
+          const { setFieldValue } = form;
+
+          return <div>test</div>;
+        }}
+      </Field>
+    </div>
+  );
+};
+
+export default DropdownDatePicker;

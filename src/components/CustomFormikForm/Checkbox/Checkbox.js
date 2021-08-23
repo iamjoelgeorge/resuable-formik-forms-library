@@ -8,7 +8,7 @@ const Checkbox = (props) => {
   return (
     <div>
       <Field type='checkbox' name={name} id={name} {...rest} />
-      <label htmlFor={name}>{label}</label>
+      {label && <label htmlFor={name}>{label}</label>}
     </div>
   );
 };

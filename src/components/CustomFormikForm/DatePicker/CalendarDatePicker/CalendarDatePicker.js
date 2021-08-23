@@ -9,10 +9,10 @@ import styles from './CalendarDatePicker.module.scss';
 import SlidingLabel from '../../SlidingLabel/SlidingLabel';
 
 const CalendarDatePicker = (props) => {
-  const { name, formik, ...rest } = props;
+  const { name, label, formik, ...rest } = props;
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
-  const calendarRef = useRef();
   const dateFormat = 'ddd, D MMM YYYY';
+  const calendarRef = useRef();
 
   useLayoutEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
@@ -53,8 +53,9 @@ const CalendarDatePicker = (props) => {
       }}
     />
   );
+
   return (
-    <div className={styles.container} ref={calendarRef}>
+    <div id='custom-calendar-date-picker' className={styles.container} ref={calendarRef}>
       <Field name={name} {...rest}>
         {({ form, field }) => {
           const { value } = field;
@@ -74,7 +75,7 @@ const CalendarDatePicker = (props) => {
                 onClick={toggleCalendar}
               >
                 <SlidingLabel
-                  label={'Departure Date'}
+                  label={label}
                   inputEntered={!!value.toString()}
                   htmlFor={'selectedDate'}
                   showErrorStyle={false}
@@ -93,7 +94,6 @@ const CalendarDatePicker = (props) => {
 
 CalendarDatePicker.propTypes = {
   name: PropTypes.string.isRequired,
-  formik: PropTypes.object,
   rest: PropTypes.object,
 };
 

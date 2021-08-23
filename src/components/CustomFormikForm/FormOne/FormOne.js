@@ -1,8 +1,13 @@
 /* eslint-disable */
 import React from 'react';
 import Button from '../../Button/Button';
+import Checkbox from '../Checkbox/Checkbox';
+import DatePicker from '../DatePicker/DatePicker';
+import FileUploadInput from '../FileUploadInput/FileUploadInput';
 import FormContainer from '../FormContainer/FormContainer';
 import FormControl from '../FormControl/FormControl';
+import Input from '../Input/Input';
+import Textarea from '../Textarea/Textarea';
 
 import styles from './FormOne.module.scss';
 
@@ -15,7 +20,8 @@ const FormOne = () => {
     description: '',
     license: false,
     idProofs: [],
-    date: new Date(),
+    departureDate: new Date(),
+    returnDate: new Date(),
   };
   const validations = [
     {
@@ -23,12 +29,6 @@ const FormOne = () => {
       type: 'email',
       isRequired: true,
       message: 'Enter the correct email id',
-    },
-    {
-      name: 'age',
-      type: 'number',
-      isRequired: true,
-      message: 'Please enter your age',
     },
     {
       name: 'description',
@@ -53,26 +53,21 @@ const FormOne = () => {
       containerClass={styles.container}
       onSubmit={handleSubmit}
     >
-      <FormControl control='input' type='test' name='test' label='Disabled Input' disabled />
-      <FormControl control='input' type='name' name='name' label='Name' />
-      <FormControl
-        control='input'
-        type='email'
-        name='email'
-        label='Email (with tooltip)'
-        showTooltip
-      />
-      <FormControl
-        control='input'
+      <Input type='test' name='test' label='Disabled Input' disabled />
+      <Input type='test' type='name' name='name' label='Name' />
+      <Input type='test' type='email' name='email' label='Email (with tooltip)' showTooltip />
+      <Input
+        type='test'
         type='text'
         name='age'
         label='Age (with placeholder)'
         placeholder='Tell us how old you are'
       />
-      <FormControl control='datePicker' name='date' />
-      <FormControl control='textarea' name='description' label='Description' />
-      <FormControl control='checkbox' name='license' label='Do you have a license?' />
-      <FormControl control='file' name='idProofs' label='Upload your documents' />
+      <DatePicker name='departureDate' label="Departure Date" />
+      <DatePicker name='returnDate' dropdown />
+      <Textarea name='description' label='Description' />
+      <Checkbox name='license' label='Do you have a license?' />
+      <FileUploadInput name='idProofs' label='Upload your documents' />
 
       <Button type='submit' />
     </FormContainer>
