@@ -18,7 +18,7 @@ const DropdownDatePicker = (props) => {
     year: '',
   });
 
-  const MAX_NUM_OF_YEARS = 10;
+  const MAX_NUM_OF_YEARS = 50;
   const dateFormat = 'D MMM YYYY';
   const initialDate = formik.values[name] ? formik.values[name] : new Date();
   const formattedDate = moment(initialDate).format(dateFormat);
