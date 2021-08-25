@@ -7,10 +7,8 @@
   .buttonToOpenFileUploader {
     color: $primary;
     cursor: pointer;
-    font: {
-      weight: $fontWeightExtraBold;
-      color: $primary;
-    }
+    color: $primary;
+    font-weight: $fontWeightExtraBold;
     width: em(124);
     height: em(38);
     margin-top: em(12);

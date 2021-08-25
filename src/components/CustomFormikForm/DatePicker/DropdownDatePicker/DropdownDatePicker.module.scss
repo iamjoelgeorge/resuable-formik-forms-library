@@ -1,0 +1,40 @@
+@import '../../../../theme/variables.scss';
+@import '../../../../theme/utils.scss';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.container {
+  margin-top: 12px;
+  
+  .label {
+    color: $darkPurple;
+    font-size: 11px;
+    font-weight: $fontWeightSemiBold;
+    margin: 0;
+  }
+
+  .dateContainer {
+    display: flex;
+    margin-top: 12px;
+
+    & > div:not(:last-child) {
+      margin-right: 8px;
+    }
+
+    .date {
+      min-width: 52px;
+    }
+
+    .month {
+      min-width: 56px;
+    }
+
+    .year {
+      min-width: 66px;
+    }
+  }
+}

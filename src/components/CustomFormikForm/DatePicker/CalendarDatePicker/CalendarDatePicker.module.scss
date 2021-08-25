@@ -1,7 +1,9 @@
 @import '../../../../theme/variables.scss';
 @import '../../../../theme/utils.scss';
 
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -224,7 +226,7 @@
         right: 0;
         width: 6px;
         height: 10px;
-        transform:  rotate(90deg);
+        transform: rotate(90deg);
         transform-origin: center;
         transition: 0.5s all ease-in-out;
 

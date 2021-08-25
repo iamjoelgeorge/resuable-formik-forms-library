@@ -21,27 +21,27 @@ const FormOne = () => {
     license: false,
     idProofs: [],
     departureDate: new Date(),
-    returnDate: new Date(),
+    returnDate: '',
   };
   const validations = [
-    {
-      name: 'email',
-      type: 'email',
-      isRequired: true,
-      message: 'Enter the correct email id',
-    },
-    {
-      name: 'description',
-      type: 'string',
-      isRequired: false,
-      message: 'Test error message description',
-    },
-    {
-      name: 'idProofs',
-      type: 'file',
-      isRequired: true,
-      message: 'You can only upload png images.',
-    },
+    // {
+    //   name: 'email',
+    //   type: 'email',
+    //   isRequired: true,
+    //   message: 'Enter the correct email id',
+    // },
+    // {
+    //   name: 'description',
+    //   type: 'string',
+    //   isRequired: false,
+    //   message: 'Test error message description',
+    // },
+    // {
+    //   name: 'idProofs',
+    //   type: 'file',
+    //   isRequired: true,
+    //   message: 'You can only upload png images.',
+    // },
   ];
 
   const handleSubmit = (values) => console.log('Test Submit', values);
@@ -54,17 +54,16 @@ const FormOne = () => {
       onSubmit={handleSubmit}
     >
       <Input type='test' name='test' label='Disabled Input' disabled />
-      <Input type='test' type='name' name='name' label='Name' />
-      <Input type='test' type='email' name='email' label='Email (with tooltip)' showTooltip />
+      <Input type='name' name='name' label='Name' />
+      <Input type='email' name='email' label='Email (with tooltip)' showTooltip />
       <Input
-        type='test'
         type='text'
         name='age'
         label='Age (with placeholder)'
         placeholder='Tell us how old you are'
       />
-      <DatePicker name='departureDate' label="Departure Date" />
-      <DatePicker name='returnDate' dropdown />
+      <DatePicker name='departureDate' label='Departure Date' />
+      <DatePicker name='returnDate' dropdown label='Return Date' />
       <Textarea name='description' label='Description' />
       <Checkbox name='license' label='Do you have a license?' />
       <FileUploadInput name='idProofs' label='Upload your documents' />
