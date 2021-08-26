@@ -5,7 +5,6 @@ import Checkbox from '../Checkbox/Checkbox';
 import DatePicker from '../DatePicker/DatePicker';
 import FileUploadInput from '../FileUploadInput/FileUploadInput';
 import FormContainer from '../FormContainer/FormContainer';
-import FormControl from '../FormControl/FormControl';
 import Input from '../Input/Input';
 import Textarea from '../Textarea/Textarea';
 
@@ -21,7 +20,7 @@ const FormOne = () => {
     license: false,
     idProofs: [],
     departureDate: new Date(),
-    returnDate: '',
+    returnDate: new Date(),
   };
   const validations = [
     // {

@@ -52,12 +52,20 @@ const DropdownDatePicker = (props) => {
     const selectedDate = date && month && year ? moment(dateString).format(dateFormat) : '';
 
     if (!!selectedDate && !(selectedDate === formattedDate)) {
-      const date = new Date(`${selectedDate} 11:00:01`);
+      const now = new Date();
+      const hours = now.getHours();
+      const minutes = now.getMinutes();
+      const seconds = now.getSeconds();
+
+      const time = `${hours}:${minutes}:${seconds}`;
+      const date = new Date(`${selectedDate} ${time}`);
+
       setFieldValue(name, date);
     }
   }, [dateObj, formik, name, formattedDate]);
 
   const getDateObj = (formattedDate) => {
+    console.log(formattedDate);
     const dateArray = formattedDate.split(' ');
 
     const date = dateArray[0];

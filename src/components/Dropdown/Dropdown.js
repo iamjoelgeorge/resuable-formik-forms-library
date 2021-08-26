@@ -45,6 +45,7 @@ const Dropdown = (props) => {
         String(item) === value
           ? joinClassNames([styles.dropdownItem, styles.selected])
           : styles.dropdownItem;
+
       return (
         <li key={uuidv4()} onClick={() => onClick(item, type)} className={dropdownItemClasses}>
           {item}

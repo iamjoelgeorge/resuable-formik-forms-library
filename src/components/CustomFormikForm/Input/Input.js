@@ -4,7 +4,7 @@ import { Field, ErrorMessage } from 'formik';
 
 import styles from './Input.module.scss';
 import ToolTipIcon from '../../../assets/images/help.svg';
-import ErrorText from '../../ErrorText/ErrorText';
+import ErrorText from '../ErrorText/ErrorText';
 import { joinClassNames } from '../../../utils/utils';
 import SlidingLabel from '../SlidingLabel/SlidingLabel';
 

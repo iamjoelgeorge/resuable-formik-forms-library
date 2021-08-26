@@ -7,7 +7,7 @@ import { Field } from 'formik';
 import styles from './FileUploadInput.module.scss';
 import DeleteIcon from '../../../assets/images/cross.svg';
 import { joinClassNames } from '../../../utils/utils';
-import ErrorText from '../../ErrorText/ErrorText';
+import ErrorText from '../ErrorText/ErrorText';
 
 const FileUploadInput = (props) => {
   const { label, name, formik, ...rest } = props;
