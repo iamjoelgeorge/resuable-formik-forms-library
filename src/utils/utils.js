@@ -33,3 +33,20 @@ export const getNumOfDaysInAMonth = (month, year) => {
   numOfDays = new Date(year, monthNumber, 0).getDate();
   return numOfDays;
 };
+
+/**
+ *
+ * @param {number} minYear The year to start from (e.g. 2021).
+ * @param {number} numOfYears Number of years from the minYear (e.g. 10 would return an array of years between 2021 and 2031).
+ * @returns An array of years starting from minYear.
+ */
+export const getArrayOfYearsBetweenTwoYears = (minYear, numOfYears = 10) => {
+  let yearsArray = [];
+  const maxYear = minYear + numOfYears;
+
+  for (let i = minYear; i <= maxYear; i++) {
+    yearsArray.push(i);
+  }
+
+  return yearsArray;
+};

@@ -12,16 +12,6 @@ import FormOne from './components/CustomFormikForm/FormOne/FormOne';
 import CustomForm from './components/CustomForm/CustomForm';
 
 function App() {
-  const initialValuesFormOne = {
-    firstName: '',
-    lastName: '',
-    email: '',
-  };
-  const initialValuesFormTwo = {
-    firstName: '',
-    lastName: '',
-    email: '',
-  };
   return (
     <Provider store={store}>
       <div className='App'>

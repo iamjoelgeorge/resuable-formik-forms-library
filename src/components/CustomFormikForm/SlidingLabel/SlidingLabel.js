@@ -6,11 +6,11 @@ import styles from './SlidingLabel.module.scss';
 import { joinClassNames } from '../../../utils/utils';
 
 const SlidingLabel = (props) => {
-  const { label, inputEntered = false, htmlFor, showErrorStyle, ...rest } = props;
+  const { label, inputEntered = false, htmlFor, showErrorStyle, customClass, ...rest } = props;
 
   const labelDefaultClasses = inputEntered
-    ? joinClassNames([styles.label, styles.slideLabel])
-    : styles.label;
+    ? joinClassNames([styles.label, customClass, styles.slideLabel])
+    : joinClassNames([styles.label, customClass]);
 
   const labelClasses = showErrorStyle
     ? joinClassNames([labelDefaultClasses, styles.labelError])
@@ -28,6 +28,7 @@ SlidingLabel.propTypes = {
   inputEntered: PropTypes.bool.isRequired,
   htmlFor: PropTypes.string.isRequired,
   showErrorStyle: PropTypes.bool.isRequired,
+  customClass: PropTypes.string,
   rest: PropTypes.object,
 };
 

@@ -41,6 +41,12 @@ const FormOne = () => {
     //   isRequired: true,
     //   message: 'You can only upload png images.',
     // },
+    // {
+    //   name: 'description',
+    //   type: 'string',
+    //   isRequired: true,
+    //   message: 'Please add a comment.',
+    // },
   ];
 
   const handleSubmit = (values) => console.log('Test Submit', values);

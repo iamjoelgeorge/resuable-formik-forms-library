@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { Field, ErrorMessage } from 'formik';
+import { Field } from 'formik';
 
 import styles from './Input.module.scss';
+import { joinClassNames } from '../../../utils/utils';
 import ToolTipIcon from '../../../assets/images/help.svg';
 import ErrorText from '../ErrorText/ErrorText';
-import { joinClassNames } from '../../../utils/utils';
 import SlidingLabel from '../SlidingLabel/SlidingLabel';
 
 const Input = (props) => {
@@ -20,14 +20,6 @@ const Input = (props) => {
   const fieldClasses = addErrorClassesToLabelAndInput
     ? joinClassNames([styles.input, styles.inputError])
     : [styles.input];
-
-  let labelDefaultClasses = inputValue
-    ? joinClassNames([styles.label, styles.slideLabel])
-    : styles.label;
-
-  const labelClasses = addErrorClassesToLabelAndInput
-    ? joinClassNames([labelDefaultClasses, styles.labelError])
-    : labelDefaultClasses;
 
   return (
     <div className={styles.container}>

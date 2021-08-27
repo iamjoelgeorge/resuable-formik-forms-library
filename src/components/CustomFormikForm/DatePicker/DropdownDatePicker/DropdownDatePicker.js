@@ -8,7 +8,7 @@ import styles from './DropdownDatePicker.module.scss';
 import { months } from '../../../../utils/constants';
 import { useEffect } from 'react';
 import Dropdown from '../../../Dropdown/Dropdown';
-import { getNumOfDaysInAMonth } from '../../../../utils/utils';
+import { getArrayOfYearsBetweenTwoYears, getNumOfDaysInAMonth } from '../../../../utils/utils';
 
 const DropdownDatePicker = (props) => {
   const { name, label, formik, ...rest } = props;
@@ -24,18 +24,7 @@ const DropdownDatePicker = (props) => {
   const formattedDate = moment(initialDate).format(dateFormat);
   let datesInAMonthArray = [];
 
-  const getYearsArray = (minYear, numOfYears = MAX_NUM_OF_YEARS) => {
-    let yearsArray = [];
-    const maxYear = minYear + numOfYears;
-
-    for (let i = minYear; i <= maxYear; i++) {
-      yearsArray.push(i);
-    }
-
-    return yearsArray;
-  };
-
-  let yearsArray = getYearsArray(new Date().getFullYear());
+  let yearsArray = getArrayOfYearsBetweenTwoYears(new Date().getFullYear(), MAX_NUM_OF_YEARS);
   let numOfDays = getNumOfDaysInAMonth(dateObj.month, dateObj.year);
   datesInAMonthArray = [...Array.from({ length: numOfDays }, (_, i) => i + 1)];
 
@@ -65,7 +54,6 @@ const DropdownDatePicker = (props) => {
   }, [dateObj, formik, name, formattedDate]);
 
   const getDateObj = (formattedDate) => {
-    console.log(formattedDate);
     const dateArray = formattedDate.split(' ');
 
     const date = dateArray[0];
