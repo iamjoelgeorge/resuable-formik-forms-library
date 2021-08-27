@@ -24,7 +24,7 @@ const Textarea = (props) => {
   useLayoutEffect(() => {
     textareaContainerRef?.current?.addEventListener('keydown', handleKeyPressOnContainer);
     textareaRef?.current?.addEventListener('keydown', stopKeydownEventFromReachingTheContainer);
-    console.log(textareaRef.current);
+
     return () => {
       textareaContainerRef?.current?.removeEventListener('keydown', handleKeyPressOnContainer);
       textareaRef?.current?.removeEventListener(
