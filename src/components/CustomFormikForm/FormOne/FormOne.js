@@ -1,4 +1,5 @@
 /* eslint-disable */
+import { Field } from 'formik';
 import React from 'react';
 import Button from '../../Button/Button';
 import Checkbox from '../Checkbox/Checkbox';
@@ -23,12 +24,12 @@ const FormOne = () => {
     returnDate: new Date(),
   };
   const validations = [
-    // {
-    //   name: 'email',
-    //   type: 'email',
-    //   isRequired: true,
-    //   message: 'Enter the correct email id',
-    // },
+    {
+      name: 'email',
+      type: 'email',
+      isRequired: true,
+      message: 'Enter the correct email id',
+    },
     // {
     //   name: 'description',
     //   type: 'string',
@@ -59,8 +60,10 @@ const FormOne = () => {
       onSubmit={handleSubmit}
     >
       <Input type='test' name='test' label='Disabled Input' disabled />
-      <Input type='name' name='name' label='Name' />
-      <Input type='email' name='email' label='Email (with tooltip)' showTooltip />
+      <div className={styles.testContainer}>
+        <Input type='name' name='name' label='Name' />
+        <Input type='email' name='email' label='Email (with tooltip)' showTooltip />
+      </div>
       <Input
         type='text'
         name='age'
