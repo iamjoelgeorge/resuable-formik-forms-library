@@ -41,7 +41,6 @@ const Textarea = (props) => {
     32 - Space
     */
     if (e.keyCode === 13 || e.keyCode === 32) {
-      console.log('inside container');
       showLabelView(false);
       setTimeout(() => {
         textareaRef?.current?.focus();
