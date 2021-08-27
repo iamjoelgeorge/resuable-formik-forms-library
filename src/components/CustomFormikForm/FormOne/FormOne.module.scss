@@ -9,8 +9,9 @@
   padding-top: 0;
   width: 500px;
 
-  .testContainer{
-    // display: flex;
-    color: pink;
+  .testContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 5px;
   }
 }

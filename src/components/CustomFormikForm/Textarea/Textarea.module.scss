@@ -1,5 +1,11 @@
 @import '../../../theme/variables.scss';
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 .container {
   display: flex;
   justify-content: center;
@@ -23,7 +29,7 @@
 
   .fieldContainer {
     position: relative;
-    height: 200px;
+    height: 180px;
     cursor: pointer;
   }
 
