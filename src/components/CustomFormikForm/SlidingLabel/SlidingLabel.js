@@ -6,7 +6,15 @@ import styles from './SlidingLabel.module.scss';
 import { joinClassNames } from '../../../utils/utils';
 
 const SlidingLabel = (props) => {
-  const { label, inputEntered = false, htmlFor, showErrorStyle, customClass, ...rest } = props;
+  const {
+    label,
+    inputEntered = false,
+    htmlFor,
+    showErrorStyle,
+    customClass,
+    isRequired,
+    ...rest
+  } = props;
 
   const labelDefaultClasses = inputEntered
     ? joinClassNames([styles.label, customClass, styles.slideLabel])

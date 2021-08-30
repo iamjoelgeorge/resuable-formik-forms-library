@@ -1,0 +1,33 @@
+@import '../../../theme/variables.scss';
+@import '../../../theme/utils.scss';
+
+.helpLinkContainer {
+  padding-left: em(10);
+
+  a {
+    font-size: em(11);
+    color: $secondaryGrey;
+  }
+}
+
+.tooltipContainer {
+  padding-left: em(10);
+
+  a {
+    font-size: em(11);
+    color: $tooltipRed;
+    text-decoration-style: dashed;
+    transition: 0.1s all ease-in-out;
+    outline: none;
+
+    &:hover {
+      background-color: $tooltipRed;
+      color: $white;
+    }
+
+    &:focus {
+      color: $pinkOne;
+      background-color: $white;
+    }
+  }
+}

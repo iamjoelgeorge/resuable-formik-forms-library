@@ -7,6 +7,7 @@ import { joinClassNames } from '../../../utils/utils';
 import ToolTipIcon from '../../../assets/images/help.svg';
 import ErrorText from '../ErrorText/ErrorText';
 import SlidingLabel from '../SlidingLabel/SlidingLabel';
+import Link from '../Link/Link';
 
 const Input = (props) => {
   const {
@@ -20,6 +21,7 @@ const Input = (props) => {
     tooltipLinkText,
     helpLinkText,
     helpLink,
+    isRequired,
     ...rest
   } = props;
   const { values, errors } = formik;
@@ -62,21 +64,9 @@ const Input = (props) => {
         </div>
       )}
 
-      {helpLinkText && (
-        <div className={styles.helpLinkContainer}>
-          <a href={helpLink} className={styles.helpLink} target='_blank' rel='noreferrer'>
-            {helpLinkText}
-          </a>
-        </div>
-      )}
+      {helpLinkText && <Link label={helpLinkText} link={helpLink} />}
 
-      {tooltipLinkText && (
-        <div className={styles.tooltipContainer}>
-          <a href={tooltipLink} className={styles.tooltipLink} target='_blank' rel='noreferrer'>
-            {tooltipLinkText}
-          </a>
-        </div>
-      )}
+      {tooltipLinkText && <Link label={tooltipLinkText} link={tooltipLink} isTooltip />}
     </div>
   );
 };

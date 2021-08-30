@@ -108,34 +108,34 @@
     margin-top: em(5);
   }
 
-  .helpLinkContainer {
-    padding-left: em(10);
+  // .helpLinkContainer {
+  //   padding-left: em(10);
 
-    .helpLink {
-      font-size: em(11);
-      color: $secondaryGrey;
-    }
-  }
+  //   .helpLink {
+  //     font-size: em(11);
+  //     color: $secondaryGrey;
+  //   }
+  // }
 
-  .tooltipContainer {
-    padding-left: em(10);
+  // .tooltipContainer {
+  //   padding-left: em(10);
 
-    .tooltipLink {
-      font-size: em(11);
-      color: $tooltipRed;
-      text-decoration-style: dashed;
-      transition: 0.1s all ease-in-out;
-      outline: none;
+  //   .tooltipLink {
+  //     font-size: em(11);
+  //     color: $tooltipRed;
+  //     text-decoration-style: dashed;
+  //     transition: 0.1s all ease-in-out;
+  //     outline: none;
 
-      &:hover {
-        background-color: $tooltipRed;
-        color: $white;
-      }
+  //     &:hover {
+  //       background-color: $tooltipRed;
+  //       color: $white;
+  //     }
 
-      &:focus {
-        color: $pinkOne;
-        background-color: $white;
-      }
-    }
-  }
+  //     &:focus {
+  //       color: $pinkOne;
+  //       background-color: $white;
+  //     }
+  //   }
+  // }
 }

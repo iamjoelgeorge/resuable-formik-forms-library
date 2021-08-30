@@ -75,6 +75,7 @@ const FormOne = () => {
             label='Email (with tooltip)'
             helpLink='#'
             helpLinkText='Did you know this is a Help link?'
+            isRequired
           />
         </div>
       </div>
