@@ -16,7 +16,7 @@ const Textarea = (props) => {
   const { values } = formik;
   const inputValue = values[name];
 
-  const placeholderDivClasses = joinClassNames([styles.textarea, styles.placeholderDiv]);
+  const placeholderButtonClasses = joinClassNames([styles.textarea, styles.placeholderButton]);
 
   const handleBlurOnField = () => {
     if (inputValue) showLabelView(true);
@@ -32,9 +32,9 @@ const Textarea = (props) => {
 
   const renderFieldView = () =>
     labelView && inputValue ? (
-      <div className={placeholderDivClasses} tabIndex='0' onClick={handleClick}>
+      <button className={placeholderButtonClasses} tabIndex='0' onClick={handleClick}>
         {inputValue}
-      </div>
+      </button>
     ) : (
       <Field
         innerRef={textareaRef}

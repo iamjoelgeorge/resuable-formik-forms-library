@@ -72,7 +72,16 @@
     left: em(14);
   }
 
-  .placeholderDiv {
+  .placeholderButton {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    text-align: left;
+    background-color: $white;
+    position: relative;
+    padding-bottom: em(20);
+    line-height: 18px;
+
     &:focus {
       border-color: $brightPurple;
       border-style: dashed;
