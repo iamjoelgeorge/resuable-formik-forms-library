@@ -37,6 +37,12 @@ const FormOne = () => {
     //   message: 'Test error message description',
     // },
     // {
+    //   name: 'age',
+    //   type: 'number',
+    //   isRequired: true,
+    //   message: 'Tell us your age',
+    // },
+    // {
     //   name: 'idProofs',
     //   type: 'file',
     //   isRequired: true,
@@ -62,12 +68,14 @@ const FormOne = () => {
       <Input type='test' name='test' label='Disabled Input' disabled />
       <div>
         <div className={styles.testContainer}>
-          <div>
-            <div>
-              <Input type='name' name='name' label='Name' />
-              <Input type='email' name='email' label='Email (with tooltip)' showTooltip />
-            </div>
-          </div>
+          <Input
+            type='name'
+            name='name'
+            label='Name'
+            tooltipLinkText='Tooltip link'
+            tooltipLink='#'
+          />
+          <Input type='email' name='email' label='Email (with tooltip)' showTooltipImage />
         </div>
       </div>
 

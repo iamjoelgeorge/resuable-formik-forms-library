@@ -2,9 +2,6 @@
 @import '../../../theme/utils.scss';
 
 .container {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
   position: relative;
   margin-top: em(30);
 
@@ -103,7 +100,26 @@
     border-bottom-color: $error;
   }
 
-  .errorMessageContainer {
-    padding-left: em(14);
+  .errorContainer {
+    padding-left: em(10);
+  }
+
+  .tooltipContainer {
+    .tooltipLink {
+      color: $error;
+      text-decoration-style: dashed;
+      transition: 0.1s all ease-in-out;
+      font-size: em(11);
+
+      &:hover {
+        background-color: $error;
+        color: $white;
+      }
+
+      &:active {
+        color: $pinkOne;
+        background-color: $white;
+      }
+    }
   }
 }

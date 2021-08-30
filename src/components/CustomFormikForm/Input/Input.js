@@ -15,14 +15,18 @@ const Input = (props) => {
     placeholder,
     formik,
     containerClass: customContainerClass,
-    showTooltip = false,
+    showTooltipImage = false,
+    tooltipLink,
+    tooltipLinkText,
+    helpLinkText,
+    helpLink,
     ...rest
   } = props;
-  const { values } = formik;
+  const { values, errors } = formik;
   const inputValue = values[name];
 
   const userHasVisitedTheInputField = formik.touched[name];
-  const inputFieldHasErrors = formik.errors[name];
+  const inputFieldHasErrors = errors[name];
   const addErrorClassesToLabelAndInput = !!userHasVisitedTheInputField && !!inputFieldHasErrors;
 
   const containerClasses = joinClassNames([styles.container, customContainerClass]);
@@ -45,15 +49,27 @@ const Input = (props) => {
           />
         )}
 
-        {showTooltip && (
+        {showTooltipImage && (
           <span className={styles.toolTip}>
             <img src={ToolTipIcon} alt='help icon' />
           </span>
         )}
       </div>
-      <div className={styles.errorMessageContainer}>
-        <ErrorText fieldName={name} />
-      </div>
+      {errors[name] && (
+        <div className={styles.errorContainer}>
+          <ErrorText fieldName={name} />
+        </div>
+      )}
+
+      {tooltipLinkText && (
+        <div className={styles.tooltipContainer}>
+          {tooltipLinkText && (
+            <a href={tooltipLink} className={styles.tooltipLink} target='_blank' rel='noreferrer'>
+              {tooltipLinkText}
+            </a>
+          )}
+        </div>
+      )}
     </div>
   );
 };
