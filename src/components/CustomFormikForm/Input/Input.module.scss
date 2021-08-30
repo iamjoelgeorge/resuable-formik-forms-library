@@ -102,14 +102,16 @@ $smallFont: em(11);
 
   .placeholderButton {
     text-align: left;
+    z-index: 1;
+    background-color: transparent;
 
     &:focus {
       border-color: $brightPurple;
       border-bottom-style: dashed;
 
-      & + label {
-        @extend .removeSlideLabel;
-      }
+      // & + label {
+      //   @extend .removeSlideLabel;
+      // }
     }
   }
 

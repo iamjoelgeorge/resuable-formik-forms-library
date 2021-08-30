@@ -71,7 +71,7 @@ const Textarea = (props) => {
   };
 
   const renderFieldView = () =>
-    labelView ? (
+    labelView && inputValue ? (
       <div className={styles.textarea}>{inputValue}</div>
     ) : (
       <Field

@@ -30,7 +30,7 @@ const Input = (props) => {
   const { values, errors } = formik;
   const inputValue = values[name];
 
-  const [labelView, showLabelView] = useState(true);
+  const [labelView, showLabelView] = useState(false);
   const inputRef = useRef();
 
   const userHasVisitedTheInputField = formik.touched[name];
@@ -46,7 +46,7 @@ const Input = (props) => {
   const placeholderButtonClasses = joinClassNames([fieldClasses, styles.placeholderButton]);
 
   const handleBlur = () => {
-    showLabelView(true);
+    if (inputValue) showLabelView(true);
   };
 
   const handleClick = () => {
@@ -58,9 +58,9 @@ const Input = (props) => {
   };
 
   const renderFieldView = () =>
-    labelView && !disabled ? (
+    labelView && !disabled && inputValue ? (
       <button className={placeholderButtonClasses} onClick={handleClick}>
-        {values[name]}
+        {placeholder && !inputValue ? placeholder : inputValue}
       </button>
     ) : (
       <Field
