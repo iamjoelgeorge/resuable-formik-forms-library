@@ -1,6 +1,9 @@
 @import '../../../theme/variables.scss';
 @import '../../../theme/utils.scss';
 
+$actualFontSize: em(14);
+$smallFont: em(11);
+
 .container {
   position: relative;
   margin-top: em(30);
@@ -31,18 +34,24 @@
     top: -5px;
     left: 10px;
     transition: 0.1s all ease-in-out;
-    font-size: em(14);
+    font-size: $actualFontSize;
   }
 
   .slideLabel {
     top: -15px;
-    font-size: em(11);
+    font-size: $smallFont;
+  }
+
+  .removeSlideLabel {
+    top: -5px;
+    font-size: $actualFontSize;
   }
 
   .input {
     flex: 1;
+    min-height: 26px;
     color: $primaryDark;
-    padding: em(5) em(30) em(5) 10px;
+    padding: em(5) em(30) em(5) 14px;
     background-color: $white;
     border: none;
     border-bottom: em(2) solid $lighterGrey;
@@ -65,8 +74,7 @@
     }
 
     &:focus {
-      border-color: $brightPurple;
-      border-bottom-style: dashed;
+      border-color: $primary;
 
       & + label {
         @extend .slideLabel;
@@ -92,6 +100,19 @@
     }
   }
 
+  .placeholderButton {
+    text-align: left;
+
+    &:focus {
+      border-color: $brightPurple;
+      border-bottom-style: dashed;
+
+      & + label {
+        @extend .removeSlideLabel;
+      }
+    }
+  }
+
   .labelError {
     color: $error;
   }
@@ -104,38 +125,7 @@
   }
 
   .errorContainer {
-    padding-left: em(10);
+    padding-left: em(14);
     margin-top: em(5);
   }
-
-  // .helpLinkContainer {
-  //   padding-left: em(10);
-
-  //   .helpLink {
-  //     font-size: em(11);
-  //     color: $secondaryGrey;
-  //   }
-  // }
-
-  // .tooltipContainer {
-  //   padding-left: em(10);
-
-  //   .tooltipLink {
-  //     font-size: em(11);
-  //     color: $tooltipRed;
-  //     text-decoration-style: dashed;
-  //     transition: 0.1s all ease-in-out;
-  //     outline: none;
-
-  //     &:hover {
-  //       background-color: $tooltipRed;
-  //       color: $white;
-  //     }
-
-  //     &:focus {
-  //       color: $pinkOne;
-  //       background-color: $white;
-  //     }
-  //   }
-  // }
 }
