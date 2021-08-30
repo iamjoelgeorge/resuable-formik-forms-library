@@ -1,5 +1,6 @@
 import React from 'react';
 
+import PropTypes from 'prop-types';
 import { Field } from 'formik';
 
 import styles from './Input.module.scss';
@@ -48,6 +49,7 @@ const Input = (props) => {
             inputEntered={!!inputValue}
             htmlFor={name}
             showErrorStyle={addErrorClassesToLabelAndInput}
+            inputIsRequired={isRequired}
           />
         )}
 
@@ -69,6 +71,20 @@ const Input = (props) => {
       {tooltipLinkText && <Link label={tooltipLinkText} link={tooltipLink} isTooltip />}
     </div>
   );
+};
+
+Input.propTypes = {
+  label: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  placeholder: PropTypes.string,
+  formik: PropTypes.object,
+  containerClass: PropTypes.string,
+  showTooltipImage: PropTypes.bool,
+  tooltipLink: PropTypes.string,
+  tooltipLinkText: PropTypes.string,
+  helpLinkText: PropTypes.string,
+  helpLink: PropTypes.string,
+  isRequired: PropTypes.bool,
 };
 
 export default Input;

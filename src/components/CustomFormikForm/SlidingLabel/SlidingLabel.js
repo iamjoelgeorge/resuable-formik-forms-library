@@ -12,13 +12,15 @@ const SlidingLabel = (props) => {
     htmlFor,
     showErrorStyle,
     customClass,
-    isRequired,
+    inputIsRequired = false,
     ...rest
   } = props;
 
+  const isRequiredStyle = inputIsRequired ? styles.inputIsRequired : '';
+
   const labelDefaultClasses = inputEntered
-    ? joinClassNames([styles.label, customClass, styles.slideLabel])
-    : joinClassNames([styles.label, customClass]);
+    ? joinClassNames([styles.label, isRequiredStyle, customClass, styles.slideLabel])
+    : joinClassNames([styles.label, isRequiredStyle, customClass]);
 
   const labelClasses = showErrorStyle
     ? joinClassNames([labelDefaultClasses, styles.labelError])
@@ -37,6 +39,7 @@ SlidingLabel.propTypes = {
   htmlFor: PropTypes.string.isRequired,
   showErrorStyle: PropTypes.bool.isRequired,
   customClass: PropTypes.string,
+  inputIsRequired: PropTypes.bool,
   rest: PropTypes.object,
 };
 
