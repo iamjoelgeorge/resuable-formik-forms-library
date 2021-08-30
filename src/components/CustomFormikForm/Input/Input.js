@@ -9,7 +9,15 @@ import ErrorText from '../ErrorText/ErrorText';
 import SlidingLabel from '../SlidingLabel/SlidingLabel';
 
 const Input = (props) => {
-  const { label, name, placeholder, formik, showTooltip = false, ...rest } = props;
+  const {
+    label,
+    name,
+    placeholder,
+    formik,
+    containerClass: customContainerClass,
+    showTooltip = false,
+    ...rest
+  } = props;
   const { values } = formik;
   const inputValue = values[name];
 
@@ -17,12 +25,14 @@ const Input = (props) => {
   const inputFieldHasErrors = formik.errors[name];
   const addErrorClassesToLabelAndInput = !!userHasVisitedTheInputField && !!inputFieldHasErrors;
 
+  const containerClasses = joinClassNames([styles.container, customContainerClass]);
+
   const fieldClasses = addErrorClassesToLabelAndInput
     ? joinClassNames([styles.input, styles.inputError])
     : [styles.input];
 
   return (
-    <div className={styles.container}>
+    <div className={containerClasses}>
       <div className={styles.inputWithTooltipContainer}>
         <Field className={fieldClasses} name={name} id={name} placeholder={placeholder} {...rest} />
 

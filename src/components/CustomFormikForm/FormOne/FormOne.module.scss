@@ -1,7 +1,7 @@
 @import '../../../theme/variables.scss';
 
 .container {
-  display: flex;
+  // display: flex;
   flex-direction: column;
   background-color: $white;
   border: 1px solid $border;
@@ -13,5 +13,9 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 5px;
+  }
+
+  .inputContainer {
+    width: 50%;
   }
 }

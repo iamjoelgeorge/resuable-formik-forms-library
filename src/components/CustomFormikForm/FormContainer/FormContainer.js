@@ -1,6 +1,5 @@
 import React, { Children, cloneElement } from 'react';
 
-import { v4 as uuidv4 } from 'uuid';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 
@@ -17,17 +16,21 @@ const FormContainer = (props) => {
   const validationSchema = Yup.object().shape(validationObject);
 
   const renderChildren = (child, formik) => {
-    const container = child.props.children;
+    const childOfChild = child.props.children;
     const className = child.props.className;
+
+    if (childOfChild?.props?.children) {
+      return renderChildren(childOfChild, formik);
+    }
 
     return (
       <div className={className}>
-        {container.map((child) => {
+        {childOfChild.map((child) => {
           /*
-            The error generated because of the key not being added can be ignored in this case
-            because these elements will not be deleted/modified. The key is not added the the child
-            because it is interfering with the focus event of the input field.
-          */
+              The error generated because of the key not being added can be ignored in this case
+              because these elements will not be deleted/modified. The key is not added the the child
+              because it is interfering with the focus event of the input field.
+            */
           return cloneElement(child, { formik });
         })}
       </div>

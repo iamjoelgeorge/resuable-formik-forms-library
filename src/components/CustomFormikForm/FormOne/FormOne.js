@@ -60,10 +60,17 @@ const FormOne = () => {
       onSubmit={handleSubmit}
     >
       <Input type='test' name='test' label='Disabled Input' disabled />
-      <div className={styles.testContainer}>
-        <Input type='name' name='name' label='Name' />
-        <Input type='email' name='email' label='Email (with tooltip)' showTooltip />
+      <div>
+        <div className={styles.testContainer}>
+          <div>
+            <div>
+              <Input type='name' name='name' label='Name' />
+              <Input type='email' name='email' label='Email (with tooltip)' showTooltip />
+            </div>
+          </div>
+        </div>
       </div>
+
       <Input
         type='text'
         name='age'
