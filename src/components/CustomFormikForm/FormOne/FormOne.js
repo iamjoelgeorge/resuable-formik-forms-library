@@ -90,7 +90,7 @@ const FormOne = () => {
       />
       <DatePicker name='departureDate' label='Departure Date' />
       <DatePicker name='returnDate' dropdown label='Return Date' />
-      <Textarea name='description' label='Description' />
+      <Textarea name='description' label='Additional Details' />
       <Checkbox name='license' label='Do you have a license?' />
       <FileUploadInput name='idProofs' label='Upload your documents' />
 

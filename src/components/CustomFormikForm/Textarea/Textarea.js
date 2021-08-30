@@ -1,65 +1,25 @@
 /* eslint-disable */
-import React, { useLayoutEffect, useState } from 'react';
+import React, { useState, useRef } from 'react';
+
+import PropTypes from 'prop-types';
 import { Field } from 'formik';
-import { useRef } from 'react';
-import SlidingLabel from '../SlidingLabel/SlidingLabel';
 
 import styles from './Textarea.module.scss';
-
 import { joinClassNames } from '../../../utils/utils';
+import SlidingLabel from '../SlidingLabel/SlidingLabel';
 
 const Textarea = (props) => {
   const { name, label, formik, ...rest } = props;
-  const [labelView, showLabelView] = useState(true);
+  const [labelView, showLabelView] = useState(false);
   const textareaRef = useRef();
-  const textareaContainerRef = useRef();
 
   const { values } = formik;
   const inputValue = values[name];
 
-  const textareaContainerClasses = labelView
-    ? styles.container
-    : joinClassNames([styles.container, styles.textareaFocused]);
+  const placeholderDivClasses = joinClassNames([styles.textarea, styles.placeholderDiv]);
 
-  useLayoutEffect(() => {
-    textareaContainerRef?.current?.addEventListener('keydown', handleKeyPressOnContainer);
-    textareaRef?.current?.addEventListener('keydown', stopKeydownEventFromReachingTheContainer);
-
-    return () => {
-      textareaContainerRef?.current?.removeEventListener('keydown', handleKeyPressOnContainer);
-      textareaRef?.current?.removeEventListener(
-        'keydown',
-        stopKeydownEventFromReachingTheContainer,
-      );
-    };
-  }, [labelView]);
-
-  const handleKeyPressOnContainer = (e) => {
-    /*
-    Key codes:
-    13 - Enter
-    32 - Space
-    */
-    if (e.keyCode === 13 || e.keyCode === 32) {
-      showLabelView(false);
-      setTimeout(() => {
-        textareaRef?.current?.focus();
-      }, 0);
-    }
-  };
-
-  /*
-  This function is to prevent the 'handleKeyPressOnContainer' function from
-  running at every keydown (for Enter and Space keys) event in the textarea.
-  */
-  const stopKeydownEventFromReachingTheContainer = (e) => {
-    if (e.keyCode === 13 || e.keyCode === 32) {
-      e.stopPropagation();
-    }
-  };
-
-  const handleBlur = () => {
-    showLabelView(true);
+  const handleBlurOnField = () => {
+    if (inputValue) showLabelView(true);
   };
 
   const handleClick = () => {
@@ -72,25 +32,22 @@ const Textarea = (props) => {
 
   const renderFieldView = () =>
     labelView && inputValue ? (
-      <div className={styles.textarea}>{inputValue}</div>
+      <div className={placeholderDivClasses} tabIndex='0' onClick={handleClick}>
+        {inputValue}
+      </div>
     ) : (
       <Field
         innerRef={textareaRef}
         className={styles.textarea}
         as='textarea'
         name={name}
-        onBlur={handleBlur}
+        onBlur={handleBlurOnField}
         {...rest}
       />
     );
 
   return (
-    <div
-      ref={textareaContainerRef}
-      className={textareaContainerClasses}
-      tabIndex='0'
-      onClick={handleClick}
-    >
+    <div className={styles.container}>
       <div className={styles.fieldContainer}>
         {renderFieldView()}
         {label && (
@@ -105,6 +62,12 @@ const Textarea = (props) => {
       </div>
     </div>
   );
+};
+
+Textarea.propTypes = {
+  name: PropTypes.string.isRequired,
+  label: PropTypes.string,
+  formik: PropTypes.object,
 };
 
 export default Textarea;
