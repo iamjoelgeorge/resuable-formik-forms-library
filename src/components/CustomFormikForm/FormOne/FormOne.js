@@ -68,14 +68,14 @@ const FormOne = () => {
       <Input type='test' name='test' label='Disabled Input' disabled />
       <div>
         <div className={styles.testContainer}>
+          <Input type='name' name='name' label='Name' showTooltipImage />
           <Input
-            type='name'
-            name='name'
-            label='Name'
-            tooltipLinkText='Did you know this is a Tooltip link?'
-            tooltipLink='#'
+            type='email'
+            name='email'
+            label='Email (with tooltip)'
+            helpLink='#'
+            helpLinkText='Did you know this is a Help link?'
           />
-          <Input type='email' name='email' label='Email (with tooltip)' showTooltipImage />
         </div>
       </div>
 
@@ -84,8 +84,8 @@ const FormOne = () => {
         name='age'
         label='Age (with placeholder)'
         placeholder='Tell us how old you are'
-        helpLink='#'
-        helpLinkText='Did you know this is a Help link?'
+        tooltipLinkText='Did you know this is a Tooltip link?'
+        tooltipLink='#'
       />
       <DatePicker name='departureDate' label='Departure Date' />
       <DatePicker name='returnDate' dropdown label='Return Date' />

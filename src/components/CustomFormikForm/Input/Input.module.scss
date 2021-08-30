@@ -96,8 +96,11 @@
     color: $error;
   }
 
-  .inputError {
+  .inputError,
+  .inputError:hover,
+  .inputError:focus {
     border-bottom-color: $error;
+    color: $secondaryGrey;
   }
 
   .errorContainer {
@@ -119,16 +122,17 @@
 
     .tooltipLink {
       font-size: em(11);
-      color: $error;
+      color: $tooltipRed;
       text-decoration-style: dashed;
       transition: 0.1s all ease-in-out;
+      outline: none;
 
       &:hover {
-        background-color: $error;
+        background-color: $tooltipRed;
         color: $white;
       }
 
-      &:active {
+      &:focus {
         color: $pinkOne;
         background-color: $white;
       }
