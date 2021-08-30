@@ -55,19 +55,26 @@ const Input = (props) => {
           </span>
         )}
       </div>
+
       {errors[name] && (
         <div className={styles.errorContainer}>
           <ErrorText fieldName={name} />
         </div>
       )}
 
+      {helpLinkText && (
+        <div className={styles.helpLinkContainer}>
+          <a href={helpLink} className={styles.helpLink} target='_blank' rel='noreferrer'>
+            {helpLinkText}
+          </a>
+        </div>
+      )}
+
       {tooltipLinkText && (
         <div className={styles.tooltipContainer}>
-          {tooltipLinkText && (
-            <a href={tooltipLink} className={styles.tooltipLink} target='_blank' rel='noreferrer'>
-              {tooltipLinkText}
-            </a>
-          )}
+          <a href={tooltipLink} className={styles.tooltipLink} target='_blank' rel='noreferrer'>
+            {tooltipLinkText}
+          </a>
         </div>
       )}
     </div>

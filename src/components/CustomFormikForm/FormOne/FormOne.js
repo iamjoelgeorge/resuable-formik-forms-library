@@ -72,7 +72,7 @@ const FormOne = () => {
             type='name'
             name='name'
             label='Name'
-            tooltipLinkText='Tooltip link'
+            tooltipLinkText='Did you know this is a Tooltip link?'
             tooltipLink='#'
           />
           <Input type='email' name='email' label='Email (with tooltip)' showTooltipImage />
@@ -84,6 +84,8 @@ const FormOne = () => {
         name='age'
         label='Age (with placeholder)'
         placeholder='Tell us how old you are'
+        helpLink='#'
+        helpLinkText='Did you know this is a Help link?'
       />
       <DatePicker name='departureDate' label='Departure Date' />
       <DatePicker name='returnDate' dropdown label='Return Date' />

@@ -102,14 +102,26 @@
 
   .errorContainer {
     padding-left: em(10);
+    margin-top: em(5);
+  }
+
+  .helpLinkContainer {
+    padding-left: em(10);
+
+    .helpLink {
+      font-size: em(11);
+      color: $secondaryGrey;
+    }
   }
 
   .tooltipContainer {
+    padding-left: em(10);
+
     .tooltipLink {
+      font-size: em(11);
       color: $error;
       text-decoration-style: dashed;
       transition: 0.1s all ease-in-out;
-      font-size: em(11);
 
       &:hover {
         background-color: $error;
