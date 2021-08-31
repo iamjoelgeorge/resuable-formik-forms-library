@@ -25,14 +25,16 @@ const FormContainer = (props) => {
 
     return (
       <div className={className}>
-        {childOfChild.map((child) => {
-          /*
-              The error generated because of the key not being added can be ignored in this case
-              because these elements will not be deleted/modified. The key is not added the the child
-              because it is interfering with the focus event of the input field.
-            */
-          return cloneElement(child, { formik });
-        })}
+        {childOfChild?.length
+          ? childOfChild.map((child) => {
+              /*
+                The error generated because of the key not being added can be ignored in this case
+                because these elements will not be deleted/modified. The key is not added the the child
+                because it is interfering with the focus event of the input field.
+              */
+              return cloneElement(child, { formik });
+            })
+          : cloneElement(childOfChild, { formik })}
       </div>
     );
   };

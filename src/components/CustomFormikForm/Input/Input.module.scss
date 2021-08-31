@@ -12,19 +12,23 @@ $smallFont: em(11);
     display: flex;
     position: relative;
 
-    .toolTip {
+    .toolTipWithImage {
       position: absolute;
       right: 0;
       margin-right: em(2);
       width: em(16);
       height: em(16);
-      cursor: pointer;
 
       img {
         width: 100%;
         height: auto;
       }
     }
+  }
+
+  .toolTipWithImage {
+    position: absolute;
+    right: 0;
   }
 
   .label {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
 import PropTypes from 'prop-types';
 import { Field } from 'formik';
@@ -9,7 +9,7 @@ import ToolTipIcon from '../../../assets/images/help.svg';
 import ErrorText from '../ErrorText/ErrorText';
 import SlidingLabel from '../SlidingLabel/SlidingLabel';
 import Link from '../Link/Link';
-import { useRef } from 'react';
+import ToolTip from '../ToolTip/ToolTip';
 
 const Input = (props) => {
   const {
@@ -91,9 +91,9 @@ const Input = (props) => {
         )}
 
         {showTooltipImage && (
-          <span className={styles.toolTip}>
-            <img src={ToolTipIcon} alt='help icon' />
-          </span>
+          <div className={styles.toolTipWithImage}>
+            <ToolTip />
+          </div>
         )}
       </div>
 
