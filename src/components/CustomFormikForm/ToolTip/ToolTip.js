@@ -1,33 +1,68 @@
-import React, { useState } from 'react';
-import DefaultToolTipIcon from '../../../assets/images/help.svg';
+import React, { useState, useLayoutEffect, useRef } from 'react';
+
+import PropTypes from 'prop-types';
 
 import styles from './ToolTip.module.scss';
+import ToolTipIcon from '../../../assets/images/help.svg';
 
 const ToolTip = (props) => {
-  const { icon, heading, description } = props;
-  const [isDescriptionBoxOpen, setIsDescriptionBoxOpen] = useState(true);
+  const { heading, content, contentElement } = props;
+  const [isContentBoxOpen, setIsContentBoxOpen] = useState(true);
 
-  const toolTipIcon = icon ? icon : DefaultToolTipIcon;
+  const tooltipRef = useRef();
 
-  const handleClick = () => {
-    setIsDescriptionBoxOpen((prevState) => !prevState);
+  useLayoutEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', handleEscKeyPress);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleEscKeyPress);
+    };
+  }, []);
+
+  const handleClickOutside = (e) => {
+    const calendarNode = tooltipRef.current;
+    const clickedNode = e.target;
+
+    if (calendarNode?.contains(clickedNode)) return;
+    setIsContentBoxOpen(false);
+  };
+
+  const handleEscKeyPress = (e) => {
+    if (e.keyCode === 27) {
+      setIsContentBoxOpen(false);
+    }
+  };
+
+  const toggleTooltipContentBox = () => {
+    setIsContentBoxOpen((prevState) => !prevState);
   };
 
   return (
-    <div className={styles.container}>
-      <img src={toolTipIcon} alt='help icon' onClick={handleClick} />
+    <div ref={tooltipRef} className={styles.container}>
+      <img src={ToolTipIcon} alt='tooltip' onClick={toggleTooltipContentBox} />
 
-      {isDescriptionBoxOpen && (
-        <div className={styles.descriptionBox}>
-          <p className={styles.heading}>Permitted with no fee</p>
-          <p className={styles.description}>
-            For cancellation, credit to Travel Bank for the full ticket value including any fare
-            portion where Velocity Points have been redeemed.
-          </p>
+      {isContentBoxOpen && (
+        <div className={styles.contentBox}>
+          <button className={styles.closeButton} onClick={toggleTooltipContentBox}>
+            <div className={styles.line}></div>
+            <div className={styles.line}></div>
+          </button>
+          <p className={styles.heading}>{heading}</p>
+          {content && <p className={styles.content}>{content}</p>}
+          {contentElement && <p className={styles.content}>{contentElement}</p>}
         </div>
       )}
     </div>
   );
+};
+
+ToolTip.propTypes = {
+  icon: PropTypes.string,
+  heading: PropTypes.string,
+  content: PropTypes.string,
+  contentElement: PropTypes.element,
 };
 
 export default ToolTip;

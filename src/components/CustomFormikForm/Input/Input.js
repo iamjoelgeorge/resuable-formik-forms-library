@@ -5,7 +5,6 @@ import { Field } from 'formik';
 
 import styles from './Input.module.scss';
 import { joinClassNames } from '../../../utils/utils';
-import ToolTipIcon from '../../../assets/images/help.svg';
 import ErrorText from '../ErrorText/ErrorText';
 import SlidingLabel from '../SlidingLabel/SlidingLabel';
 import Link from '../Link/Link';
@@ -18,7 +17,10 @@ const Input = (props) => {
     placeholder,
     formik,
     containerClass: customContainerClass,
-    showTooltipImage = false,
+    showTooltipIcon = false,
+    tooltipIconHeading,
+    tooltipIconContent,
+    tooltipIconContentElement,
     tooltipLink,
     tooltipLinkText,
     helpLinkText,
@@ -90,9 +92,13 @@ const Input = (props) => {
           />
         )}
 
-        {showTooltipImage && (
+        {showTooltipIcon && (
           <div className={styles.toolTipWithImage}>
-            <ToolTip />
+            <ToolTip
+              heading={tooltipIconHeading}
+              content={tooltipIconContent}
+              contentElement={tooltipIconContentElement}
+            />
           </div>
         )}
       </div>
@@ -114,7 +120,10 @@ Input.propTypes = {
   placeholder: PropTypes.string,
   formik: PropTypes.object,
   containerClass: PropTypes.string,
-  showTooltipImage: PropTypes.bool,
+  showTooltipIcon: PropTypes.bool,
+  tooltipIconHeading: PropTypes.string,
+  tooltipIconContent: PropTypes.string,
+  tooltipIconContentElement: PropTypes.element,
   tooltipLink: PropTypes.string,
   tooltipLinkText: PropTypes.string,
   helpLinkText: PropTypes.string,

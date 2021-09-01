@@ -1,6 +1,8 @@
 /* eslint-disable */
-import { Field } from 'formik';
+
 import React from 'react';
+
+import styles from './FormOne.module.scss';
 import Button from '../../Button/Button';
 import Checkbox from '../Checkbox/Checkbox';
 import DatePicker from '../DatePicker/DatePicker';
@@ -8,8 +10,6 @@ import FileUploadInput from '../FileUploadInput/FileUploadInput';
 import FormContainer from '../FormContainer/FormContainer';
 import Input from '../Input/Input';
 import Textarea from '../Textarea/Textarea';
-
-import styles from './FormOne.module.scss';
 
 const FormOne = () => {
   const initialValues = {
@@ -87,10 +87,13 @@ const FormOne = () => {
         helpLink='#'
         helpLinkText='This is a Help link?'
         isRequired
-        showTooltipImage
+        showTooltipIcon
+        tooltipIconHeading='Permitted with no fee'
+        tooltipIconContent='For cancellation, credit to Travel Bank for the full ticket value including any fare portion where Velocity Points have been redeemed.'
       />
       <DatePicker name='departureDate' label='Departure Date' />
       <DatePicker name='returnDate' dropdown label='Return Date' />
+      <Input type='test' name='test' label='Test Input' />
       <Textarea name='description' label='Additional Details' />
       <Checkbox name='license' label='Do you have a license?' />
       <FileUploadInput name='idProofs' label='Upload your documents' />

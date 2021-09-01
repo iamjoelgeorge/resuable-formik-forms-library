@@ -5,6 +5,7 @@
   width: em(16);
   height: em(16);
   position: relative;
+  z-index: 1;
 
   img {
     width: 100%;
@@ -12,7 +13,7 @@
     cursor: pointer;
   }
 
-  .descriptionBox {
+  .contentBox {
     position: absolute;
     right: -28px;
     bottom: 250%;
@@ -43,14 +44,42 @@
       right: 25px;
       bottom: -7px;
       transform: rotate(45deg);
-      width: 23px;
+      width: 25px;
       height: 21px;
       z-index: -1;
       box-shadow: 4px 4px 3px -2px $shadowTwo;
     }
 
+    .closeButton {
+      position: absolute;
+      right: 30px;
+      top: -10px;
+      padding: 0;
+      background-color: transparent;
+      height: em(28);
+      width: em(28);
+      border: 1px solid $tooltipRed;
+      border-radius: 50%;
+      text-align: center;
+      font-size: em(13);
+      cursor: pointer;
+
+      .line {
+        position: absolute;
+        left: 5px;
+        width: 10px;
+        border-bottom: 1px solid $tooltipRed;
+        border-radius: 10px;
+        transform: rotate(45deg);
+
+        &:last-child {
+          transform: rotate(-45deg);
+        }
+      }
+    }
+
     .heading,
-    .description {
+    .content {
       margin: 0;
     }
 
@@ -61,7 +90,7 @@
       margin-bottom: em(8);
     }
 
-    .description {
+    .content {
       font-size: em(13);
       line-height: 17px;
     }
