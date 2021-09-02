@@ -10,8 +10,9 @@ import FileUploadInput from '../FileUploadInput/FileUploadInput';
 import FormContainer from '../FormContainer/FormContainer';
 import Input from '../Input/Input';
 import Textarea from '../Textarea/Textarea';
+import Test from '../Test/Test';
 
-const FormOne = () => {
+const FormOne = (props) => {
   const initialValues = {
     name: '',
     email: '',
@@ -23,6 +24,7 @@ const FormOne = () => {
     departureDate: new Date(),
     returnDate: new Date(),
   };
+
   const validations = [
     {
       name: 'email',
@@ -56,6 +58,8 @@ const FormOne = () => {
     // },
   ];
 
+  const checkBoxOption = [{ label: 'Do you have a license? haha.', value: false }];
+
   const handleSubmit = (values) => console.log('Test Submit', values);
 
   return (
@@ -65,6 +69,7 @@ const FormOne = () => {
       containerClass={styles.container}
       onSubmit={handleSubmit}
     >
+      {/* <Test /> */}
       <Input type='test' name='test' label='Disabled Input' disabled />
       <div>
         <div className={styles.testContainer}>
@@ -95,7 +100,7 @@ const FormOne = () => {
       <DatePicker name='returnDate' dropdown label='Return Date' />
       <Input type='test' name='test' label='Test Input' />
       <Textarea name='description' label='Additional Details' />
-      <Checkbox name='license' label='Do you have a license?' />
+      <Checkbox name='license' label='Do you have a license?' options={checkBoxOption} />
       <FileUploadInput name='idProofs' label='Upload your documents' />
 
       <Button type='submit' />

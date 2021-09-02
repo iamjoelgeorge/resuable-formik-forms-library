@@ -6,8 +6,8 @@ import styles from './ToolTip.module.scss';
 import ToolTipIcon from '../../../assets/images/help.svg';
 
 const ToolTip = (props) => {
-  const { heading, content, contentElement } = props;
-  const [isContentBoxOpen, setIsContentBoxOpen] = useState(true);
+  const { heading, content, contentElement: ContentElement } = props;
+  const [isContentBoxOpen, setIsContentBoxOpen] = useState(false);
 
   const tooltipRef = useRef();
 
@@ -39,6 +39,13 @@ const ToolTip = (props) => {
     setIsContentBoxOpen((prevState) => !prevState);
   };
 
+  const renderContent = () =>
+    ContentElement ? (
+      <div className={styles.contentElement}>{ContentElement}</div>
+    ) : content ? (
+      <p className={styles.content}>{content}</p>
+    ) : null;
+
   return (
     <div ref={tooltipRef} className={styles.container}>
       <img src={ToolTipIcon} alt='tooltip' onClick={toggleTooltipContentBox} />
@@ -50,8 +57,10 @@ const ToolTip = (props) => {
             <div className={styles.line}></div>
           </button>
           <p className={styles.heading}>{heading}</p>
-          {content && <p className={styles.content}>{content}</p>}
-          {contentElement && <p className={styles.content}>{contentElement}</p>}
+          {/* {content && <p className={styles.content}>{content}</p>}
+          {ContentElement && <div className={styles.contentElement}>{ContentElement}</div>} */}
+
+          {renderContent()}
         </div>
       )}
     </div>

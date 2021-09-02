@@ -1,0 +1,50 @@
+@import '../../../theme/variables.scss';
+@import '../../../theme/utils.scss';
+
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  label {
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .checkboxInput {
+    position: absolute;
+    left: -999em;
+  }
+
+  .presentationalCheckbox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2px;
+    width: em(14);
+    height: em(14);
+    margin-right: em(10);
+    border: 1px solid $lighterDarkGrey;
+    border-radius: 3px;
+    padding: em(1);
+  }
+
+  .checkboxChecked {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    border-radius: 2px;
+  }
+
+  .checkboxInput:checked + .presentationalCheckbox .checkboxChecked {
+    background-color: $brightPurple;
+  }
+
+  .focused{
+      border-color: $brightPurple;
+      border-style: dashed;
+  }
+}

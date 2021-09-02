@@ -94,5 +94,19 @@
       font-size: em(13);
       line-height: 17px;
     }
+
+    .contentElement {
+      @extend .content;
+
+      a {
+        color: $tooltipRed;
+        outline: none;
+
+        &:hover,
+        &:focus {
+          color: $pinkOne;
+        }
+      }
+    }
   }
 }
