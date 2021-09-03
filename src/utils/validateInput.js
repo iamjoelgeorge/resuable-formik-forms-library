@@ -16,6 +16,10 @@ export const validateInput = (input, objectToUpdate) => {
         .required(message);
       break;
 
+    case 'checkbox':
+      objectToUpdate[name] = Yup.bool().oneOf([true], message);
+      break;
+
     case 'string':
       objectToUpdate[name] = isRequired
         ? Yup.string().required(message)

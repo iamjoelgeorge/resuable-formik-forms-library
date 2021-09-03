@@ -1,7 +1,7 @@
 @import '../../../theme/variables.scss';
 @import '../../../theme/utils.scss';
 
-.label {
+.container {
   display: flex;
   align-items: center;
   color: $darkPurple;
@@ -16,6 +16,10 @@
 .slideLabel {
   top: -15px;
   font-size: 11px;
+}
+
+.label {
+  margin-right: 5px;
 }
 
 .labelError {

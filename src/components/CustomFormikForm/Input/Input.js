@@ -17,10 +17,9 @@ const Input = (props) => {
     placeholder,
     formik,
     containerClass: customContainerClass,
-    showTooltipIcon = false,
-    tooltipIconHeading,
-    tooltipIconContent,
-    tooltipIconContentElement,
+    tooltipIconBoxHeading,
+    tooltipIconBoxDescription,
+    tooltipIconChildElement,
     tooltipLink,
     tooltipLinkText,
     helpLinkText,
@@ -33,11 +32,14 @@ const Input = (props) => {
   const inputValue = values[name];
 
   const [labelView, showLabelView] = useState(false);
+  const [slideLabel, setSlideLabel] = useState(false);
   const inputRef = useRef();
 
   const userHasVisitedTheInputField = formik.touched[name];
   const inputFieldHasErrors = errors[name];
   const addErrorClassesToLabelAndInput = !!userHasVisitedTheInputField && !!inputFieldHasErrors;
+
+  const showTooltipIcon = tooltipIconBoxHeading || tooltipIconBoxDescription;
 
   const containerClasses = joinClassNames([styles.container, customContainerClass]);
 
@@ -47,7 +49,12 @@ const Input = (props) => {
 
   const placeholderButtonClasses = joinClassNames([fieldClasses, styles.placeholderButton]);
 
+  const handleFocus = () => {
+    setSlideLabel(true);
+  };
+
   const handleBlur = () => {
+    setSlideLabel(false);
     if (inputValue) showLabelView(true);
   };
 
@@ -72,6 +79,7 @@ const Input = (props) => {
         id={name}
         placeholder={placeholder}
         disabled={disabled}
+        onFocus={handleFocus}
         onBlur={handleBlur}
         {...rest}
       />
@@ -85,7 +93,7 @@ const Input = (props) => {
         {label && (
           <SlidingLabel
             label={label}
-            inputEntered={!!inputValue}
+            inputEntered={!!inputValue || !!placeholder || slideLabel}
             htmlFor={name}
             showErrorStyle={addErrorClassesToLabelAndInput}
             inputIsRequired={isRequired}
@@ -95,17 +103,15 @@ const Input = (props) => {
         {showTooltipIcon && (
           <div className={styles.toolTipWithImage}>
             <ToolTip
-              heading={tooltipIconHeading}
-              content={tooltipIconContent}
-              contentElement={tooltipIconContentElement}
+              heading={tooltipIconBoxHeading}
+              description={tooltipIconBoxDescription}
+              descriptionElement={tooltipIconChildElement}
             />
           </div>
         )}
       </div>
 
-      {errors[name] && formik.touched[name] && (
-        <ErrorText containerClass={styles.errorContainer} fieldName={name} />
-      )}
+      {errors[name] && formik.touched[name] && <ErrorText fieldName={name} />}
 
       {helpLinkText && <Link label={helpLinkText} link={helpLink} />}
 
@@ -120,10 +126,9 @@ Input.propTypes = {
   placeholder: PropTypes.string,
   formik: PropTypes.object,
   containerClass: PropTypes.string,
-  showTooltipIcon: PropTypes.bool,
-  tooltipIconHeading: PropTypes.string,
-  tooltipIconContent: PropTypes.string,
-  tooltipIconContentElement: PropTypes.element,
+  tooltipIconBoxHeading: PropTypes.string,
+  tooltipIconBoxDescription: PropTypes.string,
+  tooltipIconChildElement: PropTypes.element,
   tooltipLink: PropTypes.string,
   tooltipLinkText: PropTypes.string,
   helpLinkText: PropTypes.string,

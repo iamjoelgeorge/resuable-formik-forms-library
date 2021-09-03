@@ -11,6 +11,7 @@ import FormContainer from '../FormContainer/FormContainer';
 import Input from '../Input/Input';
 import Textarea from '../Textarea/Textarea';
 import Test from '../Test/Test';
+import FormBody from './FormBody/FormBody';
 
 const FormOne = (props) => {
   const initialValues = {
@@ -58,9 +59,7 @@ const FormOne = (props) => {
     // },
   ];
 
-  const checkBoxOption = [{ label: 'Do you have a license? haha.', value: false }];
-
-  const handleSubmit = (values) => console.log('Test Submit', values);
+  const handleSubmit = (values) => console.log('Form 1 submitted:', values);
 
   return (
     <FormContainer
@@ -69,41 +68,7 @@ const FormOne = (props) => {
       containerClass={styles.container}
       onSubmit={handleSubmit}
     >
-      {/* <Test /> */}
-      <Input type='test' name='test' label='Disabled Input' disabled />
-      <div>
-        <div className={styles.testContainer}>
-          <Input type='name' name='name' label='Name' />
-          <Input
-            type='text'
-            name='age'
-            label='Age (with placeholder)'
-            placeholder='Tell us how old you are'
-            tooltipLinkText='This is a Tooltip link?'
-            tooltipLink='#'
-          />
-        </div>
-      </div>
-
-      <Input
-        type='email'
-        name='email'
-        label='Email'
-        helpLink='#'
-        helpLinkText='This is a Help link?'
-        isRequired
-        showTooltipIcon
-        tooltipIconHeading='Permitted with no fee'
-        tooltipIconContent='For cancellation, credit to Travel Bank for the full ticket value including any fare portion where Velocity Points have been redeemed.'
-      />
-      <DatePicker name='departureDate' label='Departure Date' />
-      <DatePicker name='returnDate' dropdown label='Return Date' />
-      <Input type='test' name='test' label='Test Input' />
-      <Textarea name='description' label='Additional Details' />
-      <Checkbox name='license' label='Do you have a license?' options={checkBoxOption} />
-      <FileUploadInput name='idProofs' label='Upload your documents' />
-
-      <Button type='submit' />
+      <FormBody />
     </FormContainer>
   );
 };

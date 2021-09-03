@@ -10,6 +10,7 @@ import store from './redux/store';
 // import CustomForm from './components/CustomForm/CustomForm';
 import FormOne from './components/CustomFormikForm/FormOne/FormOne';
 import CustomForm from './components/CustomForm/CustomForm';
+import FormTwo from './components/CustomFormikForm/FormTwo/FormTwo';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         {/* <BoxGallery /> */}
         {/* <BoxGalleryTest /> */}
         {/* <CustomForm initialValues={initialValuesFormOne} /> */}
+        <FormTwo />
         <FormOne />
       </div>
     </Provider>

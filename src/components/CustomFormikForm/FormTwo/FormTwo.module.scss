@@ -1,0 +1,9 @@
+@import '../../../theme/variables.scss';
+
+.container {
+  background-color: $white;
+  border: 1px solid $border;
+  padding: 20px;
+  padding-top: 0;
+  width: 500px;
+}

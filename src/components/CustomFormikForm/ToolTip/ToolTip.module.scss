@@ -2,18 +2,18 @@
 @import '../../../theme/utils.scss';
 
 .container {
-  width: em(16);
-  height: em(16);
+  display: flex;
   position: relative;
   z-index: 1;
 
   img {
-    width: 100%;
+    width: em(16);
+    height: em(16);
     height: auto;
     cursor: pointer;
   }
 
-  .contentBox {
+  .box {
     position: absolute;
     right: -28px;
     bottom: 250%;
@@ -22,6 +22,7 @@
     border-radius: 4px;
     box-shadow: 0 2px 2px $shadowTwo;
     width: max-content;
+    min-width: em(300);
     max-width: em(385);
     z-index: 2;
 
@@ -66,7 +67,9 @@
 
       .line {
         position: absolute;
-        left: 5px;
+        left: 0;
+        right: 0;
+        margin: auto;
         width: 10px;
         border-bottom: 1px solid $tooltipRed;
         border-radius: 10px;
@@ -79,24 +82,26 @@
     }
 
     .heading,
-    .content {
+    .description {
       margin: 0;
     }
 
     .heading {
+      font-size: 15px;
       font-weight: $fontWeightExtraBold;
       color: $primary;
-      font-size: em(15);
       margin-bottom: em(8);
     }
 
-    .content {
-      font-size: em(13);
+    .description {
+      font-size: 13px;
+      font-weight: $fontWeightRegular;
       line-height: 17px;
+      color: $primary;
     }
 
-    .contentElement {
-      @extend .content;
+    .descriptionElement {
+      @extend .description;
 
       a {
         color: $tooltipRed;

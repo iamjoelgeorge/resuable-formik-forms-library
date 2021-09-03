@@ -1,20 +1,23 @@
 @import '../../../theme/variables.scss';
 @import '../../../theme/utils.scss';
 
-.helpLinkContainer {
+.common {
   padding-left: em(10);
+  padding-top: em(6);
 
   a {
     font-size: em(11);
+  }
+}
+
+.helpLinkContainer {
+  a {
     color: $secondaryGrey;
   }
 }
 
 .tooltipContainer {
-  padding-left: em(10);
-
   a {
-    font-size: em(11);
     color: $tooltipRed;
     text-decoration-style: dashed;
     transition: 0.1s all ease-in-out;

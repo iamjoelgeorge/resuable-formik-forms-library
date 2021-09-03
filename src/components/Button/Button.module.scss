@@ -7,4 +7,9 @@
   background-color: $darkPurple;
   color: white;
   font-weight: bold;
+  margin-top: 12px;
+
+  &:disabled {
+    background-color: rgb(89, 89, 89);
+  }
 }

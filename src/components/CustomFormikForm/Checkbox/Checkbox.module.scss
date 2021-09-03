@@ -6,12 +6,24 @@
 }
 
 .container {
-  label {
+  position: relative;
+  margin-top: 40px;
+
+  .componentHeading {
+    top: -20px;
+    left: 0;
+  }
+
+  .optionLabel {
     position: relative;
-    cursor: pointer;
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    font-size: em(14);
+    line-height: 14px;
+    width: fit-content;
+    color: $primaryDark;
+    cursor: pointer;
   }
 
   .checkboxInput {
@@ -23,13 +35,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: em(1);
     margin-top: 2px;
     width: em(14);
     height: em(14);
     margin-right: em(10);
     border: 1px solid $lighterDarkGrey;
     border-radius: 3px;
-    padding: em(1);
+    box-shadow: 0 2px 2px $borderGrey;
   }
 
   .checkboxChecked {
@@ -39,12 +52,20 @@
     border-radius: 2px;
   }
 
+  .labelSpanElement {
+    margin-top: em(3);
+  }
+
   .checkboxInput:checked + .presentationalCheckbox .checkboxChecked {
     background-color: $brightPurple;
   }
 
-  .focused{
-      border-color: $brightPurple;
-      border-style: dashed;
+  .focused {
+    border-color: $brightPurple;
+    border-style: dashed;
+  }
+
+  .optionalText {
+    padding-left: 0;
   }
 }

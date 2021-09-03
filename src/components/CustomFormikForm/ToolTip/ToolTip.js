@@ -6,8 +6,8 @@ import styles from './ToolTip.module.scss';
 import ToolTipIcon from '../../../assets/images/help.svg';
 
 const ToolTip = (props) => {
-  const { heading, content, contentElement: ContentElement } = props;
-  const [isContentBoxOpen, setIsContentBoxOpen] = useState(false);
+  const { heading, description, descriptionElement: DescriptionElement } = props;
+  const [isBoxOpen, setIsBoxOpen] = useState(false);
 
   const tooltipRef = useRef();
 
@@ -22,45 +22,43 @@ const ToolTip = (props) => {
   }, []);
 
   const handleClickOutside = (e) => {
-    const calendarNode = tooltipRef.current;
+    const tooltipNode = tooltipRef.current;
     const clickedNode = e.target;
 
-    if (calendarNode?.contains(clickedNode)) return;
-    setIsContentBoxOpen(false);
+    if (tooltipNode?.contains(clickedNode)) return;
+    setIsBoxOpen(false);
   };
 
   const handleEscKeyPress = (e) => {
     if (e.keyCode === 27) {
-      setIsContentBoxOpen(false);
+      setIsBoxOpen(false);
     }
   };
 
-  const toggleTooltipContentBox = () => {
-    setIsContentBoxOpen((prevState) => !prevState);
+  const toggleTooltipBox = () => {
+    setIsBoxOpen((prevState) => !prevState);
   };
 
-  const renderContent = () =>
-    ContentElement ? (
-      <div className={styles.contentElement}>{ContentElement}</div>
-    ) : content ? (
-      <p className={styles.content}>{content}</p>
+  const renderDescription = () =>
+    DescriptionElement ? (
+      <div className={styles.descriptionElement}>{DescriptionElement}</div>
+    ) : description ? (
+      <p className={styles.description}>{description}</p>
     ) : null;
 
   return (
     <div ref={tooltipRef} className={styles.container}>
-      <img src={ToolTipIcon} alt='tooltip' onClick={toggleTooltipContentBox} />
+      <img src={ToolTipIcon} alt='tooltip' onClick={toggleTooltipBox} />
 
-      {isContentBoxOpen && (
-        <div className={styles.contentBox}>
-          <button className={styles.closeButton} onClick={toggleTooltipContentBox}>
+      {isBoxOpen && (
+        <div className={styles.box}>
+          <button className={styles.closeButton} onClick={toggleTooltipBox}>
             <div className={styles.line}></div>
             <div className={styles.line}></div>
           </button>
           <p className={styles.heading}>{heading}</p>
-          {/* {content && <p className={styles.content}>{content}</p>}
-          {ContentElement && <div className={styles.contentElement}>{ContentElement}</div>} */}
 
-          {renderContent()}
+          {renderDescription()}
         </div>
       )}
     </div>
@@ -70,8 +68,8 @@ const ToolTip = (props) => {
 ToolTip.propTypes = {
   icon: PropTypes.string,
   heading: PropTypes.string,
-  content: PropTypes.string,
-  contentElement: PropTypes.element,
+  description: PropTypes.string,
+  descriptionElement: PropTypes.element,
 };
 
 export default ToolTip;

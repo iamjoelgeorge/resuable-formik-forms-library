@@ -26,7 +26,7 @@ const FormContainer = (props) => {
     return (
       <div className={className}>
         {childOfChild?.length
-          ? childOfChild.map((child) => {
+          ? childOfChild?.map((child) => {
               /*
                 The error generated because of the key not being added can be ignored in this case
                 because these elements will not be deleted/modified. The key is not added the the child
