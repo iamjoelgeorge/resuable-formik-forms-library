@@ -39,9 +39,9 @@ const Checkbox = (props) => {
   const inputFieldHasErrors = errors[name];
   const addErrorClassesToLabelAndInput = !!userHasVisitedTheInputField && !!inputFieldHasErrors;
 
-  const presentationalCheckboxClasses = isFocused
-    ? joinClassNames([styles.presentationalCheckbox, styles.focused])
-    : styles.presentationalCheckbox;
+  const labelTextClasses = isFocused
+    ? joinClassNames([styles.labelSpanElement, styles.focused])
+    : styles.labelSpanElement;
 
   const showOptionTooltipIcon =
     optionLabelTooltipBoxHeading ||
@@ -81,11 +81,11 @@ const Checkbox = (props) => {
             disabled={isDisabled}
           />
 
-          <span className={presentationalCheckboxClasses}>
+          <span className={styles.presentationalCheckbox}>
             <span className={styles.checkboxChecked} />
           </span>
 
-          {optionLabel && <span className={styles.labelSpanElement}>{optionLabel}</span>}
+          {optionLabel && <span className={labelTextClasses}>{optionLabel}</span>}
         </label>
 
         {showOptionTooltipIcon && (

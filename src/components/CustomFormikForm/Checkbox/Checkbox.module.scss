@@ -30,7 +30,7 @@
     margin-left: 4px;
   }
 
-  .optionWithTooltip{
+  .optionWithTooltip {
     display: flex;
   }
 
@@ -50,7 +50,6 @@
     justify-content: center;
     align-items: center;
     padding: em(1);
-    margin-top: 2px;
     width: em(14);
     height: em(14);
     margin-right: em(10);
@@ -68,6 +67,9 @@
 
   .labelSpanElement {
     margin-top: em(3);
+    padding-bottom: em(3);
+    border: 0;
+    border-bottom: 1px dashed transparent;
   }
 
   .checkboxInput:checked + .presentationalCheckbox .checkboxChecked {
@@ -76,7 +78,6 @@
 
   .focused {
     border-color: $brightPurple;
-    border-style: dashed;
   }
 
   .optionalText {
