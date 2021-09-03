@@ -26,9 +26,23 @@
     cursor: pointer;
   }
 
+  .tooltip {
+    margin-left: 4px;
+  }
+
+  .optionWithTooltip{
+    display: flex;
+  }
+
   .checkboxInput {
     position: absolute;
     left: -999em;
+
+    &:disabled + span.presentationalCheckbox,
+    &:disabled + span.presentationalCheckbox + span.labelSpanElement {
+      color: $secondaryGrey;
+      cursor: not-allowed;
+    }
   }
 
   .presentationalCheckbox {

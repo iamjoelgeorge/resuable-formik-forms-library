@@ -11,6 +11,16 @@ import styles from './FormBody.module.scss';
 const FormBody = (props) => {
   const { formik } = props;
 
+  const testElement = (
+    <p>
+      I am a custom description. Ask{' '}
+      <a href='https://www.google.com' target='_blank' rel='noreferrer'>
+        Google
+      </a>{' '}
+      if you don't believe me.
+    </p>
+  );
+
   return (
     <>
       <h1>Form 1</h1>
@@ -50,10 +60,10 @@ const FormBody = (props) => {
         name='license'
         optionLabel='Do you have a license?'
         mainLabel='License'
-        mainLabelTooltipBoxHeading='What is Lorem Ipsum?'
-        mainLabelTooltipBoxDescription='Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500.'
         helpLink='#'
         helpLinkText='This link is for your help'
+        optionLabelTooltipBoxHeading='My description is a custom element!!!'
+        optionLabelTooltipIconChildElement={testElement}
       />
       <FileUploadInput formik={formik} name='idProofs' label='Upload your documents' />
 

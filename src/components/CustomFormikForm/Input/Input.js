@@ -39,7 +39,8 @@ const Input = (props) => {
   const inputFieldHasErrors = errors[name];
   const addErrorClassesToLabelAndInput = !!userHasVisitedTheInputField && !!inputFieldHasErrors;
 
-  const showTooltipIcon = tooltipIconBoxHeading || tooltipIconBoxDescription;
+  const showTooltipIcon =
+    tooltipIconBoxHeading || tooltipIconBoxDescription || tooltipIconChildElement;
 
   const containerClasses = joinClassNames([styles.container, customContainerClass]);
 

@@ -9,6 +9,7 @@ import { joinClassNames } from '../../../utils/utils';
 import ErrorText from '../ErrorText/ErrorText';
 import SlidingLabel from '../SlidingLabel/SlidingLabel';
 import Link from '../Link/Link';
+import ToolTip from '../ToolTip/ToolTip';
 
 const Checkbox = (props) => {
   const {
@@ -16,14 +17,18 @@ const Checkbox = (props) => {
     optionLabel,
     mainLabel,
     formik,
-    mainLabelTooltipBoxHeading,
-    mainLabelTooltipBoxDescription,
-    mainLabelTooltipIconChildElement,
     isRequired = false,
+    isDisabled = false,
     helpLink,
     helpLinkText,
     tooltipLink,
     tooltipLinkText,
+    mainLabelTooltipBoxHeading,
+    mainLabelTooltipBoxDescription,
+    mainLabelTooltipIconChildElement,
+    optionLabelTooltipBoxHeading,
+    optionLabelTooltipBoxDescription,
+    optionLabelTooltipIconChildElement,
     ...rest
   } = props;
   const [isFocused, setIsFocused] = useState(false);
@@ -34,6 +39,15 @@ const Checkbox = (props) => {
   const inputFieldHasErrors = errors[name];
   const addErrorClassesToLabelAndInput = !!userHasVisitedTheInputField && !!inputFieldHasErrors;
 
+  const presentationalCheckboxClasses = isFocused
+    ? joinClassNames([styles.presentationalCheckbox, styles.focused])
+    : styles.presentationalCheckbox;
+
+  const showOptionTooltipIcon =
+    optionLabelTooltipBoxHeading ||
+    optionLabelTooltipBoxDescription ||
+    optionLabelTooltipIconChildElement;
+
   const handleFocus = () => {
     setIsFocused(true);
   };
@@ -41,10 +55,6 @@ const Checkbox = (props) => {
   const handleBlur = () => {
     setIsFocused(false);
   };
-
-  const presentationalCheckboxClasses = isFocused
-    ? joinClassNames([styles.presentationalCheckbox, styles.focused])
-    : styles.presentationalCheckbox;
 
   return (
     <div className={styles.container}>
@@ -59,21 +69,34 @@ const Checkbox = (props) => {
         tooltipIconChildElement={mainLabelTooltipIconChildElement}
         inputIsRequired={isRequired}
       />
+      <div className={styles.optionWithTooltip}>
+        <label className={styles.optionLabel}>
+          <Field
+            className={styles.checkboxInput}
+            type='checkbox'
+            name={name}
+            {...rest}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+            disabled={isDisabled}
+          />
 
-      <label className={styles.optionLabel}>
-        <Field
-          className={styles.checkboxInput}
-          type='checkbox'
-          name={name}
-          {...rest}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
-        />
-        <span className={presentationalCheckboxClasses}>
-          <span className={styles.checkboxChecked} />
-        </span>
-        {optionLabel && <span className={styles.labelSpanElement}>{optionLabel}</span>}
-      </label>
+          <span className={presentationalCheckboxClasses}>
+            <span className={styles.checkboxChecked} />
+          </span>
+
+          {optionLabel && <span className={styles.labelSpanElement}>{optionLabel}</span>}
+        </label>
+
+        {showOptionTooltipIcon && (
+          <ToolTip
+            heading={optionLabelTooltipBoxHeading}
+            description={optionLabelTooltipBoxDescription}
+            descriptionElement={optionLabelTooltipIconChildElement}
+            containerClass={styles.tooltip}
+          />
+        )}
+      </div>
 
       {addErrorClassesToLabelAndInput && (
         <ErrorText fieldName={name} containerClass={styles.error} />
@@ -99,14 +122,18 @@ Checkbox.propTypes = {
   name: PropTypes.string.isRequired,
   optionLabel: PropTypes.string,
   mainLabel: PropTypes.string,
-  mainLabelTooltipBoxHeading: PropTypes.string,
-  mainLabelTooltipBoxDescription: PropTypes.string,
-  mainLabelTooltipIconChildElement: PropTypes.element,
   isRequired: PropTypes.bool,
+  isDisabled: PropTypes.bool,
   helpLink: PropTypes.string,
   helpLinkText: PropTypes.string,
   tooltipLink: PropTypes.string,
   tooltipLinkText: PropTypes.string,
+  mainLabelTooltipBoxHeading: PropTypes.string,
+  mainLabelTooltipBoxDescription: PropTypes.string,
+  mainLabelTooltipIconChildElement: PropTypes.element,
+  optionLabelTooltipBoxHeading: PropTypes.string,
+  optionLabelTooltipBoxDescription: PropTypes.string,
+  optionLabelTooltipIconChildElement: PropTypes.element,
 };
 
 export default Checkbox;

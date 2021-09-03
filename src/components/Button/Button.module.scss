@@ -9,6 +9,11 @@
   font-weight: bold;
   margin-top: 12px;
 
+  &:hover{
+    text-decoration: underline;
+    text-decoration-style: dashed;
+  }
+
   &:disabled {
     background-color: rgb(89, 89, 89);
   }

@@ -4,12 +4,15 @@ import PropTypes from 'prop-types';
 
 import styles from './ToolTip.module.scss';
 import ToolTipIcon from '../../../assets/images/help.svg';
+import { joinClassNames } from '../../../utils/utils';
 
 const ToolTip = (props) => {
-  const { heading, description, descriptionElement: DescriptionElement } = props;
+  const { heading, description, descriptionElement: DescriptionElement, containerClass } = props;
   const [isBoxOpen, setIsBoxOpen] = useState(false);
 
   const tooltipRef = useRef();
+
+  const containerClasses = joinClassNames([styles.container, containerClass]);
 
   useLayoutEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
@@ -47,7 +50,7 @@ const ToolTip = (props) => {
     ) : null;
 
   return (
-    <div ref={tooltipRef} className={styles.container}>
+    <div ref={tooltipRef} className={containerClasses}>
       <img src={ToolTipIcon} alt='tooltip' onClick={toggleTooltipBox} />
 
       {isBoxOpen && (
@@ -70,6 +73,7 @@ ToolTip.propTypes = {
   heading: PropTypes.string,
   description: PropTypes.string,
   descriptionElement: PropTypes.element,
+  containerClass: PropTypes.string,
 };
 
 export default ToolTip;
