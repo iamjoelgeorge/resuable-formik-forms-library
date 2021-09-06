@@ -9,6 +9,7 @@ import ErrorText from '../ErrorText/ErrorText';
 import SlidingLabel from '../SlidingLabel/SlidingLabel';
 import Link from '../Link/Link';
 import ToolTip from '../ToolTip/ToolTip';
+import OptionalText from '../OptionalText/OptionalText';
 
 const Input = (props) => {
   const {
@@ -24,6 +25,7 @@ const Input = (props) => {
     tooltipLinkText,
     helpLinkText,
     helpLink,
+    optionalText,
     disabled = false,
     isRequired,
     ...rest
@@ -114,9 +116,31 @@ const Input = (props) => {
 
       {errors[name] && formik.touched[name] && <ErrorText fieldName={name} />}
 
-      {helpLinkText && <Link label={helpLinkText} link={helpLink} />}
+      {optionalText && (
+        <OptionalText
+          containerClass={styles.optionalText}
+          variant='text'
+          optionalText={optionalText}
+        />
+      )}
 
-      {tooltipLinkText && <Link label={tooltipLinkText} link={tooltipLink} isTooltip />}
+      {helpLinkText && (
+        <OptionalText
+          containerClass={styles.optionalText}
+          variant='help link'
+          helpLinkText={helpLinkText}
+          helpLink={helpLink}
+        />
+      )}
+
+      {tooltipLinkText && (
+        <OptionalText
+          containerClass={styles.optionalText}
+          variant='tooltip link'
+          tooltipLinkText={tooltipLinkText}
+          tooltipLink={tooltipLink}
+        />
+      )}
     </div>
   );
 };
@@ -134,6 +158,7 @@ Input.propTypes = {
   tooltipLinkText: PropTypes.string,
   helpLinkText: PropTypes.string,
   helpLink: PropTypes.string,
+  optionalText: PropTypes.string,
   disabled: PropTypes.bool,
   isRequired: PropTypes.bool,
 };

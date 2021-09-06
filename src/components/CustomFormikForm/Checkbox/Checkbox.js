@@ -8,8 +8,8 @@ import styles from './Checkbox.module.scss';
 import { joinClassNames } from '../../../utils/utils';
 import ErrorText from '../ErrorText/ErrorText';
 import SlidingLabel from '../SlidingLabel/SlidingLabel';
-import Link from '../Link/Link';
 import ToolTip from '../ToolTip/ToolTip';
+import OptionalText from '../OptionalText/OptionalText';
 
 const Checkbox = (props) => {
   const {
@@ -23,6 +23,7 @@ const Checkbox = (props) => {
     helpLinkText,
     tooltipLink,
     tooltipLinkText,
+    optionalText,
     mainLabelTooltipBoxHeading,
     mainLabelTooltipBoxDescription,
     mainLabelTooltipIconChildElement,
@@ -102,16 +103,29 @@ const Checkbox = (props) => {
         <ErrorText fieldName={name} containerClass={styles.error} />
       )}
 
+      {optionalText && (
+        <OptionalText
+          containerClass={styles.optionalText}
+          variant='text'
+          plainText={optionalText}
+        />
+      )}
+
       {helpLinkText && (
-        <Link containerClass={styles.optionalText} label={helpLinkText} link={helpLink} />
+        <OptionalText
+          containerClass={styles.optionalText}
+          variant='help link'
+          helpLinkText={helpLinkText}
+          helpLink={helpLink}
+        />
       )}
 
       {tooltipLinkText && (
-        <Link
+        <OptionalText
           containerClass={styles.optionalText}
-          label={tooltipLinkText}
-          link={tooltipLink}
-          isTooltip
+          variant='tooltip link'
+          tooltipLinkText={tooltipLinkText}
+          tooltipLink={tooltipLink}
         />
       )}
     </div>
@@ -128,6 +142,7 @@ Checkbox.propTypes = {
   helpLinkText: PropTypes.string,
   tooltipLink: PropTypes.string,
   tooltipLinkText: PropTypes.string,
+  optionalText: PropTypes.string,
   mainLabelTooltipBoxHeading: PropTypes.string,
   mainLabelTooltipBoxDescription: PropTypes.string,
   mainLabelTooltipIconChildElement: PropTypes.element,

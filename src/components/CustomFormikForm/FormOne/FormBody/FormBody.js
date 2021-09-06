@@ -53,7 +53,7 @@ const FormBody = (props) => {
       />
       <DatePicker formik={formik} name='departureDate' label='Departure Date' />
       <DatePicker formik={formik} name='returnDate' dropdown label='Return Date' />
-      <Input formik={formik} type='test' name='test' label='Test Input' />
+      <Input formik={formik} type='test' name='test' label='Test Input' optionalText='Optional' />
       <Textarea formik={formik} name='description' label='Additional Details' />
       <Checkbox
         formik={formik}

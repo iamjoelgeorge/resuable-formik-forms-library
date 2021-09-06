@@ -10,7 +10,6 @@ import FileUploadInput from '../FileUploadInput/FileUploadInput';
 import FormContainer from '../FormContainer/FormContainer';
 import Input from '../Input/Input';
 import Textarea from '../Textarea/Textarea';
-import Test from '../Test/Test';
 import FormBody from './FormBody/FormBody';
 
 const FormOne = (props) => {

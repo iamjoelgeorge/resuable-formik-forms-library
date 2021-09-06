@@ -1,0 +1,37 @@
+@import '../../../theme/variables.scss';
+@import '../../../theme/utils.scss';
+
+.common {
+  padding-left: em(10);
+  padding-top: em(6);
+
+  a,
+  .optionalText {
+    font-size: em(11);
+    color: $secondaryGrey;
+  }
+}
+
+.tooltipContainer {
+  a {
+    color: $tooltipRed;
+    text-decoration-style: dashed;
+    transition: 0.1s all ease-in-out;
+    outline: none;
+
+    &:hover {
+      background-color: $tooltipRed;
+      color: $white;
+    }
+
+    &:focus {
+      color: $pinkOne;
+      background-color: $white;
+    }
+  }
+}
+
+.optionalText {
+  color: $secondaryGrey;
+  margin: 0;
+}
