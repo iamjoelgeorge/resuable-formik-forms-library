@@ -3,8 +3,8 @@ import React, { useState, useRef, useLayoutEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 import styles from './Dropdown.module.scss';
-import DropdownIcon from '../../assets/images/arrow-next.svg';
-import { joinClassNames } from '../../utils/utils';
+import { joinClassNames } from '../../../utils/utils';
+import { ArrowNext } from '../../../constants/icons';
 
 const Dropdown = (props) => {
   const { value, onClick, dropdownArray, type } = props;
@@ -58,7 +58,7 @@ const Dropdown = (props) => {
       <p className={styles.selectedDate}>
         {value}
         <span className={styles.dropdownIconContainer}>
-          <img src={DropdownIcon} alt='Dropdown icon' />
+          <img src={ArrowNext} alt='Dropdown icon' />
         </span>
       </p>
 

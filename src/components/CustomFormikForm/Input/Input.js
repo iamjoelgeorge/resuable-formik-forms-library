@@ -7,7 +7,6 @@ import styles from './Input.module.scss';
 import { joinClassNames } from '../../../utils/utils';
 import ErrorText from '../ErrorText/ErrorText';
 import SlidingLabel from '../SlidingLabel/SlidingLabel';
-import Link from '../Link/Link';
 import ToolTip from '../ToolTip/ToolTip';
 import OptionalText from '../OptionalText/OptionalText';
 

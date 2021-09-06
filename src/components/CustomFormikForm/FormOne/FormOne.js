@@ -3,7 +3,6 @@
 import React from 'react';
 
 import styles from './FormOne.module.scss';
-import Button from '../../Button/Button';
 import Checkbox from '../Checkbox/Checkbox';
 import DatePicker from '../DatePicker/DatePicker';
 import FileUploadInput from '../FileUploadInput/FileUploadInput';

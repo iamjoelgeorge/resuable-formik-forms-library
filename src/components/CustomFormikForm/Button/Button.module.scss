@@ -1,0 +1,129 @@
+@import '../../../theme/variables.scss';
+@import '../../../theme/utils.scss';
+
+* {
+  box-sizing: border-box;
+}
+
+@mixin useButtonTheme($bgColor, $hoverBgColor, $focusBgColor) {
+  background-color: $bgColor;
+
+  &:hover:not(:disabled),
+  &:active {
+    cursor: pointer;
+    background-color: $hoverBgColor;
+  }
+
+  &:focus {
+    border-color: $focusBgColor;
+  }
+}
+
+@mixin useLinkTheme(
+  $defaultTextColor,
+  $hoverColor,
+  $borderBottomColorOnFocus,
+  $borderBottomColorOnActive,
+  $textColorOnActive
+) {
+  color: $defaultTextColor;
+
+  span {
+    border: 2px solid transparent;
+    padding-bottom: 2px;
+  }
+
+  &:hover:not(&.linkDisabled) {
+    color: $hoverColor;
+  }
+
+  &:focus {
+    span {
+      border-bottom-style: dashed;
+      border-bottom-color: $borderBottomColorOnFocus;
+    }
+  }
+
+  &:active {
+    border-color: $borderBottomColorOnActive;
+    color: $textColorOnActive;
+  }
+}
+
+.button,
+.link {
+  border: 3px solid transparent;
+  border-radius: 4px;
+  font-size: em(16);
+  font-weight: $fontWeightExtraBold;
+  line-height: 19px;
+  margin-top: 12px;
+  padding: 0 em(15);
+  width: 198px;
+  height: 51px;
+  text-align: center;
+}
+
+.button {
+  color: $white;
+  transition: 0.1s all ease-in-out;
+  outline: none;
+
+  &.purpleTheme {
+    @include useButtonTheme($primary, $darkPurple, $brightPurple);
+  }
+
+  &.redTheme {
+    @include useButtonTheme($tooltipRed, $buttonHover, $pinkOne);
+  }
+
+  &:disabled {
+    background-color: $white;
+    color: $tertiaryGrey;
+    border-color: $dGrey;
+  }
+}
+
+.linkAsButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+
+  &.linkButtonDisabled {
+    background-color: $white !important;
+    cursor: not-allowed !important;
+    color: $tertiaryGrey;
+    border-color: $dGrey;
+  }
+}
+
+.link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  outline: none;
+
+  &.purpleTheme {
+    @include useLinkTheme($primary, $darkPurple, $darkPurple, $brightPurple, $darkPurple);
+  }
+
+  &.redTheme {
+    @include useLinkTheme($tooltipRed, $buttonHover, $tooltipRed, $pinkOne, $buttonHover);
+  }
+
+  &.linkDisabled {
+    color: $tertiaryGrey;
+    pointer-events: none;
+
+    .externalLinkIcon {
+      -webkit-filter: invert(50%); /* safari 6.0 - 9.0 */
+      filter: invert(50%);
+    }
+  }
+}
+
+.externalLinkIcon {
+  margin-left: em(8);
+}

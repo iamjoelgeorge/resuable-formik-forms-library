@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '../../../Button/Button';
+import Button from '../../Button/Button';
 import Checkbox from '../../Checkbox/Checkbox';
 
 const FormBody = (props) => {
@@ -19,7 +19,10 @@ const FormBody = (props) => {
         tooltipLink='#'
         tooltipLinkText='This link is a tooltip, haha!'
       />
-      <Button type='submit' disabled={!(formik.dirty && formik.isValid)} />
+
+      <Button formik={formik} type='submit' label='Submit' theme='red' />
+      
+      {formik.values['terms'] && <p>I'm a hidden element</p>}
     </>
   );
 };

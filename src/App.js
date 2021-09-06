@@ -11,6 +11,7 @@ import store from './redux/store';
 import FormOne from './components/CustomFormikForm/FormOne/FormOne';
 import CustomForm from './components/CustomForm/CustomForm';
 import FormTwo from './components/CustomFormikForm/FormTwo/FormTwo';
+import FormThree from './components/CustomFormikForm/FormThree/FormThree';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         {/* <BoxGallery /> */}
         {/* <BoxGalleryTest /> */}
         {/* <CustomForm initialValues={initialValuesFormOne} /> */}
+        <FormThree />
         <FormTwo />
         <FormOne />
       </div>

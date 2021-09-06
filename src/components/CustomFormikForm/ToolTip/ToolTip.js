@@ -3,8 +3,8 @@ import React, { useState, useLayoutEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 
 import styles from './ToolTip.module.scss';
-import ToolTipIcon from '../../../assets/images/help.svg';
 import { joinClassNames } from '../../../utils/utils';
+import { ToolTipIcon } from '../../../constants/icons';
 
 const ToolTip = (props) => {
   const { heading, description, descriptionElement: DescriptionElement, containerClass } = props;

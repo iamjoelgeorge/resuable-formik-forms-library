@@ -6,9 +6,9 @@ import moment from 'moment';
 import PropTypes from 'prop-types';
 
 import styles from './CalendarDatePicker.module.scss';
-import ArrowIcon from '../../../../assets/images/arrow-next.svg';
 import SlidingLabel from '../../SlidingLabel/SlidingLabel';
 import { joinClassNames } from '../../../../utils/utils';
+import { ArrowNext } from '../../../../constants/icons';
 
 const CalendarDatePicker = (props) => {
   const { name, label, formik, ...rest } = props;
@@ -89,7 +89,7 @@ const CalendarDatePicker = (props) => {
                 <p id='selectedDate' className={styles.selectedDate}>
                   {moment(value).format(dateFormat)}
                   <span className={dropdownIconClasses}>
-                    <img src={ArrowIcon} alt='Dropdown icon' />
+                    <img src={ArrowNext} alt='Dropdown icon' />
                   </span>
                 </p>
               </button>

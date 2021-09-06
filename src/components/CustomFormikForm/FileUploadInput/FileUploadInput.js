@@ -5,9 +5,9 @@ import { v4 as uuidv4 } from 'uuid';
 import { Field } from 'formik';
 
 import styles from './FileUploadInput.module.scss';
-import DeleteIcon from '../../../assets/images/cross.svg';
 import { joinClassNames } from '../../../utils/utils';
 import ErrorText from '../ErrorText/ErrorText';
+import { DeleteIcon } from '../../../constants/icons';
 
 const FileUploadInput = (props) => {
   const { label, name, formik, ...rest } = props;

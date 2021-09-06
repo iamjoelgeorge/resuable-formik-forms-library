@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '../../../Button/Button';
+import Button from '../../Button/Button';
 import Checkbox from '../../Checkbox/Checkbox';
 import DatePicker from '../../DatePicker/DatePicker';
 import FileUploadInput from '../../FileUploadInput/FileUploadInput';
@@ -67,7 +67,7 @@ const FormBody = (props) => {
       />
       <FileUploadInput formik={formik} name='idProofs' label='Upload your documents' />
 
-      <Button type='submit' disabled={!(formik.dirty && formik.isValid)} />
+      <Button formik={formik} label='Submit' />
     </>
   );
 };

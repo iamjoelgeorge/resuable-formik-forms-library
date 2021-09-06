@@ -1,4 +1,4 @@
-import { months } from './constants';
+import { months } from '../constants/constants';
 
 /**
  * Joins an array of classnames with a space
