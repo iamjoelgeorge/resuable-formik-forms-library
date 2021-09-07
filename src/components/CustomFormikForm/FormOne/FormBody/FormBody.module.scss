@@ -1,21 +1,11 @@
 @import '../../../../theme/variables.scss';
 
-.container {
-  // display: flex;
-  flex-direction: column;
-  background-color: $white;
-  border: 1px solid $border;
-  padding: 20px;
-  padding-top: 0;
-  width: 500px;
+.testContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 5px;
+}
 
-  .testContainer {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 5px;
-  }
-
-  .inputContainer {
-    width: 50%;
-  }
+.inputContainer {
+  width: 50%;
 }
