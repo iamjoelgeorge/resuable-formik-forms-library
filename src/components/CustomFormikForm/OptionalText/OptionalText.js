@@ -6,7 +6,7 @@ import { joinClassNames } from '../../../utils/utils';
 
 const OptionalText = (props) => {
   const {
-    variant = 'text',
+    variant,
     tooltipLink,
     tooltipLinkText,
     helpLink,
@@ -54,6 +54,16 @@ OptionalText.propTypes = {
   helpLinkText: PropTypes.string,
   optionalText: PropTypes.string,
   containerClass: PropTypes.string,
+};
+
+OptionalText.defaultProps = {
+  variant: 'text',
+  tooltipLink: '',
+  tooltipLinkText: '',
+  helpLink: '',
+  helpLinkText: '',
+  optionalText: '',
+  containerClass: '',
 };
 
 export default OptionalText;

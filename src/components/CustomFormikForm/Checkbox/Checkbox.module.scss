@@ -28,6 +28,10 @@
 
   .tooltip {
     margin-left: 4px;
+
+    img {
+      width: 10px;
+    }
   }
 
   .optionWithTooltip {
@@ -49,10 +53,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: em(1);
+    padding: 1px;
     width: em(14);
     height: em(14);
-    margin-right: em(10);
+    margin-right: em(5);
     border: 1px solid $lighterDarkGrey;
     border-radius: 3px;
     box-shadow: 0 2px 2px $borderGrey;

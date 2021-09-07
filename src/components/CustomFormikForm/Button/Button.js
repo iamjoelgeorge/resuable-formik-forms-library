@@ -25,7 +25,8 @@ const Button = (props) => {
     ...rest
   } = props;
 
-  const disableButton = type === 'submit' ? !(formik.dirty && formik.isValid) : isDisabled;
+  // const disableButton = type === 'submit' ? !(formik.dirty && formik.isValid) : isDisabled;
+  const disableButton = type === 'submit' ? !formik.isValid : isDisabled;
   const goTo = !isDisabled ? href : '';
 
   const linkDisabledClass = isDisabled ? styles.linkDisabled : '';
@@ -49,6 +50,10 @@ const Button = (props) => {
     linkAsButtonDisabledClass,
   ]);
 
+  const handleClickOnLink = (e) => {
+    if (isDisabled) e.preventDefault();
+  };
+
   const renderButton = () => {
     switch (variant) {
       case 'button':
@@ -60,21 +65,29 @@ const Button = (props) => {
 
       case 'link':
         return (
-          <a className={linkClasses} href={goTo} target='_blank'>
+          <a
+            className={linkClasses}
+            href={goTo}
+            target='_blank'
+            onClick={handleClickOnLink}
+            rel='noreferrer'
+          >
             <span>{label}</span>
             {showExternalLinkIcon && (
-              <img
-                className={styles.externalLinkIcon}
-                src={IconForLink}
-                alt='External Link'
-              />
+              <img className={styles.externalLinkIcon} src={IconForLink} alt='External Link' />
             )}
           </a>
         );
 
       case 'link_as_button':
         return (
-          <a className={linkAsButtonClasses} href={goTo} target='_blank'>
+          <a
+            className={linkAsButtonClasses}
+            href={goTo}
+            target='_blank'
+            onClick={handleClickOnLink}
+            rel='noreferrer'
+          >
             {label}
             {showExternalLinkIcon && (
               <img

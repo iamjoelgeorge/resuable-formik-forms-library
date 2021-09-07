@@ -9,7 +9,7 @@ import { joinClassNames } from '../../../utils/utils';
 import ErrorText from '../ErrorText/ErrorText';
 import SlidingLabel from '../SlidingLabel/SlidingLabel';
 import ToolTip from '../ToolTip/ToolTip';
-import OptionalText from '../OptionalText/OptionalText';
+import AdditionalInfo from '../AdditionalInfo/AdditionalInfo';
 
 const Checkbox = (props) => {
   const {
@@ -17,8 +17,8 @@ const Checkbox = (props) => {
     optionLabel,
     mainLabel,
     formik,
-    isRequired = false,
-    isDisabled = false,
+    isRequired,
+    isDisabled,
     helpLink,
     helpLinkText,
     tooltipLink,
@@ -26,7 +26,7 @@ const Checkbox = (props) => {
     optionalText,
     mainLabelTooltipBoxHeading,
     mainLabelTooltipBoxDescription,
-    mainLabelTooltipIconChildElement,
+    mainLabelTooltipBoxDescriptionElement,
     optionLabelTooltipBoxHeading,
     optionLabelTooltipBoxDescription,
     optionLabelTooltipIconChildElement,
@@ -67,7 +67,7 @@ const Checkbox = (props) => {
         showErrorStyle={addErrorClassesToLabelAndInput}
         tooltipIconBoxHeading={mainLabelTooltipBoxHeading}
         tooltipIconBoxDescription={mainLabelTooltipBoxDescription}
-        tooltipIconChildElement={mainLabelTooltipIconChildElement}
+        tooltipIconChildElement={mainLabelTooltipBoxDescriptionElement}
         inputIsRequired={isRequired}
       />
       <div className={styles.optionWithTooltip}>
@@ -103,31 +103,14 @@ const Checkbox = (props) => {
         <ErrorText fieldName={name} containerClass={styles.error} />
       )}
 
-      {optionalText && (
-        <OptionalText
-          containerClass={styles.optionalText}
-          variant='text'
-          plainText={optionalText}
-        />
-      )}
-
-      {helpLinkText && (
-        <OptionalText
-          containerClass={styles.optionalText}
-          variant='help link'
-          helpLinkText={helpLinkText}
-          helpLink={helpLink}
-        />
-      )}
-
-      {tooltipLinkText && (
-        <OptionalText
-          containerClass={styles.optionalText}
-          variant='tooltip link'
-          tooltipLinkText={tooltipLinkText}
-          tooltipLink={tooltipLink}
-        />
-      )}
+      <AdditionalInfo
+        optionalText={optionalText}
+        helpLinkText={helpLinkText}
+        helpLink={helpLink}
+        tooltipLinkText={tooltipLinkText}
+        tooltipLink={tooltipLink}
+        customClass={styles.optionalText}
+      />
     </div>
   );
 };
@@ -145,10 +128,26 @@ Checkbox.propTypes = {
   optionalText: PropTypes.string,
   mainLabelTooltipBoxHeading: PropTypes.string,
   mainLabelTooltipBoxDescription: PropTypes.string,
-  mainLabelTooltipIconChildElement: PropTypes.element,
+  mainLabelTooltipBoxDescriptionElement: PropTypes.element,
   optionLabelTooltipBoxHeading: PropTypes.string,
   optionLabelTooltipBoxDescription: PropTypes.string,
   optionLabelTooltipIconChildElement: PropTypes.element,
+};
+
+Checkbox.defaultProps = {
+  optionLabel: '',
+  mainLabel: '',
+  isRequired: false,
+  isDisabled: false,
+  helpLink: '',
+  helpLinkText: '',
+  tooltipLink: '',
+  tooltipLinkText: '',
+  optionalText: '',
+  mainLabelTooltipBoxHeading: '',
+  mainLabelTooltipBoxDescription: '',
+  optionLabelTooltipBoxHeading: '',
+  optionLabelTooltipBoxDescription: '',
 };
 
 export default Checkbox;

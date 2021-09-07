@@ -16,13 +16,11 @@ const FormBody = (props) => {
         optionLabel='Checking this box will open the link in a new tab.'
         mainLabel='Test Label'
         isRequired
-        tooltipLink='#'
-        tooltipLinkText='This link is a tooltip, haha!'
       />
 
       <Button
         formik={formik}
-        label='Open link in a new tab'
+        label='Open in new tab'
         variant='link'
         href='https://virginaustralia.com/'
         theme='red'
@@ -35,10 +33,9 @@ const FormBody = (props) => {
         label='Button as a link'
         variant='link_as_button'
         href='https://virginaustralia.com/'
+        isDisabled={isDisabled}
         showExternalLinkIcon
       />
-
-      <Button formik={formik} label='Submit' />
     </>
   );
 };

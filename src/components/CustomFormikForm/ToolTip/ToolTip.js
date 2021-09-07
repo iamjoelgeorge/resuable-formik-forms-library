@@ -24,6 +24,10 @@ const ToolTip = (props) => {
     };
   }, []);
 
+  // console.log(heading);
+  // console.log(DescriptionElement);
+  // console.log('/////////////////////////');
+
   const handleClickOutside = (e) => {
     const tooltipNode = tooltipRef.current;
     const clickedNode = e.target;

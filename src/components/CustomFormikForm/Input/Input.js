@@ -8,7 +8,7 @@ import { joinClassNames } from '../../../utils/utils';
 import ErrorText from '../ErrorText/ErrorText';
 import SlidingLabel from '../SlidingLabel/SlidingLabel';
 import ToolTip from '../ToolTip/ToolTip';
-import OptionalText from '../OptionalText/OptionalText';
+import AdditionalInfo from '../AdditionalInfo/AdditionalInfo';
 
 const Input = (props) => {
   const {
@@ -113,33 +113,18 @@ const Input = (props) => {
         )}
       </div>
 
-      {errors[name] && formik.touched[name] && <ErrorText fieldName={name} />}
-
-      {optionalText && (
-        <OptionalText
-          containerClass={styles.optionalText}
-          variant='text'
-          optionalText={optionalText}
-        />
+      {errors[name] && formik.touched[name] && (
+        <ErrorText containerClass={styles.errorContainer} fieldName={name} />
       )}
 
-      {helpLinkText && (
-        <OptionalText
-          containerClass={styles.optionalText}
-          variant='help link'
-          helpLinkText={helpLinkText}
-          helpLink={helpLink}
-        />
-      )}
-
-      {tooltipLinkText && (
-        <OptionalText
-          containerClass={styles.optionalText}
-          variant='tooltip link'
-          tooltipLinkText={tooltipLinkText}
-          tooltipLink={tooltipLink}
-        />
-      )}
+      <AdditionalInfo
+        optionalText={optionalText}
+        helpLinkText={helpLinkText}
+        helpLink={helpLink}
+        tooltipLinkText={tooltipLinkText}
+        tooltipLink={tooltipLink}
+        customClass={styles.optionalText}
+      />
     </div>
   );
 };
@@ -148,7 +133,7 @@ Input.propTypes = {
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
-  formik: PropTypes.object,
+  formik: PropTypes.shape({}),
   containerClass: PropTypes.string,
   tooltipIconBoxHeading: PropTypes.string,
   tooltipIconBoxDescription: PropTypes.string,
@@ -160,6 +145,22 @@ Input.propTypes = {
   optionalText: PropTypes.string,
   disabled: PropTypes.bool,
   isRequired: PropTypes.bool,
+};
+
+Input.defaultProps = {
+  placeholder: '',
+  formik: {},
+  containerClass: '',
+  tooltipIconBoxHeading: '',
+  tooltipIconBoxDescription: '',
+  tooltipIconChildElement: null,
+  tooltipLink: '',
+  tooltipLinkText: '',
+  helpLinkText: '',
+  helpLink: '',
+  optionalText: '',
+  disabled: false,
+  isRequired: false,
 };
 
 export default Input;
