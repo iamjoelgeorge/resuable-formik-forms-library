@@ -10,8 +10,8 @@ const FormFour = () => {
   const initialValues = {
     name: '',
     testCheckbox: false,
-    checkboxGroup: [],
-    // checkboxGroup: ['two'], // Default checked value
+    // checkboxGroup: [],
+    checkboxGroup: ['two'], // Default checked value
   };
 
   const validations = [
@@ -19,7 +19,7 @@ const FormFour = () => {
       name: 'checkboxGroup',
       type: 'checkbox_group',
       isRequired: true,
-      message: 'You need to agree to our Terms and Conditions.',
+      message: 'Please select at least one option.',
     },
     {
       name: 'name',

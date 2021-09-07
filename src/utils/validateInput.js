@@ -21,7 +21,7 @@ export const validateInput = (input, objectToUpdate) => {
       break;
 
     case 'checkbox_group':
-      objectToUpdate[name] = Yup.array().min(1, 'Please select at least one option');
+      objectToUpdate[name] = Yup.array().min(1, message);
       break;
 
     case 'string':

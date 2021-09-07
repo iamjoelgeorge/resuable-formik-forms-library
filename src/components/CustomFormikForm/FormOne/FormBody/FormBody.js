@@ -53,7 +53,15 @@ const FormBody = (props) => {
       />
       <DatePicker formik={formik} name='departureDate' label='Departure Date' />
       <DatePicker formik={formik} name='returnDate' dropdown label='Return Date' />
-      <Input formik={formik} type='test' name='test' label='Test Input' optionalText='Optional' />
+      <Input
+        formik={formik}
+        type='number'
+        name='test'
+        label='Test Input'
+        optionalText='Optional'
+        tooltipIconBoxHeading='Permitted with no fee'
+        tooltipIconBoxDescription='For cancellation, credit to Travel Bank for the full ticket value including any fare portion where Velocity Points have been redeemed.'
+      />
       <Textarea formik={formik} name='description' label='Additional Details' />
       <Checkbox
         formik={formik}

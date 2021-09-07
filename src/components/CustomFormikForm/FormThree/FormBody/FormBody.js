@@ -30,7 +30,7 @@ const FormBody = (props) => {
 
       <Button
         formik={formik}
-        label='Button as a link'
+        label='Link as Button'
         variant='link_as_button'
         href='https://virginaustralia.com/'
         isDisabled={isDisabled}

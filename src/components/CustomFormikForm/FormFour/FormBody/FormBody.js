@@ -46,8 +46,7 @@ const FormBody = (props) => {
         mainLabel='Checkbox Group'
         mainLabelTooltipBoxHeading='What is Lorem Ipsum?'
         mainLabelTooltipBoxDescription='Lorem Ipsum is simply dummy text.'
-        tooltipLink='#'
-        tooltipLinkText='This link is a tooltip, haha!'
+        optionalText='This is a very important step that you are taking!'
         isRequired
       />
 
