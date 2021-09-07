@@ -48,6 +48,7 @@ const FormBody = (props) => {
         mainLabelTooltipBoxDescription='Lorem Ipsum is simply dummy text.'
         tooltipLink='#'
         tooltipLinkText='This link is a tooltip, haha!'
+        isRequired
       />
 
       {showHiddenCheckbox && (

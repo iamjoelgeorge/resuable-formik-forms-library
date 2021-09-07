@@ -8,19 +8,19 @@ import FormBody from './FormBody/FormBody';
 
 const FormFour = () => {
   const initialValues = {
-    // checkboxGroup: [],
     name: '',
     testCheckbox: false,
-    checkboxGroup: ['two'],
+    checkboxGroup: [],
+    // checkboxGroup: ['two'], // Default checked value
   };
 
   const validations = [
-    // {
-    //   name: 'checkboxGroup',
-    //   type: 'checkbox',
-    //   isRequired: true,
-    //   message: 'You need to agree to our Terms and Conditions.',
-    // },
+    {
+      name: 'checkboxGroup',
+      type: 'checkbox_group',
+      isRequired: true,
+      message: 'You need to agree to our Terms and Conditions.',
+    },
     {
       name: 'name',
       type: 'string',
