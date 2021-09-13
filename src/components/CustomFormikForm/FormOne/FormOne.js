@@ -20,6 +20,7 @@ const FormOne = (props) => {
     description: '',
     license: false,
     idProofs: [],
+    formOneRadioGroup: '',
     departureDate: new Date(),
     returnDate: new Date(),
   };

@@ -4,9 +4,28 @@ import Checkbox from '../../Checkbox/Checkbox';
 import DatePicker from '../../DatePicker/DatePicker';
 import FileUploadInput from '../../FileUploadInput/FileUploadInput';
 import Input from '../../Input/Input';
+import RadioButtonGroup from '../../RadioButtonGroup/RadioButtonGroup';
 import Textarea from '../../Textarea/Textarea';
 
 import styles from './FormBody.module.scss';
+
+const radioOptions = [
+  { label: 'One Radio', value: 'one' },
+  { label: 'Two Radio', value: 'two' },
+  {
+    label: 'Three Radio',
+    value: 'three',
+    tooltip: {
+      heading: 'Heading',
+      customDescriptionElement: (
+        <p>
+          I'm a custom description Element. Look me up on{' '}
+          <a href='https://www.google.com'>Google</a>
+        </p>
+      ),
+    },
+  },
+];
 
 const FormBody = (props) => {
   const { formik } = props;
@@ -73,6 +92,17 @@ const FormBody = (props) => {
         optionLabelTooltipBoxHeading='My description is a custom element!!!'
         optionLabelTooltipIconChildElement={testElement}
       />
+      <RadioButtonGroup
+        name='formOneRadioGroup'
+        options={radioOptions}
+        formik={formik}
+        mainLabel='Radio Group'
+        mainLabelTooltipBoxHeading='What is Lorem Ipsum?'
+        mainLabelTooltipBoxDescription='Lorem Ipsum is simply dummy text.'
+        tooltipLink='https://www.google.com'
+        tooltipLinkText='Visit Google to know more.'
+      />
+
       <FileUploadInput formik={formik} name='idProofs' label='Upload your documents' />
 
       <Button formik={formik} label='Submit' />
