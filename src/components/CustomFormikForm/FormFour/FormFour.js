@@ -10,8 +10,10 @@ const FormFour = () => {
   const initialValues = {
     name: '',
     testCheckbox: false,
-    // checkboxGroup: [],
-    checkboxGroup: ['two'], // Default checked value
+    checkboxGroup: [],
+    radioGroup: '',
+    // radioGroup: 'two', // Default checked value
+    // checkboxGroup: ['two'], // Default checked value
   };
 
   const validations = [
@@ -20,6 +22,12 @@ const FormFour = () => {
       type: 'checkbox_group',
       isRequired: true,
       message: 'Please select at least one option.',
+    },
+    {
+      name: 'radioGroup',
+      type: 'radio_button_group',
+      isRequired: true,
+      message: 'Please select an option.',
     },
     {
       name: 'name',

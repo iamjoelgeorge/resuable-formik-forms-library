@@ -24,6 +24,10 @@ export const validateInput = (input, objectToUpdate) => {
       objectToUpdate[name] = Yup.array().min(1, message);
       break;
 
+    case 'radio_button_group':
+      objectToUpdate[name] = Yup.string().required(message);
+      break;
+
     case 'string':
       objectToUpdate[name] = isRequired
         ? Yup.string().required(message)

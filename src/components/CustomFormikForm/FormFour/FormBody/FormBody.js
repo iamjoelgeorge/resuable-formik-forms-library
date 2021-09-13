@@ -3,16 +3,34 @@ import Button from '../../Button/Button';
 import Checkbox from '../../Checkbox/Checkbox';
 import CheckboxGroup from '../../Checkbox/CheckboxGroup/CheckboxGroup';
 import Input from '../../Input/Input';
+import RadioButtonGroup from '../../RadioButtonGroup/RadioButtonGroup';
 
 const FormBody = (props) => {
   const { formik } = props;
 
-  //   console.log(formik);
   const checkboxOptions = [
     { label: 'One', value: 'one' },
     { label: 'Two', value: 'two' },
     {
       label: 'Three',
+      value: 'three',
+      tooltip: {
+        heading: 'Heading',
+        customDescriptionElement: (
+          <p>
+            I'm a custom description Element. Look me up on{' '}
+            <a href='https://www.google.com'>Google</a>
+          </p>
+        ),
+      },
+    },
+  ];
+
+  const radioOptions = [
+    { label: 'One Radio', value: 'one' },
+    { label: 'Two Radio', value: 'two' },
+    {
+      label: 'Three Radio',
       value: 'three',
       tooltip: {
         heading: 'Heading',
@@ -47,6 +65,18 @@ const FormBody = (props) => {
         mainLabelTooltipBoxHeading='What is Lorem Ipsum?'
         mainLabelTooltipBoxDescription='Lorem Ipsum is simply dummy text.'
         optionalText='This is a very important step that you are taking!'
+        isRequired
+      />
+
+      <RadioButtonGroup
+        name='radioGroup'
+        options={radioOptions}
+        formik={formik}
+        mainLabel='Radio Group'
+        mainLabelTooltipBoxHeading='What is Lorem Ipsum?'
+        mainLabelTooltipBoxDescription='Lorem Ipsum is simply dummy text.'
+        tooltipLink='https://www.google.com'
+        tooltipLinkText='Visit Google to know more.'
         isRequired
       />
 

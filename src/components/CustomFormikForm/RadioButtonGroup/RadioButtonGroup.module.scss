@@ -1,0 +1,106 @@
+@import '../../../theme/variables.scss';
+@import '../../../theme/utils.scss';
+
+.container {
+  position: relative;
+  margin-top: 30px;
+
+  .radioInput {
+    position: absolute;
+    left: -999em;
+
+    span.presentationalRadioButton {
+      padding: 2px;
+    }
+
+    &:disabled + span.presentationalRadioButton,
+    &:disabled + span.presentationalRadioButton + span.labelSpanElement {
+      color: $secondaryGrey;
+      cursor: not-allowed;
+    }
+
+    &:focus + span.presentationalRadioButton + span.labelSpanElement {
+      border-color: $brightPurple;
+    }
+  }
+
+  .radioGroup {
+    display: flex;
+
+    .radioButtonWithLabel {
+      display: flex;
+
+      &:not(:last-child) {
+        margin-right: 20px;
+      }
+    }
+  }
+
+  .presentationalRadioButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1px;
+    width: em(16);
+    height: em(16);
+    margin-right: em(5);
+    border: 1px solid $lighterDarkGrey;
+    border-radius: 100%;
+    box-shadow: 0 2px 2px $borderGrey;
+  }
+
+  .radioInput:checked + .presentationalRadioButton .radioButtonSelected {
+    background-color: $brightPurple;
+  }
+
+  .focused {
+    border-color: $brightPurple;
+  }
+
+  .radioButtonSelected {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+  }
+
+  .labelSpanElement {
+    margin-top: em(3);
+    padding-bottom: em(3);
+    border: 0;
+    border-bottom: 1px dashed transparent;
+  }
+
+  .componentHeading {
+    top: -20px;
+    left: 0;
+  }
+
+  .optionLabel {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: em(14);
+    line-height: 14px;
+    width: fit-content;
+    color: $primaryDark;
+    cursor: pointer;
+  }
+
+  .tooltip {
+    margin-left: 4px;
+
+    img {
+      width: 10px;
+    }
+  }
+
+  .optionWithTooltip {
+    display: flex;
+  }
+
+  .optionalText {
+    margin-left: -10px;
+  }
+}

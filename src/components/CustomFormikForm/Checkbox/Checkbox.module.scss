@@ -47,6 +47,10 @@
       color: $secondaryGrey;
       cursor: not-allowed;
     }
+
+    &:focus + span.presentationalCheckbox + span.labelSpanElement {
+      border-color: $brightPurple;
+    }
   }
 
   .presentationalCheckbox {
@@ -69,22 +73,19 @@
     border-radius: 2px;
   }
 
-  .labelSpanElement {
-    margin-top: em(3);
-    padding-bottom: em(3);
-    border: 0;
-    border-bottom: 1px dashed transparent;
-  }
-
   .checkboxInput:checked + .presentationalCheckbox .checkboxChecked {
     background-color: $brightPurple;
   }
+}
 
-  .focused {
-    border-color: $brightPurple;
-  }
+.labelSpanElement {
+  margin-top: em(3);
+  padding-bottom: em(3);
+  border: 0;
+  border-bottom: 1px dashed transparent;
+}
 
-  .optionalText {
-    padding-left: 0;
-  }
+.optionalText {
+  padding-left: 0;
+  margin-left: -10px;
 }

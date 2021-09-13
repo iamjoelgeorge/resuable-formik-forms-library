@@ -4,14 +4,13 @@ import React from 'react';
 import { Field } from 'formik';
 import PropTypes from 'prop-types';
 
-import styles from '../Checkbox.module.scss';
-import checkBoxGroupStyles from './CheckboxGroup.module.scss';
-import ErrorText from '../../ErrorText/ErrorText';
-import SlidingLabel from '../../SlidingLabel/SlidingLabel';
-import ToolTip from '../../ToolTip/ToolTip';
-import AdditionalInfo from '../../AdditionalInfo/AdditionalInfo';
+import styles from './RadioButtonGroup.module.scss';
+import ErrorText from '../ErrorText/ErrorText';
+import SlidingLabel from '../SlidingLabel/SlidingLabel';
+import ToolTip from '../ToolTip/ToolTip';
+import AdditionalInfo from '../AdditionalInfo/AdditionalInfo';
 
-const CheckboxGroup = (props) => {
+const RadioButtonGroup = (props) => {
   const {
     name,
     options,
@@ -44,11 +43,11 @@ const CheckboxGroup = (props) => {
         tooltip?.heading || tooltip?.description || tooltip?.customDescriptionElement;
 
       return (
-        <div className={checkBoxGroupStyles.checkBoxWithLabel} key={index}>
+        <div className={styles.radioButtonWithLabel} key={index}>
           <label className={styles.optionLabel}>
             <Field
-              className={styles.checkboxInput}
-              type='checkbox'
+              className={styles.radioInput}
+              type='radio'
               name={name}
               value={option.value}
               disabled={isDisabled}
@@ -56,8 +55,8 @@ const CheckboxGroup = (props) => {
               {...rest}
             />
 
-            <span className={styles.presentationalCheckbox}>
-              <span className={styles.checkboxChecked} />
+            <span className={styles.presentationalRadioButton}>
+              <span className={styles.radioButtonSelected} />
             </span>
 
             {option.label && <span className={styles.labelSpanElement}>{option.label}</span>}
@@ -89,7 +88,7 @@ const CheckboxGroup = (props) => {
         inputIsRequired={isRequired}
       />
 
-      <div className={checkBoxGroupStyles.checkboxGroup} role='group' aria-labelledby={name}>
+      <div className={styles.radioGroup} role='group' aria-labelledby={name}>
         {renderOptions()}
       </div>
 
@@ -109,7 +108,7 @@ const CheckboxGroup = (props) => {
   );
 };
 
-CheckboxGroup.propTypes = {
+RadioButtonGroup.propTypes = {
   name: PropTypes.string,
   options: PropTypes.arrayOf(
     PropTypes.shape({
@@ -136,7 +135,7 @@ CheckboxGroup.propTypes = {
   mainLabelTooltipBoxDescriptionElement: PropTypes.string,
 };
 
-CheckboxGroup.defaultProps = {
+RadioButtonGroup.defaultProps = {
   name: '',
   options: {},
   mainLabel: '',
@@ -153,4 +152,4 @@ CheckboxGroup.defaultProps = {
   mainLabelTooltipBoxDescriptionElement: null,
 };
 
-export default CheckboxGroup;
+export default RadioButtonGroup;
