@@ -58,7 +58,13 @@ const Button = (props) => {
     switch (variant) {
       case 'button':
         return (
-          <button className={buttonClasses} type={type} disabled={disableButton} {...rest}>
+          <button
+            className={buttonClasses}
+            type={type}
+            disabled={disableButton}
+            data-testid={`button-${label}`}
+            {...rest}
+          >
             {label}
           </button>
         );
@@ -71,6 +77,7 @@ const Button = (props) => {
             target='_blank'
             onClick={handleClickOnLink}
             rel='noreferrer'
+            data-testid={`link-${label}`}
           >
             <span>{label}</span>
             {showExternalLinkIcon && (
@@ -87,6 +94,7 @@ const Button = (props) => {
             target='_blank'
             onClick={handleClickOnLink}
             rel='noreferrer'
+            data-testid={`link_as_button-${label}`}
           >
             {label}
             {showExternalLinkIcon && (
@@ -106,6 +114,7 @@ const Button = (props) => {
             type={type}
             disabled={disableButton}
             onClick={onClick}
+            data-testid={`button-${label}`}
             {...rest}
           >
             {label}{' '}

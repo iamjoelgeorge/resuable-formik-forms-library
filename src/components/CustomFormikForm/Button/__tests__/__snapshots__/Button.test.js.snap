@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`[Component]: Button should match the Snapshot 1`] = `
+<button
+  className="button purpleTheme "
+  data-testid="button-submit"
+  disabled={false}
+  type="submit"
+>
+  submit
+</button>
+`;
