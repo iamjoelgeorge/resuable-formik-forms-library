@@ -1,0 +1,645 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`[Component]: FormOne should match the Snapshot 1`] = `
+<form
+  action="#"
+  className="container"
+  onReset={[Function]}
+  onSubmit={[Function]}
+>
+  <h1>
+    Form 1
+  </h1>
+  <div
+    className="container "
+  >
+    <div
+      className="inputWithTooltipContainer"
+    >
+      <input
+        className={
+          Array [
+            "input",
+          ]
+        }
+        data-testid="input-license"
+        disabled={true}
+        id="test"
+        name="test"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        placeholder=""
+        type="text"
+        value=""
+      />
+      <div
+        className="container  "
+      >
+        <label
+          htmlFor="test"
+        >
+          Disabled Input
+        </label>
+      </div>
+    </div>
+    
+    
+    
+  </div>
+  <div>
+    <div
+      className="testContainer"
+    >
+      <div
+        className="container "
+      >
+        <div
+          className="inputWithTooltipContainer"
+        >
+          <input
+            className={
+              Array [
+                "input",
+              ]
+            }
+            data-testid="name"
+            disabled={false}
+            id="name"
+            name="name"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            placeholder=""
+            type="text"
+            value=""
+          />
+          <div
+            className="container  "
+          >
+            <label
+              htmlFor="name"
+            >
+              Name
+            </label>
+          </div>
+        </div>
+        
+        
+        
+      </div>
+      <div
+        className="container "
+      >
+        <div
+          className="inputWithTooltipContainer"
+        >
+          <input
+            className={
+              Array [
+                "input",
+              ]
+            }
+            data-testid="input-license"
+            disabled={false}
+            id="age"
+            name="age"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            placeholder="Tell us how old you are"
+            type="text"
+            value=""
+          />
+          <div
+            className="container   slideLabel"
+          >
+            <label
+              htmlFor="age"
+            >
+              Age (with placeholder)
+            </label>
+          </div>
+        </div>
+        
+        
+        <div
+          className="common tooltipContainer "
+        >
+          <a
+            href="#"
+            rel="noreferrer"
+            target="_blank"
+          >
+            This is a Tooltip link?
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="container "
+  >
+    <div
+      className="inputWithTooltipContainer"
+    >
+      <input
+        className={
+          Array [
+            "input",
+          ]
+        }
+        data-testid="input-license"
+        disabled={false}
+        id="email"
+        name="email"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        placeholder=""
+        type="email"
+        value=""
+      />
+      <div
+        className="container inputIsRequired "
+      >
+        <label
+          htmlFor="email"
+        >
+          Email
+        </label>
+      </div>
+      <div
+        className="toolTipWithImage"
+      >
+        <div
+          className="container "
+        >
+          <img
+            alt="tooltip"
+            onClick={[Function]}
+            src="test-file-stub"
+          />
+        </div>
+      </div>
+    </div>
+    
+    <div
+      className="common "
+    >
+      <a
+        href="#"
+        rel="noreferrer"
+        target="_blank"
+      >
+        This is a Help link?
+      </a>
+    </div>
+    
+  </div>
+  <div>
+    <div
+      className="container"
+      id="custom-calendar-date-picker"
+    >
+      <div>
+        <button
+          className="selectedDateContainer"
+          onClick={[Function]}
+          type="button"
+        >
+          <div
+            className="container   slideLabel"
+          >
+            <label
+              htmlFor="selectedDate"
+            >
+              Departure Date
+            </label>
+          </div>
+          <p
+            className="selectedDate"
+            id="selectedDate"
+          >
+            Wed, 15 Sep 2021
+            <span
+              className="dropdownIcon"
+            >
+              <img
+                alt="Dropdown icon"
+                src="test-file-stub"
+              />
+            </span>
+          </p>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div
+      className="container"
+    >
+      <p
+        className="label"
+      >
+        Return Date
+      </p>
+      <div
+        className="dateContainer"
+      >
+        <div
+          className="date"
+        >
+          <div
+            className="container"
+            onClick={[Function]}
+          >
+            <p
+              className="selectedDate"
+            >
+              
+              <span
+                className="dropdownIconContainer"
+              >
+                <img
+                  alt="Dropdown icon"
+                  src="test-file-stub"
+                />
+              </span>
+            </p>
+          </div>
+        </div>
+        <div
+          className="month"
+        >
+          <div
+            className="container"
+            onClick={[Function]}
+          >
+            <p
+              className="selectedDate"
+            >
+              
+              <span
+                className="dropdownIconContainer"
+              >
+                <img
+                  alt="Dropdown icon"
+                  src="test-file-stub"
+                />
+              </span>
+            </p>
+          </div>
+        </div>
+        <div
+          className="year"
+        >
+          <div
+            className="container"
+            onClick={[Function]}
+          >
+            <p
+              className="selectedDate"
+            >
+              
+              <span
+                className="dropdownIconContainer"
+              >
+                <img
+                  alt="Dropdown icon"
+                  src="test-file-stub"
+                />
+              </span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="container "
+  >
+    <div
+      className="inputWithTooltipContainer"
+    >
+      <input
+        className={
+          Array [
+            "input",
+          ]
+        }
+        data-testid="input-license"
+        disabled={false}
+        id="test"
+        name="test"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        placeholder=""
+        type="number"
+        value=""
+      />
+      <div
+        className="container  "
+      >
+        <label
+          htmlFor="test"
+        >
+          Test Input
+        </label>
+      </div>
+      <div
+        className="toolTipWithImage"
+      >
+        <div
+          className="container "
+        >
+          <img
+            alt="tooltip"
+            onClick={[Function]}
+            src="test-file-stub"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      className="common "
+    >
+      <p
+        className="optionalText"
+      >
+        Optional
+      </p>
+    </div>
+    
+    
+  </div>
+  <div
+    className="container "
+  >
+    <div
+      className="fieldContainer"
+    >
+      <textarea
+        className="textarea"
+        name="description"
+        onBlur={[Function]}
+        onChange={[Function]}
+        value=""
+      />
+      <div
+        className="container  label"
+      >
+        <label
+          htmlFor="description"
+        >
+          Additional Details
+        </label>
+      </div>
+    </div>
+  </div>
+  <div
+    className="container"
+  >
+    <div
+      className="container  componentHeading slideLabel"
+    >
+      <label
+        htmlFor="license"
+      >
+        License
+      </label>
+    </div>
+    <div
+      className="optionWithTooltip"
+    >
+      <label
+        className="optionLabel"
+      >
+        <input
+          checked={false}
+          className="checkboxInput"
+          data-testid="checkbox-license"
+          disabled={false}
+          name="license"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          type="checkbox"
+          value={false}
+        />
+        <span
+          className="presentationalCheckbox"
+        >
+          <span
+            className="checkboxChecked"
+          />
+        </span>
+        <span
+          className="labelSpanElement"
+        >
+          Do you have a license?
+        </span>
+      </label>
+      <div
+        className="container tooltip"
+      >
+        <img
+          alt="tooltip"
+          onClick={[Function]}
+          src="test-file-stub"
+        />
+      </div>
+    </div>
+    
+    <div
+      className="common optionalText"
+    >
+      <a
+        href="#"
+        rel="noreferrer"
+        target="_blank"
+      >
+        This link is for your help
+      </a>
+    </div>
+    
+  </div>
+  <div
+    className="container"
+  >
+    <div
+      className="container  componentHeading slideLabel"
+    >
+      <label
+        htmlFor="formOneRadioGroup"
+      >
+        Radio Group
+      </label>
+      <div
+        className="container tooltip"
+      >
+        <img
+          alt="tooltip"
+          onClick={[Function]}
+          src="test-file-stub"
+        />
+      </div>
+    </div>
+    <div
+      aria-labelledby="formOneRadioGroup"
+      className="radioGroup"
+      role="group"
+    >
+      <div
+        className="radioButtonWithLabel"
+      >
+        <label
+          className="optionLabel"
+        >
+          <input
+            checked={false}
+            className="radioInput"
+            disabled={false}
+            name="formOneRadioGroup"
+            onBlur={[Function]}
+            onChange={[Function]}
+            type="radio"
+            value="one"
+          />
+          <span
+            className="presentationalRadioButton"
+          >
+            <span
+              className="radioButtonSelected"
+            />
+          </span>
+          <span
+            className="labelSpanElement"
+          >
+            One Radio
+          </span>
+        </label>
+      </div>
+      <div
+        className="radioButtonWithLabel"
+      >
+        <label
+          className="optionLabel"
+        >
+          <input
+            checked={false}
+            className="radioInput"
+            disabled={false}
+            name="formOneRadioGroup"
+            onBlur={[Function]}
+            onChange={[Function]}
+            type="radio"
+            value="two"
+          />
+          <span
+            className="presentationalRadioButton"
+          >
+            <span
+              className="radioButtonSelected"
+            />
+          </span>
+          <span
+            className="labelSpanElement"
+          >
+            Two Radio
+          </span>
+        </label>
+      </div>
+      <div
+        className="radioButtonWithLabel"
+      >
+        <label
+          className="optionLabel"
+        >
+          <input
+            checked={false}
+            className="radioInput"
+            disabled={false}
+            name="formOneRadioGroup"
+            onBlur={[Function]}
+            onChange={[Function]}
+            type="radio"
+            value="three"
+          />
+          <span
+            className="presentationalRadioButton"
+          >
+            <span
+              className="radioButtonSelected"
+            />
+          </span>
+          <span
+            className="labelSpanElement"
+          >
+            Three Radio
+          </span>
+        </label>
+        <div
+          className="container tooltip"
+        >
+          <img
+            alt="tooltip"
+            onClick={[Function]}
+            src="test-file-stub"
+          />
+        </div>
+      </div>
+    </div>
+    
+    
+    <div
+      className="common tooltipContainer optionalText"
+    >
+      <a
+        href="https://www.google.com"
+        rel="noreferrer"
+        target="_blank"
+      >
+        Visit Google to know more.
+      </a>
+    </div>
+  </div>
+  <div
+    className="container"
+  >
+    <label
+      className="label"
+      htmlFor="idProofs"
+    >
+      Upload your documents
+    </label>
+    <div>
+      <input
+        hidden="hidden"
+        multiple={true}
+        onChange={[Function]}
+        type="file"
+      />
+      <button
+        className="buttonToOpenFileUploader"
+        onClick={[Function]}
+        type="button"
+      >
+        Upload files
+      </button>
+    </div>
+    <p
+      className="errorMessage "
+    />
+  </div>
+  <button
+    className="button purpleTheme "
+    data-testid="button-Submit"
+    disabled={false}
+    type="submit"
+  >
+    Submit
+  </button>
+</form>
+`;

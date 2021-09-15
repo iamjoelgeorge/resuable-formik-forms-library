@@ -1,5 +1,6 @@
 import React from 'react';
-import { render, screen, cleanup } from '@testing-library/react';
+import { render, cleanup } from '@testing-library/react';
+import '@testing-library/jest-dom/extend-expect';
 import renderer from 'react-test-renderer';
 
 import Button from '../Button';
@@ -19,7 +20,7 @@ const defaultProps = {
   },
 };
 
-beforeEach(cleanup);
+afterEach(cleanup);
 describe('[Component]: Button', () => {
   it('should match the Snapshot', () => {
     const tree = renderer.create(<Button {...defaultProps} />).toJSON();

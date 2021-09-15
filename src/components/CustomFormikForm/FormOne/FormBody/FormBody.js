@@ -43,10 +43,10 @@ const FormBody = (props) => {
   return (
     <>
       <h1>Form 1</h1>
-      <Input formik={formik} type='test' name='test' label='Disabled Input' disabled />
+      <Input formik={formik} type='text' name='test' label='Disabled Input' disabled />
       <div>
         <div className={styles.testContainer}>
-          <Input formik={formik} type='name' name='name' label='Name' />
+          <Input data-testid='name' formik={formik} type='text' name='name' label='Name' />
           <Input
             formik={formik}
             type='text'
@@ -81,7 +81,19 @@ const FormBody = (props) => {
         tooltipIconBoxHeading='Permitted with no fee'
         tooltipIconBoxDescription='For cancellation, credit to Travel Bank for the full ticket value including any fare portion where Velocity Points have been redeemed.'
       />
-      <Textarea formik={formik} name='description' label='Additional Details' />
+      <Textarea
+        formik={formik}
+        name='description'
+        label='Additional Details'
+        labelTooltipBoxHeading='What is Lorem Ipsum?'
+        labelTooltipBoxDescription='Lorem Ipsum is simply dummy text.'
+        // placeholder='This is a placeholder for the Textarea'
+        optionalText='This is your textarea optional text'
+        // helpLink='#'
+        // helpLinkText='This link is for your help'
+        // tooltipLink='https://www.google.com'
+        // tooltipLinkText='Visit Google to know more.'
+      />
       <Checkbox
         formik={formik}
         name='license'

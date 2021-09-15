@@ -42,13 +42,14 @@ const FormContainer = (props) => {
     <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
       {(formik) => {
         const childrenWithExtraProp = Children.map(children, (child) => {
-          return child.props.children
+          return child?.props?.children
             ? renderChildren(child, formik)
             : cloneElement(child, { formik });
         });
         return <Form className={containerClass}>{childrenWithExtraProp}</Form>;
       }}
     </Formik>
+    // <div>{children}</div>
   );
 };
 

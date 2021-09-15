@@ -7,7 +7,35 @@ const fileSizeErrorMessage = `Only the following formats are allowed: ${SUPPORTE
 )}`;
 
 export const validateInput = (input, objectToUpdate) => {
-  const { message, name, type, isRequired } = input;
+  const { message, name, type, isRequired = false, minChars = {}, maxChars = {} } = input;
+
+  // [ToDo]: This function needs to be cleaned up
+  const validateString = () => {
+    if (isRequired) {
+      if (minChars.num && maxChars.num) {
+        objectToUpdate[name] = Yup.string()
+          .min(minChars?.num, minChars?.message)
+          .max(maxChars?.num, maxChars?.message)
+          .required(message);
+      } else if (minChars.num) {
+        objectToUpdate[name] = Yup.string().min(minChars.num, minChars.message).required(message);
+      } else if (maxChars.num) {
+        objectToUpdate[name] = Yup.string().max(maxChars.num, maxChars.message).required(message);
+      } else {
+        objectToUpdate[name] = Yup.string().required(message);
+      }
+    } else {
+      if (minChars.num && maxChars.num) {
+        objectToUpdate[name] = Yup.string()
+          .min(minChars?.num, minChars?.message)
+          .max(maxChars?.num, maxChars?.message);
+      } else if (minChars.num) {
+        objectToUpdate[name] = Yup.string().min(minChars.num, minChars.message);
+      } else if (maxChars.num) {
+        objectToUpdate[name] = Yup.string().max(maxChars.num, maxChars.message);
+      }
+    }
+  };
 
   switch (type) {
     case 'email':
@@ -29,9 +57,7 @@ export const validateInput = (input, objectToUpdate) => {
       break;
 
     case 'string':
-      objectToUpdate[name] = isRequired
-        ? Yup.string().required(message)
-        : Yup.string().typeError('enter a num');
+      validateString();
       break;
 
     case 'number':

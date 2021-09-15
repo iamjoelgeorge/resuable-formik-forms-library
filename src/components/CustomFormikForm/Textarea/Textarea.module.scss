@@ -19,6 +19,7 @@
   .fieldContainer {
     position: relative;
     height: 200px;
+    margin-bottom: em(10);
     cursor: pointer;
   }
 
@@ -42,7 +43,7 @@
     cursor: pointer;
     overflow-y: scroll;
 
-    &:focus {
+    &:focus:not(:disabled) {
       border-color: $darkPurple;
 
       & + div {
@@ -50,8 +51,18 @@
       }
     }
 
-    &:hover {
+    &:hover:not(:disabled) {
       border-color: $brightPurple;
+    }
+
+    &:disabled {
+      border-bottom-color: $lighterGrey;
+      cursor: not-allowed;
+
+      & + div > label {
+        font-weight: $fontWeightRegular;
+        color: $secondaryGrey;
+      }
     }
   }
 
@@ -71,8 +82,12 @@
     line-height: 18px;
 
     &:focus {
-      border-color: $brightPurple;
+      border-color: $brightPurple !important;
       border-style: dashed;
     }
+  }
+
+  .errorContainer {
+    padding-left: em(14);
   }
 }

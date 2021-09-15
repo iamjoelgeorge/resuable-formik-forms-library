@@ -1,17 +1,10 @@
-/* eslint-disable */
-
 import React from 'react';
 
 import styles from './FormOne.module.scss';
-import Checkbox from '../Checkbox/Checkbox';
-import DatePicker from '../DatePicker/DatePicker';
-import FileUploadInput from '../FileUploadInput/FileUploadInput';
 import FormContainer from '../FormContainer/FormContainer';
-import Input from '../Input/Input';
-import Textarea from '../Textarea/Textarea';
 import FormBody from './FormBody/FormBody';
 
-const FormOne = (props) => {
+const FormOne = () => {
   const initialValues = {
     name: '',
     email: '',
@@ -26,18 +19,26 @@ const FormOne = (props) => {
   };
 
   const validations = [
-    {
-      name: 'email',
-      type: 'email',
-      isRequired: true,
-      message: 'Enter the correct email id',
-    },
     // {
-    //   name: 'description',
+    //   name: 'name',
     //   type: 'string',
-    //   isRequired: false,
-    //   message: 'Test error message description',
+    //   isRequired: true,
+    //   message: 'Enter your name',
     // },
+    // {
+    //   name: 'email',
+    //   type: 'email',
+    //   isRequired: true,
+    //   message: 'Enter the correct email id',
+    // },
+    {
+      name: 'description',
+      type: 'string',
+      isRequired: false,
+      message: 'Please add a comment.',
+      minChars: { num: 2, message: 'Please enter at least 2 characters' },
+      maxChars: { num: 5, message: 'You can only enter upto 5 characters' },
+    },
     // {
     //   name: 'age',
     //   type: 'number',
@@ -49,12 +50,6 @@ const FormOne = (props) => {
     //   type: 'file',
     //   isRequired: true,
     //   message: 'You can only upload png images.',
-    // },
-    // {
-    //   name: 'description',
-    //   type: 'string',
-    //   isRequired: true,
-    //   message: 'Please add a comment.',
     // },
   ];
 

@@ -73,6 +73,7 @@ const Checkbox = (props) => {
       <div className={styles.optionWithTooltip}>
         <label className={styles.optionLabel}>
           <Field
+            data-testid={`checkbox-${name}`}
             className={styles.checkboxInput}
             type='checkbox'
             name={name}

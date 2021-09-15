@@ -25,7 +25,7 @@ const Input = (props) => {
     helpLinkText,
     helpLink,
     optionalText,
-    disabled = false,
+    isDisabled = false,
     isRequired,
     ...rest
   } = props;
@@ -69,18 +69,19 @@ const Input = (props) => {
   };
 
   const renderFieldView = () =>
-    labelView && !disabled && inputValue ? (
+    labelView && !isDisabled && inputValue ? (
       <button className={placeholderButtonClasses} onClick={handleClick}>
         {placeholder && !inputValue ? placeholder : inputValue}
       </button>
     ) : (
       <Field
+        data-testid='input-license'
         innerRef={inputRef}
         className={fieldClasses}
         name={name}
         id={name}
         placeholder={placeholder}
-        disabled={disabled}
+        disabled={isDisabled}
         onFocus={handleFocus}
         onBlur={handleBlur}
         {...rest}
@@ -123,7 +124,6 @@ const Input = (props) => {
         helpLink={helpLink}
         tooltipLinkText={tooltipLinkText}
         tooltipLink={tooltipLink}
-        customClass={styles.optionalText}
       />
     </div>
   );
@@ -143,7 +143,7 @@ Input.propTypes = {
   helpLinkText: PropTypes.string,
   helpLink: PropTypes.string,
   optionalText: PropTypes.string,
-  disabled: PropTypes.bool,
+  isDisabled: PropTypes.bool,
   isRequired: PropTypes.bool,
 };
 
@@ -159,7 +159,7 @@ Input.defaultProps = {
   helpLinkText: '',
   helpLink: '',
   optionalText: '',
-  disabled: false,
+  isDisabled: false,
   isRequired: false,
 };
 
