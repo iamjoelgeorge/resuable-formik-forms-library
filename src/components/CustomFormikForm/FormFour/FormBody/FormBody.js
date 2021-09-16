@@ -24,6 +24,18 @@ const FormBody = (props) => {
         ),
       },
     },
+    { label: 'four', value: 'four' },
+    { label: 'five', value: 'five' },
+    { label: 'six', value: 'six' },
+    { label: 'seven', value: 'seven' },
+    {
+      label: 'eight',
+      value: 'eight',
+      tooltip: {
+        heading: 'Heading',
+        description: 'Test Description',
+      },
+    },
   ];
 
   const radioOptions = [

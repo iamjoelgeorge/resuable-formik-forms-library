@@ -46,7 +46,14 @@ const FormBody = (props) => {
       <Input formik={formik} type='text' name='test' label='Disabled Input' disabled />
       <div>
         <div className={styles.testContainer}>
-          <Input data-testid='name' formik={formik} type='text' name='name' label='Name' />
+          <Input
+            data-testid='name'
+            formik={formik}
+            type='text'
+            name='name'
+            label='Name'
+            containerClass={styles.input}
+          />
           <Input
             formik={formik}
             type='text'
@@ -55,6 +62,7 @@ const FormBody = (props) => {
             placeholder='Tell us how old you are'
             tooltipLinkText='This is a Tooltip link?'
             tooltipLink='#'
+            containerClass={styles.input}
           />
         </div>
       </div>
@@ -83,6 +91,7 @@ const FormBody = (props) => {
       />
       <Textarea
         formik={formik}
+        containerClass={styles.description}
         name='description'
         label='Additional Details'
         labelTooltipBoxHeading='What is Lorem Ipsum?'

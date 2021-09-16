@@ -1,5 +1,6 @@
 .checkboxGroup {
   display: flex;
+  flex-wrap: wrap;
 
   .checkBoxWithLabel {
     display: flex;

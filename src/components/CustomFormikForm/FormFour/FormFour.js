@@ -12,8 +12,8 @@ const FormFour = () => {
     testCheckbox: false,
     checkboxGroup: [],
     radioGroup: '',
-    // radioGroup: 'two', // Default checked value
-    // checkboxGroup: ['two'], // Default checked value
+    radioGroup: 'two', // Default checked value
+    checkboxGroup: ['two', 'eight'], // Default checked value
   };
 
   const validations = [

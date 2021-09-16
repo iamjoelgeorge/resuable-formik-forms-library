@@ -13,7 +13,7 @@ const FormOne = () => {
     description: '',
     license: false,
     idProofs: [],
-    formOneRadioGroup: '',
+    formOneRadioGroup: 'two',
     departureDate: new Date(),
     returnDate: new Date(),
   };

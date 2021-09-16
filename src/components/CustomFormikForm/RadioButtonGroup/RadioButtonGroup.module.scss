@@ -26,6 +26,7 @@
 
   .radioGroup {
     display: flex;
+    flex-wrap: wrap;
 
     .radioButtonWithLabel {
       display: flex;

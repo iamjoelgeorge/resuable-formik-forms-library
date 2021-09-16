@@ -10,7 +10,8 @@ const ToolTip = (props) => {
   const { heading, description, descriptionElement: DescriptionElement, containerClass } = props;
   const [isBoxOpen, setIsBoxOpen] = useState(false);
 
-  const tooltipRef = useRef();
+  const tooltipContainerRef = useRef();
+  const tooltipBoxRef = useRef();
 
   const containerClasses = joinClassNames([styles.container, containerClass]);
 
@@ -24,12 +25,8 @@ const ToolTip = (props) => {
     };
   }, []);
 
-  // console.log(heading);
-  // console.log(DescriptionElement);
-  // console.log('/////////////////////////');
-
   const handleClickOutside = (e) => {
-    const tooltipNode = tooltipRef.current;
+    const tooltipNode = tooltipContainerRef.current;
     const clickedNode = e.target;
 
     if (tooltipNode?.contains(clickedNode)) return;
@@ -44,6 +41,11 @@ const ToolTip = (props) => {
 
   const toggleTooltipBox = () => {
     setIsBoxOpen((prevState) => !prevState);
+    // console.log(tooltipBoxRef.current.offsetLeft);
+    // console.log(tooltipBoxRef.current.getBoundingClientRect().width);
+    console.log(tooltipContainerRef);
+    console.log(window.innerHeight);
+    console.log('box', tooltipContainerRef.current.childNodes[1])
   };
 
   const renderDescription = () =>
@@ -54,11 +56,11 @@ const ToolTip = (props) => {
     ) : null;
 
   return (
-    <div ref={tooltipRef} className={containerClasses}>
+    <div ref={tooltipContainerRef} className={containerClasses}>
       <img src={ToolTipIcon} alt='tooltip' onClick={toggleTooltipBox} />
 
       {isBoxOpen && (
-        <div className={styles.box}>
+        <div ref={tooltipBoxRef} className={styles.box}>
           <button className={styles.closeButton} onClick={toggleTooltipBox}>
             <div className={styles.line}></div>
             <div className={styles.line}></div>
