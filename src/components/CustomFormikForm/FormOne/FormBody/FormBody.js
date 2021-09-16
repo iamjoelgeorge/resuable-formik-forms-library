@@ -124,7 +124,14 @@ const FormBody = (props) => {
         tooltipLinkText='Visit Google to know more.'
       />
 
-      <FileUploadInput formik={formik} name='idProofs' label='Upload your documents' />
+      <FileUploadInput
+        formik={formik}
+        name='idProofs'
+        label='Upload your documents'
+        labelTooltipBoxHeading='What is Lorem Ipsum?'
+        labelTooltipBoxDescription='Lorem Ipsum is simply dummy text.'
+        optionalText='test'
+      />
 
       <Button formik={formik} label='Submit' />
     </>

@@ -5,22 +5,37 @@ import { v4 as uuidv4 } from 'uuid';
 import { Field } from 'formik';
 
 import styles from './FileUploadInput.module.scss';
-import { joinClassNames } from '../../../utils/utils';
 import ErrorText from '../ErrorText/ErrorText';
 import { DeleteIcon } from '../../../constants/icons';
+import AdditionalInfo from '../AdditionalInfo/AdditionalInfo';
+import SlidingLabel from '../SlidingLabel/SlidingLabel';
 
 const FileUploadInput = (props) => {
-  const { label, name, formik, ...rest } = props;
+  const {
+    label,
+    name,
+    formik,
+    containerClass: customContainerClass,
+    labelTooltipBoxHeading,
+    labelTooltipBoxDescription,
+    labelTooltipBoxDescriptionElement,
+    tooltipLink,
+    tooltipLinkText,
+    helpLinkText,
+    helpLink,
+    optionalText,
+    isRequired,
+    ...rest
+  } = props;
+
+  const { errors } = formik;
+
   const [selectedFiles, setSelectedFiles] = useState([]);
   const fileRef = useRef();
 
   const userHasVisitedTheInputField = formik.touched[name];
   const inputFieldHasErrors = formik.errors[name];
-  const addErrorClassesToLabelAndInput = userHasVisitedTheInputField && inputFieldHasErrors;
-
-  const labelClasses = addErrorClassesToLabelAndInput
-    ? joinClassNames([styles.label, styles.labelError])
-    : styles.label;
+  const addErrorClassesToLabelAndInput = !!userHasVisitedTheInputField && !!inputFieldHasErrors;
 
   const handleChange = (setFieldValue) => {
     const files = Array.from(fileRef?.current?.files);
@@ -60,9 +75,17 @@ const FileUploadInput = (props) => {
   return (
     <div className={styles.container}>
       {label && (
-        <label className={labelClasses} htmlFor={name}>
-          {label}
-        </label>
+        <SlidingLabel
+          label={label}
+          htmlFor={name}
+          inputEntered={true}
+          customClass={styles.label}
+          showErrorStyle={addErrorClassesToLabelAndInput}
+          tooltipIconBoxHeading={labelTooltipBoxHeading}
+          tooltipIconBoxDescription={labelTooltipBoxDescription}
+          tooltipIconChildElement={labelTooltipBoxDescriptionElement}
+          inputIsRequired={isRequired}
+        />
       )}
 
       <Field name={name} {...rest}>
@@ -88,6 +111,18 @@ const FileUploadInput = (props) => {
                   Upload files
                 </button>
               </div>
+
+              {errors[name] && formik.touched[name] && (
+                <ErrorText containerClass={styles.errorContainer} fieldName={name} />
+              )}
+              <AdditionalInfo
+                customClass={styles.optionalText}
+                optionalText={optionalText}
+                helpLinkText={helpLinkText}
+                helpLink={helpLink}
+                tooltipLinkText={tooltipLinkText}
+                tooltipLink={tooltipLink}
+              />
               {selectedFiles.length > 0 && (
                 <div className={styles.selectedFiles}>{renderSelectedFiles(setFieldValue)}</div>
               )}
@@ -95,9 +130,38 @@ const FileUploadInput = (props) => {
           );
         }}
       </Field>
-      <ErrorText fieldName={name} />
     </div>
   );
+};
+
+FileUploadInput.propTypes = {
+  label: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  formik: PropTypes.shape({}),
+  containerClass: PropTypes.string,
+  labelTooltipBoxHeading: PropTypes.string,
+  labelTooltipBoxDescription: PropTypes.string,
+  labelTooltipBoxDescriptionElement: PropTypes.element,
+  tooltipLink: PropTypes.string,
+  tooltipLinkText: PropTypes.string,
+  helpLinkText: PropTypes.string,
+  helpLink: PropTypes.string,
+  optionalText: PropTypes.string,
+  isRequired: PropTypes.bool,
+};
+
+FileUploadInput.defaultProps = {
+  formik: {},
+  containerClass: '',
+  labelTooltipBoxHeading: '',
+  labelTooltipBoxDescription: '',
+  labelTooltipBoxDescriptionElement: null,
+  tooltipLink: '',
+  tooltipLinkText: '',
+  helpLinkText: '',
+  helpLink: '',
+  optionalText: '',
+  isRequired: false,
 };
 
 export default FileUploadInput;

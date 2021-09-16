@@ -2,7 +2,8 @@
 @import '../../../theme/utils.scss';
 
 .container {
-  margin-top: em(12);
+  margin-top: em(20);
+  position: relative;
 
   .buttonToOpenFileUploader {
     color: $primary;
@@ -19,13 +20,8 @@
   }
 
   .label {
-    color: $darkPurple;
-    font-weight: $fontWeightSemiBold;
-    font-size: em(14);
-  }
-
-  .labelError {
-    color: $error;
+    left: 0;
+    top: -12px;
   }
 
   .inputError {
@@ -57,5 +53,9 @@
         padding: 0;
       }
     }
+  }
+
+  .optionalText {
+    padding-left: 0;
   }
 }

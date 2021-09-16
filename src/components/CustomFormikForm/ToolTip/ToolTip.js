@@ -43,9 +43,9 @@ const ToolTip = (props) => {
     setIsBoxOpen((prevState) => !prevState);
     // console.log(tooltipBoxRef.current.offsetLeft);
     // console.log(tooltipBoxRef.current.getBoundingClientRect().width);
-    console.log(tooltipContainerRef);
-    console.log(window.innerHeight);
-    console.log('box', tooltipContainerRef.current.childNodes[1])
+    // console.log(tooltipContainerRef);
+    // console.log(window.innerHeight);
+    // console.log('box', tooltipContainerRef.current.childNodes[1])
   };
 
   const renderDescription = () =>

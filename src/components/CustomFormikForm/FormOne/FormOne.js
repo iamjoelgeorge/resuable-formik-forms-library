@@ -45,12 +45,12 @@ const FormOne = () => {
     //   isRequired: true,
     //   message: 'Tell us your age',
     // },
-    // {
-    //   name: 'idProofs',
-    //   type: 'file',
-    //   isRequired: true,
-    //   message: 'You can only upload png images.',
-    // },
+    {
+      name: 'idProofs',
+      type: 'file',
+      isRequired: true,
+      message: 'You can only upload png images.',
+    },
   ];
 
   const handleSubmit = (values) => console.log('Form 1 submitted:', values);
