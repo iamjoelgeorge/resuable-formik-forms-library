@@ -5,8 +5,8 @@ import { v4 as uuidv4 } from 'uuid';
 import { Field } from 'formik';
 
 import styles from './FileUploadInput.module.scss';
-import ErrorText from '../ErrorText/ErrorText';
 import { DeleteIcon } from '../../../constants/icons';
+import ErrorText from '../ErrorText/ErrorText';
 import AdditionalInfo from '../AdditionalInfo/AdditionalInfo';
 import SlidingLabel from '../SlidingLabel/SlidingLabel';
 
