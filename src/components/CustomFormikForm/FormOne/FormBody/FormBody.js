@@ -75,8 +75,8 @@ const FormBody = (props) => {
         helpLink='#'
         helpLinkText='This is a Help link?'
         // isRequired
-        tooltipIconBoxHeading='Permitted with no fee'
-        tooltipIconBoxDescription='For cancellation, credit to Travel Bank for the full ticket value including any fare portion where Velocity Points have been redeemed.'
+        tooltipBoxHeading='Permitted with no fee'
+        tooltipBoxDescription='For cancellation, credit to Travel Bank for the full ticket value including any fare portion where Velocity Points have been redeemed.'
       />
       <DatePicker formik={formik} name='departureDate' label='Departure Date' />
       <DatePicker formik={formik} name='returnDate' dropdown label='Return Date' />
@@ -86,8 +86,8 @@ const FormBody = (props) => {
         name='test'
         label='Test Input'
         optionalText='Optional'
-        tooltipIconBoxHeading='Permitted with no fee'
-        tooltipIconBoxDescription='For cancellation, credit to Travel Bank for the full ticket value including any fare portion where Velocity Points have been redeemed.'
+        tooltipBoxHeading='Permitted with no fee'
+        tooltipBoxDescription='For cancellation, credit to Travel Bank for the full ticket value including any fare portion where Velocity Points have been redeemed.'
       />
       <Textarea
         formik={formik}
@@ -111,7 +111,7 @@ const FormBody = (props) => {
         helpLink='#'
         helpLinkText='This link is for your help'
         optionLabelTooltipBoxHeading='My description is a custom element!!!'
-        optionLabelTooltipIconDescriptionElement={testElement}
+        optionLabelTooltipBoxDescriptionElement={testElement}
       />
       <RadioButtonGroup
         name='formOneRadioGroup'
@@ -131,7 +131,9 @@ const FormBody = (props) => {
         labelTooltipBoxHeading='What is Lorem Ipsum?'
         labelTooltipBoxDescription='Lorem Ipsum is simply dummy text.'
         optionalText='test'
+        multiple
         // isRequired
+        isDisabled
       />
 
       <Button formik={formik} label='Submit' />

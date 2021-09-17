@@ -18,6 +18,11 @@ const FormOne = () => {
     returnDate: new Date(),
   };
 
+  const SUPPORTED_FORMATS = ['image/jpg', 'image/jpeg', 'image/gif', 'image/png'];
+  const fileSizeErrorMessage = `Only the following formats are allowed: ${SUPPORTED_FORMATS.join(
+    ', ',
+  )}`;
+
   const validations = [
     {
       name: 'name',
@@ -46,12 +51,17 @@ const FormOne = () => {
     //   isRequired: true,
     //   message: 'Tell us your age',
     // },
-    // {
-    //   name: 'idProofs',
-    //   type: 'file',
-    //   isRequired: true,
-    //   message: 'You can only upload png images.',
-    // },
+    {
+      name: 'idProofs',
+      type: 'file',
+      isRequired: true,
+      message: 'Please upload a file',
+      formats: {
+        formats: SUPPORTED_FORMATS,
+        message: fileSizeErrorMessage,
+      },
+      maxSize: 217100001,
+    },
   ];
 
   const handleSubmit = (values) => console.log('Form 1 submitted:', values);

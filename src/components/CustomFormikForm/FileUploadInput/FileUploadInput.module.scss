@@ -5,6 +5,17 @@
   margin-top: em(20);
   position: relative;
 
+  .uploadButtonContainer {
+    input[type='file']:disabled {
+      & + .buttonToOpenFileUploader {
+        color: $secondaryGrey;
+        box-shadow: none;
+        border: 1px solid $lighterGrey;
+        cursor: not-allowed;
+      }
+    }
+  }
+
   .buttonToOpenFileUploader {
     color: $primary;
     cursor: pointer;

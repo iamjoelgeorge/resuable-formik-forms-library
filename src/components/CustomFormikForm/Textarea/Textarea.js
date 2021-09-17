@@ -91,9 +91,9 @@ const Textarea = (props) => {
             inputEntered={!!inputValue || !!placeholder || slideLabel}
             customClass={styles.label}
             showErrorStyle={addErrorClassesToLabelAndInput}
-            tooltipIconBoxHeading={labelTooltipBoxHeading}
-            tooltipIconBoxDescription={labelTooltipBoxDescription}
-            tooltipIconDescriptionElement={labelTooltipBoxDescriptionElement}
+            tooltipBoxHeading={labelTooltipBoxHeading}
+            tooltipBoxDescription={labelTooltipBoxDescription}
+            tooltipBoxDescriptionElement={labelTooltipBoxDescriptionElement}
             inputIsRequired={isRequired}
           />
         )}

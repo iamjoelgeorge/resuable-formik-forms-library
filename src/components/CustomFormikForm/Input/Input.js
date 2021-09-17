@@ -17,9 +17,9 @@ const Input = (props) => {
     placeholder,
     formik,
     containerClass: customContainerClass,
-    tooltipIconBoxHeading,
-    tooltipIconBoxDescription,
-    tooltipIconDescriptionElement,
+    tooltipBoxHeading,
+    tooltipBoxDescription,
+    tooltipBoxDescriptionElement,
     tooltipLink,
     tooltipLinkText,
     helpLinkText,
@@ -41,7 +41,7 @@ const Input = (props) => {
   const addErrorClassesToLabelAndInput = !!userHasVisitedTheInputField && !!inputFieldHasErrors;
 
   const showTooltipIcon =
-    tooltipIconBoxHeading || tooltipIconBoxDescription || tooltipIconDescriptionElement;
+    tooltipBoxHeading || tooltipBoxDescription || tooltipBoxDescriptionElement;
 
   const containerClasses = joinClassNames([styles.container, customContainerClass]);
 
@@ -111,9 +111,9 @@ const Input = (props) => {
         {showTooltipIcon && (
           <div className={styles.toolTipWithImage}>
             <ToolTip
-              heading={tooltipIconBoxHeading}
-              description={tooltipIconBoxDescription}
-              descriptionElement={tooltipIconDescriptionElement}
+              heading={tooltipBoxHeading}
+              description={tooltipBoxDescription}
+              descriptionElement={tooltipBoxDescriptionElement}
             />
           </div>
         )}
@@ -140,9 +140,9 @@ Input.propTypes = {
   placeholder: PropTypes.string,
   formik: PropTypes.shape({}),
   containerClass: PropTypes.string,
-  tooltipIconBoxHeading: PropTypes.string,
-  tooltipIconBoxDescription: PropTypes.string,
-  tooltipIconDescriptionElement: PropTypes.element,
+  tooltipBoxHeading: PropTypes.string,
+  tooltipBoxDescription: PropTypes.string,
+  tooltipBoxDescriptionElement: PropTypes.element,
   tooltipLink: PropTypes.string,
   tooltipLinkText: PropTypes.string,
   helpLinkText: PropTypes.string,
@@ -156,9 +156,9 @@ Input.defaultProps = {
   placeholder: '',
   formik: {},
   containerClass: '',
-  tooltipIconBoxHeading: '',
-  tooltipIconBoxDescription: '',
-  tooltipIconDescriptionElement: null,
+  tooltipBoxHeading: '',
+  tooltipBoxDescription: '',
+  tooltipBoxDescriptionElement: null,
   tooltipLink: '',
   tooltipLinkText: '',
   helpLinkText: '',

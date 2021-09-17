@@ -14,16 +14,16 @@ const SlidingLabel = (props) => {
     showErrorStyle = false,
     customClass,
     inputIsRequired = false,
-    tooltipIconBoxHeading,
-    tooltipIconBoxDescription,
-    tooltipIconDescriptionElement,
+    tooltipBoxHeading,
+    tooltipBoxDescription,
+    tooltipBoxDescriptionElement,
     ...rest
   } = props;
 
   const isRequiredStyle = inputIsRequired ? styles.inputIsRequired : '';
 
   const showTooltipIcon =
-    tooltipIconBoxHeading || tooltipIconBoxDescription || tooltipIconDescriptionElement;
+    tooltipBoxHeading || tooltipBoxDescription || tooltipBoxDescriptionElement;
 
   const labelDefaultClasses = inputEntered
     ? joinClassNames([styles.container, isRequiredStyle, customClass, styles.slideLabel])
@@ -41,9 +41,9 @@ const SlidingLabel = (props) => {
 
       {showTooltipIcon && (
         <ToolTip
-          heading={tooltipIconBoxHeading}
-          description={tooltipIconBoxDescription}
-          descriptionElement={tooltipIconDescriptionElement}
+          heading={tooltipBoxHeading}
+          description={tooltipBoxDescription}
+          descriptionElement={tooltipBoxDescriptionElement}
           containerClass={styles.tooltip}
         />
       )}
@@ -58,9 +58,9 @@ SlidingLabel.propTypes = {
   showErrorStyle: PropTypes.bool.isRequired,
   customClass: PropTypes.string,
   inputIsRequired: PropTypes.bool,
-  tooltipIconBoxHeading: PropTypes.string,
-  tooltipIconBoxDescription: PropTypes.string,
-  tooltipIconDescriptionElement: PropTypes.element,
+  tooltipBoxHeading: PropTypes.string,
+  tooltipBoxDescription: PropTypes.string,
+  tooltipBoxDescriptionElement: PropTypes.element,
   rest: PropTypes.object,
 };
 

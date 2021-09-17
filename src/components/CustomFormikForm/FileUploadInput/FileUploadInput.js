@@ -25,6 +25,8 @@ const FileUploadInput = (props) => {
     helpLink,
     optionalText,
     isRequired,
+    isDisabled,
+    multiple = false,
     ...rest
   } = props;
 
@@ -49,9 +51,13 @@ const FileUploadInput = (props) => {
   };
 
   const handleDelete = (fileName, setFieldValue) => {
-    const filteredFiles = selectedFiles.filter((file) => {
-      return file.name.trim().toLowerCase() !== fileName.trim().toLowerCase();
-    });
+    // Clearing the original files so the user can re-select the same list again.
+    // This is fine because we store the files in our state when they are uploaded.
+    fileRef.current.value = null;
+
+    const filteredFiles = selectedFiles.filter(
+      (file) => file.name.trim().toLowerCase() !== fileName.trim().toLowerCase(),
+    );
 
     setSelectedFiles(filteredFiles);
     setFieldValue(name, filteredFiles);
@@ -81,9 +87,9 @@ const FileUploadInput = (props) => {
           inputEntered={true}
           customClass={styles.label}
           showErrorStyle={addErrorClassesToLabelAndInput}
-          tooltipIconBoxHeading={labelTooltipBoxHeading}
-          tooltipIconBoxDescription={labelTooltipBoxDescription}
-          tooltipIconDescriptionElement={labelTooltipBoxDescriptionElement}
+          tooltipBoxHeading={labelTooltipBoxHeading}
+          tooltipBoxDescription={labelTooltipBoxDescription}
+          tooltipBoxDescriptionElement={labelTooltipBoxDescriptionElement}
           inputIsRequired={isRequired}
         />
       )}
@@ -97,9 +103,10 @@ const FileUploadInput = (props) => {
               <div className={styles.uploadButtonContainer}>
                 <input
                   hidden='hidden'
-                  multiple
+                  multiple={multiple}
                   ref={fileRef}
                   type='file'
+                  disabled={isDisabled}
                   onChange={() => handleChange(setFieldValue)}
                 />
 
@@ -148,6 +155,8 @@ FileUploadInput.propTypes = {
   helpLink: PropTypes.string,
   optionalText: PropTypes.string,
   isRequired: PropTypes.bool,
+  isDisabled: PropTypes.bool,
+  multiple: PropTypes.bool,
 };
 
 FileUploadInput.defaultProps = {
@@ -162,6 +171,8 @@ FileUploadInput.defaultProps = {
   helpLink: '',
   optionalText: '',
   isRequired: false,
+  isDisabled: false,
+  multiple: false,
 };
 
 export default FileUploadInput;

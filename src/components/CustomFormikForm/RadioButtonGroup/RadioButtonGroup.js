@@ -81,9 +81,9 @@ const RadioButtonGroup = (props) => {
         inputEntered
         htmlFor={name}
         showErrorStyle={addErrorClassesToLabelAndInput}
-        tooltipIconBoxHeading={mainLabelTooltipBoxHeading}
-        tooltipIconBoxDescription={mainLabelTooltipBoxDescription}
-        tooltipIconDescriptionElement={mainLabelTooltipBoxDescriptionElement}
+        tooltipBoxHeading={mainLabelTooltipBoxHeading}
+        tooltipBoxDescription={mainLabelTooltipBoxDescription}
+        tooltipBoxDescriptionElement={mainLabelTooltipBoxDescriptionElement}
         inputIsRequired={isRequired}
       />
 

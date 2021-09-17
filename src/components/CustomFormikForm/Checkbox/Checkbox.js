@@ -29,7 +29,7 @@ const Checkbox = (props) => {
     mainLabelTooltipBoxDescriptionElement,
     optionLabelTooltipBoxHeading,
     optionLabelTooltipBoxDescription,
-    optionLabelTooltipIconDescriptionElement,
+    optionLabelTooltipBoxDescriptionElement,
     ...rest
   } = props;
   const [isFocused, setIsFocused] = useState(false);
@@ -47,7 +47,7 @@ const Checkbox = (props) => {
   const showOptionTooltipIcon =
     optionLabelTooltipBoxHeading ||
     optionLabelTooltipBoxDescription ||
-    optionLabelTooltipIconDescriptionElement;
+    optionLabelTooltipBoxDescriptionElement;
 
   const handleFocus = () => {
     setIsFocused(true);
@@ -65,9 +65,9 @@ const Checkbox = (props) => {
         inputEntered
         htmlFor={name}
         showErrorStyle={addErrorClassesToLabelAndInput}
-        tooltipIconBoxHeading={mainLabelTooltipBoxHeading}
-        tooltipIconBoxDescription={mainLabelTooltipBoxDescription}
-        tooltipIconDescriptionElement={mainLabelTooltipBoxDescriptionElement}
+        tooltipBoxHeading={mainLabelTooltipBoxHeading}
+        tooltipBoxDescription={mainLabelTooltipBoxDescription}
+        tooltipBoxDescriptionElement={mainLabelTooltipBoxDescriptionElement}
         inputIsRequired={isRequired}
       />
       <div className={styles.optionWithTooltip}>
@@ -94,7 +94,7 @@ const Checkbox = (props) => {
           <ToolTip
             heading={optionLabelTooltipBoxHeading}
             description={optionLabelTooltipBoxDescription}
-            descriptionElement={optionLabelTooltipIconDescriptionElement}
+            descriptionElement={optionLabelTooltipBoxDescriptionElement}
             containerClass={styles.tooltip}
           />
         )}
@@ -132,7 +132,7 @@ Checkbox.propTypes = {
   mainLabelTooltipBoxDescriptionElement: PropTypes.element,
   optionLabelTooltipBoxHeading: PropTypes.string,
   optionLabelTooltipBoxDescription: PropTypes.string,
-  optionLabelTooltipIconDescriptionElement: PropTypes.element,
+  optionLabelTooltipBoxDescriptionElement: PropTypes.element,
 };
 
 Checkbox.defaultProps = {

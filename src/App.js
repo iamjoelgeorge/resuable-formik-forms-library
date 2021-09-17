@@ -22,9 +22,9 @@ function App() {
         {/* <BoxGallery /> */}
         {/* <BoxGalleryTest /> */}
         {/* <CustomForm initialValues={initialValuesFormOne} /> */}
-        <FormThree />
-        <FormFour />
-        <FormTwo />
+        {/* <FormThree /> */}
+        {/* <FormFour /> */}
+        {/* <FormTwo /> */}
         <FormOne />
       </div>
     </Provider>

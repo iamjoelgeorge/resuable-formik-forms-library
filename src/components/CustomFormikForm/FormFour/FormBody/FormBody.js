@@ -48,7 +48,7 @@ const FormBody = (props) => {
         heading: 'Heading',
         customDescriptionElement: (
           <p>
-            I'm a custom description Element. Look me up on{' '}
+            I'm a custom description Element. Look me up on
             <a href='https://www.google.com'>Google</a>
           </p>
         ),
