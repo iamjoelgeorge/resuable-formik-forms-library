@@ -83,7 +83,7 @@ const FileUploadInput = (props) => {
           showErrorStyle={addErrorClassesToLabelAndInput}
           tooltipIconBoxHeading={labelTooltipBoxHeading}
           tooltipIconBoxDescription={labelTooltipBoxDescription}
-          tooltipIconChildElement={labelTooltipBoxDescriptionElement}
+          tooltipIconDescriptionElement={labelTooltipBoxDescriptionElement}
           inputIsRequired={isRequired}
         />
       )}

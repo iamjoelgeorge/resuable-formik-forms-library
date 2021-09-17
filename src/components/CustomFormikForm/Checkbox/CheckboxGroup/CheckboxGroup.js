@@ -85,7 +85,7 @@ const CheckboxGroup = (props) => {
         showErrorStyle={addErrorClassesToLabelAndInput}
         tooltipIconBoxHeading={mainLabelTooltipBoxHeading}
         tooltipIconBoxDescription={mainLabelTooltipBoxDescription}
-        tooltipIconChildElement={mainLabelTooltipBoxDescriptionElement}
+        tooltipIconDescriptionElement={mainLabelTooltipBoxDescriptionElement}
         inputIsRequired={isRequired}
       />
 

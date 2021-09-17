@@ -29,7 +29,7 @@ const Checkbox = (props) => {
     mainLabelTooltipBoxDescriptionElement,
     optionLabelTooltipBoxHeading,
     optionLabelTooltipBoxDescription,
-    optionLabelTooltipIconChildElement,
+    optionLabelTooltipIconDescriptionElement,
     ...rest
   } = props;
   const [isFocused, setIsFocused] = useState(false);
@@ -47,7 +47,7 @@ const Checkbox = (props) => {
   const showOptionTooltipIcon =
     optionLabelTooltipBoxHeading ||
     optionLabelTooltipBoxDescription ||
-    optionLabelTooltipIconChildElement;
+    optionLabelTooltipIconDescriptionElement;
 
   const handleFocus = () => {
     setIsFocused(true);
@@ -67,7 +67,7 @@ const Checkbox = (props) => {
         showErrorStyle={addErrorClassesToLabelAndInput}
         tooltipIconBoxHeading={mainLabelTooltipBoxHeading}
         tooltipIconBoxDescription={mainLabelTooltipBoxDescription}
-        tooltipIconChildElement={mainLabelTooltipBoxDescriptionElement}
+        tooltipIconDescriptionElement={mainLabelTooltipBoxDescriptionElement}
         inputIsRequired={isRequired}
       />
       <div className={styles.optionWithTooltip}>
@@ -94,7 +94,7 @@ const Checkbox = (props) => {
           <ToolTip
             heading={optionLabelTooltipBoxHeading}
             description={optionLabelTooltipBoxDescription}
-            descriptionElement={optionLabelTooltipIconChildElement}
+            descriptionElement={optionLabelTooltipIconDescriptionElement}
             containerClass={styles.tooltip}
           />
         )}
@@ -132,7 +132,7 @@ Checkbox.propTypes = {
   mainLabelTooltipBoxDescriptionElement: PropTypes.element,
   optionLabelTooltipBoxHeading: PropTypes.string,
   optionLabelTooltipBoxDescription: PropTypes.string,
-  optionLabelTooltipIconChildElement: PropTypes.element,
+  optionLabelTooltipIconDescriptionElement: PropTypes.element,
 };
 
 Checkbox.defaultProps = {

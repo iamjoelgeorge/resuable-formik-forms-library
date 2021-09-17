@@ -22,7 +22,7 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
             "input",
           ]
         }
-        data-testid="input-license"
+        data-testid="input-test"
         disabled={true}
         id="test"
         name="test"
@@ -52,7 +52,7 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
       className="testContainer"
     >
       <div
-        className="container "
+        className="container input"
       >
         <div
           className="inputWithTooltipContainer"
@@ -89,7 +89,7 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
         
       </div>
       <div
-        className="container "
+        className="container input"
       >
         <div
           className="inputWithTooltipContainer"
@@ -100,7 +100,7 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
                 "input",
               ]
             }
-            data-testid="input-license"
+            data-testid="input-age"
             disabled={false}
             id="age"
             name="age"
@@ -149,7 +149,7 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
             "input",
           ]
         }
-        data-testid="input-license"
+        data-testid="input-email"
         disabled={false}
         id="email"
         name="email"
@@ -161,7 +161,7 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
         value=""
       />
       <div
-        className="container inputIsRequired "
+        className="container  "
       >
         <label
           htmlFor="email"
@@ -221,7 +221,7 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
             className="selectedDate"
             id="selectedDate"
           >
-            Wed, 15 Sep 2021
+            Fri, 17 Sep 2021
             <span
               className="dropdownIcon"
             >
@@ -328,7 +328,7 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
             "input",
           ]
         }
-        data-testid="input-license"
+        data-testid="input-test"
         disabled={false}
         id="test"
         name="test"
@@ -375,16 +375,19 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
     
   </div>
   <div
-    className="container "
+    className="container description"
   >
     <div
       className="fieldContainer"
     >
       <textarea
         className="textarea"
+        data-testid="textarea-description"
+        disabled={false}
         name="description"
         onBlur={[Function]}
         onChange={[Function]}
+        placeholder=""
         value=""
       />
       <div
@@ -395,8 +398,28 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
         >
           Additional Details
         </label>
+        <div
+          className="container tooltip"
+        >
+          <img
+            alt="tooltip"
+            onClick={[Function]}
+            src="test-file-stub"
+          />
+        </div>
       </div>
     </div>
+    <div
+      className="common "
+    >
+      <p
+        className="optionalText"
+      >
+        This is your textarea optional text
+      </p>
+    </div>
+    
+    
   </div>
   <div
     className="container"
@@ -528,7 +551,7 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
           className="optionLabel"
         >
           <input
-            checked={false}
+            checked={true}
             className="radioInput"
             disabled={false}
             name="formOneRadioGroup"
@@ -608,12 +631,24 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
   <div
     className="container"
   >
-    <label
-      className="label"
-      htmlFor="idProofs"
+    <div
+      className="container  label slideLabel"
     >
-      Upload your documents
-    </label>
+      <label
+        htmlFor="idProofs"
+      >
+        Upload your documents
+      </label>
+      <div
+        className="container tooltip"
+      >
+        <img
+          alt="tooltip"
+          onClick={[Function]}
+          src="test-file-stub"
+        />
+      </div>
+    </div>
     <div>
       <input
         hidden="hidden"
@@ -629,9 +664,17 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
         Upload files
       </button>
     </div>
-    <p
-      className="errorMessage "
-    />
+    <div
+      className="common optionalText"
+    >
+      <p
+        className="optionalText"
+      >
+        test
+      </p>
+    </div>
+    
+    
   </div>
   <button
     className="button purpleTheme "

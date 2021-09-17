@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`[Component]: Input should match the Snapshot 1`] = `
+exports[`[Component]: Texxtarea should match the Snapshot 1`] = `
 <form
   action="#"
   onReset={[Function]}
@@ -10,31 +10,25 @@ exports[`[Component]: Input should match the Snapshot 1`] = `
     className="container "
   >
     <div
-      className="inputWithTooltipContainer"
+      className="fieldContainer"
     >
-      <input
-        className={
-          Array [
-            "input",
-          ]
-        }
-        data-testid="input-name"
+      <textarea
+        className="textarea"
+        data-testid="textarea-description"
         disabled={false}
-        id="name"
-        name="name"
+        name="description"
         onBlur={[Function]}
         onChange={[Function]}
-        onFocus={[Function]}
         placeholder=""
         value=""
       />
       <div
-        className="container  "
+        className="container  label"
       >
         <label
-          htmlFor="name"
+          htmlFor="description"
         >
-          Name
+          description
         </label>
       </div>
     </div>

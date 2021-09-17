@@ -19,7 +19,7 @@ const Input = (props) => {
     containerClass: customContainerClass,
     tooltipIconBoxHeading,
     tooltipIconBoxDescription,
-    tooltipIconChildElement,
+    tooltipIconDescriptionElement,
     tooltipLink,
     tooltipLinkText,
     helpLinkText,
@@ -41,7 +41,7 @@ const Input = (props) => {
   const addErrorClassesToLabelAndInput = !!userHasVisitedTheInputField && !!inputFieldHasErrors;
 
   const showTooltipIcon =
-    tooltipIconBoxHeading || tooltipIconBoxDescription || tooltipIconChildElement;
+    tooltipIconBoxHeading || tooltipIconBoxDescription || tooltipIconDescriptionElement;
 
   const containerClasses = joinClassNames([styles.container, customContainerClass]);
 
@@ -70,12 +70,17 @@ const Input = (props) => {
 
   const renderFieldView = () =>
     labelView && !isDisabled && inputValue ? (
-      <button className={placeholderButtonClasses} onClick={handleClick}>
+      <button
+        type='button'
+        data-testid={`label-view-${name}`}
+        className={placeholderButtonClasses}
+        onClick={handleClick}
+      >
         {placeholder && !inputValue ? placeholder : inputValue}
       </button>
     ) : (
       <Field
-        data-testid='input-license'
+        data-testid={`input-${name}`}
         innerRef={inputRef}
         className={fieldClasses}
         name={name}
@@ -108,7 +113,7 @@ const Input = (props) => {
             <ToolTip
               heading={tooltipIconBoxHeading}
               description={tooltipIconBoxDescription}
-              descriptionElement={tooltipIconChildElement}
+              descriptionElement={tooltipIconDescriptionElement}
             />
           </div>
         )}
@@ -137,7 +142,7 @@ Input.propTypes = {
   containerClass: PropTypes.string,
   tooltipIconBoxHeading: PropTypes.string,
   tooltipIconBoxDescription: PropTypes.string,
-  tooltipIconChildElement: PropTypes.element,
+  tooltipIconDescriptionElement: PropTypes.element,
   tooltipLink: PropTypes.string,
   tooltipLinkText: PropTypes.string,
   helpLinkText: PropTypes.string,
@@ -153,7 +158,7 @@ Input.defaultProps = {
   containerClass: '',
   tooltipIconBoxHeading: '',
   tooltipIconBoxDescription: '',
-  tooltipIconChildElement: null,
+  tooltipIconDescriptionElement: null,
   tooltipLink: '',
   tooltipLinkText: '',
   helpLinkText: '',

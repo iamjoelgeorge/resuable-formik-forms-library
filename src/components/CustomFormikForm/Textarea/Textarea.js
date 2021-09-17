@@ -57,11 +57,18 @@ const Textarea = (props) => {
 
   const renderFieldView = () =>
     labelView && inputValue ? (
-      <button className={placeholderButtonClasses} tabIndex='0' onClick={handleClick}>
+      <button
+        type='button'
+        data-testid={`label-view-${name}`}
+        className={placeholderButtonClasses}
+        tabIndex='0'
+        onClick={handleClick}
+      >
         {placeholder && !inputValue ? placeholder : inputValue}
       </button>
     ) : (
       <Field
+        data-testid={`textarea-${name}`}
         innerRef={textareaRef}
         className={styles.textarea}
         as='textarea'
@@ -86,7 +93,7 @@ const Textarea = (props) => {
             showErrorStyle={addErrorClassesToLabelAndInput}
             tooltipIconBoxHeading={labelTooltipBoxHeading}
             tooltipIconBoxDescription={labelTooltipBoxDescription}
-            tooltipIconChildElement={labelTooltipBoxDescriptionElement}
+            tooltipIconDescriptionElement={labelTooltipBoxDescriptionElement}
             inputIsRequired={isRequired}
           />
         )}
@@ -123,6 +130,23 @@ Textarea.propTypes = {
   optionalText: PropTypes.string,
   isDisabled: PropTypes.bool,
   isRequired: PropTypes.bool,
+};
+
+Textarea.defaultProps = {
+  label: PropTypes.string,
+  placeholder: '',
+  formik: {},
+  containerClass: '',
+  labelTooltipBoxHeading: '',
+  labelTooltipBoxDescription: '',
+  labelTooltipBoxDescriptionElement: null,
+  tooltipLink: '',
+  tooltipLinkText: '',
+  helpLinkText: '',
+  helpLink: '',
+  optionalText: '',
+  isDisabled: false,
+  isRequired: false,
 };
 
 export default Textarea;

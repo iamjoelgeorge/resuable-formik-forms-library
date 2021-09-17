@@ -7,16 +7,16 @@ import renderer from 'react-test-renderer';
 
 import Button from '../../Button/Button';
 import FormContainer from '../../FormContainer/FormContainer';
-import Input from '../Input';
+import Textarea from '../Textarea';
 
 const defaultProps = {
-  name: 'name',
-  label: 'Name',
+  name: 'description',
+  label: 'description',
   placeholder: '',
   containerClass: '',
-  tooltipIconBoxHeading: '',
-  tooltipIconBoxDescription: '',
-  tooltipIconDescriptionElement: null,
+  labelTooltipBoxHeading: '',
+  labelTooltipBoxDescription: '',
+  labelTooltipBoxDescriptionElement: null,
   tooltipLink: '',
   tooltipLinkText: '',
   helpLinkText: '',
@@ -26,15 +26,15 @@ const defaultProps = {
   isRequired: false,
   formik: {
     errors: {
-      name: '',
+      description: '',
     },
-    touched: { name: false },
-    values: { name: '' },
+    touched: { description: false },
+    values: { description: '' },
   },
 };
 
 const initialValues = {
-  name: '',
+  description: '',
 };
 
 const defaultValidations = [];
@@ -42,7 +42,7 @@ const handleSubmit = jest.fn();
 
 afterEach(cleanup);
 
-describe('[Component]: Input', () => {
+describe('[Component]: Texxtarea', () => {
   it('should match the Snapshot', () => {
     const tree = renderer
       .create(
@@ -51,25 +51,25 @@ describe('[Component]: Input', () => {
           validations={defaultValidations}
           onSubmit={handleSubmit}
         >
-          <Input {...defaultProps} />
-        </FormContainer>
+          <Textarea {...defaultProps} />
+        </FormContainer>,
       )
       .toJSON();
     expect(tree).toMatchSnapshot();
   });
 
-  it('should render the input correctly', () => {
+  it('should render the textarea correctly', () => {
     const { getByTestId } = render(
       <FormContainer
         initialValues={initialValues}
         validations={defaultValidations}
         onSubmit={handleSubmit}
       >
-        <Input {...defaultProps} />
-      </FormContainer>
+        <Textarea {...defaultProps} />
+      </FormContainer>,
     );
 
-    expect(getByTestId('input-name')).toBeTruthy();
+    expect(getByTestId('textarea-description')).toBeTruthy();
   });
 
   it('should render a disabled input', () => {
@@ -84,11 +84,11 @@ describe('[Component]: Input', () => {
         validations={defaultValidations}
         onSubmit={handleSubmit}
       >
-        <Input {...props} />
-      </FormContainer>
+        <Textarea {...props} />
+      </FormContainer>,
     );
 
-    expect(getByTestId('input-name')).toHaveAttribute('disabled');
+    expect(getByTestId('textarea-description')).toHaveAttribute('disabled');
   });
 
   it('should render the placeholder button', () => {
@@ -98,13 +98,13 @@ describe('[Component]: Input', () => {
         validations={defaultValidations}
         onSubmit={handleSubmit}
       >
-        <Input {...defaultProps} />
-      </FormContainer>
+        <Textarea {...defaultProps} />
+      </FormContainer>,
     );
 
-    userEvent.type(getByTestId('input-name'), 'John');
-    getByTestId('input-name').blur();
-    expect(getByTestId('label-view-name')).toBeTruthy();
+    userEvent.type(getByTestId('textarea-description'), 'John');
+    getByTestId('textarea-description').blur();
+    expect(getByTestId('label-view-description')).toBeTruthy();
   });
 
   it('should render the optional text', () => {
@@ -119,8 +119,8 @@ describe('[Component]: Input', () => {
         validations={defaultValidations}
         onSubmit={handleSubmit}
       >
-        <Input {...props} />
-      </FormContainer>
+        <Textarea {...props} />
+      </FormContainer>,
     );
 
     expect(getByText('Test Optional text')).toBeTruthy();
@@ -139,8 +139,8 @@ describe('[Component]: Input', () => {
         validations={defaultValidations}
         onSubmit={handleSubmit}
       >
-        <Input {...props} />
-      </FormContainer>
+        <Textarea {...props} />
+      </FormContainer>,
     );
 
     expect(getByText('Test help link')).toBeTruthy();
@@ -159,8 +159,8 @@ describe('[Component]: Input', () => {
         validations={defaultValidations}
         onSubmit={handleSubmit}
       >
-        <Input {...props} />
-      </FormContainer>
+        <Textarea {...props} />
+      </FormContainer>,
     );
 
     expect(getByText('Test tooltip link')).toBeTruthy();
@@ -169,23 +169,17 @@ describe('[Component]: Input', () => {
   it('should show the error component for a required input', async () => {
     const props = {
       ...defaultProps,
-      name: 'email',
-      label: 'Email',
       isRequired: true,
     };
 
     const validations = [
       {
-        name: 'email',
-        type: 'email',
+        name: 'description',
+        type: 'string',
         isRequired: true,
-        message: 'Enter the correct email id',
+        message: 'Please add a comment.',
       },
     ];
-
-    const initialValues = {
-      email: '',
-    };
 
     const { getByText, getByTestId } = render(
       <FormContainer
@@ -193,90 +187,80 @@ describe('[Component]: Input', () => {
         validations={validations}
         onSubmit={handleSubmit}
       >
-        <Input {...props} />
+        <Textarea {...props} />
         <Button label='Submit' />
-      </FormContainer>
+      </FormContainer>,
     );
 
     const submitButton = getByText('Submit');
     userEvent.click(submitButton);
 
     await waitFor(() => {
-      expect(getByTestId('error-email')).toHaveTextContent(
-        'Enter the correct email id'
-      );
+      expect(getByTestId('error-description')).toHaveTextContent('Please add a comment');
     });
   });
 
   it('should show the error component for maximum characters allowed', async () => {
     const props = {
       ...defaultProps,
-      name: 'name',
-      label: 'name',
+      isRequired: true,
     };
 
     const validations = [
       {
-        name: 'name',
+        name: 'description',
         type: 'string',
+        isRequired: false,
         maxChars: { num: 5, message: 'You can enter only upto 5 characters' },
       },
     ];
 
-    const initialValues = {
-      name: '',
-    };
-
     const { getByText, getByTestId } = render(
       <FormContainer
         initialValues={initialValues}
         validations={validations}
         onSubmit={handleSubmit}
       >
-        <Input {...props} />
+        <Textarea {...props} />
         <Button label='Submit' />
-      </FormContainer>
+      </FormContainer>,
     );
 
-    const input = getByTestId('input-name');
+    const textarea = getByTestId('textarea-description');
     const submitButton = getByText('Submit');
 
-    userEvent.type(input, 'Less');
+    userEvent.type(textarea, 'Less');
     userEvent.click(submitButton);
 
     await waitFor(() => {
-      const labelViewButton = getByTestId('label-view-name');
+      const labelViewButton = getByTestId('label-view-description');
       userEvent.click(labelViewButton);
     });
 
-    userEvent.clear(input);
-    userEvent.type(input, 'More than 5 characters');
+    userEvent.clear(textarea);
+    userEvent.type(textarea, 'valid input');
 
     await waitFor(() => {
-      expect(getByTestId('error-name')).toHaveTextContent(
-        'You can enter only upto 5 characters'
+      expect(getByTestId('error-description')).toHaveTextContent(
+        'You can enter only upto 5 characters',
       );
     });
   });
 
-  it('should show the error component for minimun characters required', async () => {
+  it('should show the error component for minimum characters required', async () => {
     const props = {
       ...defaultProps,
-      name: 'name',
-      label: 'name',
+      isRequired: true,
     };
 
     const validations = [
       {
-        name: 'name',
+        name: 'description',
         type: 'string',
+        isRequired: false,
         minChars: { num: 5, message: 'Please enter at least 5 characters' },
       },
     ];
-
-    const initialValues = {
-      name: '',
-    };
 
     const { getByText, getByTestId } = render(
       <FormContainer
@@ -284,28 +268,28 @@ describe('[Component]: Input', () => {
         validations={validations}
         onSubmit={handleSubmit}
       >
-        <Input {...props} />
+        <Textarea {...props} />
         <Button label='Submit' />
-      </FormContainer>
+      </FormContainer>,
     );
 
-    const input = getByTestId('input-name');
+    const textarea = getByTestId('textarea-description');
     const submitButton = getByText('Submit');
 
-    userEvent.type(input, 'More than 5 characters');
+    userEvent.type(textarea, 'valid input');
     userEvent.click(submitButton);
 
     await waitFor(() => {
-      const labelViewButton = getByTestId('label-view-name');
+      const labelViewButton = getByTestId('label-view-description');
       userEvent.click(labelViewButton);
     });
 
-    userEvent.clear(input);
-    userEvent.type(input, 'jn');
+    userEvent.clear(textarea);
+    userEvent.type(textarea, 'jn');
 
     await waitFor(() => {
-      expect(getByTestId('error-name')).toHaveTextContent(
-        'Please enter at least 5 characters'
+      expect(getByTestId('error-description')).toHaveTextContent(
+        'Please enter at least 5 characters',
       );
     });
   });
@@ -313,13 +297,12 @@ describe('[Component]: Input', () => {
   it('should show the error component for minimum and maximum characters', async () => {
     const props = {
       ...defaultProps,
-      name: 'name',
-      label: 'name',
+      isRequired: true,
     };
 
     const validations = [
       {
-        name: 'name',
+        name: 'description',
         type: 'string',
         isRequired: false,
         minChars: { num: 5, message: 'Please enter at least 5 characters' },
@@ -327,47 +310,43 @@ describe('[Component]: Input', () => {
       },
     ];
 
-    const initialValues = {
-      name: '',
-    };
-
     const { getByText, getByTestId } = render(
       <FormContainer
         initialValues={initialValues}
         validations={validations}
         onSubmit={handleSubmit}
       >
-        <Input {...props} />
+        <Textarea {...props} />
         <Button label='Submit' />
-      </FormContainer>
+      </FormContainer>,
     );
 
-    const input = getByTestId('input-name');
+    const textarea = getByTestId('textarea-description');
     const submitButton = getByText('Submit');
 
-    userEvent.type(input, 'valid input');
+    userEvent.type(textarea, 'valid input');
     userEvent.click(submitButton);
 
     await waitFor(() => {
-      const labelViewButton = getByTestId('label-view-name');
+      const labelViewButton = getByTestId('label-view-description');
       userEvent.click(labelViewButton);
     });
 
-    userEvent.clear(input);
-    userEvent.type(input, 'jn');
+    userEvent.clear(textarea);
+    userEvent.type(textarea, 'jn');
 
     await waitFor(() => {
-      expect(getByTestId('error-name')).toHaveTextContent(
-        'Please enter at least 5 characters'
+      expect(getByTestId('error-description')).toHaveTextContent(
+        'Please enter at least 5 characters',
       );
     });
 
-    userEvent.clear(input);
-    userEvent.type(input, 'Entering more than 10 characters');
+    userEvent.clear(textarea);
+    userEvent.type(textarea, 'Entering more than 10 characters');
 
     await waitFor(() => {
-      expect(getByTestId('error-name')).toHaveTextContent(
-        'You can enter only upto 10 characters'
+      expect(getByTestId('error-description')).toHaveTextContent(
+        'You can enter only upto 10 characters',
       );
     });
   });

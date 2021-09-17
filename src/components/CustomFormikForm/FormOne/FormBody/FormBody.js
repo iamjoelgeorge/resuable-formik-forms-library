@@ -43,7 +43,7 @@ const FormBody = (props) => {
   return (
     <>
       <h1>Form 1</h1>
-      <Input formik={formik} type='text' name='test' label='Disabled Input' disabled />
+      <Input formik={formik} type='text' name='test' label='Disabled Input' isDisabled />
       <div>
         <div className={styles.testContainer}>
           <Input
@@ -74,7 +74,7 @@ const FormBody = (props) => {
         label='Email'
         helpLink='#'
         helpLinkText='This is a Help link?'
-        isRequired
+        // isRequired
         tooltipIconBoxHeading='Permitted with no fee'
         tooltipIconBoxDescription='For cancellation, credit to Travel Bank for the full ticket value including any fare portion where Velocity Points have been redeemed.'
       />
@@ -111,7 +111,7 @@ const FormBody = (props) => {
         helpLink='#'
         helpLinkText='This link is for your help'
         optionLabelTooltipBoxHeading='My description is a custom element!!!'
-        optionLabelTooltipIconChildElement={testElement}
+        optionLabelTooltipIconDescriptionElement={testElement}
       />
       <RadioButtonGroup
         name='formOneRadioGroup'
@@ -131,6 +131,7 @@ const FormBody = (props) => {
         labelTooltipBoxHeading='What is Lorem Ipsum?'
         labelTooltipBoxDescription='Lorem Ipsum is simply dummy text.'
         optionalText='test'
+        // isRequired
       />
 
       <Button formik={formik} label='Submit' />
