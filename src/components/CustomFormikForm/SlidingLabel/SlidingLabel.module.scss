@@ -11,6 +11,10 @@
   left: 10px;
   transition: 0.1s all ease-in-out;
   font-size: 14px;
+
+  .label {
+    cursor: pointer;
+  }
 }
 
 .slideLabel {

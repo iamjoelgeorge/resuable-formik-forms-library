@@ -208,16 +208,37 @@
     border-bottom: 1px solid $lighterGrey;
     transition: 0.1s all ease-in-out;
     outline: none;
-    cursor: pointer;
     position: relative;
 
-    &:hover,
+    &:hover:not(:disabled) {
+      border-bottom-style: dashed;
+    }
+
+    &:hover:not(:disabled),
     &:focus {
+      cursor: pointer;
       border-bottom-color: $brightPurpleTwo;
     }
 
+    &:disabled {
+      cursor: not-allowed;
+
+      label {
+        cursor: not-allowed;
+        color: $secondaryGrey;
+        font-weight: $fontWeightRegular;
+      }
+
+      .dropdownIcon {
+        -webkit-filter: invert(50%); /* safari 6.0 - 9.0 */
+        filter: invert(50%);
+        opacity: 0.3;
+      }
+    }
+
     .selectedDate {
-      color: $secondaryGrey;
+      min-height: em(16);
+      color: $primaryDark;
       font-size: 14px;
       margin: 2px 5px 5px;
 

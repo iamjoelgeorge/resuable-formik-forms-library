@@ -70,7 +70,7 @@ export const validateInput = (input, objectToUpdate) => {
         ? Yup.number()
             .typeError('Please enter a number')
             .positive('Must be a positive number')
-            .required('This field is required')
+            .required(message)
         : Yup.number().typeError('Please enter a number').positive('Must be a positive number');
       break;
 
@@ -88,6 +88,12 @@ export const validateInput = (input, objectToUpdate) => {
               .test('fileSize', 'File Size is too large', (value) => value.size <= maxSize)
               .test('fileType', formats.message, (value) => formats.formats.includes(value.type)),
           );
+      break;
+
+    case 'calendar_datepicker':
+      objectToUpdate[name] = isRequired
+        ? Yup.string().nullable().required(message)
+        : Yup.string().nullable();
       break;
 
     default:

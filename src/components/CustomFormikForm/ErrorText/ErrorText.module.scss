@@ -4,7 +4,7 @@
 .errorMessage {
   color: $error;
   font-size: em(11);
-  height: em(15);
+  min-height: em(15);
   margin-bottom: 0;
   margin-top: 3px;
 }

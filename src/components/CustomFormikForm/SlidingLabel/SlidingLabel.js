@@ -9,11 +9,11 @@ import ToolTip from '../ToolTip/ToolTip';
 const SlidingLabel = (props) => {
   const {
     label,
-    inputEntered = false,
+    inputEntered,
     htmlFor,
-    showErrorStyle = false,
+    showErrorStyle,
     customClass,
-    inputIsRequired = false,
+    inputIsRequired,
     tooltipBoxHeading,
     tooltipBoxDescription,
     tooltipBoxDescriptionElement,
@@ -61,7 +61,14 @@ SlidingLabel.propTypes = {
   tooltipBoxHeading: PropTypes.string,
   tooltipBoxDescription: PropTypes.string,
   tooltipBoxDescriptionElement: PropTypes.element,
-  rest: PropTypes.object,
+};
+
+SlidingLabel.defaultProps = {
+  customClass: '',
+  inputIsRequired: false,
+  tooltipBoxHeading: '',
+  tooltipBoxDescription: '',
+  tooltipBoxDescriptionElement: null,
 };
 
 export default SlidingLabel;

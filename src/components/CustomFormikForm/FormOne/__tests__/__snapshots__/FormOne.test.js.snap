@@ -221,7 +221,7 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
             className="selectedDate"
             id="selectedDate"
           >
-            Fri, 17 Sep 2021
+            Mon, 20 Sep 2021
             <span
               className="dropdownIcon"
             >
@@ -649,8 +649,11 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
         />
       </div>
     </div>
-    <div>
+    <div
+      className="uploadButtonContainer"
+    >
       <input
+        disabled={true}
         hidden="hidden"
         multiple={true}
         onChange={[Function]}

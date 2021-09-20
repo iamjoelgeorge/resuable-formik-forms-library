@@ -78,7 +78,20 @@ const FormBody = (props) => {
         tooltipBoxHeading='Permitted with no fee'
         tooltipBoxDescription='For cancellation, credit to Travel Bank for the full ticket value including any fare portion where Velocity Points have been redeemed.'
       />
-      <DatePicker formik={formik} name='departureDate' label='Departure Date' />
+      <DatePicker
+        formik={formik}
+        name='departureDate'
+        label='Departure Date'
+        optionalText='Optional'
+        // helpLink='#'
+        // helpLinkText='This link is for your help'
+        // tooltipLink='https://www.google.com'
+        // tooltipLinkText='Visit Google to know more.'
+        labelTooltipBoxHeading='Permitted with no fee'
+        labelTooltipBoxDescription='For cancellation, credit to Travel Bank for the full ticket value including any fare portion where Velocity Points have been redeemed.'
+        // isRequired
+        // isDisabled
+      />
       <DatePicker formik={formik} name='returnDate' dropdown label='Return Date' />
       <Input
         formik={formik}
@@ -133,7 +146,7 @@ const FormBody = (props) => {
         optionalText='test'
         multiple
         // isRequired
-        isDisabled
+        // isDisabled
       />
 
       <Button formik={formik} label='Submit' />
