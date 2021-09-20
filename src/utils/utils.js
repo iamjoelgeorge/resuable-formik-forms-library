@@ -48,5 +48,5 @@ export const getArrayOfYearsBetweenTwoYears = (minYear, numOfYears = 10) => {
     yearsArray.push(i);
   }
 
-  return yearsArray;
+  return yearsArray.reverse();
 };

@@ -1,4 +1,4 @@
-import React, { useState ,useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { Field } from 'formik';
 import moment from 'moment';
@@ -6,26 +6,62 @@ import PropTypes from 'prop-types';
 
 import styles from './DropdownDatePicker.module.scss';
 import { months } from '../../../../constants/constants';
-import { getArrayOfYearsBetweenTwoYears, getNumOfDaysInAMonth } from '../../../../utils/utils';
+import {
+  getArrayOfYearsBetweenTwoYears,
+  getNumOfDaysInAMonth,
+  joinClassNames,
+} from '../../../../utils/utils';
 import Dropdown from '../../Dropdown/Dropdown';
+import SlidingLabel from '../../SlidingLabel/SlidingLabel';
+import AdditionalInfo from '../../AdditionalInfo/AdditionalInfo';
+import ErrorText from '../../ErrorText/ErrorText';
 
 const DropdownDatePicker = (props) => {
-  const { name, label, formik, ...rest } = props;
+  const {
+    name,
+    label,
+    formik,
+    containerClass: customContainerClass,
+    labelTooltipBoxHeading,
+    labelTooltipBoxDescription,
+    labelTooltipBoxDescriptionElement,
+    tooltipLink,
+    tooltipLinkText,
+    helpLinkText,
+    helpLink,
+    optionalText,
+    isDisabled = false,
+    isRequired,
+    ...rest
+  } = props;
   const [dateObj, setDateObj] = useState({
     date: '',
     month: '',
     year: '',
   });
 
-  const MAX_NUM_OF_YEARS = 50;
-  const dateFormat = 'D MMM YYYY';
-  const initialDate = formik.values[name] ? formik.values[name] : new Date();
-  const formattedDate = moment(initialDate).format(dateFormat);
-  let datesInAMonthArray = [];
+  const { errors, values } = formik;
 
-  let yearsArray = getArrayOfYearsBetweenTwoYears(new Date().getFullYear(), MAX_NUM_OF_YEARS);
+  const labelClasses = isDisabled
+    ? joinClassNames([styles.label, styles.disabledLabel])
+    : styles.label;
+
+  const startYear = '1930';
+  const MAX_NUM_OF_YEARS = new Date().getFullYear() - new Date(startYear).getFullYear();
+  const dateFormat = 'D MMM YYYY';
+  const initialDate = values[name] ? values[name] : new Date();
+  const formattedDate = moment(initialDate).format(dateFormat);
+
+  let yearsArray = getArrayOfYearsBetweenTwoYears(
+    new Date(startYear).getFullYear(),
+    MAX_NUM_OF_YEARS,
+  );
   let numOfDays = getNumOfDaysInAMonth(dateObj.month, dateObj.year);
-  datesInAMonthArray = [...Array.from({ length: numOfDays }, (_, i) => i + 1)];
+  let datesInAMonthArray = [...Array.from({ length: numOfDays }, (_, i) => i + 1)];
+
+  const userHasVisitedTheInputField = formik.touched[name];
+  const inputFieldHasErrors = errors[name];
+  const addErrorClassesToLabelAndInput = !!userHasVisitedTheInputField && !!inputFieldHasErrors;
 
   useEffect(() => {
     const initialDateObj = getDateObj(formattedDate);
@@ -97,7 +133,18 @@ const DropdownDatePicker = (props) => {
 
   return (
     <div className={styles.container}>
-      {label && <p className={styles.label}>{label}</p>}
+      <SlidingLabel
+        label={label}
+        inputEntered
+        htmlFor={'selectedDate'}
+        customClass={labelClasses}
+        showErrorStyle={addErrorClassesToLabelAndInput}
+        tooltipBoxHeading={labelTooltipBoxHeading}
+        tooltipBoxDescription={labelTooltipBoxDescription}
+        tooltipBoxDescriptionElement={labelTooltipBoxDescriptionElement}
+        inputIsRequired={isRequired}
+      />
+
       <Field name={name} {...rest}>
         {({ form, field }) => {
           const { date, month, year } = dateObj;
@@ -110,6 +157,8 @@ const DropdownDatePicker = (props) => {
                   dropdownArray={datesInAMonthArray}
                   onClick={handleDropdownItemClick}
                   type='date'
+                  isDisabled={isDisabled}
+                  disableFormik
                 />
               </div>
               <div className={styles.month}>
@@ -118,6 +167,8 @@ const DropdownDatePicker = (props) => {
                   dropdownArray={months}
                   onClick={handleDropdownItemClick}
                   type='month'
+                  isDisabled={isDisabled}
+                  disableFormik
                 />
               </div>
               <div className={styles.year}>
@@ -126,12 +177,26 @@ const DropdownDatePicker = (props) => {
                   dropdownArray={yearsArray}
                   onClick={handleDropdownItemClick}
                   type='year'
+                  isDisabled={isDisabled}
+                  disableFormik
                 />
               </div>
             </div>
           );
         }}
       </Field>
+
+      {errors[name] && formik.touched[name] && (
+        <ErrorText containerClass={styles.errorContainer} fieldName={name} />
+      )}
+
+      <AdditionalInfo
+        optionalText={optionalText}
+        helpLinkText={helpLinkText}
+        helpLink={helpLink}
+        tooltipLinkText={tooltipLinkText}
+        tooltipLink={tooltipLink}
+      />
     </div>
   );
 };

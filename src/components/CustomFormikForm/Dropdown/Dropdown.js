@@ -5,9 +5,19 @@ import { v4 as uuidv4 } from 'uuid';
 import styles from './Dropdown.module.scss';
 import { joinClassNames } from '../../../utils/utils';
 import { ArrowNext } from '../../../constants/icons';
+import { Field } from 'formik';
 
 const Dropdown = (props) => {
-  const { value, onClick, dropdownArray, type } = props;
+  const {
+    name,
+    value,
+    onClick,
+    dropdownArray,
+    isDisabled = false,
+    disableFormik = false,
+    type,
+    ...rest
+  } = props;
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownContainerRef = useRef();
 
@@ -48,22 +58,35 @@ const Dropdown = (props) => {
 
       return (
         <li key={uuidv4()} onClick={() => onClick(item, type)} className={dropdownItemClasses}>
-          {item}
+          <button type='button'>{item}</button>
         </li>
       );
     });
 
   return (
-    <div ref={dropdownContainerRef} className={styles.container} onClick={handleContainerClick}>
-      <p className={styles.selectedDate}>
-        {value}
-        <span className={styles.dropdownIconContainer}>
-          <img src={ArrowNext} alt='Dropdown icon' />
-        </span>
-      </p>
+    <Field name={name} {...rest}>
+      {(form, field) => {
+        return (
+          <button
+            type='button'
+            ref={dropdownContainerRef}
+            className={styles.container}
+            onClick={handleContainerClick}
+            disabled={isDisabled}
+          >
+            {disableFormik ? value : field.value}
 
-      {isDropdownOpen && <ul className={styles.dropdownContainer}>{renderDropdownItems()}</ul>}
-    </div>
+            <span className={styles.dropdownIconContainer}>
+              <img src={ArrowNext} alt='Dropdown icon' />
+            </span>
+
+            {isDropdownOpen && (
+              <ul className={styles.dropdownContainer}>{renderDropdownItems()}</ul>
+            )}
+          </button>
+        );
+      }}
+    </Field>
   );
 };
 

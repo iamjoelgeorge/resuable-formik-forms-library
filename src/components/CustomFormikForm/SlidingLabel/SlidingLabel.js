@@ -26,7 +26,7 @@ const SlidingLabel = (props) => {
     tooltipBoxHeading || tooltipBoxDescription || tooltipBoxDescriptionElement;
 
   const labelDefaultClasses = inputEntered
-    ? joinClassNames([styles.container, isRequiredStyle, customClass, styles.slideLabel])
+    ? joinClassNames([styles.container, isRequiredStyle, styles.slideLabel, customClass])
     : joinClassNames([styles.container, isRequiredStyle, customClass]);
 
   const containerClasses = showErrorStyle

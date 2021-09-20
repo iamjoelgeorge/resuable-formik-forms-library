@@ -8,13 +8,21 @@
 }
 
 .container {
-  margin-top: 12px;
-  
+  margin-top: em(35);
+  position: relative;
+
   .label {
-    color: $darkPurple;
-    font-size: 11px;
-    font-weight: $fontWeightSemiBold;
-    margin: 0;
+    top: -23px;
+
+    label {
+      cursor: default;
+    }
+
+    &.disabledLabel {
+      label {
+        color: $secondaryGrey;
+      }
+    }
   }
 
   .dateContainer {
