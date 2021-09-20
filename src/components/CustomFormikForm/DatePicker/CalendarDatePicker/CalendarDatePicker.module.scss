@@ -148,7 +148,7 @@
           &.react-calendar__navigation__label__labelText--from {
             cursor: pointer;
 
-            &:hover {
+            &:hover:not(:disabled) {
               text-decoration: underline;
               text-decoration-color: $brightPurple;
             }
@@ -234,6 +234,10 @@
         filter: invert(50%);
         opacity: 0.3;
       }
+
+      .selectedDate {
+        color: $secondaryGrey;
+      }
     }
 
     .selectedDate {
@@ -265,7 +269,7 @@
 
   .calendarContainer {
     position: absolute;
-    top: 100%;
+    top: 60%;
     left: 0;
     width: 100%;
     padding: 4px;
@@ -282,5 +286,9 @@
       background-color: $white;
       border: none;
     }
+  }
+
+  .errorContainer {
+    padding-left: 10px;
   }
 }

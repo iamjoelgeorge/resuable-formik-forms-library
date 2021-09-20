@@ -82,6 +82,8 @@ const FormBody = (props) => {
         formik={formik}
         name='departureDate'
         label='Departure Date'
+        minDate={new Date()}
+        maxDate={new Date('29 Oct 2021')}
         optionalText='Optional'
         // helpLink='#'
         // helpLinkText='This link is for your help'
@@ -92,7 +94,7 @@ const FormBody = (props) => {
         // isRequired
         // isDisabled
       />
-      <DatePicker formik={formik} name='returnDate' dropdown label='Return Date' />
+      <DatePicker formik={formik} name='returnDate' isDropdown label='Return Date' />
       <Input
         formik={formik}
         type='number'

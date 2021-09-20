@@ -17,6 +17,8 @@ const CalendarDatePicker = (props) => {
     name,
     label,
     formik,
+    minDate,
+    maxDate,
     containerClass: customContainerClass,
     labelTooltipBoxHeading,
     labelTooltipBoxDescription,
@@ -39,6 +41,8 @@ const CalendarDatePicker = (props) => {
   const userHasVisitedTheInputField = formik.touched[name];
   const inputFieldHasErrors = errors[name];
   const addErrorClassesToLabelAndInput = !!userHasVisitedTheInputField && !!inputFieldHasErrors;
+
+  const containerClasses = joinClassNames([styles.container, customContainerClass]);
 
   const dropdownIconClasses = !isCalendarOpen
     ? styles.dropdownIcon
@@ -75,7 +79,8 @@ const CalendarDatePicker = (props) => {
   const renderCalendar = (value, setFieldValue) => (
     <Calendar
       showNeighboringMonth={false}
-      minDate={new Date()}
+      minDate={new Date(minDate)}
+      maxDate={new Date(maxDate)}
       value={value}
       onChange={(val) => {
         setFieldValue(name, val);
@@ -85,7 +90,7 @@ const CalendarDatePicker = (props) => {
   );
 
   return (
-    <div id='custom-calendar-date-picker' className={styles.container} ref={calendarRef}>
+    <div id='custom-calendar-date-picker' className={containerClasses} ref={calendarRef}>
       <Field name={name} {...rest}>
         {({ form, field }) => {
           const { value } = field;
@@ -144,6 +149,9 @@ CalendarDatePicker.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string,
   formik: PropTypes.shape({}),
+  minDate: PropTypes.instanceOf(Date),
+  maxDate: PropTypes.instanceOf(Date),
+  customContainerClass: PropTypes.string,
   labelTooltipBoxHeading: PropTypes.string,
   labelTooltipBoxDescription: PropTypes.string,
   labelTooltipBoxDescriptionElement: PropTypes.element,
@@ -157,10 +165,11 @@ CalendarDatePicker.propTypes = {
 };
 
 CalendarDatePicker.defaultProps = {
-  label: PropTypes.string,
-  placeholder: '',
+  label: '',
   formik: {},
-  containerClass: '',
+  minDate: null,
+  maxDate: new Date('31 Dec 2200'),
+  customContainerClass: '',
   labelTooltipBoxHeading: '',
   labelTooltipBoxDescription: '',
   labelTooltipBoxDescriptionElement: null,
