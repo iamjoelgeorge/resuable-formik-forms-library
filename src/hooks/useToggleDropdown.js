@@ -1,6 +1,6 @@
 import { useLayoutEffect, useState } from 'react';
 
-export const useClickOutsideAndEscKeyPress = (elementRef) => {
+export const useToggleDropdown = (elementRef) => {
   const [state, setState] = useState(false);
 
   useLayoutEffect(() => {
@@ -27,5 +27,9 @@ export const useClickOutsideAndEscKeyPress = (elementRef) => {
     };
   }, [elementRef]);
 
-  return [state, setState];
+  const toggleDropdown = () => {
+    setState((prevState) => !prevState);
+  };
+
+  return [state, setState, toggleDropdown];
 };

@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 import styles from './Dropdown.module.scss';
 import { ArrowNext } from '../../../constants/icons';
 import { joinClassNames } from '../../../utils/utils';
-import { useClickOutsideAndEscKeyPress } from '../../../hooks/useClickOutsideAndEscKeyPress';
+import { useToggleDropdown } from '../../../hooks/useToggleDropdown';
 
 const Dropdown = (props) => {
   const {
@@ -20,11 +20,8 @@ const Dropdown = (props) => {
     ...rest
   } = props;
   const dropdownContainerRef = useRef();
-  const [isDropdownOpen, setIsDropdownOpen] = useClickOutsideAndEscKeyPress(dropdownContainerRef);
-
-  const handleContainerClick = () => {
-    setIsDropdownOpen((prevState) => !prevState);
-  };
+  const [isDropdownOpen, setIsDropdownOpen, toggleDropdown] =
+    useToggleDropdown(dropdownContainerRef);
 
   const renderDropdownItems = () =>
     dropdownArray?.map((item) => {
@@ -48,7 +45,7 @@ const Dropdown = (props) => {
             type='button'
             ref={dropdownContainerRef}
             className={styles.container}
-            onClick={handleContainerClick}
+            onClick={toggleDropdown}
             disabled={isDisabled}
           >
             {disableFormik ? value : field.value}

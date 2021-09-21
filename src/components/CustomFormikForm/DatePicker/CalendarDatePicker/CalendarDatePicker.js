@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import styles from './CalendarDatePicker.module.scss';
 import { getDate, joinClassNames } from '../../../../utils/utils';
 import { ArrowNext } from '../../../../constants/icons';
-import { useClickOutsideAndEscKeyPress } from '../../../../hooks/useClickOutsideAndEscKeyPress';
+import { useToggleDropdown } from '../../../../hooks/useToggleDropdown';
 import AdditionalInfo from '../../AdditionalInfo/AdditionalInfo';
 import ErrorText from '../../ErrorText/ErrorText';
 import SlidingLabel from '../../SlidingLabel/SlidingLabel';
@@ -39,7 +39,7 @@ const CalendarDatePicker = (props) => {
   const { errors } = formik;
 
   const calendarRef = useRef();
-  const [isCalendarOpen, setIsCalendarOpen] = useClickOutsideAndEscKeyPress(calendarRef);
+  const [isCalendarOpen, setIsCalendarOpen, toggleCalendar] = useToggleDropdown(calendarRef);
   const dateFormat = 'ddd, D MMM YYYY';
 
   const today = new Date();
@@ -55,10 +55,6 @@ const CalendarDatePicker = (props) => {
   const dropdownIconClasses = !isCalendarOpen
     ? styles.dropdownIcon
     : joinClassNames([styles.dropdownIcon, styles.rotateDropdownIcon]);
-
-  const toggleCalendar = () => {
-    setIsCalendarOpen((prevState) => !prevState);
-  };
 
   const renderCalendar = (value, setFieldValue) => (
     <Calendar
