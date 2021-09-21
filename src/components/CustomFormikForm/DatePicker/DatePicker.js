@@ -32,7 +32,7 @@ DatePicker.propTypes = {
 };
 
 DatePicker.defaultProps = {
-  label: PropTypes.string,
+  label: '',
   formik: {},
   isDropdown: false,
   minDate: null,

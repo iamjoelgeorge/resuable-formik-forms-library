@@ -73,6 +73,17 @@
     max-height: 125px;
     overflow-y: scroll;
 
+    /* width */
+    &::-webkit-scrollbar {
+      width: 2px;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+      background: $lighterDarkGrey;
+      border-radius: 10px;
+    }
+
     li.dropdownItem {
       button {
         background-color: $white;
@@ -84,7 +95,8 @@
         font-size: 14px;
         outline: none;
 
-        &:hover, &:focus {
+        &:hover,
+        &:focus {
           background-color: $lightPurple;
         }
       }

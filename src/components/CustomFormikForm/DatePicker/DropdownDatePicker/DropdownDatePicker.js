@@ -11,16 +11,18 @@ import {
   getNumOfDaysInAMonth,
   joinClassNames,
 } from '../../../../utils/utils';
-import Dropdown from '../../Dropdown/Dropdown';
-import SlidingLabel from '../../SlidingLabel/SlidingLabel';
 import AdditionalInfo from '../../AdditionalInfo/AdditionalInfo';
+import Dropdown from '../../Dropdown/Dropdown';
 import ErrorText from '../../ErrorText/ErrorText';
+import SlidingLabel from '../../SlidingLabel/SlidingLabel';
 
 const DropdownDatePicker = (props) => {
   const {
     name,
     label,
     formik,
+    minYear,
+    maxYear,
     containerClass: customContainerClass,
     labelTooltipBoxHeading,
     labelTooltipBoxDescription,
@@ -34,28 +36,32 @@ const DropdownDatePicker = (props) => {
     isRequired,
     ...rest
   } = props;
+
+  const { errors, values } = formik;
+
   const [dateObj, setDateObj] = useState({
     date: '',
     month: '',
     year: '',
   });
 
-  const { errors, values } = formik;
+  const containerClasses = joinClassNames([styles.container, customContainerClass]);
 
   const labelClasses = isDisabled
     ? joinClassNames([styles.label, styles.disabledLabel])
     : styles.label;
 
-  const startYear = '1930';
-  const MAX_NUM_OF_YEARS = new Date().getFullYear() - new Date(startYear).getFullYear();
+  const startYear = minYear
+    ? new Date(minYear.toString()).getFullYear()
+    : new Date().getFullYear() - 100;
+  const endYear = maxYear ? new Date(maxYear.toString()).getFullYear() : new Date().getFullYear();
+  const MAX_NUM_OF_YEARS = endYear - startYear;
+
   const dateFormat = 'D MMM YYYY';
   const initialDate = values[name] ? values[name] : new Date();
   const formattedDate = moment(initialDate).format(dateFormat);
 
-  let yearsArray = getArrayOfYearsBetweenTwoYears(
-    new Date(startYear).getFullYear(),
-    MAX_NUM_OF_YEARS,
-  );
+  let yearsArray = getArrayOfYearsBetweenTwoYears(startYear, MAX_NUM_OF_YEARS);
   let numOfDays = getNumOfDaysInAMonth(dateObj.month, dateObj.year);
   let datesInAMonthArray = [...Array.from({ length: numOfDays }, (_, i) => i + 1)];
 
@@ -132,7 +138,7 @@ const DropdownDatePicker = (props) => {
   };
 
   return (
-    <div className={styles.container}>
+    <div className={containerClasses}>
       <SlidingLabel
         label={label}
         inputEntered
@@ -204,7 +210,38 @@ const DropdownDatePicker = (props) => {
 DropdownDatePicker.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string,
-  rest: PropTypes.string,
+  formik: PropTypes.shape({}),
+  minYear: PropTypes.string,
+  maxYear: PropTypes.string,
+  containerClass: PropTypes.string,
+  labelTooltipBoxHeading: PropTypes.string,
+  labelTooltipBoxDescription: PropTypes.string,
+  labelTooltipBoxDescriptionElement: PropTypes.element,
+  tooltipLink: PropTypes.string,
+  tooltipLinkText: PropTypes.string,
+  helpLinkText: PropTypes.string,
+  helpLink: PropTypes.string,
+  optionalText: PropTypes.string,
+  isDisabled: PropTypes.bool,
+  isRequired: PropTypes.bool,
+};
+
+DropdownDatePicker.defaultProps = {
+  label: '',
+  formik: {},
+  minYear: '',
+  maxYear: '',
+  labelTooltipBoxHeading: '',
+  containerClass: '',
+  labelTooltipBoxDescription: '',
+  labelTooltipBoxDescriptionElement: null,
+  tooltipLink: '',
+  tooltipLinkText: '',
+  helpLinkText: '',
+  helpLink: '',
+  optionalText: '',
+  isDisabled: false,
+  isRequired: false,
 };
 
 export default DropdownDatePicker;

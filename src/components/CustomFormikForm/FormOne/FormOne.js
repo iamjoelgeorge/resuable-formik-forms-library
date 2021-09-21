@@ -17,7 +17,7 @@ const FormOne = () => {
     departureDate: null,
     // returnDate: null,
     // departureDate: new Date(),
-    returnDate: new Date('29 feb 2019'),
+    returnDate: new Date('29 feb 2018'),
   };
 
   const SUPPORTED_FORMATS = ['image/jpg', 'image/jpeg', 'image/gif', 'image/png'];
