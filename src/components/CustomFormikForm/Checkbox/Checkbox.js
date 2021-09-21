@@ -59,17 +59,19 @@ const Checkbox = (props) => {
 
   return (
     <div className={styles.container}>
-      <SlidingLabel
-        customClass={styles.componentHeading}
-        label={mainLabel}
-        inputEntered
-        htmlFor={name}
-        showErrorStyle={addErrorClassesToLabelAndInput}
-        tooltipBoxHeading={mainLabelTooltipBoxHeading}
-        tooltipBoxDescription={mainLabelTooltipBoxDescription}
-        tooltipBoxDescriptionElement={mainLabelTooltipBoxDescriptionElement}
-        inputIsRequired={isRequired}
-      />
+      {mainLabel && (
+        <SlidingLabel
+          customClass={styles.componentHeading}
+          label={mainLabel}
+          inputEntered
+          htmlFor={name}
+          showErrorStyle={addErrorClassesToLabelAndInput}
+          tooltipBoxHeading={mainLabelTooltipBoxHeading}
+          tooltipBoxDescription={mainLabelTooltipBoxDescription}
+          tooltipBoxDescriptionElement={mainLabelTooltipBoxDescriptionElement}
+          inputIsRequired={isRequired}
+        />
+      )}
       <div className={styles.optionWithTooltip}>
         <label className={styles.optionLabel}>
           <Field

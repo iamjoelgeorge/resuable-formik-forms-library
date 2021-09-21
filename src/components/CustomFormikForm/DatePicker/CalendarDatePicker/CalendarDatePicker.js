@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef, useState } from 'react';
+import React, { useRef } from 'react';
 
 import Calendar from 'react-calendar';
 import { Field } from 'formik';
@@ -6,11 +6,12 @@ import moment from 'moment';
 import PropTypes from 'prop-types';
 
 import styles from './CalendarDatePicker.module.scss';
-import SlidingLabel from '../../SlidingLabel/SlidingLabel';
 import { getDate, joinClassNames } from '../../../../utils/utils';
 import { ArrowNext } from '../../../../constants/icons';
+import { useClickOutsideAndEscKeyPress } from '../../../../hooks/useClickOutsideAndEscKeyPress';
 import AdditionalInfo from '../../AdditionalInfo/AdditionalInfo';
 import ErrorText from '../../ErrorText/ErrorText';
+import SlidingLabel from '../../SlidingLabel/SlidingLabel';
 
 const CalendarDatePicker = (props) => {
   const {
@@ -37,9 +38,9 @@ const CalendarDatePicker = (props) => {
 
   const { errors } = formik;
 
-  const [isCalendarOpen, setIsCalendarOpen] = useState(false);
-  const dateFormat = 'ddd, D MMM YYYY';
   const calendarRef = useRef();
+  const [isCalendarOpen, setIsCalendarOpen] = useClickOutsideAndEscKeyPress(calendarRef);
+  const dateFormat = 'ddd, D MMM YYYY';
 
   const today = new Date();
   const endDate = maxDaysInTheFuture ? getDate(today, maxDaysInTheFuture) : new Date(maxDate);
@@ -54,30 +55,6 @@ const CalendarDatePicker = (props) => {
   const dropdownIconClasses = !isCalendarOpen
     ? styles.dropdownIcon
     : joinClassNames([styles.dropdownIcon, styles.rotateDropdownIcon]);
-
-  useLayoutEffect(() => {
-    document.addEventListener('mousedown', handleClickOutside);
-    document.addEventListener('keydown', handleEscKeyPress);
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-      document.removeEventListener('keydown', handleEscKeyPress);
-    };
-  }, []);
-
-  const handleClickOutside = (e) => {
-    const calendarNode = calendarRef.current;
-    const clickedNode = e.target;
-
-    if (calendarNode?.contains(clickedNode)) return;
-    setIsCalendarOpen(false);
-  };
-
-  const handleEscKeyPress = (e) => {
-    if (e.keyCode === 27) {
-      setIsCalendarOpen(false);
-    }
-  };
 
   const toggleCalendar = () => {
     setIsCalendarOpen((prevState) => !prevState);

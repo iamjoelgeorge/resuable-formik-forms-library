@@ -143,8 +143,8 @@ const FormBody = (props) => {
         mainLabel='License'
         helpLink='#'
         helpLinkText='This link is for your help'
-        optionLabelTooltipBoxHeading='My description is a custom element!!!'
-        optionLabelTooltipBoxDescriptionElement={testElement}
+        // optionLabelTooltipBoxHeading='My description is a custom element!!!'
+        // optionLabelTooltipBoxDescriptionElement={testElement}
       />
       <RadioButtonGroup
         name='formOneRadioGroup'

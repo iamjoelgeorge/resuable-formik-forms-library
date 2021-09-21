@@ -210,14 +210,18 @@
     outline: none;
     position: relative;
 
-    &:hover:not(:disabled) {
+    &:focus {
       border-bottom-style: dashed;
+      border-bottom-color: $brightPurpleTwo;
     }
 
-    &:hover:not(:disabled),
-    &:focus {
+    &:hover:not(:disabled) {
       cursor: pointer;
       border-bottom-color: $brightPurpleTwo;
+    }
+
+    &:hover:not(:disabled) {
+      border-bottom-style: solid;
     }
 
     &:disabled {
@@ -279,6 +283,7 @@
     &:hover {
       & + .selectedDateContainer {
         border-bottom-color: $primary !important;
+        border-bottom-style: solid;
       }
     }
 
