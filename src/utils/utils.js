@@ -50,3 +50,22 @@ export const getArrayOfYearsBetweenTwoYears = (minYear, numOfYears = 10) => {
 
   return yearsArray.reverse();
 };
+
+/**
+ *
+ * @param {Date} fromDate The year to start from (e.g. 2021).
+ * @param {Number} numOfDays Number of days to move through (e.g. 50).
+ * @param {Boolean} inTheFuture Indicates whether to move forwards or backwards
+ * @returns A date in the future or in the past depending on the number of days specified.
+ */
+export const getDate = (fromDate, numOfDays, inTheFuture = true) => {
+  const newDate = new Date(fromDate);
+
+  if (inTheFuture) {
+    newDate.setDate(newDate.getDate() + numOfDays);
+  } else {
+    newDate.setDate(newDate.getDate() - numOfDays);
+  }
+
+  return new Date(newDate);
+};

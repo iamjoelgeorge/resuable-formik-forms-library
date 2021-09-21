@@ -82,8 +82,10 @@ const FormBody = (props) => {
         formik={formik}
         name='departureDate'
         label='Departure Date'
-        minDate={new Date()}
-        maxDate={new Date('29 Oct 2021')}
+        // minDate={new Date()}
+        // maxDate={new Date('29 Oct 2021')}
+        maxDaysInTheFuture={5}
+        maxDaysInThePast={10}
         optionalText='Optional'
         // helpLink='#'
         // helpLinkText='This link is for your help'
@@ -99,8 +101,8 @@ const FormBody = (props) => {
         name='returnDate'
         label='Return Date'
         isDropdown
-        // minYear='2010'
-        // maxYear='2030'
+        minYear='2010'
+        maxYear='2030'
         // optionalText='Optional'
         // helpLink='#'
         // helpLinkText='This link is for your help'

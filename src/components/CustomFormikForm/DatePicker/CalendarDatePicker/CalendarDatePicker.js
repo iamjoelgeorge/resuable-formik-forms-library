@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 
 import styles from './CalendarDatePicker.module.scss';
 import SlidingLabel from '../../SlidingLabel/SlidingLabel';
-import { joinClassNames } from '../../../../utils/utils';
+import { getDate, joinClassNames } from '../../../../utils/utils';
 import { ArrowNext } from '../../../../constants/icons';
 import AdditionalInfo from '../../AdditionalInfo/AdditionalInfo';
 import ErrorText from '../../ErrorText/ErrorText';
@@ -19,6 +19,8 @@ const CalendarDatePicker = (props) => {
     formik,
     minDate,
     maxDate,
+    maxDaysInThePast,
+    maxDaysInTheFuture,
     containerClass: customContainerClass,
     labelTooltipBoxHeading,
     labelTooltipBoxDescription,
@@ -32,11 +34,16 @@ const CalendarDatePicker = (props) => {
     isRequired,
     ...rest
   } = props;
+
+  const { errors } = formik;
+
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
   const dateFormat = 'ddd, D MMM YYYY';
   const calendarRef = useRef();
 
-  const { errors } = formik;
+  const today = new Date();
+  const endDate = maxDaysInTheFuture ? getDate(today, maxDaysInTheFuture) : new Date(maxDate);
+  const startDate = maxDaysInThePast ? getDate(today, maxDaysInThePast, false) : new Date(minDate);
 
   const userHasVisitedTheInputField = formik.touched[name];
   const inputFieldHasErrors = errors[name];
@@ -79,8 +86,8 @@ const CalendarDatePicker = (props) => {
   const renderCalendar = (value, setFieldValue) => (
     <Calendar
       showNeighboringMonth={false}
-      minDate={new Date(minDate)}
-      maxDate={new Date(maxDate)}
+      minDate={startDate}
+      maxDate={endDate}
       value={value}
       onChange={(val) => {
         setFieldValue(name, val);
@@ -151,7 +158,9 @@ CalendarDatePicker.propTypes = {
   formik: PropTypes.shape({}),
   minDate: PropTypes.instanceOf(Date),
   maxDate: PropTypes.instanceOf(Date),
-  customContainerClass: PropTypes.string,
+  maxDaysInThePast: PropTypes.number,
+  maxDaysInTheFuture: PropTypes.number,
+  containerClass: PropTypes.string,
   labelTooltipBoxHeading: PropTypes.string,
   labelTooltipBoxDescription: PropTypes.string,
   labelTooltipBoxDescriptionElement: PropTypes.element,
@@ -169,7 +178,9 @@ CalendarDatePicker.defaultProps = {
   formik: {},
   minDate: null,
   maxDate: new Date('31 Dec 2200'),
-  customContainerClass: '',
+  maxDaysInThePast: null,
+  maxDaysInTheFuture: null,
+  containerClass: '',
   labelTooltipBoxHeading: '',
   labelTooltipBoxDescription: '',
   labelTooltipBoxDescriptionElement: null,

@@ -15,9 +15,9 @@ const FormOne = () => {
     idProofs: [],
     formOneRadioGroup: 'two',
     departureDate: null,
-    // returnDate: null,
+    returnDate: null,
     // departureDate: new Date(),
-    returnDate: new Date('29 feb 2018'),
+    // returnDate: new Date('29 feb 2018'),
   };
 
   const SUPPORTED_FORMATS = ['image/jpg', 'image/jpeg', 'image/gif', 'image/png'];
