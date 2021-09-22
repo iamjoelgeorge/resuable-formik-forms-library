@@ -38,7 +38,7 @@ DatePicker.defaultProps = {
   formik: {},
   isDropdown: false,
   minDate: null,
-  maxDate: new Date('31 Dec 5000'),
+  maxDate: null,
   maxDaysInThePast: null,
   maxDaysInTheFuture: null,
   labelTooltipBoxHeading: '',

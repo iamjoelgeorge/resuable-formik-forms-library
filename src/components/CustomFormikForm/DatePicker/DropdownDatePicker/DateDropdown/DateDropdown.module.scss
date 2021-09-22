@@ -1,5 +1,5 @@
-@import '../../../theme/variables.scss';
-@import '../../../theme/utils.scss';
+@import '../../../../../theme/variables.scss';
+@import '../../../../../theme/utils.scss';
 
 * {
   box-sizing: border-box;
@@ -89,15 +89,19 @@
         background-color: $white;
         padding: 5px 10px;
         width: 100%;
-        cursor: pointer;
         border: 1px solid transparent;
         transition: 0.1s all ease-in-out;
         font-size: 14px;
         outline: none;
 
-        &:hover,
+        &:hover:not(:disabled),
         &:focus {
+          cursor: pointer;
           background-color: $lightPurple;
+        }
+
+        &:disabled {
+          cursor: not-allowed;
         }
       }
       &.selected {

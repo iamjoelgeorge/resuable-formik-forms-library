@@ -8,11 +8,12 @@ import styles from './DropdownDatePicker.module.scss';
 import { months } from '../../../../constants/constants';
 import {
   getArrayOfYearsBetweenTwoYears,
+  getDate,
   getNumOfDaysInAMonth,
   joinClassNames,
 } from '../../../../utils/utils';
 import AdditionalInfo from '../../AdditionalInfo/AdditionalInfo';
-import Dropdown from '../../Dropdown/Dropdown';
+import DateDropdown from './DateDropdown/DateDropdown';
 import ErrorText from '../../ErrorText/ErrorText';
 import SlidingLabel from '../../SlidingLabel/SlidingLabel';
 
@@ -21,8 +22,10 @@ const DropdownDatePicker = (props) => {
     name,
     label,
     formik,
-    minYear,
-    maxYear,
+    minDate,
+    maxDate,
+    maxDaysInThePast,
+    maxDaysInTheFuture,
     containerClass: customContainerClass,
     labelTooltipBoxHeading,
     labelTooltipBoxDescription,
@@ -51,10 +54,35 @@ const DropdownDatePicker = (props) => {
     ? joinClassNames([styles.label, styles.disabledLabel])
     : styles.label;
 
-  const startYear = minYear
-    ? new Date(minYear.toString()).getFullYear()
-    : new Date().getFullYear() - 100;
-  const endYear = maxYear ? new Date(maxYear.toString()).getFullYear() : new Date().getFullYear();
+  const today = new Date();
+  const startDate = maxDaysInThePast
+    ? getDate(today, maxDaysInThePast, false)
+    : minDate
+    ? new Date(minDate)
+    : new Date((today.getFullYear() - 100).toString());
+
+  const endDate = maxDaysInTheFuture
+    ? getDate(today, maxDaysInTheFuture)
+    : maxDate
+    ? new Date(maxDate)
+    : today;
+
+  // console.log('today:', today);
+  // console.log('maxDate:', maxDate);
+
+  // console.log('start: ', startDate);
+  // console.log('end', endDate);
+
+  // console.log('----------------');
+
+  // const startYear = minYear
+  //   ? new Date(minYear.toString()).getFullYear()
+  //   : new Date().getFullYear() - 100;
+  // const endYear = maxYear ? new Date(maxYear.toString()).getFullYear() : new Date().getFullYear();
+  // const MAX_NUM_OF_YEARS = endYear - startYear;
+
+  const startYear = startDate.getFullYear();
+  const endYear = endDate.getFullYear();
   const MAX_NUM_OF_YEARS = endYear - startYear;
 
   const dateFormat = 'D MMM YYYY';
@@ -63,7 +91,29 @@ const DropdownDatePicker = (props) => {
 
   let yearsArray = getArrayOfYearsBetweenTwoYears(startYear, MAX_NUM_OF_YEARS);
   let numOfDays = getNumOfDaysInAMonth(dateObj.month, dateObj.year);
-  let datesInAMonthArray = [...Array.from({ length: numOfDays }, (_, i) => i + 1)];
+  let datesInAMonthArray = [
+    ...Array.from({ length: numOfDays }, (_, i) => {
+      const minDayDate = startDate.getDate();
+      const minYear = startDate.getFullYear();
+      const minMonthIndex = startDate.getMonth();
+      console.log(months[minMonthIndex].name.toLowerCase());
+
+      const currentMonthIndex = months.findIndex((month) => month.name === dateObj.month);
+      console.log(currentMonthIndex);
+
+      // console.log(dateObj);
+      let isDisabled = false;
+
+      if (currentMonthIndex < minMonthIndex) {
+        isDisabled = true;
+      } else if (currentMonthIndex === minMonthIndex) {
+        if (i + 1 < minDayDate) {
+          isDisabled = true;
+        }
+      }
+      return { name: i + 1, isDisabled: isDisabled };
+    }),
+  ];
 
   const userHasVisitedTheInputField = formik.touched[name];
   const inputFieldHasErrors = errors[name];
@@ -108,31 +158,31 @@ const DropdownDatePicker = (props) => {
     };
   };
 
-  const handleDropdownItemClick = (desc, type) => {
+  const handleDropdownItemClick = (item, type) => {
     const selectedDate = parseInt(dateObj.date);
 
     if (type.toLowerCase() === 'month' || type.toLowerCase() === 'year') {
       const numOfDaysInSelectedMonth =
         type.toLowerCase() === 'month'
-          ? getNumOfDaysInAMonth(desc, dateObj.year)
-          : getNumOfDaysInAMonth(dateObj.month, desc);
+          ? getNumOfDaysInAMonth(item.name, dateObj.year)
+          : getNumOfDaysInAMonth(dateObj.month, item.name);
 
       if (selectedDate > numOfDaysInSelectedMonth) {
         setDateObj({
           ...dateObj,
-          [type]: desc,
+          [type]: item.name,
           date: 1,
         });
       } else {
         setDateObj({
           ...dateObj,
-          [type]: desc,
+          [type]: item.name,
         });
       }
     } else {
       setDateObj({
         ...dateObj,
-        [type]: desc,
+        [type]: item.name,
       });
     }
   };
@@ -158,7 +208,7 @@ const DropdownDatePicker = (props) => {
           return (
             <div className={styles.dateContainer}>
               <div className={styles.date}>
-                <Dropdown
+                <DateDropdown
                   value={date}
                   dropdownArray={datesInAMonthArray}
                   onClick={handleDropdownItemClick}
@@ -168,7 +218,7 @@ const DropdownDatePicker = (props) => {
                 />
               </div>
               <div className={styles.month}>
-                <Dropdown
+                <DateDropdown
                   value={month}
                   dropdownArray={months}
                   onClick={handleDropdownItemClick}
@@ -178,7 +228,7 @@ const DropdownDatePicker = (props) => {
                 />
               </div>
               <div className={styles.year}>
-                <Dropdown
+                <DateDropdown
                   value={year}
                   dropdownArray={yearsArray}
                   onClick={handleDropdownItemClick}
@@ -211,8 +261,8 @@ DropdownDatePicker.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string,
   formik: PropTypes.shape({}),
-  minYear: PropTypes.string,
-  maxYear: PropTypes.string,
+  minDate: PropTypes.instanceOf(Date),
+  maxDate: PropTypes.instanceOf(Date),
   containerClass: PropTypes.string,
   labelTooltipBoxHeading: PropTypes.string,
   labelTooltipBoxDescription: PropTypes.string,
@@ -229,8 +279,10 @@ DropdownDatePicker.propTypes = {
 DropdownDatePicker.defaultProps = {
   label: '',
   formik: {},
-  minYear: '',
-  maxYear: '',
+  minDate: null,
+  maxDate: new Date(),
+  maxDaysInThePast: null,
+  maxDaysInTheFuture: null,
   labelTooltipBoxHeading: '',
   containerClass: '',
   labelTooltipBoxDescription: '',

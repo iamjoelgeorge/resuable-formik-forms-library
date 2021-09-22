@@ -21,7 +21,7 @@ export const getNumOfDaysInAMonth = (month, year) => {
   if (!month) return -1;
 
   const index = months.findIndex(
-    (item) => item.trim().toLowerCase() === month?.trim().toLowerCase(),
+    (item) => item.name.trim().toLowerCase() === month?.trim().toLowerCase(),
   );
 
   if (index < 0) {
@@ -45,7 +45,7 @@ export const getArrayOfYearsBetweenTwoYears = (minYear, numOfYears = 10) => {
   const maxYear = minYear + numOfYears;
 
   for (let i = minYear; i <= maxYear; i++) {
-    yearsArray.push(i);
+    yearsArray.push({ name: i, isDisabled: false });
   }
 
   return yearsArray.reverse();
@@ -56,7 +56,7 @@ export const getArrayOfYearsBetweenTwoYears = (minYear, numOfYears = 10) => {
  * @param {Date} fromDate The year to start from (e.g. 2021).
  * @param {Number} numOfDays Number of days to move through (e.g. 50).
  * @param {Boolean} inTheFuture Indicates whether to move forwards or backwards
- * @returns A date in the future or in the past depending on the number of days specified.
+ * @returns A date in the future or in the past.
  */
 export const getDate = (fromDate, numOfDays, inTheFuture = true) => {
   const newDate = new Date(fromDate);

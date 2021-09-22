@@ -43,8 +43,8 @@ const CalendarDatePicker = (props) => {
   const dateFormat = 'ddd, D MMM YYYY';
 
   const today = new Date();
-  const endDate = maxDaysInTheFuture ? getDate(today, maxDaysInTheFuture) : new Date(maxDate);
-  const startDate = maxDaysInThePast ? getDate(today, maxDaysInThePast, false) : new Date(minDate);
+  const startDate = maxDaysInThePast ? getDate(today, maxDaysInThePast, false) : minDate;
+  const endDate = maxDaysInTheFuture ? getDate(today, maxDaysInTheFuture) : maxDate;
 
   const userHasVisitedTheInputField = formik.touched[name];
   const inputFieldHasErrors = errors[name];
@@ -150,7 +150,7 @@ CalendarDatePicker.defaultProps = {
   label: '',
   formik: {},
   minDate: null,
-  maxDate: new Date('31 Dec 2200'),
+  maxDate: new Date('31 Dec 5000'),
   maxDaysInThePast: null,
   maxDaysInTheFuture: null,
   containerClass: '',

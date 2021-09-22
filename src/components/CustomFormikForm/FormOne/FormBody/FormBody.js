@@ -84,15 +84,15 @@ const FormBody = (props) => {
         label='Departure Date'
         // minDate={new Date()}
         // maxDate={new Date('29 Oct 2021')}
-        maxDaysInTheFuture={5}
-        maxDaysInThePast={10}
+        // maxDaysInTheFuture={5}
+        // maxDaysInThePast={10}
         optionalText='Optional'
         // helpLink='#'
         // helpLinkText='This link is for your help'
         // tooltipLink='https://www.google.com'
         // tooltipLinkText='Visit Google to know more.'
-        labelTooltipBoxHeading='Permitted with no fee'
-        labelTooltipBoxDescription='For cancellation, credit to Travel Bank for the full ticket value including any fare portion where Velocity Points have been redeemed.'
+        // labelTooltipBoxHeading='Permitted with no fee'
+        // labelTooltipBoxDescription='For cancellation, credit to Travel Bank for the full ticket value including any fare portion where Velocity Points have been redeemed.'
         isRequired
         // isDisabled
       />
@@ -101,15 +101,17 @@ const FormBody = (props) => {
         name='returnDate'
         label='Return Date'
         isDropdown
-        minYear='2010'
-        maxYear='2030'
+        minDate={new Date('12 Feb 2000')}
+        // maxDate={new Date('12 Feb 2033')}
+        // maxDaysInTheFuture={365}
+        // maxDaysInThePast={365}
         // optionalText='Optional'
         // helpLink='#'
         // helpLinkText='This link is for your help'
         tooltipLink='https://www.google.com'
         tooltipLinkText='Visit Google to know more.'
-        labelTooltipBoxHeading='Permitted with no fee'
-        labelTooltipBoxDescription='For cancellation, credit to Travel Bank for the full ticket value including any fare portion where Velocity Points have been redeemed.'
+        // labelTooltipBoxHeading='Permitted with no fee'
+        // labelTooltipBoxDescription='For cancellation, credit to Travel Bank for the full ticket value including any fare portion where Velocity Points have been redeemed.'
         // isRequired
         // isDisabled
       />
