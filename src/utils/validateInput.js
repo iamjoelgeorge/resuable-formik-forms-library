@@ -74,6 +74,10 @@ export const validateInput = (input, objectToUpdate) => {
         : Yup.number().typeError('Please enter a number').positive('Must be a positive number');
       break;
 
+    case 'dropdown':
+      objectToUpdate[name] = isRequired ? Yup.string().required(message) : Yup.string();
+      break;
+
     case 'file':
       objectToUpdate[name] = isRequired
         ? Yup.array()

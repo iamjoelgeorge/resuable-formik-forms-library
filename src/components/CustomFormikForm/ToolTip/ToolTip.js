@@ -1,52 +1,21 @@
-import React, { useState, useLayoutEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 
 import PropTypes from 'prop-types';
 
 import styles from './ToolTip.module.scss';
 import { joinClassNames } from '../../../utils/utils';
 import { ToolTipIcon } from '../../../constants/icons';
+import { useToggleDropdown } from '../../../hooks/useToggleDropdown';
 
 const ToolTip = (props) => {
   const { heading, description, descriptionElement: DescriptionElement, containerClass } = props;
-  const [isBoxOpen, setIsBoxOpen] = useState(false);
 
   const tooltipContainerRef = useRef();
   const tooltipBoxRef = useRef();
 
+  const [isBoxOpen, setIsBoxOpen, toggleTooltipBox] = useToggleDropdown(tooltipContainerRef);
+
   const containerClasses = joinClassNames([styles.container, containerClass]);
-
-  useLayoutEffect(() => {
-    document.addEventListener('mousedown', handleClickOutside);
-    document.addEventListener('keydown', handleEscKeyPress);
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-      document.removeEventListener('keydown', handleEscKeyPress);
-    };
-  }, []);
-
-  const handleClickOutside = (e) => {
-    const tooltipNode = tooltipContainerRef.current;
-    const clickedNode = e.target;
-
-    if (tooltipNode?.contains(clickedNode)) return;
-    setIsBoxOpen(false);
-  };
-
-  const handleEscKeyPress = (e) => {
-    if (e.keyCode === 27) {
-      setIsBoxOpen(false);
-    }
-  };
-
-  const toggleTooltipBox = () => {
-    setIsBoxOpen((prevState) => !prevState);
-    // console.log(tooltipBoxRef.current.offsetLeft);
-    // console.log(tooltipBoxRef.current.getBoundingClientRect().width);
-    // console.log(tooltipContainerRef);
-    // console.log(window.innerHeight);
-    // console.log('box', tooltipContainerRef.current.childNodes[1])
-  };
 
   const renderDescription = () =>
     DescriptionElement ? (
@@ -65,7 +34,7 @@ const ToolTip = (props) => {
             <div className={styles.line}></div>
             <div className={styles.line}></div>
           </button>
-          <p className={styles.heading}>{heading}</p>
+          {heading && <p className={styles.heading}>{heading}</p>}
 
           {renderDescription()}
         </div>
@@ -75,11 +44,17 @@ const ToolTip = (props) => {
 };
 
 ToolTip.propTypes = {
-  icon: PropTypes.string,
   heading: PropTypes.string,
   description: PropTypes.string,
   descriptionElement: PropTypes.element,
   containerClass: PropTypes.string,
+};
+
+ToolTip.defaultProps = {
+  heading: '',
+  description: '',
+  descriptionElement: null,
+  containerClass: '',
 };
 
 export default ToolTip;

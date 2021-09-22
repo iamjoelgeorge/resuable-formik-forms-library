@@ -263,6 +263,8 @@ DropdownDatePicker.propTypes = {
   formik: PropTypes.shape({}),
   minDate: PropTypes.instanceOf(Date),
   maxDate: PropTypes.instanceOf(Date),
+  maxDaysInThePast: PropTypes.number,
+  maxDaysInTheFuture: PropTypes.number,
   containerClass: PropTypes.string,
   labelTooltipBoxHeading: PropTypes.string,
   labelTooltipBoxDescription: PropTypes.string,

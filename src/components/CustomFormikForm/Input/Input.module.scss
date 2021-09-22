@@ -8,6 +8,7 @@ $smallFont: em(11);
   position: relative;
   margin-top: em(30);
   width: em(275);
+  z-index: 0;
 
   .inputWithTooltipContainer {
     display: flex;

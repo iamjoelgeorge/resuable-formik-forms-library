@@ -30,7 +30,7 @@ const OptionalText = (props) => {
         );
       case 'help link':
         return (
-          <a href={helpLink} target='_blank' rel='noreferrer'>
+          <a className={styles.helpLink} href={helpLink} target='_blank' rel='noreferrer'>
             {helpLinkText}
           </a>
         );

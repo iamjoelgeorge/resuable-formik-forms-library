@@ -35,3 +35,11 @@
   color: $secondaryGrey;
   margin: 0;
 }
+
+.helpLink {
+  outline: none;
+
+  &:focus {
+    color: $tertiaryGrey;
+  }
+}

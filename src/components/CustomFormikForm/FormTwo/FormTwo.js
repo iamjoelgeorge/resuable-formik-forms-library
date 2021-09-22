@@ -9,6 +9,8 @@ import FormBody from './FormBody/FormBody';
 const FormTwo = () => {
   const initialValues = {
     terms: false,
+    salutation: '',
+    other: '',
   };
 
   const validations = [
@@ -17,6 +19,12 @@ const FormTwo = () => {
       type: 'checkbox',
       isRequired: true,
       message: 'You need to agree to our Terms and Conditions.',
+    },
+    {
+      name: 'salutation',
+      type: 'dropdown',
+      isRequired: true,
+      message: 'Please select how you would like to be addressed.',
     },
   ];
 
