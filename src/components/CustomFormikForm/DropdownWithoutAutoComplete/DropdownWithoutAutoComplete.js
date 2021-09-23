@@ -54,8 +54,12 @@ const DropdownWithoutAutoComplete = (props) => {
           : styles.dropdownItem;
 
       return (
-        <li data-testid={`${name}-dropdown-item`} key={uuidv4()} className={dropdownItemClasses}>
-          <button type='button' onClick={() => setFieldValue(name, item)}>
+        <li key={uuidv4()} className={dropdownItemClasses}>
+          <button
+            data-testid={`${name}-dropdown-item`}
+            type='button'
+            onClick={() => setFieldValue(name, item)}
+          >
             {item}
           </button>
         </li>
