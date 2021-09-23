@@ -5,11 +5,13 @@ import moment from 'moment';
 import PropTypes from 'prop-types';
 
 import styles from './DropdownDatePicker.module.scss';
-import { months } from '../../../../constants/constants';
+import { months as defaultMonths } from '../../../../constants/constants';
 import {
-  getArrayOfYearsBetweenTwoYears,
-  getDate,
+  getSmartMonths,
+  getArrayOfYearsBetweenTwoYearsAsObjectsWithADisabledProperty,
+  getFullDate,
   getNumOfDaysInAMonth,
+  getSmartDates,
   joinClassNames,
 } from '../../../../utils/utils';
 import AdditionalInfo from '../../AdditionalInfo/AdditionalInfo';
@@ -56,64 +58,49 @@ const DropdownDatePicker = (props) => {
 
   const today = new Date();
   const startDate = maxDaysInThePast
-    ? getDate(today, maxDaysInThePast, false)
+    ? getFullDate(today, maxDaysInThePast, false)
     : minDate
     ? new Date(minDate)
     : new Date((today.getFullYear() - 100).toString());
 
   const endDate = maxDaysInTheFuture
-    ? getDate(today, maxDaysInTheFuture)
+    ? getFullDate(today, maxDaysInTheFuture)
     : maxDate
     ? new Date(maxDate)
     : today;
-
-  // console.log('today:', today);
-  // console.log('maxDate:', maxDate);
-
-  // console.log('start: ', startDate);
-  // console.log('end', endDate);
-
-  // console.log('----------------');
-
-  // const startYear = minYear
-  //   ? new Date(minYear.toString()).getFullYear()
-  //   : new Date().getFullYear() - 100;
-  // const endYear = maxYear ? new Date(maxYear.toString()).getFullYear() : new Date().getFullYear();
-  // const MAX_NUM_OF_YEARS = endYear - startYear;
 
   const startYear = startDate.getFullYear();
   const endYear = endDate.getFullYear();
   const MAX_NUM_OF_YEARS = endYear - startYear;
 
+  const minDayNumber = startDate.getDate();
+  const maxDayNumber = endDate.getDate();
+  const minMonthIndex = startDate.getMonth();
+  const maxMonthIndex = endDate.getMonth();
+  const currentMonthIndex = defaultMonths.findIndex((month) => month.name === dateObj.month);
+  const selectedYear = dateObj?.year;
+
   const dateFormat = 'D MMM YYYY';
   const initialDate = values[name] ? values[name] : new Date();
   const formattedDate = moment(initialDate).format(dateFormat);
 
-  let yearsArray = getArrayOfYearsBetweenTwoYears(startYear, MAX_NUM_OF_YEARS);
-  let numOfDays = getNumOfDaysInAMonth(dateObj.month, dateObj.year);
-  let datesInAMonthArray = [
-    ...Array.from({ length: numOfDays }, (_, i) => {
-      const minDayDate = startDate.getDate();
-      const minYear = startDate.getFullYear();
-      const minMonthIndex = startDate.getMonth();
-      // console.log(months[minMonthIndex].name.toLowerCase());
-
-      const currentMonthIndex = months.findIndex((month) => month.name === dateObj.month);
-      // console.log(currentMonthIndex);
-
-      // console.log(dateObj);
-      let isDisabled = false;
-
-      if (currentMonthIndex < minMonthIndex) {
-        isDisabled = true;
-      } else if (currentMonthIndex === minMonthIndex) {
-        if (i + 1 < minDayDate) {
-          isDisabled = true;
-        }
-      }
-      return { name: i + 1, isDisabled: isDisabled };
-    }),
-  ];
+  let yearsArray = getArrayOfYearsBetweenTwoYearsAsObjectsWithADisabledProperty(
+    startYear,
+    MAX_NUM_OF_YEARS,
+  );
+  let monthsArray = getSmartMonths(selectedYear, startYear, endYear, minMonthIndex, maxMonthIndex);
+  let datesInAMonthArray = getSmartDates(
+    dateObj.month,
+    dateObj.year,
+    selectedYear,
+    startYear,
+    endYear,
+    currentMonthIndex,
+    minMonthIndex,
+    maxMonthIndex,
+    minDayNumber,
+    maxDayNumber,
+  );
 
   const userHasVisitedTheInputField = formik.touched[name];
   const inputFieldHasErrors = errors[name];
@@ -214,17 +201,15 @@ const DropdownDatePicker = (props) => {
                   onClick={handleDropdownItemClick}
                   type='date'
                   isDisabled={isDisabled}
-                  disableFormik
                 />
               </div>
               <div className={styles.month}>
                 <DateDropdown
                   value={month}
-                  dropdownArray={months}
+                  dropdownArray={monthsArray}
                   onClick={handleDropdownItemClick}
                   type='month'
                   isDisabled={isDisabled}
-                  disableFormik
                 />
               </div>
               <div className={styles.year}>
@@ -234,7 +219,6 @@ const DropdownDatePicker = (props) => {
                   onClick={handleDropdownItemClick}
                   type='year'
                   isDisabled={isDisabled}
-                  disableFormik
                 />
               </div>
             </div>

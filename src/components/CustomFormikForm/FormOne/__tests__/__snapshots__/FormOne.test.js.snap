@@ -273,11 +273,12 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
         <div
           className="date"
         >
-          <button
+          <div
             className="container"
-            disabled={false}
+            data-testid="undefined-dropdown-button"
             onClick={[Function]}
-            type="button"
+            role="button"
+            tabIndex="0"
           >
             
             <span
@@ -288,16 +289,17 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
                 src="test-file-stub"
               />
             </span>
-          </button>
+          </div>
         </div>
         <div
           className="month"
         >
-          <button
+          <div
             className="container"
-            disabled={false}
+            data-testid="undefined-dropdown-button"
             onClick={[Function]}
-            type="button"
+            role="button"
+            tabIndex="0"
           >
             
             <span
@@ -308,16 +310,17 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
                 src="test-file-stub"
               />
             </span>
-          </button>
+          </div>
         </div>
         <div
           className="year"
         >
-          <button
+          <div
             className="container"
-            disabled={false}
+            data-testid="undefined-dropdown-button"
             onClick={[Function]}
-            type="button"
+            role="button"
+            tabIndex="0"
           >
             
             <span
@@ -328,7 +331,7 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
                 src="test-file-stub"
               />
             </span>
-          </button>
+          </div>
         </div>
       </div>
       

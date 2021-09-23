@@ -6,7 +6,7 @@ import moment from 'moment';
 import PropTypes from 'prop-types';
 
 import styles from './CalendarDatePicker.module.scss';
-import { getDate, joinClassNames } from '../../../../utils/utils';
+import { getFullDate, joinClassNames } from '../../../../utils/utils';
 import { ArrowNext } from '../../../../constants/icons';
 import { useToggleDropdown } from '../../../../hooks/useToggleDropdown';
 import AdditionalInfo from '../../AdditionalInfo/AdditionalInfo';
@@ -43,8 +43,8 @@ const CalendarDatePicker = (props) => {
   const dateFormat = 'ddd, D MMM YYYY';
 
   const today = new Date();
-  const startDate = maxDaysInThePast ? getDate(today, maxDaysInThePast, false) : minDate;
-  const endDate = maxDaysInTheFuture ? getDate(today, maxDaysInTheFuture) : maxDate;
+  const startDate = maxDaysInThePast ? getFullDate(today, maxDaysInThePast, false) : minDate;
+  const endDate = maxDaysInTheFuture ? getFullDate(today, maxDaysInTheFuture) : maxDate;
 
   const userHasVisitedTheInputField = formik.touched[name];
   const inputFieldHasErrors = errors[name];
