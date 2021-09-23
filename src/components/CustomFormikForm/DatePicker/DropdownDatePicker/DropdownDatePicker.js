@@ -96,10 +96,10 @@ const DropdownDatePicker = (props) => {
       const minDayDate = startDate.getDate();
       const minYear = startDate.getFullYear();
       const minMonthIndex = startDate.getMonth();
-      console.log(months[minMonthIndex].name.toLowerCase());
+      // console.log(months[minMonthIndex].name.toLowerCase());
 
       const currentMonthIndex = months.findIndex((month) => month.name === dateObj.month);
-      console.log(currentMonthIndex);
+      // console.log(currentMonthIndex);
 
       // console.log(dateObj);
       let isDisabled = false;

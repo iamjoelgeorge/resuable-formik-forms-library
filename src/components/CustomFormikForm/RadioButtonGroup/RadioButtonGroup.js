@@ -45,6 +45,7 @@ const RadioButtonGroup = (props) => {
         <div className={styles.radioButtonWithLabel} key={index}>
           <label className={styles.optionLabel}>
             <Field
+              data-testid={`radio-button-${option.label}`}
               className={styles.radioInput}
               type='radio'
               name={name}
@@ -108,7 +109,7 @@ const RadioButtonGroup = (props) => {
 };
 
 RadioButtonGroup.propTypes = {
-  name: PropTypes.string,
+  name: PropTypes.string.isRequired,
   options: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.string,
@@ -135,7 +136,6 @@ RadioButtonGroup.propTypes = {
 };
 
 RadioButtonGroup.defaultProps = {
-  name: '',
   options: {},
   mainLabel: '',
   formik: {},

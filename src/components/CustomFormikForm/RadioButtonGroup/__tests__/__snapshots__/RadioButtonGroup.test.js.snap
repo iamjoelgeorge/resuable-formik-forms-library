@@ -1,0 +1,136 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`[Component]: RadioButtonGroup should match the Snapshot 1`] = `
+<form
+  action="#"
+  onReset={[Function]}
+  onSubmit={[Function]}
+>
+  <div
+    className="container"
+  >
+    <div
+      className="container  slideLabel componentHeading"
+    >
+      <label
+        className="label"
+        htmlFor="radioOption"
+      >
+        radioOption
+      </label>
+    </div>
+    <div
+      aria-labelledby="radioOption"
+      className="radioGroup"
+      role="group"
+    >
+      <div
+        className="radioButtonWithLabel"
+      >
+        <label
+          className="optionLabel"
+        >
+          <input
+            checked={false}
+            className="radioInput"
+            data-testid="radio-button-One Radio"
+            disabled={false}
+            name="radioOption"
+            onBlur={[Function]}
+            onChange={[Function]}
+            type="radio"
+            value="one"
+          />
+          <span
+            className="presentationalRadioButton"
+          >
+            <span
+              className="radioButtonSelected"
+            />
+          </span>
+          <span
+            className="labelSpanElement"
+          >
+            One Radio
+          </span>
+        </label>
+      </div>
+      <div
+        className="radioButtonWithLabel"
+      >
+        <label
+          className="optionLabel"
+        >
+          <input
+            checked={false}
+            className="radioInput"
+            data-testid="radio-button-Two Radio"
+            disabled={false}
+            name="radioOption"
+            onBlur={[Function]}
+            onChange={[Function]}
+            type="radio"
+            value="two"
+          />
+          <span
+            className="presentationalRadioButton"
+          >
+            <span
+              className="radioButtonSelected"
+            />
+          </span>
+          <span
+            className="labelSpanElement"
+          >
+            Two Radio
+          </span>
+        </label>
+      </div>
+      <div
+        className="radioButtonWithLabel"
+      >
+        <label
+          className="optionLabel"
+        >
+          <input
+            checked={false}
+            className="radioInput"
+            data-testid="radio-button-Three Radio"
+            disabled={false}
+            name="radioOption"
+            onBlur={[Function]}
+            onChange={[Function]}
+            type="radio"
+            value="three"
+          />
+          <span
+            className="presentationalRadioButton"
+          >
+            <span
+              className="radioButtonSelected"
+            />
+          </span>
+          <span
+            className="labelSpanElement"
+          >
+            Three Radio
+          </span>
+        </label>
+        <div
+          className="container tooltip"
+          data-testid="tooltip-icon-Heading"
+        >
+          <img
+            alt="tooltip"
+            onClick={[Function]}
+            src="test-file-stub"
+          />
+        </div>
+      </div>
+    </div>
+    
+    
+    
+  </div>
+</form>
+`;

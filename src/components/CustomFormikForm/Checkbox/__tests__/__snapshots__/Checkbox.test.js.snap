@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`[Component]: Checkbox should match the Snapshot 1`] = `
+<form
+  action="#"
+  onReset={[Function]}
+  onSubmit={[Function]}
+>
+  <div
+    className="container"
+  >
+    <div
+      className="container  slideLabel componentHeading"
+    >
+      <label
+        className="label"
+        htmlFor="terms"
+      >
+        terms
+      </label>
+    </div>
+    <div
+      className="optionWithTooltip"
+    >
+      <label
+        className="optionLabel"
+      >
+        <input
+          checked={false}
+          className="checkboxInput"
+          data-testid="checkbox-terms"
+          disabled={false}
+          name="terms"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          type="checkbox"
+          value={false}
+        />
+        <span
+          className="presentationalCheckbox"
+        >
+          <span
+            className="checkboxChecked"
+          />
+        </span>
+        <span
+          className="labelSpanElement"
+        >
+          I accept
+        </span>
+      </label>
+    </div>
+    
+    
+    
+  </div>
+</form>
+`;

@@ -6,14 +6,41 @@ import '@testing-library/jest-dom/extend-expect';
 import userEvent from '@testing-library/user-event';
 import renderer from 'react-test-renderer';
 
-import Button from '../../Button/Button';
-import Checkbox from '../Checkbox';
-import FormContainer from '../../FormContainer/FormContainer';
+import Button from '../../../Button/Button';
+import CheckboxGroup from '../CheckboxGroup';
+import FormContainer from '../../../FormContainer/FormContainer';
+
+const checkboxOptions = [
+  { label: 'One', value: 'one' },
+  { label: 'Two', value: 'two' },
+  {
+    label: 'Three',
+    value: 'three',
+    tooltip: {
+      heading: 'Heading One',
+      customDescriptionElement: (
+        <p>
+          I'm a custom description Element. Look me up on
+          <a href='https://www.google.com'>Google</a>
+        </p>
+      ),
+    },
+  },
+  {
+    label: 'four',
+    value: 'four',
+    tooltip: {
+      heading: 'Heading Two',
+      description: 'Test Description',
+    },
+  },
+];
 
 const defaultProps = {
-  name: 'terms',
-  optionLabel: 'I accept',
-  mainLabel: 'terms',
+  name: 'conditions',
+  options: checkboxOptions,
+  mainLabel: 'conditions',
+  formik: {},
   isRequired: false,
   isDisabled: false,
   helpLink: '',
@@ -24,13 +51,10 @@ const defaultProps = {
   mainLabelTooltipBoxHeading: '',
   mainLabelTooltipBoxDescription: '',
   mainLabelTooltipBoxDescriptionElement: null,
-  optionLabelTooltipBoxHeading: '',
-  optionLabelTooltipBoxDescription: '',
-  optionLabelTooltipBoxDescriptionElement: null,
 };
 
 const initialValues = {
-  terms: false,
+  conditions: [],
 };
 
 const defaultValidations = [];
@@ -38,7 +62,7 @@ const handleSubmit = jest.fn();
 
 afterEach(cleanup);
 
-describe('[Component]: Checkbox', () => {
+describe('[Component]: CheckboxGroup', () => {
   it('should match the Snapshot', () => {
     const tree = renderer
       .create(
@@ -47,14 +71,14 @@ describe('[Component]: Checkbox', () => {
           validations={defaultValidations}
           onSubmit={handleSubmit}
         >
-          <Checkbox {...defaultProps} />
+          <CheckboxGroup {...defaultProps} />
         </FormContainer>,
       )
       .toJSON();
     expect(tree).toMatchSnapshot();
   });
 
-  it('should render a disabled checkbox', () => {
+  it('should render disabled checkboxes', () => {
     const props = {
       ...defaultProps,
       isDisabled: true,
@@ -66,12 +90,14 @@ describe('[Component]: Checkbox', () => {
         validations={defaultValidations}
         onSubmit={handleSubmit}
       >
-        <Checkbox {...props} />
+        <CheckboxGroup {...props} />
       </FormContainer>,
     );
 
-    const checkbox = getByTestId('checkbox-terms');
-    expect(checkbox).toHaveAttribute('disabled');
+    checkboxOptions.forEach((option) => {
+      const checkbox = getByTestId(`checkbox-${option.label}`);
+      expect(checkbox).toHaveAttribute('disabled');
+    });
   });
 
   it('should render the optional text', () => {
@@ -86,7 +112,7 @@ describe('[Component]: Checkbox', () => {
         validations={defaultValidations}
         onSubmit={handleSubmit}
       >
-        <Checkbox {...props} />
+        <CheckboxGroup {...props} />
       </FormContainer>,
     );
 
@@ -106,7 +132,7 @@ describe('[Component]: Checkbox', () => {
         validations={defaultValidations}
         onSubmit={handleSubmit}
       >
-        <Checkbox {...props} />
+        <CheckboxGroup {...props} />
       </FormContainer>,
     );
 
@@ -126,7 +152,7 @@ describe('[Component]: Checkbox', () => {
         validations={defaultValidations}
         onSubmit={handleSubmit}
       >
-        <Checkbox {...props} />
+        <CheckboxGroup {...props} />
       </FormContainer>,
     );
 
@@ -141,10 +167,10 @@ describe('[Component]: Checkbox', () => {
 
     const validations = [
       {
-        name: 'terms',
-        type: 'checkbox',
+        name: 'conditions',
+        type: 'checkbox_group',
         isRequired: true,
-        message: 'You need to agree to our Terms and Conditions',
+        message: 'Please select at least one option',
       },
     ];
 
@@ -154,7 +180,7 @@ describe('[Component]: Checkbox', () => {
         validations={validations}
         onSubmit={handleSubmit}
       >
-        <Checkbox {...props} />
+        <CheckboxGroup {...props} />
         <Button label='Submit' />
       </FormContainer>,
     );
@@ -163,10 +189,30 @@ describe('[Component]: Checkbox', () => {
     userEvent.click(submitButton);
 
     await waitFor(() => {
-      expect(getByTestId('error-terms')).toHaveTextContent(
-        'You need to agree to our Terms and Conditions',
+      expect(getByTestId('error-conditions')).toHaveTextContent(
+        'Please select at least one option',
       );
     });
+  });
+
+  it('should check a checkbox by default', async () => {
+    const initialValues = {
+      conditions: ['two'],
+    };
+
+    const { getByText, getByTestId } = render(
+      <FormContainer
+        initialValues={initialValues}
+        validations={defaultValidations}
+        onSubmit={handleSubmit}
+      >
+        <CheckboxGroup {...defaultProps} />
+        <Button label='Submit' />
+      </FormContainer>,
+    );
+
+    const checkedCheckbox = getByTestId('checkbox-Two');
+    expect(checkedCheckbox.checked).toEqual(true);
   });
 
   it('should render the Tooltip icon component for the main label', () => {
@@ -182,7 +228,7 @@ describe('[Component]: Checkbox', () => {
         validations={defaultValidations}
         onSubmit={handleSubmit}
       >
-        <Checkbox {...props} />
+        <CheckboxGroup {...props} />
       </FormContainer>,
     );
 
@@ -190,24 +236,22 @@ describe('[Component]: Checkbox', () => {
     expect(toolTipComponent).toBeTruthy();
   });
 
-  it('should render the Tooltip icon component for the main label', () => {
-    const props = {
-      ...defaultProps,
-      optionLabelTooltipBoxHeading: 'Option Tooltip',
-      optionLabelTooltipBoxDescription: 'Lorem Ipsum is simply dummy text.',
-    };
-
+  it('should render the Tooltip icon component for the option label', () => {
     const { getByTestId } = render(
       <FormContainer
         initialValues={initialValues}
         validations={defaultValidations}
         onSubmit={handleSubmit}
       >
-        <Checkbox {...props} />
+        <CheckboxGroup {...defaultProps} />
       </FormContainer>,
     );
 
-    const tooltipComponent = getByTestId('tooltip-icon-Option Tooltip');
-    expect(tooltipComponent).toBeTruthy();
+    checkboxOptions.forEach((option) => {
+      if (option?.tooltip?.heading) {
+        const tooltipComponent = getByTestId(`tooltip-icon-${option.tooltip.heading}`);
+        expect(tooltipComponent).toBeTruthy();
+      }
+    });
   });
 });

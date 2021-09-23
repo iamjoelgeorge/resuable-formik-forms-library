@@ -259,7 +259,7 @@ describe('[Component]: Input', () => {
     });
   });
 
-  it('should show the error component for minimun characters required', async () => {
+  it('should show the error component for minimum characters required', async () => {
     const props = {
       ...defaultProps,
       name: 'name',

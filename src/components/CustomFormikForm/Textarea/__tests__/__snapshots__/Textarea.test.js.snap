@@ -26,6 +26,7 @@ exports[`[Component]: Texxtarea should match the Snapshot 1`] = `
         className="container  label"
       >
         <label
+          className="label"
           htmlFor="description"
         >
           description

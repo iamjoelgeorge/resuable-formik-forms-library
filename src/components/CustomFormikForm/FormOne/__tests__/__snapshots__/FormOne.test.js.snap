@@ -37,6 +37,7 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
         className="container  "
       >
         <label
+          className="label"
           htmlFor="test"
         >
           Disabled Input
@@ -78,6 +79,7 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
             className="container  "
           >
             <label
+              className="label"
               htmlFor="name"
             >
               Name
@@ -112,9 +114,10 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
             value=""
           />
           <div
-            className="container   slideLabel"
+            className="container  slideLabel "
           >
             <label
+              className="label"
               htmlFor="age"
             >
               Age (with placeholder)
@@ -164,6 +167,7 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
         className="container  "
       >
         <label
+          className="label"
           htmlFor="email"
         >
           Email
@@ -174,6 +178,7 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
       >
         <div
           className="container "
+          data-testid="tooltip-icon-Permitted with no fee"
         >
           <img
             alt="tooltip"
@@ -188,6 +193,7 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
       className="common "
     >
       <a
+        className="helpLink"
         href="#"
         rel="noreferrer"
         target="_blank"
@@ -199,19 +205,21 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
   </div>
   <div>
     <div
-      className="container"
+      className="container "
       id="custom-calendar-date-picker"
     >
       <div>
         <button
           className="selectedDateContainer"
+          disabled={false}
           onClick={[Function]}
           type="button"
         >
           <div
-            className="container   slideLabel"
+            className="container inputIsRequired "
           >
             <label
+              className="label"
               htmlFor="selectedDate"
             >
               Departure Date
@@ -221,7 +229,6 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
             className="selectedDate"
             id="selectedDate"
           >
-            Mon, 20 Sep 2021
             <span
               className="dropdownIcon"
             >
@@ -233,86 +240,109 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
           </p>
         </button>
       </div>
+      <div
+        className="common "
+      >
+        <p
+          className="optionalText"
+        >
+          Optional
+        </p>
+      </div>
+      
+      
     </div>
   </div>
   <div>
     <div
-      className="container"
+      className="container "
     >
-      <p
-        className="label"
+      <div
+        className="container  slideLabel label"
       >
-        Return Date
-      </p>
+        <label
+          className="label"
+          htmlFor="selectedDate"
+        >
+          Return Date
+        </label>
+      </div>
       <div
         className="dateContainer"
       >
         <div
           className="date"
         >
-          <div
+          <button
             className="container"
+            disabled={false}
             onClick={[Function]}
+            type="button"
           >
-            <p
-              className="selectedDate"
+            
+            <span
+              className="dropdownIconContainer"
             >
-              
-              <span
-                className="dropdownIconContainer"
-              >
-                <img
-                  alt="Dropdown icon"
-                  src="test-file-stub"
-                />
-              </span>
-            </p>
-          </div>
+              <img
+                alt="Dropdown icon"
+                src="test-file-stub"
+              />
+            </span>
+          </button>
         </div>
         <div
           className="month"
         >
-          <div
+          <button
             className="container"
+            disabled={false}
             onClick={[Function]}
+            type="button"
           >
-            <p
-              className="selectedDate"
+            
+            <span
+              className="dropdownIconContainer"
             >
-              
-              <span
-                className="dropdownIconContainer"
-              >
-                <img
-                  alt="Dropdown icon"
-                  src="test-file-stub"
-                />
-              </span>
-            </p>
-          </div>
+              <img
+                alt="Dropdown icon"
+                src="test-file-stub"
+              />
+            </span>
+          </button>
         </div>
         <div
           className="year"
         >
-          <div
+          <button
             className="container"
+            disabled={false}
             onClick={[Function]}
+            type="button"
           >
-            <p
-              className="selectedDate"
+            
+            <span
+              className="dropdownIconContainer"
             >
-              
-              <span
-                className="dropdownIconContainer"
-              >
-                <img
-                  alt="Dropdown icon"
-                  src="test-file-stub"
-                />
-              </span>
-            </p>
-          </div>
+              <img
+                alt="Dropdown icon"
+                src="test-file-stub"
+              />
+            </span>
+          </button>
         </div>
+      </div>
+      
+      
+      <div
+        className="common tooltipContainer "
+      >
+        <a
+          href="https://www.google.com"
+          rel="noreferrer"
+          target="_blank"
+        >
+          Visit Google to know more.
+        </a>
       </div>
     </div>
   </div>
@@ -343,6 +373,7 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
         className="container  "
       >
         <label
+          className="label"
           htmlFor="test"
         >
           Test Input
@@ -353,6 +384,7 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
       >
         <div
           className="container "
+          data-testid="tooltip-icon-Permitted with no fee"
         >
           <img
             alt="tooltip"
@@ -394,12 +426,14 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
         className="container  label"
       >
         <label
+          className="label"
           htmlFor="description"
         >
           Additional Details
         </label>
         <div
           className="container tooltip"
+          data-testid="tooltip-icon-What is Lorem Ipsum?"
         >
           <img
             alt="tooltip"
@@ -425,9 +459,10 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
     className="container"
   >
     <div
-      className="container  componentHeading slideLabel"
+      className="container  slideLabel componentHeading"
     >
       <label
+        className="label"
         htmlFor="license"
       >
         License
@@ -464,21 +499,13 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
           Do you have a license?
         </span>
       </label>
-      <div
-        className="container tooltip"
-      >
-        <img
-          alt="tooltip"
-          onClick={[Function]}
-          src="test-file-stub"
-        />
-      </div>
     </div>
     
     <div
       className="common optionalText"
     >
       <a
+        className="helpLink"
         href="#"
         rel="noreferrer"
         target="_blank"
@@ -492,15 +519,17 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
     className="container"
   >
     <div
-      className="container  componentHeading slideLabel"
+      className="container  slideLabel componentHeading"
     >
       <label
+        className="label"
         htmlFor="formOneRadioGroup"
       >
         Radio Group
       </label>
       <div
         className="container tooltip"
+        data-testid="tooltip-icon-What is Lorem Ipsum?"
       >
         <img
           alt="tooltip"
@@ -523,6 +552,7 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
           <input
             checked={false}
             className="radioInput"
+            data-testid="radio-button-One Radio"
             disabled={false}
             name="formOneRadioGroup"
             onBlur={[Function]}
@@ -553,6 +583,7 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
           <input
             checked={true}
             className="radioInput"
+            data-testid="radio-button-Two Radio"
             disabled={false}
             name="formOneRadioGroup"
             onBlur={[Function]}
@@ -583,6 +614,7 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
           <input
             checked={false}
             className="radioInput"
+            data-testid="radio-button-Three Radio"
             disabled={false}
             name="formOneRadioGroup"
             onBlur={[Function]}
@@ -605,6 +637,7 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
         </label>
         <div
           className="container tooltip"
+          data-testid="tooltip-icon-Heading"
         >
           <img
             alt="tooltip"
@@ -632,15 +665,17 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
     className="container"
   >
     <div
-      className="container  label slideLabel"
+      className="container  slideLabel label"
     >
       <label
+        className="label"
         htmlFor="idProofs"
       >
         Upload your documents
       </label>
       <div
         className="container tooltip"
+        data-testid="tooltip-icon-What is Lorem Ipsum?"
       >
         <img
           alt="tooltip"
@@ -653,7 +688,7 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
       className="uploadButtonContainer"
     >
       <input
-        disabled={true}
+        disabled={false}
         hidden="hidden"
         multiple={true}
         onChange={[Function]}

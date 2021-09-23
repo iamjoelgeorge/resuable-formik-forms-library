@@ -24,8 +24,8 @@ function App() {
         {/* <CustomForm initialValues={initialValuesFormOne} /> */}
         {/* <FormThree /> */}
         {/* <FormFour /> */}
-        <FormTwo />
-        {/* <FormOne /> */}
+        {/* <FormTwo /> */}
+        <FormOne />
       </div>
     </Provider>
   );

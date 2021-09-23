@@ -55,6 +55,7 @@ const DropdownWithoutAutoComplete = (props) => {
 
       return (
         <li
+          data-testid={`${name}-dropdown-item`}
           key={uuidv4()}
           onClick={() => setFieldValue(name, item)}
           className={dropdownItemClasses}
@@ -70,7 +71,7 @@ const DropdownWithoutAutoComplete = (props) => {
         const { setFieldValue } = form;
 
         return (
-          <div className={containerClasses}>
+          <div data-testid={`${name}-dropdown-component`} className={containerClasses}>
             {label && (
               <SlidingLabel
                 label={label}
@@ -85,6 +86,7 @@ const DropdownWithoutAutoComplete = (props) => {
             )}
             <div
               role='button'
+              data-testid={`${name}-dropdown-button`}
               tabIndex={!isDisabled ? '0' : ''}
               ref={dropdownContainerRef}
               className={styles.dropdownContainer}
@@ -97,7 +99,9 @@ const DropdownWithoutAutoComplete = (props) => {
               </span>
 
               {isDropdownOpen && (
-                <ul className={styles.dropdownList}>{renderDropdownItems(setFieldValue)}</ul>
+                <ul data-testid={`${name}-dropdown-list`} className={styles.dropdownList}>
+                  {renderDropdownItems(setFieldValue)}
+                </ul>
               )}
             </div>
 

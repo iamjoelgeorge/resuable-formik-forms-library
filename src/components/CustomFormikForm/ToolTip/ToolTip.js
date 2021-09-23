@@ -25,7 +25,11 @@ const ToolTip = (props) => {
     ) : null;
 
   return (
-    <div ref={tooltipContainerRef} className={containerClasses}>
+    <div
+      data-testid={`tooltip-icon-${heading}`}
+      ref={tooltipContainerRef}
+      className={containerClasses}
+    >
       <img src={ToolTipIcon} alt='tooltip' onClick={toggleTooltipBox} />
 
       {isBoxOpen && (

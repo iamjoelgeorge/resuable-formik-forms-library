@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`[Component]: DropdownWithoutAutoComplete should match the Snapshot 1`] = `
+<form
+  action="#"
+  onReset={[Function]}
+  onSubmit={[Function]}
+>
+  <div
+    className="container "
+    data-testid="salutation-dropdown-component"
+  >
+    <div
+      className="container  "
+    >
+      <label
+        className="label"
+        htmlFor="selectedDate"
+      >
+        salutation
+      </label>
+    </div>
+    <div
+      className="dropdownContainer"
+      data-testid="salutation-dropdown-button"
+      onClick={[Function]}
+      role="button"
+      tabIndex="0"
+    >
+      
+      <span
+        className="dropdownIconContainer"
+      >
+        <img
+          alt="Dropdown icon"
+          src="test-file-stub"
+        />
+      </span>
+    </div>
+    
+    
+    
+  </div>
+</form>
+`;

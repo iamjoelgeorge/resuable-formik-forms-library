@@ -47,6 +47,7 @@ const CheckboxGroup = (props) => {
         <div className={checkBoxGroupStyles.checkBoxWithLabel} key={index}>
           <label className={styles.optionLabel}>
             <Field
+              data-testid={`checkbox-${option.label}`}
               className={styles.checkboxInput}
               type='checkbox'
               name={name}

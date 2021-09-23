@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React from 'react';
 
 import { render, cleanup, waitFor } from '@testing-library/react';
@@ -7,13 +6,31 @@ import userEvent from '@testing-library/user-event';
 import renderer from 'react-test-renderer';
 
 import Button from '../../Button/Button';
-import Checkbox from '../Checkbox';
 import FormContainer from '../../FormContainer/FormContainer';
+import RadioButtonGroup from '../../RadioButtonGroup/RadioButtonGroup';
+
+const radioOptions = [
+  { label: 'One Radio', value: 'one' },
+  { label: 'Two Radio', value: 'two' },
+  {
+    label: 'Three Radio',
+    value: 'three',
+    tooltip: {
+      heading: 'Heading',
+      customDescriptionElement: (
+        <p>
+          I'm a custom description Element. Look me up on
+          <a href='https://www.google.com'>Google</a>
+        </p>
+      ),
+    },
+  },
+];
 
 const defaultProps = {
-  name: 'terms',
-  optionLabel: 'I accept',
-  mainLabel: 'terms',
+  name: 'radioOption',
+  options: radioOptions,
+  mainLabel: 'radioOption',
   isRequired: false,
   isDisabled: false,
   helpLink: '',
@@ -24,13 +41,10 @@ const defaultProps = {
   mainLabelTooltipBoxHeading: '',
   mainLabelTooltipBoxDescription: '',
   mainLabelTooltipBoxDescriptionElement: null,
-  optionLabelTooltipBoxHeading: '',
-  optionLabelTooltipBoxDescription: '',
-  optionLabelTooltipBoxDescriptionElement: null,
 };
 
 const initialValues = {
-  terms: false,
+  radioOption: '',
 };
 
 const defaultValidations = [];
@@ -38,7 +52,7 @@ const handleSubmit = jest.fn();
 
 afterEach(cleanup);
 
-describe('[Component]: Checkbox', () => {
+describe('[Component]: RadioButtonGroup', () => {
   it('should match the Snapshot', () => {
     const tree = renderer
       .create(
@@ -47,14 +61,14 @@ describe('[Component]: Checkbox', () => {
           validations={defaultValidations}
           onSubmit={handleSubmit}
         >
-          <Checkbox {...defaultProps} />
+          <RadioButtonGroup {...defaultProps} />
         </FormContainer>,
       )
       .toJSON();
     expect(tree).toMatchSnapshot();
   });
 
-  it('should render a disabled checkbox', () => {
+  it('should render disabled checkboxes', () => {
     const props = {
       ...defaultProps,
       isDisabled: true,
@@ -66,12 +80,14 @@ describe('[Component]: Checkbox', () => {
         validations={defaultValidations}
         onSubmit={handleSubmit}
       >
-        <Checkbox {...props} />
+        <RadioButtonGroup {...props} />
       </FormContainer>,
     );
 
-    const checkbox = getByTestId('checkbox-terms');
-    expect(checkbox).toHaveAttribute('disabled');
+    radioOptions.forEach((option) => {
+      const radioButton = getByTestId(`radio-button-${option.label}`);
+      expect(radioButton).toHaveAttribute('disabled');
+    });
   });
 
   it('should render the optional text', () => {
@@ -86,7 +102,7 @@ describe('[Component]: Checkbox', () => {
         validations={defaultValidations}
         onSubmit={handleSubmit}
       >
-        <Checkbox {...props} />
+        <RadioButtonGroup {...props} />
       </FormContainer>,
     );
 
@@ -106,7 +122,7 @@ describe('[Component]: Checkbox', () => {
         validations={defaultValidations}
         onSubmit={handleSubmit}
       >
-        <Checkbox {...props} />
+        <RadioButtonGroup {...props} />
       </FormContainer>,
     );
 
@@ -126,14 +142,14 @@ describe('[Component]: Checkbox', () => {
         validations={defaultValidations}
         onSubmit={handleSubmit}
       >
-        <Checkbox {...props} />
+        <RadioButtonGroup {...props} />
       </FormContainer>,
     );
 
     expect(getByText('Test tooltip link')).toBeTruthy();
   });
 
-  it('should show the error component for a required checkbox', async () => {
+  it('should show the error component for a required radio button', async () => {
     const props = {
       ...defaultProps,
       isRequired: true,
@@ -141,10 +157,10 @@ describe('[Component]: Checkbox', () => {
 
     const validations = [
       {
-        name: 'terms',
-        type: 'checkbox',
+        name: 'radioOption',
+        type: 'radio_button_group',
         isRequired: true,
-        message: 'You need to agree to our Terms and Conditions',
+        message: 'Please select at least one option',
       },
     ];
 
@@ -154,7 +170,7 @@ describe('[Component]: Checkbox', () => {
         validations={validations}
         onSubmit={handleSubmit}
       >
-        <Checkbox {...props} />
+        <RadioButtonGroup {...props} />
         <Button label='Submit' />
       </FormContainer>,
     );
@@ -163,10 +179,30 @@ describe('[Component]: Checkbox', () => {
     userEvent.click(submitButton);
 
     await waitFor(() => {
-      expect(getByTestId('error-terms')).toHaveTextContent(
-        'You need to agree to our Terms and Conditions',
+      expect(getByTestId('error-radioOption')).toHaveTextContent(
+        'Please select at least one option',
       );
     });
+  });
+
+  it('should select a radio button by default', async () => {
+    const initialValues = {
+      radioOption: 'two',
+    };
+
+    const { getByText, getByTestId } = render(
+      <FormContainer
+        initialValues={initialValues}
+        validations={defaultValidations}
+        onSubmit={handleSubmit}
+      >
+        <RadioButtonGroup {...defaultProps} />
+        <Button label='Submit' />
+      </FormContainer>,
+    );
+
+    const checkedCheckbox = getByTestId('radio-button-Two Radio');
+    expect(checkedCheckbox.checked).toEqual(true);
   });
 
   it('should render the Tooltip icon component for the main label', () => {
@@ -182,7 +218,7 @@ describe('[Component]: Checkbox', () => {
         validations={defaultValidations}
         onSubmit={handleSubmit}
       >
-        <Checkbox {...props} />
+        <RadioButtonGroup {...props} />
       </FormContainer>,
     );
 
@@ -190,24 +226,22 @@ describe('[Component]: Checkbox', () => {
     expect(toolTipComponent).toBeTruthy();
   });
 
-  it('should render the Tooltip icon component for the main label', () => {
-    const props = {
-      ...defaultProps,
-      optionLabelTooltipBoxHeading: 'Option Tooltip',
-      optionLabelTooltipBoxDescription: 'Lorem Ipsum is simply dummy text.',
-    };
-
+  it('should render the Tooltip icon component for the option label', () => {
     const { getByTestId } = render(
       <FormContainer
         initialValues={initialValues}
         validations={defaultValidations}
         onSubmit={handleSubmit}
       >
-        <Checkbox {...props} />
+        <RadioButtonGroup {...defaultProps} />
       </FormContainer>,
     );
 
-    const tooltipComponent = getByTestId('tooltip-icon-Option Tooltip');
-    expect(tooltipComponent).toBeTruthy();
+    radioOptions.forEach((item) => {
+      if (item?.tooltip?.heading) {
+        const tooltipComponent = getByTestId(`tooltip-icon-${item.tooltip.heading}`);
+        expect(tooltipComponent).toBeTruthy();
+      }
+    });
   });
 });
