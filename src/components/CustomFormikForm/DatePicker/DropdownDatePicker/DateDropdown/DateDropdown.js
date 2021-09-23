@@ -19,7 +19,7 @@ const DateDropdown = (props) => {
   const renderDropdownItems = () =>
     dropdownArray?.map((item) => {
       const dropdownItemClasses =
-        String(item.name) === value
+        String(item.name).toString() === value.toString()
           ? joinClassNames([styles.dropdownItem, styles.selected])
           : styles.dropdownItem;
 

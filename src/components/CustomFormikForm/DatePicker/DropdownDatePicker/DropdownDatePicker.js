@@ -11,7 +11,7 @@ import {
   getArrayOfYearsBetweenTwoYearsAsObjectsWithADisabledProperty,
   getFullDate,
   getNumOfDaysInAMonth,
-  getSmartDates,
+  getSmartDayNumbers,
   joinClassNames,
 } from '../../../../utils/utils';
 import AdditionalInfo from '../../AdditionalInfo/AdditionalInfo';
@@ -43,6 +43,10 @@ const DropdownDatePicker = (props) => {
   } = props;
 
   const { errors, values } = formik;
+
+  const [months, setMonths] = useState([]);
+  const [years, setYears] = useState([]);
+  const [datesInAMonthArray, setDatesInAMonthArray] = useState([]);
 
   const [dateObj, setDateObj] = useState({
     date: '',
@@ -77,40 +81,110 @@ const DropdownDatePicker = (props) => {
   const maxDayNumber = endDate.getDate();
   const minMonthIndex = startDate.getMonth();
   const maxMonthIndex = endDate.getMonth();
-  const currentMonthIndex = defaultMonths.findIndex((month) => month.name === dateObj.month);
+  const selectedMonthIndex = defaultMonths.findIndex((month) => month.name === dateObj.month);
   const selectedYear = dateObj?.year;
 
   const dateFormat = 'D MMM YYYY';
   const initialDate = values[name] ? values[name] : new Date();
   const formattedDate = moment(initialDate).format(dateFormat);
 
-  let yearsArray = getArrayOfYearsBetweenTwoYearsAsObjectsWithADisabledProperty(
-    startYear,
-    MAX_NUM_OF_YEARS,
-  );
-  let monthsArray = getSmartMonths(selectedYear, startYear, endYear, minMonthIndex, maxMonthIndex);
-  let datesInAMonthArray = getSmartDates(
-    dateObj.month,
-    dateObj.year,
-    selectedYear,
-    startYear,
-    endYear,
-    currentMonthIndex,
-    minMonthIndex,
-    maxMonthIndex,
-    minDayNumber,
-    maxDayNumber,
-  );
-
   const userHasVisitedTheInputField = formik.touched[name];
   const inputFieldHasErrors = errors[name];
   const addErrorClassesToLabelAndInput = !!userHasVisitedTheInputField && !!inputFieldHasErrors;
 
+  const getDateObj = (formattedDate) => {
+    const dateArray = formattedDate.split(' ');
+
+    const date = dateArray[0];
+    const month = dateArray[1];
+    const year = dateArray[2];
+
+    return {
+      date,
+      month,
+      year,
+    };
+  };
+
+  const handleDropdownItemClick = (item, type) => {
+    const selectedDayNumber = parseInt(dateObj.date);
+
+    if (type.toLowerCase() === 'month' || type.toLowerCase() === 'year') {
+      const numOfDaysInSelectedMonth =
+        type.toLowerCase() === 'month'
+          ? getNumOfDaysInAMonth(item.name, dateObj.year)
+          : getNumOfDaysInAMonth(dateObj.month, item.name);
+
+      if (selectedDayNumber > numOfDaysInSelectedMonth) {
+        setDateObj({
+          ...dateObj,
+          [type]: item.name,
+          date: 1,
+        });
+      } else {
+        setDateObj({
+          ...dateObj,
+          [type]: item.name,
+        });
+      }
+    } else {
+      setDateObj({
+        ...dateObj,
+        [type]: item.name,
+      });
+    }
+  };
+
+  // Set the value for the dateObj.
   useEffect(() => {
     const initialDateObj = getDateObj(formattedDate);
     setDateObj(initialDateObj);
   }, [name, formattedDate]);
 
+  // Set the array values for years, months, and dates.
+  useEffect(() => {
+    const yearsArray = getArrayOfYearsBetweenTwoYearsAsObjectsWithADisabledProperty(
+      startYear,
+      MAX_NUM_OF_YEARS,
+    );
+    const monthsArray = getSmartMonths(
+      selectedYear,
+      startYear,
+      endYear,
+      minMonthIndex,
+      maxMonthIndex,
+    );
+    const datesInAMonthArray = getSmartDayNumbers(
+      dateObj.month,
+      dateObj.year,
+      selectedYear,
+      startYear,
+      endYear,
+      selectedMonthIndex,
+      minMonthIndex,
+      maxMonthIndex,
+      minDayNumber,
+      maxDayNumber,
+    );
+
+    setDatesInAMonthArray(datesInAMonthArray);
+    setMonths(monthsArray);
+    setYears(yearsArray);
+  }, [
+    dateObj.month,
+    dateObj.year,
+    selectedYear,
+    startYear,
+    endYear,
+    selectedMonthIndex,
+    minMonthIndex,
+    maxMonthIndex,
+    minDayNumber,
+    maxDayNumber,
+    MAX_NUM_OF_YEARS,
+  ]);
+
+  // Set the final value (selected date) of the component.
   useEffect(() => {
     const { setFieldValue } = formik;
     const { date, month, year } = dateObj;
@@ -131,48 +205,52 @@ const DropdownDatePicker = (props) => {
     }
   }, [dateObj, formik, name, formattedDate]);
 
-  const getDateObj = (formattedDate) => {
-    const dateArray = formattedDate.split(' ');
+  // Reset the selected value if it is out of the specified range.
+  useEffect(() => {
+    const selectedYear = dateObj.year;
+    const selectedDayNumber = dateObj.date;
 
-    const date = dateArray[0];
-    const month = dateArray[1];
-    const year = dateArray[2];
+    const selectedDateIsLessThanOrEqualToMinDate =
+      selectedYear &&
+      selectedYear <= startYear &&
+      selectedMonthIndex <= minMonthIndex &&
+      datesInAMonthArray[selectedDayNumber - 1]?.isDisabled;
 
-    return {
-      date,
-      month,
-      year,
-    };
-  };
+    const selectedDateIsGreaterThanOrEqualToMaxDate =
+      selectedYear &&
+      selectedYear >= endYear &&
+      selectedMonthIndex >= maxMonthIndex &&
+      datesInAMonthArray[selectedDayNumber]?.isDisabled;
 
-  const handleDropdownItemClick = (item, type) => {
-    const selectedDate = parseInt(dateObj.date);
-
-    if (type.toLowerCase() === 'month' || type.toLowerCase() === 'year') {
-      const numOfDaysInSelectedMonth =
-        type.toLowerCase() === 'month'
-          ? getNumOfDaysInAMonth(item.name, dateObj.year)
-          : getNumOfDaysInAMonth(dateObj.month, item.name);
-
-      if (selectedDate > numOfDaysInSelectedMonth) {
-        setDateObj({
-          ...dateObj,
-          [type]: item.name,
-          date: 1,
-        });
-      } else {
-        setDateObj({
-          ...dateObj,
-          [type]: item.name,
-        });
-      }
-    } else {
-      setDateObj({
-        ...dateObj,
-        [type]: item.name,
-      });
+    if (selectedDateIsLessThanOrEqualToMinDate) {
+      setDateObj((prevState) => ({
+        ...prevState,
+        date: minDayNumber,
+        month: months[minMonthIndex]?.name,
+        year: startYear,
+      }));
+    } else if (selectedDateIsGreaterThanOrEqualToMaxDate) {
+      setDateObj((prevState) => ({
+        ...prevState,
+        date: maxDayNumber,
+        month: months[maxMonthIndex]?.name,
+        year: endYear,
+      }));
     }
-  };
+  }, [
+    dateObj.year,
+    dateObj.month,
+    dateObj.date,
+    minDayNumber,
+    minMonthIndex,
+    maxDayNumber,
+    maxMonthIndex,
+    selectedMonthIndex,
+    startYear,
+    endYear,
+    months,
+    datesInAMonthArray,
+  ]);
 
   return (
     <div className={containerClasses}>
@@ -206,7 +284,7 @@ const DropdownDatePicker = (props) => {
               <div className={styles.month}>
                 <DateDropdown
                   value={month}
-                  dropdownArray={monthsArray}
+                  dropdownArray={months}
                   onClick={handleDropdownItemClick}
                   type='month'
                   isDisabled={isDisabled}
@@ -215,7 +293,7 @@ const DropdownDatePicker = (props) => {
               <div className={styles.year}>
                 <DateDropdown
                   value={year}
-                  dropdownArray={yearsArray}
+                  dropdownArray={years}
                   onClick={handleDropdownItemClick}
                   type='year'
                   isDisabled={isDisabled}

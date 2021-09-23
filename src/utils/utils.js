@@ -59,7 +59,7 @@ export const getNumOfDaysInAMonth = (month, year) => {
  * @param {Number} selectedYear The year that has been selected
  * @param {Number} startYear The year to start from. (e.g. 2000)
  * @param {Number} endYear The year to end at. (e.g. 2021)
- * @param {Number} currentMonthIndex The index of the current month. Ranges from 0-11; 0 - Jan, 1 - Feb, and so on.
+ * @param {Number} selectedMonthIndex The index of the selected month. Ranges from 0-11; 0 - Jan, 1 - Feb, and so on.
  * @param {Number} minMonthIndex The index of the month to start from. Ranges from 0-11; 0 - Jan, 1 - Feb, and so on.
  * @param {Number} maxMonthIndex The index of the month to end at. Ranges from 0-11; 0 - Jan, 1 - Feb, and so on.
  * @param {Number} minDayNumber The number of a particular day in the month to start from.
@@ -69,13 +69,13 @@ export const getNumOfDaysInAMonth = (month, year) => {
  * It automatically disables the dates depending on the arguments provided.
  * (e.g. [{name: 1, isDisabled: false},{name: 2, isDisabled: false}, . . . ] )
  */
-export const getSmartDates = (
+export const getSmartDayNumbers = (
   month,
   year,
   selectedYear,
   startYear,
   endYear,
-  currentMonthIndex,
+  selectedMonthIndex,
   minMonthIndex,
   maxMonthIndex,
   minDayNumber,
@@ -88,9 +88,9 @@ export const getSmartDates = (
       let isDisabled = false;
 
       if (selectedYear && selectedYear <= startYear) {
-        if (currentMonthIndex < minMonthIndex) {
+        if (selectedMonthIndex < minMonthIndex) {
           isDisabled = true;
-        } else if (currentMonthIndex === minMonthIndex) {
+        } else if (selectedMonthIndex === minMonthIndex) {
           if (index + 1 < minDayNumber) {
             isDisabled = true;
           }
@@ -98,9 +98,9 @@ export const getSmartDates = (
       }
 
       if (selectedYear && selectedYear >= endYear) {
-        if (currentMonthIndex > maxMonthIndex) {
+        if (selectedMonthIndex > maxMonthIndex) {
           isDisabled = true;
-        } else if (currentMonthIndex === maxMonthIndex) {
+        } else if (selectedMonthIndex === maxMonthIndex) {
           if (index + 1 > maxDayNumber) {
             isDisabled = true;
           }
