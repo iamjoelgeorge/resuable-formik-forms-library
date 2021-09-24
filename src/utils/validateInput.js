@@ -96,8 +96,29 @@ export const validateInput = (input, objectToUpdate) => {
 
     case 'calendar_datepicker':
       objectToUpdate[name] = isRequired
-        ? Yup.string().nullable().required(message)
-        : Yup.string().nullable();
+        ? Yup.date().nullable().required(message)
+        : Yup.date().nullable();
+      break;
+
+    case 'dropdown_datepicker':
+      const { date: minDate, message: minDateErrorMessage } = input.minDate;
+      const { date: maxDate, message: maxDateErrorMessage } = input.maxDate;
+
+      objectToUpdate[name] = isRequired
+        ? Yup.date()
+            .transform((value) => {
+              return value;
+            })
+            .min(new Date(minDate), minDateErrorMessage)
+            .max(new Date(maxDate), maxDateErrorMessage)
+            .required(message)
+        : Yup.date()
+            .transform((value) => {
+              return value;
+            })
+            .min(new Date(minDate), minDateErrorMessage)
+            .max(new Date(maxDate), maxDateErrorMessage);
+
       break;
 
     default:
