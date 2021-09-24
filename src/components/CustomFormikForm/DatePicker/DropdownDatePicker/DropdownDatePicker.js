@@ -184,6 +184,18 @@ const DropdownDatePicker = (props) => {
     MAX_NUM_OF_YEARS,
   ]);
 
+  const getFinalDateToSetTheField = (selectedDate) => {
+    const now = new Date();
+    const hours = now.getHours();
+    const minutes = now.getMinutes();
+    const seconds = now.getSeconds();
+
+    const time = `${hours}:${minutes}:${seconds}`;
+    const date = new Date(`${selectedDate} ${time}`);
+
+    return date;
+  };
+
   // Set the final value (selected date) of the component.
   useEffect(() => {
     const { setFieldValue } = formik;
@@ -193,17 +205,17 @@ const DropdownDatePicker = (props) => {
     const selectedDate = date && month && year ? moment(dateString).format(dateFormat) : '';
 
     if (!!selectedDate && !(selectedDate === formattedDate)) {
-      const now = new Date();
-      const hours = now.getHours();
-      const minutes = now.getMinutes();
-      const seconds = now.getSeconds();
-
-      const time = `${hours}:${minutes}:${seconds}`;
-      const date = new Date(`${selectedDate} ${time}`);
+      const date = getFinalDateToSetTheField(selectedDate);
 
       setFieldValue(name, date);
     }
-  }, [dateObj, formik, name, formattedDate]);
+
+    if (date && month && year && values[name] === null) {
+      const date = getFinalDateToSetTheField(selectedDate);
+
+      setFieldValue(name, date);
+    }
+  }, [dateObj, formik, name, formattedDate, values]);
 
   // Reset the selected value if it is out of the specified range.
   useEffect(() => {
