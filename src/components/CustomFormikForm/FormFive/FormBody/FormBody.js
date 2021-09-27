@@ -12,7 +12,7 @@ const FormBody = (props) => {
       <h1>Form 5</h1>
       <DatePicker
         formik={formik}
-        name={names.testDate}
+        name={names.calendarDate}
         label='Test Date'
         // minDate={new Date()}
         // maxDate={new Date('29 Oct 2021')}
@@ -33,10 +33,10 @@ const FormBody = (props) => {
         name={names.departureDate}
         label='Departure Date'
         isDropdown
-        minDate={new Date('12 Feb 2000')}
+        // minDate={new Date('12 Feb 2000')}
         // maxDate={new Date('12 Feb 2024')}
         maxDaysInTheFuture={365}
-        // maxDaysInThePast={400}
+        maxDaysInThePast={900}
         // optionalText='Optional'
         // helpLink='#'
         // helpLinkText='This link is for your help'

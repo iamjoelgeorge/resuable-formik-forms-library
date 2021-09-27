@@ -48,7 +48,7 @@ const FormOne = () => {
     // {
     //   name: 'description',
     //   type: 'string',
-    //   isRequired: false,
+    //   isRequired: true,
     //   message: 'Please add a comment.',
     //   minChars: { num: 2, message: 'Please enter at least 2 characters' },
     //   maxChars: { num: 5, message: 'You can only enter upto 5 characters' },

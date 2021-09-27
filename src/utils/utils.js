@@ -12,7 +12,7 @@ export const joinClassNames = (classesArray) => classesArray.join(' ');
  *
  * @param {Date} fromDate The year to start from (e.g. 2021).
  * @param {Number} numOfDays Number of days to move through (e.g. 50).
- * @param {Boolean} inTheFuture Indicates whether to move forwards or backwards
+ * @param {Boolean} inTheFuture Indicates whether to move forwards or backwards. This is true by default.
  * @returns
  * A date in the future or in the past.
  */
