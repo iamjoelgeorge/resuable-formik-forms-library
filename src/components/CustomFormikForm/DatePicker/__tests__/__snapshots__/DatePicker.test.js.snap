@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`[Component]: DatePicker should match the Snapshot 1`] = `
+<form
+  action="#"
+  onReset={[Function]}
+  onSubmit={[Function]}
+>
+  <div>
+    <div
+      className="container "
+      data-testid="departureDate-calendar-datepicker"
+      id="custom-calendar-date-picker"
+    >
+      <div>
+        <button
+          className="selectedDateContainer"
+          data-testid="departureDate-calendar-toggle-button"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          <div
+            className="container  "
+          >
+            <label
+              className="label"
+              htmlFor="departureDate-selectedDate"
+            >
+              Departure Date
+            </label>
+          </div>
+          <p
+            className="selectedDate"
+            data-testid="departureDate-selectedDate"
+            id="departureDate-selectedDate"
+          >
+            <span
+              className="dropdownIcon"
+            >
+              <img
+                alt="Dropdown icon"
+                src="test-file-stub"
+              />
+            </span>
+          </p>
+        </button>
+      </div>
+      
+      
+      
+    </div>
+  </div>
+</form>
+`;

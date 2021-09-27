@@ -202,7 +202,8 @@ const DropdownDatePicker = (props) => {
     const { date, month, year } = dateObj;
 
     const dateString = `${date} ${month}, ${year}`;
-    const selectedDate = date && month && year ? moment(dateString).format(dateFormat) : '';
+    const selectedDate =
+      date && month && year ? moment(new Date(dateString)).format(dateFormat) : '';
 
     if (!!selectedDate && !(selectedDate === formattedDate)) {
       const date = getFinalDateToSetTheField(selectedDate);
@@ -269,7 +270,7 @@ const DropdownDatePicker = (props) => {
       <SlidingLabel
         label={label}
         inputEntered
-        htmlFor={'selectedDate'}
+        htmlFor='selectedDate'
         customClass={labelClasses}
         showErrorStyle={addErrorClassesToLabelAndInput}
         tooltipBoxHeading={labelTooltipBoxHeading}
@@ -283,7 +284,7 @@ const DropdownDatePicker = (props) => {
           const { date, month, year } = dateObj;
 
           return (
-            <div className={styles.dateContainer}>
+            <div data-testid={`${name}-dropdown-datepicker`} className={styles.dateContainer}>
               <div className={styles.date}>
                 <DateDropdown
                   value={date}

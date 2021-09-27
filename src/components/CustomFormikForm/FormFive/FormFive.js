@@ -35,14 +35,14 @@ const FormFive = () => {
       type: 'calendar_datepicker',
       isRequired: true,
       message: 'Please select a date.',
-      // minDate: {
-      //   date: new Date('12 Feb 2021'),
-      //   message: 'Please select a date after 12 Feb 2021',
-      // },
-      maxDate: {
-        date: new Date('29 Oct 2021'),
-        message: 'Please select a valid date before 29 Oct 2021',
+      minDate: {
+        date: new Date('12 Feb 2021'),
+        message: 'Please select a date after 12 Feb 2021',
       },
+      // maxDate: {
+      //   date: new Date('29 Oct 2021'),
+      //   message: 'Please select a valid date before 29 Oct 2021',
+      // },
       // maxDaysInThePast: { num: 2, message: 'Please select a valid date: past' },
       // maxDaysInTheFuture: { num: 2, message: 'Please select a valid date: future' },
     },

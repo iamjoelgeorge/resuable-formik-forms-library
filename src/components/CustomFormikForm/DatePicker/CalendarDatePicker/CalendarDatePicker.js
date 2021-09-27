@@ -70,7 +70,12 @@ const CalendarDatePicker = (props) => {
   );
 
   return (
-    <div id='custom-calendar-date-picker' className={containerClasses} ref={calendarRef}>
+    <div
+      data-testid={`${name}-calendar-datepicker`}
+      id='custom-calendar-date-picker'
+      className={containerClasses}
+      ref={calendarRef}
+    >
       <Field name={name} {...rest}>
         {({ form, field }) => {
           const { value } = field;
@@ -85,6 +90,7 @@ const CalendarDatePicker = (props) => {
               )}
 
               <button
+                data-testid={`${name}-calendar-toggle-button`}
                 type='button'
                 className={styles.selectedDateContainer}
                 onClick={toggleCalendar}
@@ -93,14 +99,18 @@ const CalendarDatePicker = (props) => {
                 <SlidingLabel
                   label={label}
                   inputEntered={!!value?.toString() ?? value}
-                  htmlFor={'selectedDate'}
+                  htmlFor={`${name}-selectedDate`}
                   showErrorStyle={addErrorClassesToLabelAndInput}
                   tooltipBoxHeading={labelTooltipBoxHeading}
                   tooltipBoxDescription={labelTooltipBoxDescription}
                   tooltipBoxDescriptionElement={labelTooltipBoxDescriptionElement}
                   inputIsRequired={isRequired}
                 />
-                <p id='selectedDate' className={styles.selectedDate}>
+                <p
+                  data-testid={`${name}-selectedDate`}
+                  id={`${name}-selectedDate`}
+                  className={styles.selectedDate}
+                >
                   {value !== null && value !== '' && moment(value).format(dateFormat)}
                   <span className={dropdownIconClasses}>
                     <img src={ArrowNext} alt='Dropdown icon' />
