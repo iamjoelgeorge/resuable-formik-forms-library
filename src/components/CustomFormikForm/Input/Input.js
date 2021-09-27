@@ -32,6 +32,8 @@ const Input = (props) => {
   const { values, errors } = formik;
   const inputValue = values[name];
 
+  // console.log(name, formik.touched[name]);
+
   const [labelView, showLabelView] = useState(false);
   const [slideLabel, setSlideLabel] = useState(false);
   const inputRef = useRef();
@@ -55,7 +57,9 @@ const Input = (props) => {
     setSlideLabel(true);
   };
 
-  const handleBlur = () => {
+  const handleBlur = (e) => {
+    formik.handleBlur(e);
+
     setSlideLabel(false);
     if (inputValue) showLabelView(true);
   };
@@ -119,9 +123,7 @@ const Input = (props) => {
         )}
       </div>
 
-      {errors[name] && formik.touched[name] && (
-        <ErrorText containerClass={styles.errorContainer} fieldName={name} />
-      )}
+      <ErrorText containerClass={styles.errorContainer} fieldName={name} />
 
       <AdditionalInfo
         optionalText={optionalText}

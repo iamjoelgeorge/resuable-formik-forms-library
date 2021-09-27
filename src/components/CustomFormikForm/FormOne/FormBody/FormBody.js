@@ -27,8 +27,10 @@ const radioOptions = [
   },
 ];
 
+
 const FormBody = (props) => {
   const { formik } = props;
+  // console.log(formik.errors)
 
   const testElement = (
     <p>

@@ -121,9 +121,9 @@ const CalendarDatePicker = (props) => {
           );
         }}
       </Field>
-      {errors[name] && formik.touched[name] && (
-        <ErrorText containerClass={styles.errorContainer} fieldName={name} />
-      )}
+
+      <ErrorText containerClass={styles.errorContainer} fieldName={name} />
+
       <AdditionalInfo
         optionalText={optionalText}
         helpLinkText={helpLinkText}

@@ -206,11 +206,13 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
   <div>
     <div
       className="container "
+      data-testid="departureDate-calendar-datepicker"
       id="custom-calendar-date-picker"
     >
       <div>
         <button
           className="selectedDateContainer"
+          data-testid="departureDate-calendar-toggle-button"
           disabled={false}
           onClick={[Function]}
           type="button"
@@ -220,14 +222,15 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
           >
             <label
               className="label"
-              htmlFor="selectedDate"
+              htmlFor="departureDate-selectedDate"
             >
               Departure Date
             </label>
           </div>
           <p
             className="selectedDate"
-            id="selectedDate"
+            data-testid="departureDate-selectedDate"
+            id="departureDate-selectedDate"
           >
             <span
               className="dropdownIcon"
@@ -269,6 +272,7 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
       </div>
       <div
         className="dateContainer"
+        data-testid="returnDate-dropdown-datepicker"
       >
         <div
           className="date"

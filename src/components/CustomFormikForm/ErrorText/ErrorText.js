@@ -12,9 +12,13 @@ const ErrorText = (props) => {
   const containerClasses = joinClassNames([styles.errorMessage, customContainerClass]);
 
   return (
-    <p data-testid={`error-${fieldName}`} className={containerClasses} {...rest}>
-      <ErrorMessage name={fieldName} />
-    </p>
+    <ErrorMessage
+      name={fieldName}
+      data-testid={`error-${fieldName}`}
+      className={containerClasses}
+      {...rest}
+      component='p'
+    />
   );
 };
 

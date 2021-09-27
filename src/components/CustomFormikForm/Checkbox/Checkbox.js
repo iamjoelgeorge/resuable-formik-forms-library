@@ -52,7 +52,8 @@ const Checkbox = (props) => {
     setIsFocused(true);
   };
 
-  const handleBlur = () => {
+  const handleBlur = (e) => {
+    formik.handleBlur(e);
     setIsFocused(false);
   };
 
@@ -101,9 +102,7 @@ const Checkbox = (props) => {
         )}
       </div>
 
-      {addErrorClassesToLabelAndInput && (
-        <ErrorText fieldName={name} containerClass={styles.error} />
-      )}
+      <ErrorText fieldName={name} containerClass={styles.error} />
 
       <AdditionalInfo
         optionalText={optionalText}

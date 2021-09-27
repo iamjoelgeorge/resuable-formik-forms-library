@@ -30,8 +30,6 @@ const FileUploadInput = (props) => {
     ...rest
   } = props;
 
-  const { errors } = formik;
-
   const [selectedFiles, setSelectedFiles] = useState([]);
   const fileRef = useRef();
 
@@ -119,9 +117,8 @@ const FileUploadInput = (props) => {
                 </button>
               </div>
 
-              {errors[name] && formik.touched[name] && (
-                <ErrorText containerClass={styles.errorContainer} fieldName={name} />
-              )}
+              <ErrorText containerClass={styles.errorContainer} fieldName={name} />
+
               <AdditionalInfo
                 customClass={styles.optionalText}
                 optionalText={optionalText}

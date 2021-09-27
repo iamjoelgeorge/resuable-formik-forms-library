@@ -26,50 +26,56 @@ const FormOne = () => {
   )}`;
 
   const validations = [
-    // {
-    //   name: 'name',
-    //   type: 'string',
-    //   isRequired: true,
-    //   message: 'Enter your name',
-    //   minChars: { num: 2, message: 'Please enter at least 2 characters' },
-    // },
-    // {
-    //   name: 'email',
-    //   type: 'email',
-    //   isRequired: true,
-    //   message: 'Enter the correct email id',
-    // },
+    {
+      name: 'name',
+      type: 'string',
+      isRequired: true,
+      message: 'Enter your name',
+      minChars: { num: 2, message: 'Please enter at least 2 characters' },
+    },
+    {
+      name: 'email',
+      type: 'email',
+      isRequired: true,
+      message: 'Enter the correct email id',
+    },
+    {
+      name: 'license',
+      type: 'checkbox',
+      isRequired: true,
+      message: 'Do you have a license?',
+    },
     {
       name: 'departureDate',
       type: 'calendar_datepicker',
       isRequired: true,
       message: 'Please select a date',
     },
-    // {
-    //   name: 'description',
-    //   type: 'string',
-    //   isRequired: true,
-    //   message: 'Please add a comment.',
-    //   minChars: { num: 2, message: 'Please enter at least 2 characters' },
-    //   maxChars: { num: 5, message: 'You can only enter upto 5 characters' },
-    // },
-    // {
-    //   name: 'age',
-    //   type: 'number',
-    //   isRequired: true,
-    //   message: 'Tell us your age',
-    // },
-    // {
-    //   name: 'idProofs',
-    //   type: 'file',
-    //   isRequired: true,
-    //   message: 'Please upload a file',
-    //   formats: {
-    //     formats: SUPPORTED_FORMATS,
-    //     message: fileSizeErrorMessage,
-    //   },
-    //   maxSize: 217100001,
-    // },
+    {
+      name: 'description',
+      type: 'string',
+      isRequired: true,
+      message: 'Please add a comment.',
+      minChars: { num: 2, message: 'Please enter at least 2 characters' },
+      maxChars: { num: 5, message: 'You can only enter upto 5 characters' },
+    },
+    {
+      name: 'age',
+      type: 'number',
+      isRequired: true,
+      message: 'Tell us your age',
+    },
+    {
+      name: 'idProofs',
+      type: 'file',
+      isRequired: true,
+      message: 'Please upload a file',
+      formats: {
+        formats: SUPPORTED_FORMATS,
+        message: fileSizeErrorMessage,
+      },
+      maxSize: 217100001,
+    },
   ];
 
   const handleSubmit = (values) => console.log('Form 1 submitted:', values);

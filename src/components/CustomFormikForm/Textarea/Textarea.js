@@ -42,7 +42,8 @@ const Textarea = (props) => {
   const placeholderButtonClasses = joinClassNames([styles.textarea, styles.placeholderButton]);
   const containerClasses = joinClassNames([styles.container, customContainerClass]);
 
-  const handleBlurOnField = () => {
+  const handleBlurOnField = (e) => {
+    formik.handleBlur(e);
     setSlideLabel(false);
     if (inputValue) showLabelView(true);
   };
@@ -99,9 +100,7 @@ const Textarea = (props) => {
         )}
       </div>
 
-      {errors[name] && formik.touched[name] && (
-        <ErrorText containerClass={styles.errorContainer} fieldName={name} />
-      )}
+      <ErrorText containerClass={styles.errorContainer} fieldName={name} />
 
       <AdditionalInfo
         optionalText={optionalText}
