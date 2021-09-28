@@ -76,7 +76,7 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
             value=""
           />
           <div
-            className="container  "
+            className="container inputIsRequired "
           >
             <label
               className="label"
@@ -114,7 +114,7 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
             value=""
           />
           <div
-            className="container  slideLabel "
+            className="container inputIsRequired slideLabel "
           >
             <label
               className="label"
@@ -164,7 +164,7 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
         value=""
       />
       <div
-        className="container  "
+        className="container inputIsRequired "
       >
         <label
           className="label"
@@ -354,66 +354,6 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
     </div>
   </div>
   <div
-    className="container "
-  >
-    <div
-      className="inputWithTooltipContainer"
-    >
-      <input
-        className={
-          Array [
-            "input",
-          ]
-        }
-        data-testid="input-test"
-        disabled={false}
-        id="test"
-        name="test"
-        onBlur={[Function]}
-        onChange={[Function]}
-        onFocus={[Function]}
-        placeholder=""
-        type="number"
-        value=""
-      />
-      <div
-        className="container  "
-      >
-        <label
-          className="label"
-          htmlFor="test"
-        >
-          Test Input
-        </label>
-      </div>
-      <div
-        className="toolTipWithImage"
-      >
-        <div
-          className="container "
-          data-testid="tooltip-icon-Permitted with no fee"
-        >
-          <img
-            alt="tooltip"
-            onClick={[Function]}
-            src="test-file-stub"
-          />
-        </div>
-      </div>
-    </div>
-    <div
-      className="common "
-    >
-      <p
-        className="optionalText"
-      >
-        Optional
-      </p>
-    </div>
-    
-    
-  </div>
-  <div
     className="container description"
   >
     <div
@@ -430,7 +370,7 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
         value=""
       />
       <div
-        className="container  label"
+        className="container inputIsRequired label"
       >
         <label
           className="label"
@@ -466,7 +406,7 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
     className="container"
   >
     <div
-      className="container  slideLabel componentHeading"
+      className="container inputIsRequired slideLabel componentHeading"
     >
       <label
         className="label"
@@ -672,7 +612,7 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
     className="container"
   >
     <div
-      className="container  slideLabel label"
+      className="container inputIsRequired slideLabel label"
     >
       <label
         className="label"

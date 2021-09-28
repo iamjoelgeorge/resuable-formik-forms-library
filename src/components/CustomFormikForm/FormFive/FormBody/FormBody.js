@@ -14,7 +14,7 @@ const FormBody = (props) => {
         formik={formik}
         name={names.calendarDate}
         label='Test Date'
-        // minDate={new Date()}
+        // minDate={new Date('3 Aug 2021')}
         // maxDate={new Date('29 Oct 2021')}
         // maxDaysInTheFuture={5}
         // maxDaysInThePast={10}
@@ -34,7 +34,7 @@ const FormBody = (props) => {
         label='Departure Date'
         isDropdown
         minDate={new Date('3 Feb 2000')}
-        maxDate={new Date('12 Feb 2024')}
+        // maxDate={new Date('12 Feb 2024')}
         // maxDaysInTheFuture={365}
         // maxDaysInThePast={900}
         // optionalText='Optional'

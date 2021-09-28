@@ -3,6 +3,7 @@ import React, { Children, cloneElement } from 'react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 
+import './FormContainer.module.scss';
 import { validateInput } from '../../../utils/validateInput';
 
 const FormContainer = (props) => {

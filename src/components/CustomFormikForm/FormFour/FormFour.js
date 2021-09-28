@@ -10,10 +10,10 @@ const FormFour = () => {
   const initialValues = {
     name: '',
     testCheckbox: false,
-    checkboxGroup: [],
-    radioGroup: '',
-    // radioGroup: 'three', // Default checked value
-    // checkboxGroup: ['two', 'eight'], // Default checked value
+    // checkboxGroup: [],
+    // radioGroup: '',
+    radioGroup: 'three', // Default checked value
+    checkboxGroup: ['two', 'eight'], // Default checked value
   };
 
   const validations = [

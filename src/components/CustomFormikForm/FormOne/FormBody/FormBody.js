@@ -55,6 +55,7 @@ const FormBody = (props) => {
             name='name'
             label='Name'
             containerClass={styles.input}
+            isRequired
           />
           <Input
             formik={formik}
@@ -65,6 +66,7 @@ const FormBody = (props) => {
             tooltipLinkText='This is a Tooltip link?'
             tooltipLink='#'
             containerClass={styles.input}
+            isRequired
           />
         </div>
       </div>
@@ -76,7 +78,7 @@ const FormBody = (props) => {
         label='Email'
         helpLink='#'
         helpLinkText='This is a Help link?'
-        // isRequired
+        isRequired
         tooltipBoxHeading='Permitted with no fee'
         tooltipBoxDescription='For cancellation, credit to Travel Bank for the full ticket value including any fare portion where Velocity Points have been redeemed.'
       />
@@ -117,7 +119,7 @@ const FormBody = (props) => {
         // isRequired
         // isDisabled
       />
-      <Input
+      {/* <Input
         formik={formik}
         type='number'
         name='test'
@@ -125,7 +127,7 @@ const FormBody = (props) => {
         optionalText='Optional'
         tooltipBoxHeading='Permitted with no fee'
         tooltipBoxDescription='For cancellation, credit to Travel Bank for the full ticket value including any fare portion where Velocity Points have been redeemed.'
-      />
+      /> */}
       <Textarea
         formik={formik}
         containerClass={styles.description}
@@ -139,6 +141,7 @@ const FormBody = (props) => {
         // helpLinkText='This link is for your help'
         // tooltipLink='https://www.google.com'
         // tooltipLinkText='Visit Google to know more.'
+        isRequired
       />
       <Checkbox
         formik={formik}
@@ -149,6 +152,7 @@ const FormBody = (props) => {
         helpLinkText='This link is for your help'
         // optionLabelTooltipBoxHeading='My description is a custom element!!!'
         // optionLabelTooltipBoxDescriptionElement={testElement}
+        isRequired
       />
       <RadioButtonGroup
         name='formOneRadioGroup'
@@ -169,7 +173,7 @@ const FormBody = (props) => {
         labelTooltipBoxDescription='Lorem Ipsum is simply dummy text.'
         optionalText='test'
         multiple
-        // isRequired
+        isRequired
         // isDisabled
       />
 
