@@ -14,6 +14,10 @@ const DateDropdown = (props) => {
   const [isDropdownOpen, setIsDropdownOpen, toggleDropdown] =
     useToggleDropdown(dropdownContainerRef);
 
+  const containerClasses = isDisabled
+    ? joinClassNames([styles.container, styles.disabled])
+    : styles.container;
+
   const functionThatDoesNothing = () => {};
 
   const renderDropdownItems = () =>
@@ -26,6 +30,7 @@ const DateDropdown = (props) => {
       return (
         <li key={uuidv4()} className={dropdownItemClasses}>
           <button
+            data-testid='dropdown-item-button'
             disabled={item.isDisabled}
             type='button'
             onClick={!item.isDisabled ? () => onClick(item, type) : functionThatDoesNothing}
@@ -38,7 +43,7 @@ const DateDropdown = (props) => {
 
   return (
     <div
-      className={styles.container}
+      className={containerClasses}
       role='button'
       tabIndex={!isDisabled ? '0' : ''}
       ref={dropdownContainerRef}
@@ -51,7 +56,11 @@ const DateDropdown = (props) => {
         <img src={ArrowNext} alt='Dropdown icon' />
       </span>
 
-      {isDropdownOpen && <ul className={styles.dropdownContainer}>{renderDropdownItems()}</ul>}
+      {isDropdownOpen && (
+        <ul data-testid='date-dropdown' className={styles.dropdownContainer}>
+          {renderDropdownItems()}
+        </ul>
+      )}
     </div>
   );
 };

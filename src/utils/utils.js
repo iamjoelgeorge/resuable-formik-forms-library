@@ -54,6 +54,16 @@ export const getNumOfDaysInAMonth = (month, year) => {
 
 /**
  *
+ * @param {Number} dayNumber Number denoting the number of the day in the month. (e.g. 2, which will be the second day of the month)
+ * @returns
+ * A number (of type String) that has 0 prepended to it if the input number is less than 10.
+ */
+export const prependZeroToDayNumber = (dayNumber) => {
+  return ('0' + dayNumber).slice(-2);
+};
+
+/**
+ *
  * @param {String} month The month for which to generate the dates.
  * @param {Number} year The year for which to generate the dates
  * @param {Number} selectedYear The year that has been selected
@@ -107,7 +117,9 @@ export const getSmartDayNumbers = (
         }
       }
 
-      return { name: index + 1, isDisabled };
+      const dayNumber = prependZeroToDayNumber(index + 1);
+
+      return { name: dayNumber, isDisabled };
     }),
   ];
 

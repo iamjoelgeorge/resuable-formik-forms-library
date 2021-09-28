@@ -33,10 +33,10 @@ const FormBody = (props) => {
         name={names.departureDate}
         label='Departure Date'
         isDropdown
-        // minDate={new Date('12 Feb 2000')}
-        // maxDate={new Date('12 Feb 2024')}
-        maxDaysInTheFuture={365}
-        maxDaysInThePast={900}
+        minDate={new Date('3 Feb 2000')}
+        maxDate={new Date('12 Feb 2024')}
+        // maxDaysInTheFuture={365}
+        // maxDaysInThePast={900}
         // optionalText='Optional'
         // helpLink='#'
         // helpLinkText='This link is for your help'

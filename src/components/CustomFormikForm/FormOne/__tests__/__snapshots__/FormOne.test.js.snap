@@ -279,6 +279,7 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
         >
           <div
             className="container"
+            data-testid="returnDate-date-dropdown"
             onClick={[Function]}
             role="button"
             tabIndex="0"
@@ -299,6 +300,7 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
         >
           <div
             className="container"
+            data-testid="returnDate-month-dropdown"
             onClick={[Function]}
             role="button"
             tabIndex="0"
@@ -319,6 +321,7 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
         >
           <div
             className="container"
+            data-testid="returnDate-year-dropdown"
             onClick={[Function]}
             role="button"
             tabIndex="0"

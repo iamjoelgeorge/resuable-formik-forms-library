@@ -84,7 +84,7 @@ const CalendarDatePicker = (props) => {
           return (
             <div>
               {isCalendarOpen && (
-                <div className={styles.calendarContainer}>
+                <div data-testid={`${name}-calendar`} className={styles.calendarContainer}>
                   {renderCalendar(value, setFieldValue)}
                 </div>
               )}

@@ -14,38 +14,38 @@ const FormFive = () => {
   };
 
   const validations = [
+    {
+      name: names.departureDate,
+      type: 'dropdown_datepicker',
+      isRequired: true,
+      message: 'Please select a date.',
+      // minDate: {
+      //   date: new Date('12 Feb 2022'),
+      //   message: 'Please select a date after 12 Feb 2000',
+      // },
+      // maxDate: {
+      //   date: new Date('13 Feb 2021'),
+      //   message: 'Please select a valid date before 12 Feb 2024',
+      // },
+      maxDaysInThePast: { num: 2, message: 'Please select a valid date: past' },
+      // maxDaysInTheFuture: { num: 2, message: 'Please select a valid date: future' },
+    },
     // {
-    //   name: names.departureDate,
-    //   type: 'dropdown_datepicker',
+    //   name: names.calendarDate,
+    //   type: 'calendar_datepicker',
     //   isRequired: true,
     //   message: 'Please select a date.',
-    //   // minDate: {
-    //   //   date: new Date('12 Feb 2020'),
-    //   //   message: 'Please select a date after 12 Feb 2000',
-    //   // },
+    //   minDate: {
+    //     date: new Date('12 Feb 2021'),
+    //     message: 'Please select a date after 12 Feb 2021',
+    //   },
     //   // maxDate: {
-    //   //   date: new Date('13 Feb 2021'),
-    //   //   message: 'Please select a valid date before 12 Feb 2024',
+    //   //   date: new Date('29 Oct 2021'),
+    //   //   message: 'Please select a valid date before 29 Oct 2021',
     //   // },
     //   // maxDaysInThePast: { num: 2, message: 'Please select a valid date: past' },
     //   // maxDaysInTheFuture: { num: 2, message: 'Please select a valid date: future' },
     // },
-    {
-      name: names.calendarDate,
-      type: 'calendar_datepicker',
-      isRequired: true,
-      message: 'Please select a date.',
-      minDate: {
-        date: new Date('12 Feb 2021'),
-        message: 'Please select a date after 12 Feb 2021',
-      },
-      // maxDate: {
-      //   date: new Date('29 Oct 2021'),
-      //   message: 'Please select a valid date before 29 Oct 2021',
-      // },
-      // maxDaysInThePast: { num: 2, message: 'Please select a valid date: past' },
-      // maxDaysInTheFuture: { num: 2, message: 'Please select a valid date: future' },
-    },
   ];
 
   const handleSubmit = (values) => console.log('Form 5 submitted:', values);

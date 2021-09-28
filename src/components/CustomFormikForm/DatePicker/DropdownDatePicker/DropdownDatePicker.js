@@ -13,6 +13,7 @@ import {
   getNumOfDaysInAMonth,
   getSmartDayNumbers,
   joinClassNames,
+  prependZeroToDayNumber,
 } from '../../../../utils/utils';
 import AdditionalInfo from '../../AdditionalInfo/AdditionalInfo';
 import DateDropdown from './DateDropdown/DateDropdown';
@@ -77,14 +78,14 @@ const DropdownDatePicker = (props) => {
   const endYear = endDate.getFullYear();
   const MAX_NUM_OF_YEARS = endYear - startYear;
 
-  const minDayNumber = startDate.getDate();
-  const maxDayNumber = endDate.getDate();
+  const minDayNumber = prependZeroToDayNumber(startDate.getDate());
+  const maxDayNumber = prependZeroToDayNumber(endDate.getDate());
   const minMonthIndex = startDate.getMonth();
   const maxMonthIndex = endDate.getMonth();
   const selectedMonthIndex = defaultMonths.findIndex((month) => month.name === dateObj.month);
   const selectedYear = dateObj?.year;
 
-  const dateFormat = 'D MMM YYYY';
+  const dateFormat = 'DD MMM YYYY';
   const initialDate = values[name] ? values[name] : new Date();
   const formattedDate = moment(initialDate).format(dateFormat);
 
@@ -107,7 +108,7 @@ const DropdownDatePicker = (props) => {
   };
 
   const handleDropdownItemClick = (item, type) => {
-    const selectedDayNumber = parseInt(dateObj.date);
+    const selectedDayNumber = parseInt(dateObj.date, 10);
 
     if (type.toLowerCase() === 'month' || type.toLowerCase() === 'year') {
       const numOfDaysInSelectedMonth =
@@ -119,7 +120,7 @@ const DropdownDatePicker = (props) => {
         setDateObj({
           ...dateObj,
           [type]: item.name,
-          date: 1,
+          date: '01',
         });
       } else {
         setDateObj({
@@ -287,6 +288,7 @@ const DropdownDatePicker = (props) => {
             <div data-testid={`${name}-dropdown-datepicker`} className={styles.dateContainer}>
               <div className={styles.date}>
                 <DateDropdown
+                  data-testid={`${name}-date-dropdown`}
                   value={date}
                   dropdownArray={datesInAMonthArray}
                   onClick={handleDropdownItemClick}
@@ -296,6 +298,7 @@ const DropdownDatePicker = (props) => {
               </div>
               <div className={styles.month}>
                 <DateDropdown
+                  data-testid={`${name}-month-dropdown`}
                   value={month}
                   dropdownArray={months}
                   onClick={handleDropdownItemClick}
@@ -305,6 +308,7 @@ const DropdownDatePicker = (props) => {
               </div>
               <div className={styles.year}>
                 <DateDropdown
+                  data-testid={`${name}-year-dropdown`}
                   value={year}
                   dropdownArray={years}
                   onClick={handleDropdownItemClick}
