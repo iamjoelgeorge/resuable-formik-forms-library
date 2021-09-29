@@ -59,7 +59,7 @@ const FormContainer = (props) => {
 FormContainer.propTypes = {
   initialValues: PropTypes.shape({}),
   children: PropTypes.element,
-  validations: PropTypes.array,
+  validations: PropTypes.arrayOf(PropTypes.shape({})),
   containerClass: PropTypes.string,
   onSubmit: PropTypes.func,
 };
