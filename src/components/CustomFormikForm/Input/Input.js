@@ -1,9 +1,10 @@
 import React, { useState, useRef } from 'react';
 
 import PropTypes from 'prop-types';
-import { Field } from 'formik';
+import { Field, useFormikContext } from 'formik';
 
 import styles from './Input.module.scss';
+import { commonProps, commonPropTypes } from '../../../constants/constants';
 import { joinClassNames } from '../../../utils/utils';
 import ErrorText from '../ErrorText/ErrorText';
 import SlidingLabel from '../SlidingLabel/SlidingLabel';
@@ -15,11 +16,13 @@ const Input = (props) => {
     label,
     name,
     placeholder,
-    formik,
     containerClass: customContainerClass,
-    tooltipBoxHeading,
-    tooltipBoxDescription,
-    tooltipBoxDescriptionElement,
+    mainLabelTooltipBoxHeading,
+    mainLabelTooltipBoxDescription,
+    mainLabelTooltipBoxDescriptionElement,
+    tooltipBoxBesideInputHeading,
+    tooltipBoxBesideInputDescription,
+    tooltipBoxBesideInputDescriptionElement,
     tooltipLink,
     tooltipLinkText,
     helpLinkText,
@@ -29,23 +32,21 @@ const Input = (props) => {
     isRequired,
     ...rest
   } = props;
-  const { values, errors } = formik;
+  const { values, errors, touched, handleBlur: formikHandleBlur } = useFormikContext();
   const inputValue = values[name];
-
-  // console.log(name, formik.touched[name]);
 
   const [labelView, showLabelView] = useState(false);
   const [slideLabel, setSlideLabel] = useState(false);
   const inputRef = useRef();
 
-  const userHasVisitedTheInputField = formik.touched[name];
+  const userHasVisitedTheInputField = touched[name];
   const inputFieldHasErrors = errors[name];
   const addErrorClassesToLabelAndInput = !!userHasVisitedTheInputField && !!inputFieldHasErrors;
 
   const showTooltipIcon =
-    tooltipBoxHeading || tooltipBoxDescription || tooltipBoxDescriptionElement;
-
-  const containerClasses = joinClassNames([styles.container, customContainerClass]);
+    tooltipBoxBesideInputHeading ||
+    tooltipBoxBesideInputDescription ||
+    tooltipBoxBesideInputDescriptionElement;
 
   const fieldClasses = addErrorClassesToLabelAndInput
     ? joinClassNames([styles.input, styles.inputError])
@@ -58,7 +59,7 @@ const Input = (props) => {
   };
 
   const handleBlur = (e) => {
-    formik.handleBlur(e);
+    formikHandleBlur(e);
 
     setSlideLabel(false);
     if (inputValue) showLabelView(true);
@@ -98,7 +99,7 @@ const Input = (props) => {
     );
 
   return (
-    <div className={containerClasses}>
+    <div className={joinClassNames([styles.container, customContainerClass])}>
       <div className={styles.inputWithTooltipContainer}>
         {renderFieldView()}
 
@@ -109,15 +110,18 @@ const Input = (props) => {
             htmlFor={name}
             showErrorStyle={addErrorClassesToLabelAndInput}
             inputIsRequired={isRequired}
+            tooltipBoxHeading={mainLabelTooltipBoxHeading}
+            tooltipBoxDescription={mainLabelTooltipBoxDescription}
+            tooltipBoxDescriptionElement={mainLabelTooltipBoxDescriptionElement}
           />
         )}
 
         {showTooltipIcon && (
           <div className={styles.toolTipWithImage}>
             <ToolTip
-              heading={tooltipBoxHeading}
-              description={tooltipBoxDescription}
-              descriptionElement={tooltipBoxDescriptionElement}
+              heading={tooltipBoxBesideInputHeading}
+              description={tooltipBoxBesideInputDescription}
+              descriptionElement={tooltipBoxBesideInputDescriptionElement}
             />
           </div>
         )}
@@ -137,37 +141,21 @@ const Input = (props) => {
 };
 
 Input.propTypes = {
-  label: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
+  ...commonPropTypes,
+  label: PropTypes.string,
   placeholder: PropTypes.string,
-  formik: PropTypes.shape({}),
-  containerClass: PropTypes.string,
-  tooltipBoxHeading: PropTypes.string,
-  tooltipBoxDescription: PropTypes.string,
-  tooltipBoxDescriptionElement: PropTypes.element,
-  tooltipLink: PropTypes.string,
-  tooltipLinkText: PropTypes.string,
-  helpLinkText: PropTypes.string,
-  helpLink: PropTypes.string,
-  optionalText: PropTypes.string,
-  isDisabled: PropTypes.bool,
-  isRequired: PropTypes.bool,
+  tooltipBoxBesideInputHeading: PropTypes.string,
+  tooltipBoxBesideInputDescription: PropTypes.string,
+  tooltipBoxBesideInputDescriptionElement: PropTypes.element,
 };
 
 Input.defaultProps = {
+  ...commonProps,
+  label: '',
   placeholder: '',
-  formik: {},
-  containerClass: '',
-  tooltipBoxHeading: '',
-  tooltipBoxDescription: '',
-  tooltipBoxDescriptionElement: null,
-  tooltipLink: '',
-  tooltipLinkText: '',
-  helpLinkText: '',
-  helpLink: '',
-  optionalText: '',
-  isDisabled: false,
-  isRequired: false,
+  tooltipBoxBesideInputHeading: '',
+  tooltipBoxBesideInputDescription: '',
+  tooltipBoxBesideInputDescriptionElement: null,
 };
 
 export default Input;

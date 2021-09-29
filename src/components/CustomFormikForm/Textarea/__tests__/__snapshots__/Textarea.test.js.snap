@@ -3,6 +3,7 @@
 exports[`[Component]: Texxtarea should match the Snapshot 1`] = `
 <form
   action="#"
+  className=""
   onReset={[Function]}
   onSubmit={[Function]}
 >
@@ -16,6 +17,55 @@ exports[`[Component]: Texxtarea should match the Snapshot 1`] = `
         className="textarea"
         data-testid="textarea-description"
         disabled={false}
+        formik={
+          Object {
+            "dirty": false,
+            "errors": Object {},
+            "getFieldHelpers": [Function],
+            "getFieldMeta": [Function],
+            "getFieldProps": [Function],
+            "handleBlur": [Function],
+            "handleChange": [Function],
+            "handleReset": [Function],
+            "handleSubmit": [Function],
+            "initialErrors": Object {},
+            "initialStatus": undefined,
+            "initialTouched": Object {},
+            "initialValues": Object {
+              "description": "",
+            },
+            "isSubmitting": false,
+            "isValid": true,
+            "isValidating": false,
+            "registerField": [Function],
+            "resetForm": [Function],
+            "setErrors": [Function],
+            "setFieldError": [Function],
+            "setFieldTouched": [Function],
+            "setFieldValue": [Function],
+            "setFormikState": [Function],
+            "setStatus": [Function],
+            "setSubmitting": [Function],
+            "setTouched": [Function],
+            "setValues": [Function],
+            "status": undefined,
+            "submitCount": 0,
+            "submitForm": [Function],
+            "touched": Object {},
+            "unregisterField": [Function],
+            "validateField": [Function],
+            "validateForm": [Function],
+            "validateOnBlur": true,
+            "validateOnChange": true,
+            "validateOnMount": false,
+            "values": Object {
+              "description": "",
+            },
+          }
+        }
+        labelTooltipBoxDescription=""
+        labelTooltipBoxDescriptionElement={null}
+        labelTooltipBoxHeading=""
         name="description"
         onBlur={[Function]}
         onChange={[Function]}

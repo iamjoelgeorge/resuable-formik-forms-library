@@ -1,12 +1,25 @@
 import React from 'react';
+
+import PropTypes from 'prop-types';
+
 import Button from '../../Button/Button';
 import Checkbox from '../../Checkbox/Checkbox';
 import CheckboxGroup from '../../Checkbox/CheckboxGroup/CheckboxGroup';
 import Input from '../../Input/Input';
 import RadioButtonGroup from '../../RadioButtonGroup/RadioButtonGroup';
+import { STRINGS } from '../../../../constants/strings';
 
 const FormBody = (props) => {
   const { formik } = props;
+
+  const testElement = (
+    <p>
+      {STRINGS.formOne.customDescription}{' '}
+      <a href='https://www.google.com' target='_blank' rel='noreferrer'>
+        {STRINGS.formOne.google}
+      </a>
+    </p>
+  );
 
   const checkboxOptions = [
     { label: 'One', value: 'one' },
@@ -16,12 +29,7 @@ const FormBody = (props) => {
       value: 'three',
       tooltip: {
         heading: 'Heading',
-        customDescriptionElement: (
-          <p>
-            I'm a custom description Element. Look me up on{' '}
-            <a href='https://www.google.com'>Google</a>
-          </p>
-        ),
+        customDescriptionElement: testElement,
       },
     },
     { label: 'four', value: 'four' },
@@ -46,33 +54,20 @@ const FormBody = (props) => {
       value: 'three',
       tooltip: {
         heading: 'Heading',
-        customDescriptionElement: (
-          <p>
-            I'm a custom description Element. Look me up on
-            <a href='https://www.google.com'>Google</a>
-          </p>
-        ),
+        customDescriptionElement: testElement,
       },
     },
   ];
 
-  const showHiddenCheckbox = formik.values['checkboxGroup'].includes('three');
+  const showHiddenCheckbox = formik.values.checkboxGroup.includes('three');
 
   return (
     <>
       <h1>Form 4</h1>
-      <Input
-        formik={formik}
-        type='text'
-        name='name'
-        label='Name'
-        optionalText='Enter your name'
-        isRequired
-      />
+      <Input type='text' name='name' label='Name' optionalText='Enter your name' isRequired />
       <CheckboxGroup
         name='checkboxGroup'
         options={checkboxOptions}
-        formik={formik}
         mainLabel='Checkbox Group'
         mainLabelTooltipBoxHeading='What is Lorem Ipsum?'
         mainLabelTooltipBoxDescription='Lorem Ipsum is simply dummy text.'
@@ -83,7 +78,6 @@ const FormBody = (props) => {
       <RadioButtonGroup
         name='radioGroup'
         options={radioOptions}
-        formik={formik}
         mainLabel='Radio Group'
         mainLabelTooltipBoxHeading='What is Lorem Ipsum?'
         mainLabelTooltipBoxDescription='Lorem Ipsum is simply dummy text.'
@@ -93,17 +87,24 @@ const FormBody = (props) => {
       />
 
       {showHiddenCheckbox && (
-        <Checkbox
-          formik={formik}
-          name='testCheckbox'
-          optionLabel='Test Checkbox'
-          mainLabel='Test Label'
-        />
+        <Checkbox name='testCheckbox' optionLabel='Test Checkbox' mainLabel='Test Label' />
       )}
 
-      <Button label='Submit' formik={formik} />
+      <Button label='Submit' />
     </>
   );
+};
+
+FormBody.propTypes = {
+  formik: PropTypes.shape({
+    values: PropTypes.shape({}),
+  }),
+};
+
+FormBody.defaultProps = {
+  formik: {
+    values: {},
+  },
 };
 
 export default FormBody;

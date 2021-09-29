@@ -1,9 +1,11 @@
 import React from 'react';
 
 import PropTypes from 'prop-types';
+import { useFormikContext } from 'formik';
 
 import styles from './Button.module.scss';
 import { joinClassNames } from '../../../utils/utils';
+import { buttonTheme, buttonTypes, buttonVariants } from '../../../constants/constants';
 import {
   ExternalLinkIconWhite,
   ExternalLinkIconRed,
@@ -21,26 +23,27 @@ const Button = (props) => {
     theme,
     showExternalLinkIcon,
     containerClass,
-    formik,
     ...rest
   } = props;
 
-  // const disableButton = type === 'submit' ? !(formik.dirty && formik.isValid) : isDisabled;
-  const disableButton = type === 'submit' ? !formik.isValid : isDisabled;
+  const { isValid } = useFormikContext();
+
+  // const disableButton = type === buttonTypes.submit ? !(formik.dirty && formik.isValid) : isDisabled;
+  const disableButton = type === buttonTypes.submit ? !isValid : isDisabled;
   const goTo = !isDisabled ? href : '';
 
   const linkDisabledClass = isDisabled ? styles.linkDisabled : '';
   const linkAsButtonDisabledClass = isDisabled ? styles.linkButtonDisabled : '';
 
-  const IconForLink = theme === 'purple' ? ExternalLinkIconPurple : ExternalLinkIconRed;
+  const IconForLink = theme === buttonTheme.purple ? ExternalLinkIconPurple : ExternalLinkIconRed;
 
   const buttonClasses =
-    theme === 'purple'
+    theme === buttonTheme.purple
       ? joinClassNames([styles.button, styles.purpleTheme, containerClass])
       : joinClassNames([styles.button, styles.redTheme, containerClass]);
 
   const linkClasses =
-    theme === 'purple'
+    theme === buttonTheme.purple
       ? joinClassNames([styles.link, styles.purpleTheme, linkDisabledClass, containerClass])
       : joinClassNames([styles.link, styles.redTheme, linkDisabledClass, containerClass]);
 
@@ -56,11 +59,12 @@ const Button = (props) => {
 
   const renderButton = () => {
     switch (variant) {
-      case 'button':
+      case buttonVariants.button:
         return (
           <button
             className={buttonClasses}
             type={type}
+            onClick={onClick}
             disabled={disableButton}
             data-testid={`button-${label}`}
             {...rest}
@@ -69,7 +73,7 @@ const Button = (props) => {
           </button>
         );
 
-      case 'link':
+      case buttonVariants.link:
         return (
           <a
             className={linkClasses}
@@ -86,7 +90,7 @@ const Button = (props) => {
           </a>
         );
 
-      case 'link_as_button':
+      case buttonVariants.linkAsButton:
         return (
           <a
             className={linkAsButtonClasses}
@@ -134,25 +138,29 @@ const Button = (props) => {
 };
 
 Button.propTypes = {
-  variant: PropTypes.oneOf(['button', 'link', 'link_as_button']),
-  type: PropTypes.oneOf(['submit', 'button']),
+  variant: PropTypes.oneOf([
+    buttonVariants.button,
+    buttonVariants.link,
+    buttonVariants.linkAsButton,
+  ]),
+  type: PropTypes.oneOf([buttonTypes.submit, buttonTypes.button]),
   href: PropTypes.string,
   label: PropTypes.string,
   onClick: PropTypes.func,
   isDisabled: PropTypes.bool,
-  theme: PropTypes.oneOf(['red', 'purple']),
+  theme: PropTypes.oneOf([buttonTheme.red, buttonTheme.purple]),
   showExternalLinkIcon: PropTypes.bool,
   containerClass: PropTypes.string,
 };
 
 Button.defaultProps = {
-  variant: 'button',
-  type: 'submit',
+  variant: buttonVariants.button,
+  type: buttonTypes.submit,
   href: '#',
   label: '',
   onClick: () => {},
   isDisabled: false,
-  theme: 'purple',
+  theme: buttonTheme.purple,
   showExternalLinkIcon: false,
   containerClass: '',
 };

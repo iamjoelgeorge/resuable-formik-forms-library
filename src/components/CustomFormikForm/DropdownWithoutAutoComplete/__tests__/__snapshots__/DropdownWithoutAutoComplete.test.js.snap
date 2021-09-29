@@ -3,6 +3,7 @@
 exports[`[Component]: DropdownWithoutAutoComplete should match the Snapshot 1`] = `
 <form
   action="#"
+  className=""
   onReset={[Function]}
   onSubmit={[Function]}
 >

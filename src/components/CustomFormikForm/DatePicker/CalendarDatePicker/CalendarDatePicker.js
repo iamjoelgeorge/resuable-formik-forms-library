@@ -1,11 +1,12 @@
 import React, { useRef } from 'react';
 
 import Calendar from 'react-calendar';
-import { Field } from 'formik';
+import { Field, useFormikContext } from 'formik';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 
 import styles from './CalendarDatePicker.module.scss';
+import { commonProps, commonPropTypes } from '../../../../constants/constants';
 import { getFullDate, joinClassNames } from '../../../../utils/utils';
 import { ArrowNext } from '../../../../constants/icons';
 import { useToggleDropdown } from '../../../../hooks/useToggleDropdown';
@@ -17,15 +18,14 @@ const CalendarDatePicker = (props) => {
   const {
     name,
     label,
-    formik,
     minDate,
     maxDate,
     maxDaysInThePast,
     maxDaysInTheFuture,
     containerClass: customContainerClass,
-    labelTooltipBoxHeading,
-    labelTooltipBoxDescription,
-    labelTooltipBoxDescriptionElement,
+    mainLabelTooltipBoxHeading,
+    mainLabelTooltipBoxDescription,
+    mainLabelTooltipBoxDescriptionElement,
     tooltipLink,
     tooltipLinkText,
     helpLinkText,
@@ -36,7 +36,7 @@ const CalendarDatePicker = (props) => {
     ...rest
   } = props;
 
-  const { errors } = formik;
+  const { errors, touched } = useFormikContext();
 
   const calendarRef = useRef();
   const [isCalendarOpen, setIsCalendarOpen, toggleCalendar] = useToggleDropdown(calendarRef);
@@ -46,11 +46,9 @@ const CalendarDatePicker = (props) => {
   const startDate = maxDaysInThePast ? getFullDate(today, maxDaysInThePast, false) : minDate;
   const endDate = maxDaysInTheFuture ? getFullDate(today, maxDaysInTheFuture) : maxDate;
 
-  const userHasVisitedTheInputField = formik.touched[name];
+  const userHasVisitedTheInputField = touched[name];
   const inputFieldHasErrors = errors[name];
   const addErrorClassesToLabelAndInput = !!userHasVisitedTheInputField && !!inputFieldHasErrors;
-
-  const containerClasses = joinClassNames([styles.container, customContainerClass]);
 
   const dropdownIconClasses = !isCalendarOpen
     ? styles.dropdownIcon
@@ -73,7 +71,7 @@ const CalendarDatePicker = (props) => {
     <div
       data-testid={`${name}-calendar-datepicker`}
       id='custom-calendar-date-picker'
-      className={containerClasses}
+      className={joinClassNames([styles.container, customContainerClass])}
       ref={calendarRef}
     >
       <Field name={name} {...rest}>
@@ -101,9 +99,9 @@ const CalendarDatePicker = (props) => {
                   inputEntered={!!value?.toString() ?? value}
                   htmlFor={`${name}-selectedDate`}
                   showErrorStyle={addErrorClassesToLabelAndInput}
-                  tooltipBoxHeading={labelTooltipBoxHeading}
-                  tooltipBoxDescription={labelTooltipBoxDescription}
-                  tooltipBoxDescriptionElement={labelTooltipBoxDescriptionElement}
+                  tooltipBoxHeading={mainLabelTooltipBoxHeading}
+                  tooltipBoxDescription={mainLabelTooltipBoxDescription}
+                  tooltipBoxDescriptionElement={mainLabelTooltipBoxDescriptionElement}
                   inputIsRequired={isRequired}
                 />
                 <p
@@ -136,44 +134,21 @@ const CalendarDatePicker = (props) => {
 };
 
 CalendarDatePicker.propTypes = {
-  name: PropTypes.string.isRequired,
+  ...commonPropTypes,
   label: PropTypes.string,
-  formik: PropTypes.shape({}),
   minDate: PropTypes.instanceOf(Date),
   maxDate: PropTypes.instanceOf(Date),
   maxDaysInThePast: PropTypes.number,
   maxDaysInTheFuture: PropTypes.number,
-  containerClass: PropTypes.string,
-  labelTooltipBoxHeading: PropTypes.string,
-  labelTooltipBoxDescription: PropTypes.string,
-  labelTooltipBoxDescriptionElement: PropTypes.element,
-  tooltipLink: PropTypes.string,
-  tooltipLinkText: PropTypes.string,
-  helpLinkText: PropTypes.string,
-  helpLink: PropTypes.string,
-  optionalText: PropTypes.string,
-  isDisabled: PropTypes.bool,
-  isRequired: PropTypes.bool,
 };
 
 CalendarDatePicker.defaultProps = {
+  ...commonProps,
   label: '',
-  formik: {},
   minDate: null,
   maxDate: new Date('31 Dec 5000'),
   maxDaysInThePast: null,
   maxDaysInTheFuture: null,
-  containerClass: '',
-  labelTooltipBoxHeading: '',
-  labelTooltipBoxDescription: '',
-  labelTooltipBoxDescriptionElement: null,
-  tooltipLink: '',
-  tooltipLinkText: '',
-  helpLinkText: '',
-  helpLink: '',
-  optionalText: '',
-  isDisabled: false,
-  isRequired: false,
 };
 
 export default CalendarDatePicker;

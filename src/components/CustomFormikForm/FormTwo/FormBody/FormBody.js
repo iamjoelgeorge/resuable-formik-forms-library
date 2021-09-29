@@ -11,23 +11,12 @@ const FormBody = (props) => {
 
   const dropdownArray = ['Other', 'Mr.', 'Ms.', 'Mrs.'];
 
-  const TestElement = (
-    <p>
-      I am a custom description. Ask{' '}
-      <a href='https://www.google.com' target='_blank' rel='noreferrer'>
-        Google
-      </a>{' '}
-      if you don't believe me.
-    </p>
-  );
-
   const showExtraInput = formik.values['salutation'].trim().toLowerCase() === 'other';
 
   return (
     <>
       <h1>Form 2</h1>
       <Checkbox
-        formik={formik}
         name='terms'
         optionLabel='I agree to the Terms and Conditions.'
         mainLabel='Terms and Conditions'
@@ -39,30 +28,22 @@ const FormBody = (props) => {
       />
 
       <DropdownWithoutAutoComplete
-        formik={formik}
         name='salutation'
         label='Salutation'
         dropdownArray={dropdownArray}
         containerClass={styles.dropdown}
-        labelTooltipBoxHeading='Permitted with no fee'
-        labelTooltipBoxDescription='For cancellation, credit to Travel Bank for the full ticket value including any fare portion where Velocity Points have been redeemed.'
-        labelTooltipBoxDescriptionElement={TestElement}
+        mainLabelTooltipBoxHeading='Permitted with no fee'
+        mainLabelTooltipBoxDescription='For cancellation, credit to Travel Bank for the full ticket value including any fare portion where Velocity Points have been redeemed.'
         helpLink='#'
         helpLinkText='This link is for your help, haha!'
         isDisabled={!formik.values['terms']}
       />
 
       {showExtraInput && (
-        <Input
-          formik={formik}
-          type='text'
-          name='other'
-          label='Other'
-          containerClass={styles.input}
-        />
+        <Input type='text' name='other' label='Other' containerClass={styles.input} />
       )}
 
-      <Button formik={formik} type='submit' label='Submit' theme='red' />
+      <Button type='submit' label='Submit' theme='red' />
     </>
   );
 };

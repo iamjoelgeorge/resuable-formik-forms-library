@@ -1,4 +1,7 @@
 import React from 'react';
+
+import styles from './FormBody.module.scss';
+import { STRINGS } from '../../../../constants/strings';
 import Button from '../../Button/Button';
 import Checkbox from '../../Checkbox/Checkbox';
 import DatePicker from '../../DatePicker/DatePicker';
@@ -7,7 +10,14 @@ import Input from '../../Input/Input';
 import RadioButtonGroup from '../../RadioButtonGroup/RadioButtonGroup';
 import Textarea from '../../Textarea/Textarea';
 
-import styles from './FormBody.module.scss';
+const testElement = (
+  <p>
+    {STRINGS.formOne.customDescription}{' '}
+    <a href='https://www.google.com' target='_blank' rel='noreferrer'>
+      {STRINGS.formOne.google}
+    </a>
+  </p>
+);
 
 const radioOptions = [
   { label: 'One Radio', value: 'one' },
@@ -17,48 +27,26 @@ const radioOptions = [
     value: 'three',
     tooltip: {
       heading: 'Heading',
-      customDescriptionElement: (
-        <p>
-          I'm a custom description Element. Look me up on{' '}
-          <a href='https://www.google.com'>Google</a>
-        </p>
-      ),
+      customDescriptionElement: testElement,
     },
   },
 ];
 
-
-const FormBody = (props) => {
-  const { formik } = props;
-  // console.log(formik.errors)
-
-  const testElement = (
-    <p>
-      I am a custom description. Ask{' '}
-      <a href='https://www.google.com' target='_blank' rel='noreferrer'>
-        Google
-      </a>{' '}
-      if you don't believe me.
-    </p>
-  );
-
+const FormBody = () => {
   return (
     <>
       <h1>Form 1</h1>
-      <Input formik={formik} type='text' name='test' label='Disabled Input' isDisabled />
+      <Input type='text' name='test' label='Disabled Input' isDisabled />
       <div>
         <div className={styles.testContainer}>
           <Input
             data-testid='name'
-            formik={formik}
             type='text'
             name='name'
             label='Name'
             containerClass={styles.input}
-            isRequired
           />
           <Input
-            formik={formik}
             type='text'
             name='age'
             label='Age (with placeholder)'
@@ -66,24 +54,21 @@ const FormBody = (props) => {
             tooltipLinkText='This is a Tooltip link?'
             tooltipLink='#'
             containerClass={styles.input}
-            isRequired
           />
         </div>
       </div>
 
       <Input
-        formik={formik}
         type='email'
         name='email'
         label='Email'
         helpLink='#'
         helpLinkText='This is a Help link?'
-        isRequired
-        tooltipBoxHeading='Permitted with no fee'
-        tooltipBoxDescription='For cancellation, credit to Travel Bank for the full ticket value including any fare portion where Velocity Points have been redeemed.'
+        // isRequired
+        tooltipBoxBesideInputHeading='Permitted with no fee'
+        tooltipBoxBesideInputDescription='For cancellation, credit to Travel Bank for the full ticket value including any fare portion where Velocity Points have been redeemed.'
       />
       <DatePicker
-        formik={formik}
         name='departureDate'
         label='Departure Date'
         // minDate={new Date()}
@@ -95,56 +80,40 @@ const FormBody = (props) => {
         // helpLinkText='This link is for your help'
         // tooltipLink='https://www.google.com'
         // tooltipLinkText='Visit Google to know more.'
-        // labelTooltipBoxHeading='Permitted with no fee'
-        // labelTooltipBoxDescription='For cancellation, credit to Travel Bank for the full ticket value including any fare portion where Velocity Points have been redeemed.'
         isRequired
         // isDisabled
       />
       <DatePicker
-        formik={formik}
         name='returnDate'
         label='Return Date'
         isDropdown
         minDate={new Date('12 Feb 2000')}
-        // maxDate={new Date('12 Feb 2024')}
         maxDaysInTheFuture={365}
-        // maxDaysInThePast={400}
-        // optionalText='Optional'
-        // helpLink='#'
-        // helpLinkText='This link is for your help'
         tooltipLink='https://www.google.com'
         tooltipLinkText='Visit Google to know more.'
-        // labelTooltipBoxHeading='Permitted with no fee'
-        // labelTooltipBoxDescription='For cancellation, credit to Travel Bank for the full ticket value including any fare portion where Velocity Points have been redeemed.'
-        // isRequired
-        // isDisabled
       />
-      {/* <Input
-        formik={formik}
+      <Input
         type='number'
         name='test'
         label='Test Input'
         optionalText='Optional'
-        tooltipBoxHeading='Permitted with no fee'
-        tooltipBoxDescription='For cancellation, credit to Travel Bank for the full ticket value including any fare portion where Velocity Points have been redeemed.'
-      /> */}
+        tooltipBoxBesideInputHeading='Permitted with no fee'
+        tooltipBoxBesideInputDescription='For cancellation, credit to Travel Bank for the full ticket value including any fare portion where Velocity Points have been redeemed.'
+      />
       <Textarea
-        formik={formik}
         containerClass={styles.description}
         name='description'
         label='Additional Details'
-        labelTooltipBoxHeading='What is Lorem Ipsum?'
-        labelTooltipBoxDescription='Lorem Ipsum is simply dummy text.'
+        mainLabelTooltipBoxHeading='What is Lorem Ipsum?'
+        mainLabelTooltipBoxDescription='Lorem Ipsum is simply dummy text.'
         // placeholder='This is a placeholder for the Textarea'
         optionalText='This is your textarea optional text'
         // helpLink='#'
         // helpLinkText='This link is for your help'
         // tooltipLink='https://www.google.com'
         // tooltipLinkText='Visit Google to know more.'
-        isRequired
       />
       <Checkbox
-        formik={formik}
         name='license'
         optionLabel='Do you have a license?'
         mainLabel='License'
@@ -152,12 +121,10 @@ const FormBody = (props) => {
         helpLinkText='This link is for your help'
         // optionLabelTooltipBoxHeading='My description is a custom element!!!'
         // optionLabelTooltipBoxDescriptionElement={testElement}
-        isRequired
       />
       <RadioButtonGroup
         name='formOneRadioGroup'
         options={radioOptions}
-        formik={formik}
         mainLabel='Radio Group'
         mainLabelTooltipBoxHeading='What is Lorem Ipsum?'
         mainLabelTooltipBoxDescription='Lorem Ipsum is simply dummy text.'
@@ -166,18 +133,17 @@ const FormBody = (props) => {
       />
 
       <FileUploadInput
-        formik={formik}
         name='idProofs'
         label='Upload your documents'
-        labelTooltipBoxHeading='What is Lorem Ipsum?'
-        labelTooltipBoxDescription='Lorem Ipsum is simply dummy text.'
+        mainLabelTooltipBoxHeading='What is Lorem Ipsum?'
+        mainLabelTooltipBoxDescription='Lorem Ipsum is simply dummy text.'
         optionalText='test'
         multiple
-        isRequired
+        // isRequired
         // isDisabled
       />
 
-      <Button formik={formik} label='Submit' />
+      <Button label='Submit' />
     </>
   );
 };

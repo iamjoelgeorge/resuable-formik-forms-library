@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
 
-import { Field } from 'formik';
+import { Field, useFormikContext } from 'formik';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 
 import styles from './DropdownDatePicker.module.scss';
-import { months as defaultMonths } from '../../../../constants/constants';
+import {
+  commonProps,
+  commonPropTypes,
+  months as defaultMonths,
+} from '../../../../constants/constants';
 import {
   getSmartMonths,
   getArrayOfYearsBetweenTwoYearsAsObjectsWithADisabledProperty,
@@ -24,26 +28,25 @@ const DropdownDatePicker = (props) => {
   const {
     name,
     label,
-    formik,
     minDate,
     maxDate,
     maxDaysInThePast,
     maxDaysInTheFuture,
     containerClass: customContainerClass,
-    labelTooltipBoxHeading,
-    labelTooltipBoxDescription,
-    labelTooltipBoxDescriptionElement,
+    mainLabelTooltipBoxHeading,
+    mainLabelTooltipBoxDescription,
+    mainLabelTooltipBoxDescriptionElement,
     tooltipLink,
     tooltipLinkText,
     helpLinkText,
     helpLink,
     optionalText,
-    isDisabled = false,
+    isDisabled,
     isRequired,
     ...rest
   } = props;
 
-  const { errors, values } = formik;
+  const { errors, setFieldValue, touched, values } = useFormikContext();
 
   const [months, setMonths] = useState([]);
   const [years, setYears] = useState([]);
@@ -54,8 +57,6 @@ const DropdownDatePicker = (props) => {
     month: '',
     year: '',
   });
-
-  const containerClasses = joinClassNames([styles.container, customContainerClass]);
 
   const labelClasses = isDisabled
     ? joinClassNames([styles.label, styles.disabledLabel])
@@ -89,7 +90,7 @@ const DropdownDatePicker = (props) => {
   const initialDate = values[name] ? values[name] : new Date();
   const formattedDate = moment(initialDate).format(dateFormat);
 
-  const userHasVisitedTheInputField = formik.touched[name];
+  const userHasVisitedTheInputField = touched[name];
   const inputFieldHasErrors = errors[name];
   const addErrorClassesToLabelAndInput = !!userHasVisitedTheInputField && !!inputFieldHasErrors;
 
@@ -199,7 +200,6 @@ const DropdownDatePicker = (props) => {
 
   // Set the final value (selected date) of the component.
   useEffect(() => {
-    const { setFieldValue } = formik;
     const { date, month, year } = dateObj;
 
     const dateString = `${date} ${month}, ${year}`;
@@ -217,7 +217,7 @@ const DropdownDatePicker = (props) => {
 
       setFieldValue(name, date);
     }
-  }, [dateObj, formik, name, formattedDate, values]);
+  }, [dateObj, setFieldValue, name, formattedDate, values]);
 
   // Reset the selected value if it is out of the specified range.
   useEffect(() => {
@@ -267,21 +267,21 @@ const DropdownDatePicker = (props) => {
   ]);
 
   return (
-    <div className={containerClasses}>
+    <div className={joinClassNames([styles.container, customContainerClass])}>
       <SlidingLabel
         label={label}
         inputEntered
         htmlFor='selectedDate'
         customClass={labelClasses}
         showErrorStyle={addErrorClassesToLabelAndInput}
-        tooltipBoxHeading={labelTooltipBoxHeading}
-        tooltipBoxDescription={labelTooltipBoxDescription}
-        tooltipBoxDescriptionElement={labelTooltipBoxDescriptionElement}
+        tooltipBoxHeading={mainLabelTooltipBoxHeading}
+        tooltipBoxDescription={mainLabelTooltipBoxDescription}
+        tooltipBoxDescriptionElement={mainLabelTooltipBoxDescriptionElement}
         inputIsRequired={isRequired}
       />
 
       <Field name={name} {...rest}>
-        {({ form, field }) => {
+        {() => {
           const { date, month, year } = dateObj;
 
           return (
@@ -335,44 +335,21 @@ const DropdownDatePicker = (props) => {
 };
 
 DropdownDatePicker.propTypes = {
-  name: PropTypes.string.isRequired,
+  ...commonPropTypes,
   label: PropTypes.string,
-  formik: PropTypes.shape({}),
   minDate: PropTypes.instanceOf(Date),
   maxDate: PropTypes.instanceOf(Date),
   maxDaysInThePast: PropTypes.number,
   maxDaysInTheFuture: PropTypes.number,
-  containerClass: PropTypes.string,
-  labelTooltipBoxHeading: PropTypes.string,
-  labelTooltipBoxDescription: PropTypes.string,
-  labelTooltipBoxDescriptionElement: PropTypes.element,
-  tooltipLink: PropTypes.string,
-  tooltipLinkText: PropTypes.string,
-  helpLinkText: PropTypes.string,
-  helpLink: PropTypes.string,
-  optionalText: PropTypes.string,
-  isDisabled: PropTypes.bool,
-  isRequired: PropTypes.bool,
 };
 
 DropdownDatePicker.defaultProps = {
+  ...commonProps,
   label: '',
-  formik: {},
   minDate: null,
   maxDate: new Date(),
   maxDaysInThePast: null,
   maxDaysInTheFuture: null,
-  labelTooltipBoxHeading: '',
-  containerClass: '',
-  labelTooltipBoxDescription: '',
-  labelTooltipBoxDescriptionElement: null,
-  tooltipLink: '',
-  tooltipLinkText: '',
-  helpLinkText: '',
-  helpLink: '',
-  optionalText: '',
-  isDisabled: false,
-  isRequired: false,
 };
 
 export default DropdownDatePicker;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Field } from 'formik';
+import { Field, useFormikContext } from 'formik';
 import PropTypes from 'prop-types';
 
 import styles from './RadioButtonGroup.module.scss';
@@ -8,13 +8,15 @@ import ErrorText from '../ErrorText/ErrorText';
 import SlidingLabel from '../SlidingLabel/SlidingLabel';
 import ToolTip from '../ToolTip/ToolTip';
 import AdditionalInfo from '../AdditionalInfo/AdditionalInfo';
+import { commonProps, commonPropTypes } from '../../../constants/constants';
+import { joinClassNames } from '../../../utils/utils';
 
 const RadioButtonGroup = (props) => {
   const {
     name,
     options,
+    containerClass: customContainerClass,
     mainLabel,
-    formik,
     isRequired,
     isDisabled,
     helpLink,
@@ -28,9 +30,9 @@ const RadioButtonGroup = (props) => {
     ...rest
   } = props;
 
-  const { errors, values } = formik;
+  const { values, errors, touched } = useFormikContext();
 
-  const userHasVisitedTheInputField = formik.touched[name];
+  const userHasVisitedTheInputField = touched[name];
   const inputFieldHasErrors = errors[name];
   const addErrorClassesToLabelAndInput = !!userHasVisitedTheInputField && !!inputFieldHasErrors;
 
@@ -75,7 +77,7 @@ const RadioButtonGroup = (props) => {
     });
 
   return (
-    <div className={styles.container}>
+    <div className={joinClassNames([styles.container, customContainerClass])}>
       <SlidingLabel
         customClass={styles.componentHeading}
         label={mainLabel}
@@ -109,11 +111,12 @@ const RadioButtonGroup = (props) => {
 };
 
 RadioButtonGroup.propTypes = {
-  name: PropTypes.string.isRequired,
+  ...commonPropTypes,
+  mainLabel: PropTypes.string,
   options: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.string,
-      value: PropTypes.any,
+      value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
       tooltip: PropTypes.shape({
         heading: PropTypes.string,
         description: PropTypes.string,
@@ -121,34 +124,12 @@ RadioButtonGroup.propTypes = {
       }),
     }),
   ),
-  mainLabel: PropTypes.string,
-  formik: PropTypes.shape({}),
-  isRequired: PropTypes.bool,
-  isDisabled: PropTypes.bool,
-  helpLink: PropTypes.string,
-  helpLinkText: PropTypes.string,
-  tooltipLink: PropTypes.string,
-  tooltipLinkText: PropTypes.string,
-  optionalText: PropTypes.string,
-  mainLabelTooltipBoxHeading: PropTypes.string,
-  mainLabelTooltipBoxDescription: PropTypes.string,
-  mainLabelTooltipBoxDescriptionElement: PropTypes.string,
 };
 
 RadioButtonGroup.defaultProps = {
+  ...commonProps,
   options: {},
   mainLabel: '',
-  formik: {},
-  isRequired: false,
-  isDisabled: false,
-  helpLink: '',
-  helpLinkText: '',
-  tooltipLink: '',
-  tooltipLinkText: '',
-  optionalText: '',
-  mainLabelTooltipBoxHeading: '',
-  mainLabelTooltipBoxDescription: '',
-  mainLabelTooltipBoxDescriptionElement: null,
 };
 
 export default RadioButtonGroup;

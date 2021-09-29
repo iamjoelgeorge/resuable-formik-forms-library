@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 
-import { Field } from 'formik';
+import { Field, useFormikContext } from 'formik';
 import { v4 as uuidv4 } from 'uuid';
 import PropTypes from 'prop-types';
 
@@ -11,6 +11,7 @@ import { useToggleDropdown } from '../../../hooks/useToggleDropdown';
 import SlidingLabel from '../SlidingLabel/SlidingLabel';
 import ErrorText from '../ErrorText/ErrorText';
 import AdditionalInfo from '../AdditionalInfo/AdditionalInfo';
+import { commonProps, commonPropTypes } from '../../../constants/constants';
 
 const DropdownWithoutAutoComplete = (props) => {
   const {
@@ -18,9 +19,9 @@ const DropdownWithoutAutoComplete = (props) => {
     label,
     dropdownArray,
     containerClass: customContainerClass,
-    labelTooltipBoxHeading,
-    labelTooltipBoxDescription,
-    labelTooltipBoxDescriptionElement,
+    mainLabelTooltipBoxHeading,
+    mainLabelTooltipBoxDescription,
+    mainLabelTooltipBoxDescriptionElement,
     tooltipLink,
     tooltipLinkText,
     helpLinkText,
@@ -28,17 +29,16 @@ const DropdownWithoutAutoComplete = (props) => {
     optionalText,
     isRequired,
     isDisabled,
-    formik,
     ...rest
   } = props;
 
-  const { errors, values } = formik;
+  const { errors, touched, values } = useFormikContext();
 
   const dropdownContainerRef = useRef();
   const [isDropdownOpen, setIsDropdownOpen, toggleDropdown] =
     useToggleDropdown(dropdownContainerRef);
 
-  const userHasVisitedTheInputField = formik.touched[name];
+  const userHasVisitedTheInputField = touched[name];
   const inputFieldHasErrors = errors[name];
   const addErrorClassesToLabelAndInput = !!userHasVisitedTheInputField && !!inputFieldHasErrors;
 
@@ -79,9 +79,9 @@ const DropdownWithoutAutoComplete = (props) => {
                 inputEntered={!!field.value}
                 htmlFor={'selectedDate'}
                 showErrorStyle={addErrorClassesToLabelAndInput}
-                tooltipBoxHeading={labelTooltipBoxHeading}
-                tooltipBoxDescription={labelTooltipBoxDescription}
-                tooltipBoxDescriptionElement={labelTooltipBoxDescriptionElement}
+                tooltipBoxHeading={mainLabelTooltipBoxHeading}
+                tooltipBoxDescription={mainLabelTooltipBoxDescription}
+                tooltipBoxDescriptionElement={mainLabelTooltipBoxDescriptionElement}
                 inputIsRequired={isRequired}
               />
             )}
@@ -123,37 +123,15 @@ const DropdownWithoutAutoComplete = (props) => {
 };
 
 DropdownWithoutAutoComplete.propTypes = {
-  name: PropTypes.string.isRequired,
+  ...commonPropTypes,
   label: PropTypes.string,
   dropdownArray: PropTypes.array.isRequired,
-  formik: PropTypes.shape({}),
-  containerClass: PropTypes.string,
-  labelTooltipBoxHeading: PropTypes.string,
-  labelTooltipBoxDescription: PropTypes.string,
-  labelTooltipBoxDescriptionElement: PropTypes.element,
-  tooltipLink: PropTypes.string,
-  tooltipLinkText: PropTypes.string,
-  helpLinkText: PropTypes.string,
-  helpLink: PropTypes.string,
-  optionalText: PropTypes.string,
-  isDisabled: PropTypes.bool,
-  isRequired: PropTypes.bool,
 };
 
 DropdownWithoutAutoComplete.defaultProps = {
+  ...commonProps,
   label: '',
-  formik: {},
-  containerClass: '',
-  labelTooltipBoxHeading: '',
-  labelTooltipBoxDescription: '',
-  labelTooltipBoxDescriptionElement: null,
-  tooltipLink: '',
-  tooltipLinkText: '',
-  helpLinkText: '',
-  helpLink: '',
-  optionalText: '',
-  isDisabled: false,
-  isRequired: false,
+  dropdownArray: [],
 };
 
 export default DropdownWithoutAutoComplete;

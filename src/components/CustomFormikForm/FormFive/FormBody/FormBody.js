@@ -2,6 +2,7 @@ import React from 'react';
 
 import Button from '../../Button/Button';
 import DatePicker from '../../DatePicker/DatePicker';
+import DropdownWithAutoComplete from '../../DropdownWithAutoComplete/DropdownWithAutoComplete';
 import { names } from '../constants';
 
 const FormBody = (props) => {
@@ -11,7 +12,6 @@ const FormBody = (props) => {
     <>
       <h1>Form 5</h1>
       <DatePicker
-        formik={formik}
         name={names.calendarDate}
         label='Test Date'
         // minDate={new Date('3 Aug 2021')}
@@ -23,13 +23,12 @@ const FormBody = (props) => {
         // helpLinkText='This link is for your help'
         // tooltipLink='https://www.google.com'
         // tooltipLinkText='Visit Google to know more.'
-        // labelTooltipBoxHeading='Permitted with no fee'
-        // labelTooltipBoxDescription='For cancellation, credit to Travel Bank for the full ticket value including any fare portion where Velocity Points have been redeemed.'
+        // mainLabelTooltipBoxHeading='Permitted with no fee'
+        // mainLabelTooltipBoxDescription='For cancellation, credit to Travel Bank for the full ticket value including any fare portion where Velocity Points have been redeemed.'
         isRequired
         // isDisabled
       />
       <DatePicker
-        formik={formik}
         name={names.departureDate}
         label='Departure Date'
         isDropdown
@@ -42,13 +41,19 @@ const FormBody = (props) => {
         // helpLinkText='This link is for your help'
         tooltipLink='https://www.google.com'
         tooltipLinkText='Visit Google to know more.'
-        // labelTooltipBoxHeading='Permitted with no fee'
-        // labelTooltipBoxDescription='For cancellation, credit to Travel Bank for the full ticket value including any fare portion where Velocity Points have been redeemed.'
+        mainLabelTooltipBoxHeading='Permitted with no fee'
+        mainLabelTooltipBoxDescription='For cancellation, credit to Travel Bank for the full ticket value including any fare portion where Velocity Points have been redeemed.'
         isRequired
         // isDisabled
       />
 
-      <Button formik={formik} type='submit' label='Submit' theme='red' />
+      <DropdownWithAutoComplete
+        name={names.autoComplete}
+        mainLabelTooltipBoxHeading='test'
+        mainLabelTooltipBoxDescription='test'
+      />
+
+      <Button type='submit' label='Submit' theme='red' />
     </>
   );
 };

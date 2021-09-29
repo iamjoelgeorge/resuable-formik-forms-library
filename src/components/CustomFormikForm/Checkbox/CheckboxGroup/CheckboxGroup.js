@@ -1,10 +1,12 @@
 /* eslint-disable */
 import React from 'react';
 
-import { Field } from 'formik';
+import { Field, useFormikContext } from 'formik';
 import PropTypes from 'prop-types';
 
 import styles from '../Checkbox.module.scss';
+import { commonProps, commonPropTypes } from '../../../../constants/constants';
+import { joinClassNames } from '../../../../utils/utils';
 import checkBoxGroupStyles from './CheckboxGroup.module.scss';
 import ErrorText from '../../ErrorText/ErrorText';
 import SlidingLabel from '../../SlidingLabel/SlidingLabel';
@@ -15,8 +17,8 @@ const CheckboxGroup = (props) => {
   const {
     name,
     options,
+    containerClass: customContainerClass,
     mainLabel,
-    formik,
     isRequired,
     isDisabled,
     helpLink,
@@ -30,9 +32,9 @@ const CheckboxGroup = (props) => {
     ...rest
   } = props;
 
-  const { errors, values } = formik;
+  const { errors, touched, values } = useFormikContext();
 
-  const userHasVisitedTheInputField = formik.touched[name];
+  const userHasVisitedTheInputField = touched[name];
   const inputFieldHasErrors = errors[name];
   const addErrorClassesToLabelAndInput = !!userHasVisitedTheInputField && !!inputFieldHasErrors;
 
@@ -77,7 +79,7 @@ const CheckboxGroup = (props) => {
     });
 
   return (
-    <div className={styles.container}>
+    <div className={joinClassNames([styles.container, customContainerClass])}>
       <SlidingLabel
         customClass={styles.componentHeading}
         label={mainLabel}
@@ -111,11 +113,12 @@ const CheckboxGroup = (props) => {
 };
 
 CheckboxGroup.propTypes = {
-  name: PropTypes.string,
+  ...commonPropTypes,
+  mainLabel: PropTypes.string,
   options: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.string,
-      value: PropTypes.any,
+      value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
       tooltip: PropTypes.shape({
         heading: PropTypes.string,
         description: PropTypes.string,
@@ -123,35 +126,12 @@ CheckboxGroup.propTypes = {
       }),
     }),
   ),
-  mainLabel: PropTypes.string,
-  formik: PropTypes.shape({}),
-  isRequired: PropTypes.bool,
-  isDisabled: PropTypes.bool,
-  helpLink: PropTypes.string,
-  helpLinkText: PropTypes.string,
-  tooltipLink: PropTypes.string,
-  tooltipLinkText: PropTypes.string,
-  optionalText: PropTypes.string,
-  mainLabelTooltipBoxHeading: PropTypes.string,
-  mainLabelTooltipBoxDescription: PropTypes.string,
-  mainLabelTooltipBoxDescriptionElement: PropTypes.string,
 };
 
 CheckboxGroup.defaultProps = {
-  name: '',
+  ...commonProps,
   options: {},
   mainLabel: '',
-  formik: {},
-  isRequired: false,
-  isDisabled: false,
-  helpLink: '',
-  helpLinkText: '',
-  tooltipLink: '',
-  tooltipLinkText: '',
-  optionalText: '',
-  mainLabelTooltipBoxHeading: '',
-  mainLabelTooltipBoxDescription: '',
-  mainLabelTooltipBoxDescriptionElement: null,
 };
 
 export default CheckboxGroup;

@@ -1,9 +1,10 @@
 import React, { useState, useRef } from 'react';
 
 import PropTypes from 'prop-types';
-import { Field } from 'formik';
+import { Field, useFormikContext } from 'formik';
 
 import styles from './Textarea.module.scss';
+import { commonProps, commonPropTypes } from '../../../constants/constants';
 import { joinClassNames } from '../../../utils/utils';
 import SlidingLabel from '../SlidingLabel/SlidingLabel';
 import ErrorText from '../ErrorText/ErrorText';
@@ -14,17 +15,16 @@ const Textarea = (props) => {
     name,
     label,
     placeholder,
-    formik,
     containerClass: customContainerClass,
-    labelTooltipBoxHeading,
-    labelTooltipBoxDescription,
-    labelTooltipBoxDescriptionElement,
+    mainLabelTooltipBoxHeading,
+    mainLabelTooltipBoxDescription,
+    mainLabelTooltipBoxDescriptionElement,
     tooltipLink,
     tooltipLinkText,
     helpLinkText,
     helpLink,
     optionalText,
-    isDisabled = false,
+    isDisabled,
     isRequired,
     ...rest
   } = props;
@@ -32,18 +32,17 @@ const Textarea = (props) => {
   const [slideLabel, setSlideLabel] = useState(false);
   const textareaRef = useRef();
 
-  const { values, errors } = formik;
+  const { values, errors, touched, handleBlur: formikHandleBlur } = useFormikContext();
   const inputValue = values[name];
 
-  const userHasVisitedTheInputField = formik.touched[name];
+  const userHasVisitedTheInputField = touched[name];
   const inputFieldHasErrors = errors[name];
   const addErrorClassesToLabelAndInput = !!userHasVisitedTheInputField && !!inputFieldHasErrors;
 
   const placeholderButtonClasses = joinClassNames([styles.textarea, styles.placeholderButton]);
-  const containerClasses = joinClassNames([styles.container, customContainerClass]);
 
   const handleBlurOnField = (e) => {
-    formik.handleBlur(e);
+    formikHandleBlur(e);
     setSlideLabel(false);
     if (inputValue) showLabelView(true);
   };
@@ -82,7 +81,7 @@ const Textarea = (props) => {
     );
 
   return (
-    <div className={containerClasses}>
+    <div className={joinClassNames([styles.container, customContainerClass])}>
       <div className={styles.fieldContainer}>
         {renderFieldView()}
         {label && (
@@ -92,9 +91,9 @@ const Textarea = (props) => {
             inputEntered={!!inputValue || !!placeholder || slideLabel}
             customClass={styles.label}
             showErrorStyle={addErrorClassesToLabelAndInput}
-            tooltipBoxHeading={labelTooltipBoxHeading}
-            tooltipBoxDescription={labelTooltipBoxDescription}
-            tooltipBoxDescriptionElement={labelTooltipBoxDescriptionElement}
+            tooltipBoxHeading={mainLabelTooltipBoxHeading}
+            tooltipBoxDescription={mainLabelTooltipBoxDescription}
+            tooltipBoxDescriptionElement={mainLabelTooltipBoxDescriptionElement}
             inputIsRequired={isRequired}
           />
         )}
@@ -114,38 +113,15 @@ const Textarea = (props) => {
 };
 
 Textarea.propTypes = {
-  name: PropTypes.string.isRequired,
+  ...commonPropTypes,
   label: PropTypes.string,
   placeholder: PropTypes.string,
-  formik: PropTypes.shape({}),
-  containerClass: PropTypes.string,
-  labelTooltipBoxHeading: PropTypes.string,
-  labelTooltipBoxDescription: PropTypes.string,
-  labelTooltipBoxDescriptionElement: PropTypes.element,
-  tooltipLink: PropTypes.string,
-  tooltipLinkText: PropTypes.string,
-  helpLinkText: PropTypes.string,
-  helpLink: PropTypes.string,
-  optionalText: PropTypes.string,
-  isDisabled: PropTypes.bool,
-  isRequired: PropTypes.bool,
 };
 
 Textarea.defaultProps = {
   label: PropTypes.string,
   placeholder: '',
-  formik: {},
-  containerClass: '',
-  labelTooltipBoxHeading: '',
-  labelTooltipBoxDescription: '',
-  labelTooltipBoxDescriptionElement: null,
-  tooltipLink: '',
-  tooltipLinkText: '',
-  helpLinkText: '',
-  helpLink: '',
-  optionalText: '',
-  isDisabled: false,
-  isRequired: false,
+  ...commonProps,
 };
 
 export default Textarea;

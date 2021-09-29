@@ -1,5 +1,5 @@
 import * as Yup from 'yup';
-import { dateValidation } from '../constants/constants';
+import { dateValidation } from '../constants/strings';
 import { getFullDate } from './utils';
 
 const {

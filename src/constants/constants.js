@@ -1,3 +1,34 @@
+import PropTypes from 'prop-types';
+
+export const commonPropTypes = {
+  name: PropTypes.string.isRequired,
+  isRequired: PropTypes.bool,
+  isDisabled: PropTypes.bool,
+  containerClass: PropTypes.string,
+  mainLabelTooltipBoxHeading: PropTypes.string,
+  mainLabelTooltipBoxDescription: PropTypes.string,
+  mainLabelTooltipBoxDescriptionElement: PropTypes.string,
+  helpLink: PropTypes.string,
+  helpLinkText: PropTypes.string,
+  tooltipLink: PropTypes.string,
+  tooltipLinkText: PropTypes.string,
+  optionalText: PropTypes.string,
+};
+
+export const commonProps = {
+  isRequired: false,
+  isDisabled: false,
+  containerClass: '',
+  mainLabelTooltipBoxHeading: '',
+  mainLabelTooltipBoxDescription: '',
+  mainLabelTooltipBoxDescriptionElement: null,
+  helpLink: '',
+  helpLinkText: '',
+  tooltipLink: '',
+  tooltipLinkText: '',
+  optionalText: '',
+};
+
 export const months = [
   { name: 'Jan', isDisabled: false },
   { name: 'Feb', isDisabled: false },
@@ -13,13 +44,18 @@ export const months = [
   { name: 'Dec', isDisabled: false },
 ];
 
-export const dateValidation = {
-  minDateOnly: 'min date only',
-  maxDateOnly: 'max date only',
-  maxDaysInThePastOnly: 'max days in the past only',
-  maxDaysInTheFutureOnly: 'max days in the future only',
-  minDateAndMaxDate: 'min date and max date',
-  minDateAndMaxDaysInFuture: 'min date and max days in the future',
-  maxDaysInPastAndMaxDate: 'Max days in the past and max date',
-  maxDaysInPastAndMaxDaysInFuture: 'Max days in the past and max days in the future',
+export const buttonVariants = {
+  button: 'button',
+  link: 'link',
+  linkAsButton: 'link_as_button',
+};
+
+export const buttonTypes = {
+  button: 'button',
+  submit: 'submit',
+};
+
+export const buttonTheme = {
+  purple: 'purple',
+  red: 'red',
 };

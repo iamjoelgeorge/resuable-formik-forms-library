@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 
-import { Field } from 'formik';
+import { Field, useFormikContext } from 'formik';
 import PropTypes from 'prop-types';
 
 import styles from './Checkbox.module.scss';
+import { commonProps, commonPropTypes } from '../../../constants/constants';
 import { joinClassNames } from '../../../utils/utils';
 import ErrorText from '../ErrorText/ErrorText';
 import SlidingLabel from '../SlidingLabel/SlidingLabel';
@@ -13,9 +14,9 @@ import AdditionalInfo from '../AdditionalInfo/AdditionalInfo';
 const Checkbox = (props) => {
   const {
     name,
+    containerClass: customContainerClass,
     optionLabel,
     mainLabel,
-    formik,
     isRequired,
     isDisabled,
     helpLink,
@@ -33,9 +34,9 @@ const Checkbox = (props) => {
   } = props;
   const [isFocused, setIsFocused] = useState(false);
 
-  const { errors } = formik;
+  const { errors, touched, handleBlur: formikHandleBlur } = useFormikContext();
 
-  const userHasVisitedTheInputField = formik.touched[name];
+  const userHasVisitedTheInputField = touched[name];
   const inputFieldHasErrors = errors[name];
   const addErrorClassesToLabelAndInput = !!userHasVisitedTheInputField && !!inputFieldHasErrors;
 
@@ -53,12 +54,12 @@ const Checkbox = (props) => {
   };
 
   const handleBlur = (e) => {
-    formik.handleBlur(e);
+    formikHandleBlur(e);
     setIsFocused(false);
   };
 
   return (
-    <div className={styles.container}>
+    <div className={joinClassNames([styles.container, customContainerClass])}>
       {mainLabel && (
         <SlidingLabel
           customClass={styles.componentHeading}
@@ -117,38 +118,21 @@ const Checkbox = (props) => {
 };
 
 Checkbox.propTypes = {
-  name: PropTypes.string.isRequired,
+  ...commonPropTypes,
   optionLabel: PropTypes.string,
   mainLabel: PropTypes.string,
-  isRequired: PropTypes.bool,
-  isDisabled: PropTypes.bool,
-  helpLink: PropTypes.string,
-  helpLinkText: PropTypes.string,
-  tooltipLink: PropTypes.string,
-  tooltipLinkText: PropTypes.string,
-  optionalText: PropTypes.string,
-  mainLabelTooltipBoxHeading: PropTypes.string,
-  mainLabelTooltipBoxDescription: PropTypes.string,
-  mainLabelTooltipBoxDescriptionElement: PropTypes.element,
   optionLabelTooltipBoxHeading: PropTypes.string,
   optionLabelTooltipBoxDescription: PropTypes.string,
   optionLabelTooltipBoxDescriptionElement: PropTypes.element,
 };
 
 Checkbox.defaultProps = {
-  optionLabel: '',
+  ...commonProps,
   mainLabel: '',
-  isRequired: false,
-  isDisabled: false,
-  helpLink: '',
-  helpLinkText: '',
-  tooltipLink: '',
-  tooltipLinkText: '',
-  optionalText: '',
-  mainLabelTooltipBoxHeading: '',
-  mainLabelTooltipBoxDescription: '',
+  optionLabel: '',
   optionLabelTooltipBoxHeading: '',
   optionLabelTooltipBoxDescription: '',
+  optionLabelTooltipBoxDescriptionElement: null,
 };
 
 export default Checkbox;

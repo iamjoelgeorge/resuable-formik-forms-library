@@ -2,10 +2,12 @@ import React, { useRef, useState } from 'react';
 
 import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
-import { Field } from 'formik';
+import { Field, useFormikContext } from 'formik';
 
 import styles from './FileUploadInput.module.scss';
+import { commonProps, commonPropTypes } from '../../../constants/constants';
 import { DeleteIcon } from '../../../constants/icons';
+import { joinClassNames } from '../../../utils/utils';
 import ErrorText from '../ErrorText/ErrorText';
 import AdditionalInfo from '../AdditionalInfo/AdditionalInfo';
 import SlidingLabel from '../SlidingLabel/SlidingLabel';
@@ -14,11 +16,10 @@ const FileUploadInput = (props) => {
   const {
     label,
     name,
-    formik,
     containerClass: customContainerClass,
-    labelTooltipBoxHeading,
-    labelTooltipBoxDescription,
-    labelTooltipBoxDescriptionElement,
+    mainLabelTooltipBoxHeading,
+    mainLabelTooltipBoxDescription,
+    mainLabelTooltipBoxDescriptionElement,
     tooltipLink,
     tooltipLinkText,
     helpLinkText,
@@ -33,8 +34,10 @@ const FileUploadInput = (props) => {
   const [selectedFiles, setSelectedFiles] = useState([]);
   const fileRef = useRef();
 
-  const userHasVisitedTheInputField = formik.touched[name];
-  const inputFieldHasErrors = formik.errors[name];
+  const { errors, touched } = useFormikContext();
+
+  const userHasVisitedTheInputField = touched[name];
+  const inputFieldHasErrors = errors[name];
   const addErrorClassesToLabelAndInput = !!userHasVisitedTheInputField && !!inputFieldHasErrors;
 
   const handleChange = (setFieldValue) => {
@@ -77,7 +80,7 @@ const FileUploadInput = (props) => {
   };
 
   return (
-    <div className={styles.container}>
+    <div className={joinClassNames([styles.container, customContainerClass])}>
       {label && (
         <SlidingLabel
           label={label}
@@ -85,15 +88,15 @@ const FileUploadInput = (props) => {
           inputEntered={true}
           customClass={styles.label}
           showErrorStyle={addErrorClassesToLabelAndInput}
-          tooltipBoxHeading={labelTooltipBoxHeading}
-          tooltipBoxDescription={labelTooltipBoxDescription}
-          tooltipBoxDescriptionElement={labelTooltipBoxDescriptionElement}
+          tooltipBoxHeading={mainLabelTooltipBoxHeading}
+          tooltipBoxDescription={mainLabelTooltipBoxDescription}
+          tooltipBoxDescriptionElement={mainLabelTooltipBoxDescriptionElement}
           inputIsRequired={isRequired}
         />
       )}
 
       <Field name={name} {...rest}>
-        {({ form, field }) => {
+        {({ form }) => {
           const { setFieldValue } = form;
 
           return (
@@ -139,37 +142,15 @@ const FileUploadInput = (props) => {
 };
 
 FileUploadInput.propTypes = {
-  label: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  formik: PropTypes.shape({}),
-  containerClass: PropTypes.string,
-  labelTooltipBoxHeading: PropTypes.string,
-  labelTooltipBoxDescription: PropTypes.string,
-  labelTooltipBoxDescriptionElement: PropTypes.element,
-  tooltipLink: PropTypes.string,
-  tooltipLinkText: PropTypes.string,
-  helpLinkText: PropTypes.string,
-  helpLink: PropTypes.string,
-  optionalText: PropTypes.string,
-  isRequired: PropTypes.bool,
-  isDisabled: PropTypes.bool,
+  ...commonPropTypes,
+  label: PropTypes.string,
   multiple: PropTypes.bool,
 };
 
 FileUploadInput.defaultProps = {
-  formik: {},
-  containerClass: '',
-  labelTooltipBoxHeading: '',
-  labelTooltipBoxDescription: '',
-  labelTooltipBoxDescriptionElement: null,
-  tooltipLink: '',
-  tooltipLinkText: '',
-  helpLinkText: '',
-  helpLink: '',
-  optionalText: '',
-  isRequired: false,
-  isDisabled: false,
+  label: PropTypes.string,
   multiple: false,
+  ...commonProps,
 };
 
 export default FileUploadInput;

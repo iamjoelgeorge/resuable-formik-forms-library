@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { render, cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import renderer from 'react-test-renderer';
@@ -33,6 +34,16 @@ describe('[Component]: Button', () => {
     };
     const { getByTestId } = render(<Button {...props} />);
     expect(getByTestId('button-submit')).toHaveTextContent('submit');
+  });
+
+  it('should render a disabled button', () => {
+    const props = {
+      ...defaultProps,
+      type: 'button',
+      isDisabled: true,
+    };
+    const { getByTestId } = render(<Button {...props} />);
+    expect(getByTestId('button-submit')).toHaveAttribute('disabled');
   });
 
   it('should render the link correctly', () => {

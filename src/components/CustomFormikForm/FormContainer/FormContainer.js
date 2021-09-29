@@ -1,5 +1,6 @@
 import React, { Children, cloneElement } from 'react';
 
+import PropTypes from 'prop-types';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 
@@ -7,7 +8,7 @@ import './FormContainer.module.scss';
 import { validateInput } from '../../../utils/validateInput';
 
 const FormContainer = (props) => {
-  const { initialValues, children, validations, containerClass, onSubmit } = props;
+  const { initialValues, children, validations, containerClass, onSubmit, ...rest } = props;
 
   const validationObject = {};
   validations.forEach((item) => {
@@ -18,7 +19,7 @@ const FormContainer = (props) => {
 
   const renderChildren = (child, formik) => {
     const childOfChild = child.props.children;
-    const className = child.props.className;
+    const { className } = child.props;
 
     if (childOfChild?.props?.children) {
       return renderChildren(childOfChild, formik);
@@ -27,14 +28,12 @@ const FormContainer = (props) => {
     return (
       <div className={className}>
         {childOfChild?.length
-          ? childOfChild?.map((child) => {
-              /*
-                The error generated because of the key not being added can be ignored in this case
-                because these elements will not be deleted/modified. The key is not added the the child
-                because it is interfering with the focus event of the input field.
-              */
-              return cloneElement(child, { formik });
-            })
+          ? /*
+            The error generated because of the key not being added can be ignored in this case
+            because these elements will not be deleted/modified. The key is not added the the child
+            because it is interfering with the focus event of the input field.
+          */
+            childOfChild?.map((childElement) => cloneElement(childElement, { formik }))
           : cloneElement(childOfChild, { formik })}
       </div>
     );
@@ -47,11 +46,30 @@ const FormContainer = (props) => {
             ? renderChildren(child, formik)
             : cloneElement(child, { formik });
         });
-        return <Form className={containerClass}>{childrenWithExtraProp}</Form>;
+        return (
+          <Form className={containerClass} {...rest}>
+            {childrenWithExtraProp}
+          </Form>
+        );
       }}
     </Formik>
-    // <div>{children}</div>
   );
+};
+
+FormContainer.propTypes = {
+  initialValues: PropTypes.shape({}),
+  children: PropTypes.element,
+  validations: PropTypes.array,
+  containerClass: PropTypes.string,
+  onSubmit: PropTypes.func,
+};
+
+FormContainer.defaultProps = {
+  initialValues: {},
+  children: null,
+  validations: [],
+  containerClass: '',
+  onSubmit: () => {},
 };
 
 export default FormContainer;
