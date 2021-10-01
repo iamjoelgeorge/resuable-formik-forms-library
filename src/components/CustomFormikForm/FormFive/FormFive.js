@@ -16,6 +16,12 @@ const FormFive = () => {
 
   const validations = [
     {
+      name: names.autoComplete,
+      type: 'dropdown',
+      isRequired: true,
+      message: 'Please select an option',
+    },
+    {
       name: names.departureDate,
       type: 'dropdown_datepicker',
       isRequired: true,

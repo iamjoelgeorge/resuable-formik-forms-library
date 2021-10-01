@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 import styles from './DateDropdown.module.scss';
 import { ArrowNext } from '../../../../../constants/icons';
-import { joinClassNames } from '../../../../../utils/utils';
+import { functionThatDoesNothing, joinClassNames } from '../../../../../utils/utils';
 import { useToggleDropdown } from '../../../../../hooks/useToggleDropdown';
 
 const DateDropdown = (props) => {
@@ -17,8 +17,6 @@ const DateDropdown = (props) => {
   const containerClasses = isDisabled
     ? joinClassNames([styles.container, styles.disabled])
     : styles.container;
-
-  const functionThatDoesNothing = () => {};
 
   const renderDropdownItems = () =>
     dropdownArray?.map((item) => {

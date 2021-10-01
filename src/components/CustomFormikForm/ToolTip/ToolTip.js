@@ -30,7 +30,9 @@ const ToolTip = (props) => {
       ref={tooltipContainerRef}
       className={containerClasses}
     >
-      <img src={ToolTipIcon} alt='tooltip' onClick={toggleTooltipBox} />
+      <span onClick={toggleTooltipBox} role='button' tabIndex="0">
+        <img src={ToolTipIcon} alt='tooltip' />
+      </span>
 
       {isBoxOpen && (
         <div ref={tooltipBoxRef} className={styles.box}>

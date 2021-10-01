@@ -9,6 +9,11 @@ import { months } from '../constants/constants';
 export const joinClassNames = (classesArray) => classesArray.join(' ');
 
 /**
+ * Use this function to replace any click handlers when the component is disabled
+ */
+export const functionThatDoesNothing = () => {};
+
+/**
  *
  * @param {Date} fromDate The year to start from (e.g. 2021).
  * @param {Number} numOfDays Number of days to move through (e.g. 50).

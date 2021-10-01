@@ -63,12 +63,14 @@ const DropdownDatePicker = (props) => {
     : styles.label;
 
   const today = new Date();
+  // eslint-disable-next-line no-nested-ternary
   const startDate = maxDaysInThePast
     ? getFullDate(today, maxDaysInThePast, false)
     : minDate
     ? new Date(minDate)
     : new Date((today.getFullYear() - 100).toString());
 
+  // eslint-disable-next-line no-nested-ternary
   const endDate = maxDaysInTheFuture
     ? getFullDate(today, maxDaysInTheFuture)
     : maxDate
@@ -94,6 +96,7 @@ const DropdownDatePicker = (props) => {
   const inputFieldHasErrors = errors[name];
   const addErrorClassesToLabelAndInput = !!userHasVisitedTheInputField && !!inputFieldHasErrors;
 
+  // eslint-disable-next-line
   const getDateObj = (formattedDate) => {
     const dateArray = formattedDate.split(' ');
 
@@ -156,6 +159,7 @@ const DropdownDatePicker = (props) => {
       minMonthIndex,
       maxMonthIndex,
     );
+    // eslint-disable-next-line
     const datesInAMonthArray = getSmartDayNumbers(
       dateObj.month,
       dateObj.year,
@@ -207,12 +211,14 @@ const DropdownDatePicker = (props) => {
       date && month && year ? moment(new Date(dateString)).format(dateFormat) : '';
 
     if (!!selectedDate && !(selectedDate === formattedDate)) {
+      // eslint-disable-next-line
       const date = getFinalDateToSetTheField(selectedDate);
 
       setFieldValue(name, date);
     }
 
     if (date && month && year && values[name] === null) {
+      // eslint-disable-next-line
       const date = getFinalDateToSetTheField(selectedDate);
 
       setFieldValue(name, date);
@@ -221,6 +227,7 @@ const DropdownDatePicker = (props) => {
 
   // Reset the selected value if it is out of the specified range.
   useEffect(() => {
+    // eslint-disable-next-line
     const selectedYear = dateObj.year;
     const selectedDayNumber = dateObj.date;
 

@@ -67,12 +67,12 @@ const DropdownWithoutAutoComplete = (props) => {
     });
 
   return (
-    <Field name={name} {...rest}>
+    <Field name={name}>
       {({ form, field }) => {
         const { setFieldValue } = form;
 
         return (
-          <div data-testid={`${name}-dropdown-component`} className={containerClasses}>
+          <div data-testid={`${name}-dropdown-component`} className={containerClasses} {...rest}>
             {label && (
               <SlidingLabel
                 label={label}

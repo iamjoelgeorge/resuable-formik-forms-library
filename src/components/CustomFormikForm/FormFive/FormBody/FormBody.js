@@ -8,6 +8,8 @@ import { names } from '../constants';
 const FormBody = (props) => {
   const { formik } = props;
 
+  const dropdownArray = ['Other', 'Mr.', 'Ms.', 'Mrs.'];
+
   return (
     <>
       <h1>Form 5</h1>
@@ -49,8 +51,12 @@ const FormBody = (props) => {
 
       <DropdownWithAutoComplete
         name={names.autoComplete}
+        label='Autocomplete'
+        dropdownArray={dropdownArray}
+        optionalText='Optional test'
         mainLabelTooltipBoxHeading='test'
         mainLabelTooltipBoxDescription='test'
+        isRequired
       />
 
       <Button type='submit' label='Submit' theme='red' />
