@@ -148,7 +148,6 @@ Input.propTypes = {
   tooltipBoxBesideInputHeading: PropTypes.string,
   tooltipBoxBesideInputDescription: PropTypes.string,
   tooltipBoxBesideInputDescriptionElement: PropTypes.element,
-  handleBlur: PropTypes.func,
 };
 
 Input.defaultProps = {
@@ -158,7 +157,6 @@ Input.defaultProps = {
   tooltipBoxBesideInputHeading: '',
   tooltipBoxBesideInputDescription: '',
   tooltipBoxBesideInputDescriptionElement: null,
-  handleBlur: () => {},
 };
 
 export default Input;
