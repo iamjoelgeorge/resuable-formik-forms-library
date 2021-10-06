@@ -13,6 +13,7 @@ import { useToggleDropdown } from '../../../../hooks/useToggleDropdown';
 import AdditionalInfo from '../../AdditionalInfo/AdditionalInfo';
 import ErrorText from '../../ErrorText/ErrorText';
 import SlidingLabel from '../../SlidingLabel/SlidingLabel';
+import DropdownIcon from '../../Checkbox/DropdownIcon/DropdownIcon';
 
 const CalendarDatePicker = (props) => {
   const {
@@ -97,6 +98,7 @@ const CalendarDatePicker = (props) => {
                 <SlidingLabel
                   label={label}
                   inputEntered={!!value?.toString() ?? value}
+                  inputIsDisabled={isDisabled}
                   htmlFor={`${name}-selectedDate`}
                   showErrorStyle={addErrorClassesToLabelAndInput}
                   tooltipBoxHeading={mainLabelTooltipBoxHeading}
@@ -110,9 +112,7 @@ const CalendarDatePicker = (props) => {
                   className={styles.selectedDate}
                 >
                   {value !== null && value !== '' && moment(value).format(dateFormat)}
-                  <span className={dropdownIconClasses}>
-                    <img src={ArrowNext} alt='Dropdown icon' />
-                  </span>
+                  <DropdownIcon isOpen={isCalendarOpen} isDisabled={isDisabled} />
                 </p>
               </button>
             </div>

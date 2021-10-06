@@ -227,18 +227,6 @@
     &:disabled {
       cursor: not-allowed;
 
-      label {
-        cursor: not-allowed;
-        color: $secondaryGrey;
-        font-weight: $fontWeightRegular;
-      }
-
-      .dropdownIcon {
-        -webkit-filter: invert(50%); /* safari 6.0 - 9.0 */
-        filter: invert(50%);
-        opacity: 0.3;
-      }
-
       .selectedDate {
         color: $secondaryGrey;
       }
@@ -249,25 +237,6 @@
       color: $primaryDark;
       font-size: 14px;
       margin: 2px 5px 5px;
-
-      .dropdownIcon {
-        position: absolute;
-        right: 0;
-        width: 6px;
-        height: 10px;
-        transform: rotate(90deg);
-        transform-origin: center;
-        transition: 0.5s all ease-in-out;
-
-        img {
-          width: 100%;
-          height: auto;
-        }
-      }
-
-      .rotateDropdownIcon {
-        transform: translate(-50%) rotate(-90deg);
-      }
     }
   }
 

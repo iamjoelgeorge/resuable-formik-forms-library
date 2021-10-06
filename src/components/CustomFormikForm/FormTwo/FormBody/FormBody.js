@@ -5,13 +5,36 @@ import Button from '../../Button/Button';
 import Checkbox from '../../Checkbox/Checkbox';
 import DropdownWithoutAutoComplete from '../../DropdownWithoutAutoComplete/DropdownWithoutAutoComplete';
 import Input from '../../Input/Input';
+import Dropdown from '../../DropdownWithAutoComplete/Dropdown/Dropdown';
 
 const FormBody = (props) => {
   const { formik } = props;
 
-  const dropdownArray = ['Other', 'Mr.', 'Ms.', 'Mrs.'];
+  // const dropdownArray = ['Other', 'Mr.', 'Ms.', 'Mrs.'];
+  const dropdownArray = [
+    {
+      label: 'Mr.',
+      value: 'Mr.',
+    },
+    {
+      label: 'Mrs.',
+      value: 'Mrs.',
+    },
+    {
+      label: 'Ms.',
+      value: 'Ms.',
+    },
+    {
+      label: 'dr.',
+      value: 'dr.',
+    },
+    {
+      label: 'Other',
+      value: 'Other',
+    },
+  ];
 
-  const showExtraInput = formik.values['salutation'].trim().toLowerCase() === 'other';
+  const showExtraInput = formik.values['salutation']?.label?.trim().toLowerCase() === 'other';
 
   return (
     <>
@@ -27,7 +50,19 @@ const FormBody = (props) => {
         tooltipLinkText='This link is a tooltip, haha!'
       />
 
-      <DropdownWithoutAutoComplete
+      {/* <DropdownWithoutAutoComplete
+        name='salutation'
+        label='Salutation'
+        dropdownArray={dropdownArray}
+        containerClass={styles.dropdown}
+        mainLabelTooltipBoxHeading='Permitted with no fee'
+        mainLabelTooltipBoxDescription='For cancellation, credit to Travel Bank for the full ticket value including any fare portion where Velocity Points have been redeemed.'
+        helpLink='#'
+        helpLinkText='This link is for your help, haha!'
+        isDisabled={!formik.values['terms']}
+      /> */}
+
+      <Dropdown
         name='salutation'
         label='Salutation'
         dropdownArray={dropdownArray}

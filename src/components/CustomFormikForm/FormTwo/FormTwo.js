@@ -22,7 +22,7 @@ const FormTwo = () => {
     },
     {
       name: 'salutation',
-      type: 'dropdown',
+      type: 'custom_dropdown',
       isRequired: true,
       message: 'Please select how you would like to be addressed.',
     },

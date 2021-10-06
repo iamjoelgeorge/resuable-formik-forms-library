@@ -59,3 +59,12 @@ export const buttonTheme = {
   purple: 'purple',
   red: 'red',
 };
+
+export const keyCodes = {
+  spaceBar: 32,
+  esc: 27,
+  tab: 9,
+  enter: 13,
+  arrowDown: 40,
+  arrowUp: 38,
+};

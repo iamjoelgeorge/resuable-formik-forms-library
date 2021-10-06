@@ -178,6 +178,21 @@ export const validateInput = (validation, objectToUpdate) => {
       objectToUpdate[name] = isRequired ? Yup.string().required(message) : Yup.string();
       break;
 
+    case 'custom_dropdown':
+      objectToUpdate[name] = isRequired
+        ? Yup.object()
+            .nullable()
+            .shape({
+              label: Yup.string(),
+              value: Yup.string(),
+            })
+            .required(message)
+        : Yup.object().nullable().shape({
+            label: Yup.string(),
+            value: Yup.string(),
+          });
+      break;
+
     case 'file':
       objectToUpdate[name] = isRequired
         ? Yup.array()

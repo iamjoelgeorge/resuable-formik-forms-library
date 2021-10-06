@@ -59,11 +59,6 @@
     &:disabled {
       border-bottom-color: $lighterGrey;
       cursor: not-allowed;
-
-      & + div > label {
-        font-weight: $fontWeightRegular;
-        color: $secondaryGrey;
-      }
     }
   }
 

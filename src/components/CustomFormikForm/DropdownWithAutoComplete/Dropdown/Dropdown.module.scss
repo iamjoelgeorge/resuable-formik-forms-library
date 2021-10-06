@@ -1,0 +1,11 @@
+.container {
+  z-index: 1;
+
+  .label {
+    top: 5px;
+  }
+
+  .slideLabel {
+    top: -6px !important;
+  }
+}

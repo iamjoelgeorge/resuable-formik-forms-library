@@ -43,3 +43,12 @@
     background-color: $tooltipRed;
   }
 }
+
+.isDisabled {
+  font-weight: $fontWeightRegular;
+  color: $secondaryGrey;
+  
+  label {
+    cursor: not-allowed !important;
+  }
+}

@@ -89,6 +89,7 @@ const Textarea = (props) => {
             label={label}
             htmlFor={name}
             inputEntered={!!inputValue || !!placeholder || slideLabel}
+            inputIsDisabled={isDisabled}
             customClass={styles.label}
             showErrorStyle={addErrorClassesToLabelAndInput}
             tooltipBoxHeading={mainLabelTooltipBoxHeading}

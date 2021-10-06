@@ -1,0 +1,42 @@
+@import '../../../../theme//variables.scss';
+
+.dropdownIcon {
+  position: absolute;
+  right: 0;
+  width: 6px;
+  height: 10px;
+  transform: rotate(90deg);
+
+  .line {
+    display: block;
+    width: 2px;
+    height: 8px;
+    background: $primary;
+    border-radius: 4px;
+
+    &.lineLeft {
+      transform: rotate(-45deg);
+      margin-bottom: -4px;
+    }
+
+    &.lineRight {
+      transform: rotate(45deg);
+    }
+  }
+
+  &.rotateDropdownIcon {
+    .lineLeft {
+      transform: rotate(45deg);
+    }
+
+    .lineRight {
+      transform: rotate(-45deg);
+    }
+  }
+}
+
+.isDisabled {
+  -webkit-filter: invert(50%); /* safari 6.0 - 9.0 */
+  filter: invert(50%);
+  opacity: 0.3;
+}

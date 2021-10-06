@@ -278,6 +278,7 @@ const DropdownDatePicker = (props) => {
       <SlidingLabel
         label={label}
         inputEntered
+        inputIsDisabled={isDisabled}
         htmlFor='selectedDate'
         customClass={labelClasses}
         showErrorStyle={addErrorClassesToLabelAndInput}

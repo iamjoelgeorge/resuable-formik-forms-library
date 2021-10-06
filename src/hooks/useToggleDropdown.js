@@ -1,5 +1,7 @@
 import { useLayoutEffect, useState } from 'react';
 
+import { keyCodes } from '../constants/constants';
+
 export const useToggleDropdown = (elementRef) => {
   const [state, setState] = useState(false);
 
@@ -13,13 +15,13 @@ export const useToggleDropdown = (elementRef) => {
     };
 
     const handleEscKeyPress = (e) => {
-      if (e.keyCode === 27) {
+      if (e.keyCode === keyCodes.esc) {
         setState(false);
       }
     };
 
-    const handleTabAndEnterKeyPress = (e) => {
-      if (e.keyCode === 32 || e.keyCode === 13) {
+    const handleSpaceAndEnterKeyPress = (e) => {
+      if (e.keyCode === keyCodes.spaceBar || e.keyCode === keyCodes.enter) {
         const node = elementRef.current;
         const clickedNode = e.target;
 
@@ -31,14 +33,14 @@ export const useToggleDropdown = (elementRef) => {
     document.addEventListener('mousedown', handleClickOutside);
     document.addEventListener('keydown', function (e) {
       handleEscKeyPress(e);
-      handleTabAndEnterKeyPress(e);
+      handleSpaceAndEnterKeyPress(e);
     });
 
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
       document.removeEventListener('keydown', function (e) {
         handleEscKeyPress(e);
-        handleTabAndEnterKeyPress(e);
+        handleSpaceAndEnterKeyPress(e);
       });
     };
   }, [elementRef]);

@@ -14,6 +14,7 @@ const SlidingLabel = (props) => {
     showErrorStyle,
     customClass,
     inputIsRequired,
+    inputIsDisabled,
     tooltipBoxHeading,
     tooltipBoxDescription,
     tooltipBoxDescriptionElement,
@@ -26,8 +27,19 @@ const SlidingLabel = (props) => {
     tooltipBoxHeading || tooltipBoxDescription || tooltipBoxDescriptionElement;
 
   const labelDefaultClasses = inputEntered
-    ? joinClassNames([styles.container, isRequiredStyle, styles.slideLabel, customClass])
-    : joinClassNames([styles.container, isRequiredStyle, customClass]);
+    ? joinClassNames([
+        styles.container,
+        isRequiredStyle,
+        inputIsDisabled ? styles.isDisabled : '',
+        styles.slideLabel,
+        customClass,
+      ])
+    : joinClassNames([
+        styles.container,
+        isRequiredStyle,
+        inputIsDisabled ? styles.isDisabled : '',
+        customClass,
+      ]);
 
   const containerClasses = showErrorStyle
     ? joinClassNames([labelDefaultClasses, styles.labelError])
@@ -58,6 +70,7 @@ SlidingLabel.propTypes = {
   showErrorStyle: PropTypes.bool.isRequired,
   customClass: PropTypes.string,
   inputIsRequired: PropTypes.bool,
+  inputIsDisabled: PropTypes.bool,
   tooltipBoxHeading: PropTypes.string,
   tooltipBoxDescription: PropTypes.string,
   tooltipBoxDescriptionElement: PropTypes.element,
@@ -66,6 +79,7 @@ SlidingLabel.propTypes = {
 SlidingLabel.defaultProps = {
   customClass: '',
   inputIsRequired: false,
+  inputIsDisabled: false,
   tooltipBoxHeading: '',
   tooltipBoxDescription: '',
   tooltipBoxDescriptionElement: null,

@@ -14,6 +14,7 @@ import FormTwo from './components/CustomFormikForm/FormTwo/FormTwo';
 import FormThree from './components/CustomFormikForm/FormThree/FormThree';
 import FormFour from './components/CustomFormikForm/FormFour/FormFour';
 import FormFive from './components/CustomFormikForm/FormFive/FormFive';
+import FormSix from './components/CustomFormikForm/FormSix/FormSix';
 
 function App() {
   return (
@@ -24,10 +25,11 @@ function App() {
         {/* <BoxGalleryTest /> */}
         {/* <CustomForm initialValues={initialValuesFormOne} /> */}
         <FormFive />
-        <FormTwo />
-        <FormThree />
-        <FormFour />
-        <FormOne />
+        {/* <FormTwo /> */}
+        {/* <FormThree /> */}
+        {/* <FormFour /> */}
+        {/* <FormOne /> */}
+        {/* <FormSix /> */}
       </div>
     </Provider>
   );

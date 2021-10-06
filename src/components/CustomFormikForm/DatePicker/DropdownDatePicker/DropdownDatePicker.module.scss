@@ -13,16 +13,6 @@
 
   .label {
     top: -23px;
-
-    label {
-      cursor: default;
-    }
-
-    &.disabledLabel {
-      label {
-        color: $secondaryGrey;
-      }
-    }
   }
 
   .dateContainer {
