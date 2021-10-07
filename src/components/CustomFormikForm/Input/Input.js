@@ -16,6 +16,7 @@ const Input = (props) => {
     label,
     name,
     placeholder,
+    customBlurFn,
     containerClass: customContainerClass,
     mainLabelTooltipBoxHeading,
     mainLabelTooltipBoxDescription,
@@ -32,6 +33,7 @@ const Input = (props) => {
     isRequired,
     ...rest
   } = props;
+
   const { values, errors, touched, handleBlur: formikHandleBlur } = useFormikContext();
   const inputValue = values[name];
 
@@ -59,10 +61,12 @@ const Input = (props) => {
   };
 
   const handleBlur = (e) => {
-    formikHandleBlur(e);
+    customBlurFn();
 
     setSlideLabel(false);
     if (inputValue) showLabelView(true);
+
+    formikHandleBlur(e);
   };
 
   const handleClick = () => {
@@ -148,6 +152,7 @@ Input.propTypes = {
   tooltipBoxBesideInputHeading: PropTypes.string,
   tooltipBoxBesideInputDescription: PropTypes.string,
   tooltipBoxBesideInputDescriptionElement: PropTypes.element,
+  customBlurFn: PropTypes.func,
 };
 
 Input.defaultProps = {
@@ -157,6 +162,7 @@ Input.defaultProps = {
   tooltipBoxBesideInputHeading: '',
   tooltipBoxBesideInputDescription: '',
   tooltipBoxBesideInputDescriptionElement: null,
+  customBlurFn: () => {},
 };
 
 export default Input;

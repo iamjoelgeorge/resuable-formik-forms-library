@@ -5,7 +5,6 @@ import DatePicker from '../../DatePicker/DatePicker';
 import Dropdown from '../../DropdownWithAutoComplete/Dropdown/Dropdown';
 import DropdownWithAutoComplete from '../../DropdownWithAutoComplete/DropdownWithAutoComplete';
 
-
 import { names } from '../constants';
 
 const FormBody = (props) => {
@@ -85,7 +84,7 @@ const FormBody = (props) => {
   return (
     <>
       <h1>Form 5</h1>
-      <DatePicker
+      {/* <DatePicker
         name={names.calendarDate}
         label='Test Date'
         // minDate={new Date('3 Aug 2021')}
@@ -119,7 +118,7 @@ const FormBody = (props) => {
         mainLabelTooltipBoxDescription='For cancellation, credit to Travel Bank for the full ticket value including any fare portion where Velocity Points have been redeemed.'
         isRequired
         // isDisabled
-      />
+      /> */}
 
       {/* <DropdownWithAutoComplete
         name={names.autoComplete}
@@ -135,6 +134,7 @@ const FormBody = (props) => {
         label='Region Autocomplete'
         name={names.autoComplete}
         dropdownArray={dropdownArray}
+        defaultValue={dropdownArray[4]}
         isRequired
         // isDisabled
         // placeholder='Please select your region'

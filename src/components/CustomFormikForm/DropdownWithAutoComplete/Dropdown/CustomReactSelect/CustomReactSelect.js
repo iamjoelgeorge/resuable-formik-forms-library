@@ -11,6 +11,7 @@ import DropdownIcon from '../../../Checkbox/DropdownIcon/DropdownIcon';
 const CustomReactSelect = (props) => {
   const {
     dropdownArray,
+    defaultValue,
     isDisabled,
     isSearchable,
     placeholder,
@@ -19,14 +20,16 @@ const CustomReactSelect = (props) => {
     onFocus,
     onBlur,
     onKeyDown,
+    inputId,
+    ...rest
   } = props;
 
   const [enteredInput, setEnteredInput] = useState('');
   const [dropdownIsOpen, setDropdownIsOpen] = useState(false);
 
-  const formatOptionLabel = ({ label }) => {
-    return <TextHighlighter textToCompare={label} patternToMatch={enteredInput} />;
-  };
+  const formatOptionLabel = ({ label }) => (
+    <TextHighlighter textToCompare={label} patternToMatch={enteredInput} />
+  );
 
   const handleInputChange = (value) => {
     onInputChange(value);
@@ -71,9 +74,11 @@ const CustomReactSelect = (props) => {
 
   return (
     <Select
+      inputId={inputId}
       styles={customStylesForDropdown}
       formatOptionLabel={formatOptionLabel}
       options={dropdownArray}
+      defaultValue={defaultValue}
       onInputChange={handleInputChange}
       onChange={(value) => handleOptionChange(value)}
       placeholder={placeholder}
@@ -83,12 +88,15 @@ const CustomReactSelect = (props) => {
       isDisabled={isDisabled}
       onKeyDown={handleKeyPress}
       isSearchable={isSearchable}
+      {...rest}
     />
   );
 };
 
 CustomReactSelect.propTypes = {
+  inputId: PropTypes.string,
   dropdownArray: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  defaultValue: PropTypes.shape({}),
   isDisabled: PropTypes.bool,
   isSearchable: PropTypes.bool,
   placeholder: PropTypes.string,
@@ -100,7 +108,8 @@ CustomReactSelect.propTypes = {
 };
 
 CustomReactSelect.defaultProps = {
-  dropdownArray: [],
+  inputId: '',
+  defaultValue: null,
   isDisabled: false,
   isSearchable: false,
   placeholder: '',
