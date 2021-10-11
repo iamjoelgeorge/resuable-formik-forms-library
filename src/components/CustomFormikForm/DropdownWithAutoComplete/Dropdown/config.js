@@ -9,11 +9,6 @@ const colors = {
 };
 
 export const customStylesForDropdown = {
-  container: (provided) => ({
-    ...provided,
-    width: '276px',
-    maxWidth: '100%',
-  }),
   control: (provided, state) => ({
     ...provided,
     backgroundColor: state.isDisabled ? colors.white : colors.white,
