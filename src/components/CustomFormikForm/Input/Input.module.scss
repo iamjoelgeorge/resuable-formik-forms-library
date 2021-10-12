@@ -15,6 +15,7 @@ $smallFont: 11px;
     position: relative;
 
     .toolTipWithImage {
+      z-index: 1;
       position: absolute;
       right: 0;
       margin-right: em(2);
@@ -90,6 +91,8 @@ $smallFont: 11px;
   }
 
   .placeholderButton {
+    width: 100%;
+    overflow: hidden;
     text-align: left;
     z-index: 1;
     background-color: transparent;
