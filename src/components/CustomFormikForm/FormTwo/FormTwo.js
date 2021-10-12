@@ -9,7 +9,7 @@ import FormBody from './FormBody/FormBody';
 const FormTwo = () => {
   const initialValues = {
     terms: false,
-    salutation: '',
+    // salutation: '',
     other: '',
   };
 
@@ -17,8 +17,17 @@ const FormTwo = () => {
     {
       name: 'terms',
       type: 'checkbox',
-      isRequired: true,
+      isRequired: false,
       message: 'You need to agree to our Terms and Conditions.',
+    },
+    {
+      name: 'other',
+      type: 'positive_integer_including_zero',
+      dependOn: 'terms',
+      isRequired: true,
+      message: 'This field is required',
+      minChars: { num: 2, message: 'Please enter at least 2' },
+      maxChars: { num: 5, message: 'You can only enter upto 5' },
     },
     {
       name: 'salutation',

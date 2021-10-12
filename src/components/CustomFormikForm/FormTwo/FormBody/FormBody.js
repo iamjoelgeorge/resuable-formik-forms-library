@@ -34,7 +34,7 @@ const FormBody = (props) => {
     },
   ];
 
-  const showExtraInput = formik.values['salutation']?.label?.trim().toLowerCase() === 'other';
+  const showExtraInput = true
 
   return (
     <>
@@ -45,7 +45,7 @@ const FormBody = (props) => {
         mainLabel='Terms and Conditions'
         mainLabelTooltipBoxHeading='What is Lorem Ipsum?'
         mainLabelTooltipBoxDescription='Lorem Ipsum is simply dummy text.'
-        isRequired
+        // isRequired
         tooltipLink='#'
         tooltipLinkText='This link is a tooltip, haha!'
       />
@@ -62,7 +62,7 @@ const FormBody = (props) => {
         isDisabled={!formik.values['terms']}
       /> */}
 
-      <Dropdown
+      {/* <Dropdown
         name='salutation'
         label='Salutation'
         dropdownArray={dropdownArray}
@@ -72,7 +72,7 @@ const FormBody = (props) => {
         helpLink='#'
         helpLinkText='This link is for your help, haha!'
         isDisabled={!formik.values['terms']}
-      />
+      /> */}
 
       {showExtraInput && (
         <Input type='text' name='other' label='Other' containerClass={styles.input} />
