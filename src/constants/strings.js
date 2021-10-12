@@ -9,9 +9,31 @@ export const dateValidation = {
   maxDaysInPastAndMaxDaysInFuture: 'Max days in the past and max days in the future',
 };
 
+export const commonValidation = {
+  minAndMax: 'min and max',
+  onlyMin: 'only min',
+  onlyMax: 'only max',
+  noLimits: 'no limits',
+};
+
 export const STRINGS = {
   formOne: {
     customDescription: "I'm a custom description Element. Look me up on",
     google: 'Google',
   },
+};
+
+export const switchCases = {
+  string: 'string',
+  number: 'number',
+  positiveIntegerIncludingZero: 'positive_integer_including_zero',
+  email: 'email',
+  checkbox: 'checkbox',
+  checkboxGroup: 'checkbox_group',
+  radioButtonGroup: 'radio_button_group',
+  dropdown: 'dropdown',
+  customDropdown: 'custom_dropdown',
+  file: 'file',
+  calendarDatepicker: 'calendar_datepicker',
+  dropdownDatepicker: 'dropdown_datepicker',
 };
