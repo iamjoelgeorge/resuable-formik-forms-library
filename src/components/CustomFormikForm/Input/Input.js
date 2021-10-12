@@ -57,6 +57,7 @@ const Input = (props) => {
   const placeholderButtonClasses = joinClassNames([fieldClasses, styles.placeholderButton]);
 
   const handleFocus = () => {
+    showLabelView(false);
     setSlideLabel(true);
   };
 
