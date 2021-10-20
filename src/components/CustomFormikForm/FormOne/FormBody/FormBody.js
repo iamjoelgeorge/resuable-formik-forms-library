@@ -122,6 +122,7 @@ const FormBody = () => {
         // optionLabelTooltipBoxHeading='My description is a custom element!!!'
         // optionLabelTooltipBoxDescriptionElement={testElement}
       />
+      <Checkbox name='testCheckbox' optionLabel='You have to check me' mainLabel='Test test' />
       <RadioButtonGroup
         name='formOneRadioGroup'
         options={radioOptions}

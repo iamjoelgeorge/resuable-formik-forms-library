@@ -25,10 +25,10 @@ function App() {
         {/* <BoxGalleryTest /> */}
         {/* <CustomForm initialValues={initialValuesFormOne} /> */}
         {/* <FormFive /> */}
-        <FormTwo />
+        {/* <FormTwo /> */}
         {/* <FormThree /> */}
         {/* <FormFour /> */}
-        {/* <FormOne /> */}
+        <FormOne />
         {/* <FormSix /> */}
       </div>
     </Provider>

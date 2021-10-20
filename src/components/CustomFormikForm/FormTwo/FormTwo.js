@@ -11,6 +11,10 @@ const FormTwo = () => {
     terms: false,
     // salutation: '',
     other: '',
+    testDropdown: {
+      label: 'Select your region',
+      value: '',
+    },
   };
 
   const validations = [
@@ -22,12 +26,19 @@ const FormTwo = () => {
     },
     {
       name: 'other',
-      type: 'positive_integer_including_zero',
-      dependOn: 'terms',
-      isRequired: true,
+      type: 'email',
+      isRequiredDependsOnField: 'terms',
+      // isRequired: true,
       message: 'This field is required',
       minChars: { num: 2, message: 'Please enter at least 2' },
-      maxChars: { num: 5, message: 'You can only enter upto 5' },
+      maxChars: { num: 10, message: 'You can only enter upto 10' },
+    },
+    {
+      name: 'testDropdown',
+      type: 'dropdown',
+      isRequiredDependsOnField: 'terms',
+      // isRequired: true,
+      message: 'This field is required',
     },
     {
       name: 'salutation',

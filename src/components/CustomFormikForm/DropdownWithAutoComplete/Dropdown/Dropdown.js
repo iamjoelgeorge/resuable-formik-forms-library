@@ -17,7 +17,6 @@ const Dropdown = (props) => {
     name,
     label,
     dropdownArray,
-    defaultValue,
     placeholder,
     isSearchable,
     containerClass: customContainerClass,
@@ -47,7 +46,7 @@ const Dropdown = (props) => {
   const addErrorClassesToLabelAndInput = !!userHasVisitedTheInputField && !!inputFieldHasErrors;
 
   const labelClasses =
-    slideLabel || !!placeholder || values[name] || !!defaultValue
+    slideLabel || !!placeholder || values[name]
       ? joinClassNames([styles.label, styles.slideLabel])
       : styles.label;
 
@@ -71,13 +70,13 @@ const Dropdown = (props) => {
       className={joinClassNames([inputStyles.container, styles.container, customContainerClass])}
     >
       <Field name={name}>
-        {({ form }) => {
+        {({ form, field }) => {
           const { setFieldValue } = form;
           return (
             <CustomReactSelect
               inputId={name}
               dropdownArray={dropdownArray}
-              defaultValue={defaultValue}
+              defaultValue={field.value}
               isDisabled={isDisabled}
               isSearchable={isSearchable}
               placeholder={placeholder}
@@ -93,7 +92,7 @@ const Dropdown = (props) => {
         <SlidingLabel
           customClass={labelClasses}
           label={label}
-          inputEntered={!!values[name] || !!placeholder || slideLabel || !!defaultValue}
+          inputEntered={!!values[name] || !!placeholder || slideLabel}
           htmlFor={name}
           showErrorStyle={addErrorClassesToLabelAndInput}
           inputIsRequired={isRequired}
@@ -120,14 +119,12 @@ Dropdown.propTypes = {
   ...commonPropTypes,
   label: PropTypes.string,
   dropdownArray: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-  defaultValue: PropTypes.shape({}),
   placeholder: PropTypes.string,
   isSearchable: PropTypes.bool,
 };
 
 Dropdown.defaultProps = {
   ...commonProps,
-  defaultValue: null,
   placeholder: '',
   isSearchable: false,
 };

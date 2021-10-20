@@ -19,8 +19,8 @@ const FormSix = () => {
   ];
 
   const handleSubmit = (values, formikMethods) => {
-    console.log(formikMethods);
     console.log('Form 5 submitted:', values);
+    formikMethods.resetForm();
 
     setTimeout(() => {
       if (values['test'] === 'a') {

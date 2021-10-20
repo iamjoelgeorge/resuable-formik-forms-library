@@ -7,7 +7,7 @@ const FormBody = (props) => {
   const { formik } = props;
 
   const handleBlur = () => {
-    console.log('blur');
+    // console.log('blur');
 
     setTimeout(() => {
       if (formik.values['test'] === 'blur') {
@@ -18,8 +18,8 @@ const FormBody = (props) => {
   };
 
   const handleClick = () => {
-    console.log('clicked');
-    console.log(formik.values['test']);
+    // console.log('clicked');
+    // console.log(formik.values['test']);
 
     setTimeout(() => {
       if (formik.values['test'] === 'click') {

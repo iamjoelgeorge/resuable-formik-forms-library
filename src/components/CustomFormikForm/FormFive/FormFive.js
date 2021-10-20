@@ -9,7 +9,10 @@ const FormFive = () => {
   const initialValues = {
     [names.departureDate]: null,
     [names.calendarDate]: null,
-    [names.autoComplete]: null,
+    [names.autoComplete]: {
+      label: 'Select your region',
+      value: '',
+    },
     // [names.departureDate]: new Date('31 feb 2018'),
     // [names.testDate]: new Date(),
   };
@@ -17,7 +20,7 @@ const FormFive = () => {
   const validations = [
     {
       name: names.autoComplete,
-      type: 'custom_dropdown',
+      type: 'dropdown',
       isRequired: true,
       message: 'Please select an option',
     },
@@ -55,7 +58,10 @@ const FormFive = () => {
     // },
   ];
 
-  const handleSubmit = (values) => console.log('Form 5 submitted:', values);
+  const handleSubmit = (values, formikMethods) => {
+    formikMethods.resetForm();
+    console.log('Form 5 submitted:', values);
+  };
 
   return (
     <FormContainer

@@ -13,6 +13,10 @@ const FormBody = (props) => {
   // const dropdownArray = ['Other', 'Mr.', 'Ms.', 'Mrs.'];
   const dropdownArray = [
     {
+      label: 'Select your region',
+      value: '',
+    },
+    {
       label: 'Mr.',
       value: 'Mr.',
     },
@@ -34,7 +38,7 @@ const FormBody = (props) => {
     },
   ];
 
-  const showExtraInput = true
+  const showExtraInput = true;
 
   return (
     <>
@@ -62,17 +66,17 @@ const FormBody = (props) => {
         isDisabled={!formik.values['terms']}
       /> */}
 
-      {/* <Dropdown
-        name='salutation'
-        label='Salutation'
+      <Dropdown
+        name='testDropdown'
+        label='testDropdown'
         dropdownArray={dropdownArray}
         containerClass={styles.dropdown}
         mainLabelTooltipBoxHeading='Permitted with no fee'
         mainLabelTooltipBoxDescription='For cancellation, credit to Travel Bank for the full ticket value including any fare portion where Velocity Points have been redeemed.'
         helpLink='#'
         helpLinkText='This link is for your help, haha!'
-        isDisabled={!formik.values['terms']}
-      /> */}
+        // isDisabled={!formik.values['terms']}
+      />
 
       {showExtraInput && (
         <Input type='text' name='other' label='Other' containerClass={styles.input} />

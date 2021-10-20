@@ -19,6 +19,7 @@ const MAX_FILE_SIZE = 217100001;
 
 export const validateInput = (validation, objectToUpdate) => {
   const {
+    isRequiredDependsOnField,
     message,
     name,
     type,
@@ -50,8 +51,8 @@ export const validateInput = (validation, objectToUpdate) => {
 
     switch (caseToValidate) {
       case maxDaysInPastAndMaxDaysInFuture:
-        let pastDateOne = getFullDate(today, validation.maxDaysInThePast.num, false);
-        let futureDateOne = getFullDate(today, validation.maxDaysInTheFuture.num);
+        const pastDateOne = getFullDate(today, validation.maxDaysInThePast.num, false);
+        const futureDateOne = getFullDate(today, validation.maxDaysInTheFuture.num);
 
         objectToUpdate[name] = Yup.date()
           .transform((value) => value)
@@ -69,7 +70,7 @@ export const validateInput = (validation, objectToUpdate) => {
         break;
 
       case minDateAndMaxDaysInFuture:
-        let futureDateTwo = getFullDate(today, validation.maxDaysInTheFuture.num);
+        const futureDateTwo = getFullDate(today, validation.maxDaysInTheFuture.num);
 
         objectToUpdate[name] = Yup.date()
           .transform((value) => value)
@@ -132,7 +133,9 @@ export const validateInput = (validation, objectToUpdate) => {
     );
   };
 
-  const validate = (type, caseToValidate) => {
+  const validate = (type) => {
+    const caseToValidate = getCaseToValidate();
+
     switch (caseToValidate) {
       case minAndMax:
         return type === switchCases.number
@@ -168,62 +171,76 @@ export const validateInput = (validation, objectToUpdate) => {
     }
   };
 
+  const dropdownSelectionIsRequired = () =>
+    Yup.object()
+      .nullable()
+      .shape({
+        label: Yup.string(),
+        value: Yup.string().required(message),
+      })
+      .required(message);
+
+  const validateSwitchCase = (yupValidation) => {
+    return !!isRequiredDependsOnField
+      ? yupValidation.when(isRequiredDependsOnField, (theOtherField) => {
+          if (!!theOtherField) return yupValidation.required(message);
+        })
+      : isRequired
+      ? yupValidation.required(message)
+      : yupValidation;
+  };
+
   // Main switch case for validation
   switch (type) {
     case switchCases.email:
-      objectToUpdate[name] = Yup.string()
-        .email('Please enter a valid email address')
-        .required(message);
+      objectToUpdate[name] = validateSwitchCase(
+        validate(switchCases.string).email('Please enter your email address'),
+      );
       break;
 
     case switchCases.checkbox:
-      objectToUpdate[name] = isRequired ? Yup.bool().oneOf([true], message) : '';
+      objectToUpdate[name] = !!isRequiredDependsOnField
+        ? Yup.bool().when(isRequiredDependsOnField, (theOtherField) => {
+            if (!!theOtherField) return Yup.bool().oneOf([true], message);
+          })
+        : isRequired
+        ? Yup.bool().oneOf([true], message)
+        : Yup.bool();
       break;
 
     case switchCases.checkboxGroup:
-      objectToUpdate[name] = Yup.array().min(1, message);
+      objectToUpdate[name] = !!isRequiredDependsOnField
+        ? Yup.array().when(isRequiredDependsOnField, (theOtherField) => {
+            if (!!theOtherField) return Yup.array().min(1, message);
+          })
+        : isRequired
+        ? Yup.array().min(1, message)
+        : Yup.array();
       break;
 
     case switchCases.radioButtonGroup:
-      objectToUpdate[name] = Yup.string().required(message);
+      objectToUpdate[name] = validateSwitchCase(Yup.string());
       break;
 
     case switchCases.string:
-      const stringCaseToValidate = getCaseToValidate();
-      objectToUpdate[name] = isRequired
-        ? validate(switchCases.string, stringCaseToValidate).required(message)
-        : validate(switchCases.string, stringCaseToValidate);
+      objectToUpdate[name] = validateSwitchCase(validate(switchCases.string));
       break;
 
     case switchCases.number:
-      const numberCaseToValidate = getCaseToValidate();
-      objectToUpdate[name] = isRequired
-        ? validate(switchCases.number, numberCaseToValidate).required(message)
-        : validate(switchCases.number, numberCaseToValidate);
+      objectToUpdate[name] = validateSwitchCase(validate(switchCases.number));
       break;
 
     case switchCases.positiveIntegerIncludingZero:
-      const positiveNumberCaseToValidate = getCaseToValidate();
-      objectToUpdate[name] = isRequired
-        ? validate(switchCases.positiveIntegerIncludingZero, positiveNumberCaseToValidate).required(
-            message,
-          )
-        : validate(switchCases.positiveIntegerIncludingZero, positiveNumberCaseToValidate);
+      objectToUpdate[name] = validateSwitchCase(validate(switchCases.positiveIntegerIncludingZero));
       break;
 
     case switchCases.dropdown:
-      objectToUpdate[name] = isRequired ? Yup.string().required(message) : Yup.string();
-      break;
-
-    case switchCases.customDropdown:
-      objectToUpdate[name] = isRequired
-        ? Yup.object()
-            .nullable()
-            .shape({
-              label: Yup.string(),
-              value: Yup.string(),
-            })
-            .required(message)
+      objectToUpdate[name] = !!isRequiredDependsOnField
+        ? Yup.object().when(isRequiredDependsOnField, (theOtherField) => {
+            if (!!theOtherField) return dropdownSelectionIsRequired();
+          })
+        : isRequired
+        ? dropdownSelectionIsRequired()
         : Yup.object().nullable().shape({
             label: Yup.string(),
             value: Yup.string(),
@@ -231,31 +248,25 @@ export const validateInput = (validation, objectToUpdate) => {
       break;
 
     case switchCases.file:
-      objectToUpdate[name] = isRequired
-        ? Yup.array()
-            .min(1, message)
-            .of(
-              Yup.mixed()
-                .test('fileSize', 'File Size is too large', (value) => value.size <= maxSize)
-                .test('fileType', formats.message, (value) => formats.formats.includes(value.type)),
-            )
-        : Yup.array().of(
-            Yup.mixed()
-              .test('fileSize', 'File Size is too large', (value) => value.size <= maxSize)
-              .test('fileType', formats.message, (value) => formats.formats.includes(value.type)),
-          );
+      const validateFile = Yup.array().of(
+        Yup.mixed()
+          .test('fileSize', 'File Size is too large', (value) => value.size <= maxSize)
+          .test('fileType', formats.message, (value) => formats.formats.includes(value.type)),
+      );
+
+      objectToUpdate[name] = !!isRequiredDependsOnField
+        ? validateFile.when(isRequiredDependsOnField, (theOtherField) => {
+            if (!!theOtherField) return validateFile.min(1, message);
+          })
+        : isRequired
+        ? validateFile.min(1, message)
+        : validateFile;
       break;
 
     case switchCases.calendarDatepicker:
     case switchCases.dropdownDatepicker:
       const caseToValidate = getCaseToValidateTheDate(validation);
       validateDate(caseToValidate);
-      break;
-
-    case 'test':
-      objectToUpdate[name] = Yup.string().when('terms', (theOtherField) => {
-        if (!!theOtherField && isRequired) return Yup.string().required('Yes is req');
-      });
       break;
 
     default:

@@ -9,30 +9,31 @@ import FormBody from './FormBody/FormBody';
 const FormFour = () => {
   const initialValues = {
     name: '',
-    testCheckbox: false,
-    // checkboxGroup: [],
-    // radioGroup: '',
-    radioGroup: 'three', // Default checked value
-    checkboxGroup: ['two', 'eight'], // Default checked value
+    checkboxGroup: [],
+    radioGroup: '',
+    // radioGroup: 'three', // Default checked value
+    // checkboxGroup: ['two', 'eight'], // Default checked value
   };
 
   const validations = [
     {
       name: 'checkboxGroup',
       type: 'checkbox_group',
-      isRequired: true,
+      // isRequired: true,
+      isRequiredDependsOnField: 'name',
       message: 'Please select at least one option.',
     },
     {
       name: 'radioGroup',
       type: 'radio_button_group',
-      isRequired: true,
+      // isRequired: false,
+      isRequiredDependsOnField: 'name',
       message: 'Please select an option.',
     },
     {
       name: 'name',
       type: 'string',
-      isRequired: true,
+      isRequired: false,
       message: 'Please enter your name.',
     },
   ];

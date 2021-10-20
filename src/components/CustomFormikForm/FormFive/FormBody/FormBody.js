@@ -40,6 +40,10 @@ const FormBody = (props) => {
 
   const dropdownArray = [
     {
+      label: 'Select your region',
+      value: '',
+    },
+    {
       label: 'Hamilton Island (HTI)',
       value: 'Hamilton Island (HTI)',
     },
@@ -134,7 +138,7 @@ const FormBody = (props) => {
         label='Region Autocomplete'
         name={names.autoComplete}
         dropdownArray={dropdownArray}
-        defaultValue={dropdownArray[4]}
+        // defaultValue={dropdownArray[0]}
         isRequired
         // isDisabled
         // placeholder='Please select your region'

@@ -11,6 +11,7 @@ const FormOne = () => {
     age: '',
     test: '',
     description: '',
+    testCheckbox: false,
     license: false,
     idProofs: [],
     formOneRadioGroup: 'two',
@@ -38,11 +39,19 @@ const FormOne = () => {
       type: 'email',
       isRequired: true,
       message: 'Enter the correct email id',
+      minChars: { num: 2, message: 'Please enter at least 2 characters' },
+      maxChars: { num: 150, message: 'You can only enter upto 150 characters' },
+    },
+    {
+      name: 'testCheckbox',
+      type: 'checkbox',
+      isRequired: false,
+      message: 'This is a required field',
     },
     {
       name: 'license',
       type: 'checkbox',
-      isRequired: true,
+      isRequiredDependsOnField: 'testCheckbox',
       message: 'Do you have a license?',
     },
     {
@@ -54,7 +63,8 @@ const FormOne = () => {
     {
       name: 'description',
       type: 'string',
-      isRequired: true,
+      // isRequired: true,
+      isRequiredDependsOnField: 'testCheckbox',
       message: 'Please add a comment.',
       minChars: { num: 2, message: 'Please enter at least 2 characters' },
       maxChars: { num: 5, message: 'You can only enter upto 5 characters' },
@@ -69,6 +79,7 @@ const FormOne = () => {
       name: 'idProofs',
       type: 'file',
       isRequired: true,
+      // isRequiredDependsOnField: 'testCheckbox',
       message: 'Please upload a file',
       formats: {
         formats: SUPPORTED_FORMATS,
@@ -78,7 +89,10 @@ const FormOne = () => {
     },
   ];
 
-  const handleSubmit = (values) => console.log('Form 1 submitted:', values);
+  const handleSubmit = (values, formikMethods) => {
+    // formikMethods.resetForm();
+    console.log('Form 1 submitted:', values);
+  };
 
   return (
     <FormContainer
