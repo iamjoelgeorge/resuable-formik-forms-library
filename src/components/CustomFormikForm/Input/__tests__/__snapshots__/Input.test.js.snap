@@ -79,7 +79,7 @@ exports[`[Component]: Input should match the Snapshot 1`] = `
         value=""
       />
       <div
-        className="container  "
+        className="container   "
       >
         <label
           className="label"

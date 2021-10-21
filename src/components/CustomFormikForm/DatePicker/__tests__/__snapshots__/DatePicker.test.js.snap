@@ -22,7 +22,7 @@ exports[`[Component]: DatePicker should match the Snapshot 1`] = `
           type="button"
         >
           <div
-            className="container  "
+            className="container   "
           >
             <label
               className="label"
@@ -37,11 +37,13 @@ exports[`[Component]: DatePicker should match the Snapshot 1`] = `
             id="departureDate-selectedDate"
           >
             <span
-              className="dropdownIcon"
+              className="dropdownIcon "
             >
-              <img
-                alt="Dropdown icon"
-                src="test-file-stub"
+              <span
+                className="line lineLeft"
+              />
+              <span
+                className="line lineRight"
               />
             </span>
           </p>

@@ -73,7 +73,7 @@ exports[`[Component]: Texxtarea should match the Snapshot 1`] = `
         value=""
       />
       <div
-        className="container  label"
+        className="container   label"
       >
         <label
           className="label"

@@ -34,7 +34,7 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
         value=""
       />
       <div
-        className="container  "
+        className="container  isDisabled "
       >
         <label
           className="label"
@@ -76,7 +76,7 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
             value=""
           />
           <div
-            className="container  "
+            className="container   "
           >
             <label
               className="label"
@@ -114,7 +114,7 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
             value=""
           />
           <div
-            className="container  slideLabel "
+            className="container   slideLabel "
           >
             <label
               className="label"
@@ -164,7 +164,7 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
         value=""
       />
       <div
-        className="container  "
+        className="container   "
       >
         <label
           className="label"
@@ -180,11 +180,16 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
           className="container "
           data-testid="tooltip-icon-Permitted with no fee"
         >
-          <img
-            alt="tooltip"
+          <span
             onClick={[Function]}
-            src="test-file-stub"
-          />
+            role="button"
+            tabIndex="0"
+          >
+            <img
+              alt="tooltip"
+              src="test-file-stub"
+            />
+          </span>
         </div>
       </div>
     </div>
@@ -218,7 +223,7 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
           type="button"
         >
           <div
-            className="container inputIsRequired "
+            className="container inputIsRequired  "
           >
             <label
               className="label"
@@ -233,11 +238,13 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
             id="departureDate-selectedDate"
           >
             <span
-              className="dropdownIcon"
+              className="dropdownIcon "
             >
-              <img
-                alt="Dropdown icon"
-                src="test-file-stub"
+              <span
+                className="line lineLeft"
+              />
+              <span
+                className="line lineRight"
               />
             </span>
           </p>
@@ -261,7 +268,7 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
       className="container "
     >
       <div
-        className="container  slideLabel label"
+        className="container   slideLabel label"
       >
         <label
           className="label"
@@ -377,7 +384,7 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
         value=""
       />
       <div
-        className="container  "
+        className="container   "
       >
         <label
           className="label"
@@ -393,11 +400,16 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
           className="container "
           data-testid="tooltip-icon-Permitted with no fee"
         >
-          <img
-            alt="tooltip"
+          <span
             onClick={[Function]}
-            src="test-file-stub"
-          />
+            role="button"
+            tabIndex="0"
+          >
+            <img
+              alt="tooltip"
+              src="test-file-stub"
+            />
+          </span>
         </div>
       </div>
     </div>
@@ -430,7 +442,7 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
         value=""
       />
       <div
-        className="container  label"
+        className="container   label"
       >
         <label
           className="label"
@@ -442,11 +454,16 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
           className="container tooltip"
           data-testid="tooltip-icon-What is Lorem Ipsum?"
         >
-          <img
-            alt="tooltip"
+          <span
             onClick={[Function]}
-            src="test-file-stub"
-          />
+            role="button"
+            tabIndex="0"
+          >
+            <img
+              alt="tooltip"
+              src="test-file-stub"
+            />
+          </span>
         </div>
       </div>
     </div>
@@ -466,7 +483,7 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
     className="container "
   >
     <div
-      className="container  slideLabel componentHeading"
+      className="container   slideLabel componentHeading"
     >
       <label
         className="label"
@@ -526,7 +543,56 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
     className="container "
   >
     <div
-      className="container  slideLabel componentHeading"
+      className="container   slideLabel componentHeading"
+    >
+      <label
+        className="label"
+        htmlFor="testCheckbox"
+      >
+        Test test
+      </label>
+    </div>
+    <div
+      className="optionWithTooltip"
+    >
+      <label
+        className="optionLabel"
+      >
+        <input
+          checked={false}
+          className="checkboxInput"
+          data-testid="checkbox-testCheckbox"
+          disabled={false}
+          name="testCheckbox"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          type="checkbox"
+          value={false}
+        />
+        <span
+          className="presentationalCheckbox"
+        >
+          <span
+            className="checkboxChecked"
+          />
+        </span>
+        <span
+          className="labelSpanElement"
+        >
+          You have to check me
+        </span>
+      </label>
+    </div>
+    
+    
+    
+  </div>
+  <div
+    className="container "
+  >
+    <div
+      className="container   slideLabel componentHeading"
     >
       <label
         className="label"
@@ -538,11 +604,16 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
         className="container tooltip"
         data-testid="tooltip-icon-What is Lorem Ipsum?"
       >
-        <img
-          alt="tooltip"
+        <span
           onClick={[Function]}
-          src="test-file-stub"
-        />
+          role="button"
+          tabIndex="0"
+        >
+          <img
+            alt="tooltip"
+            src="test-file-stub"
+          />
+        </span>
       </div>
     </div>
     <div
@@ -646,11 +717,16 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
           className="container tooltip"
           data-testid="tooltip-icon-Heading"
         >
-          <img
-            alt="tooltip"
+          <span
             onClick={[Function]}
-            src="test-file-stub"
-          />
+            role="button"
+            tabIndex="0"
+          >
+            <img
+              alt="tooltip"
+              src="test-file-stub"
+            />
+          </span>
         </div>
       </div>
     </div>
@@ -672,7 +748,7 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
     className="container "
   >
     <div
-      className="container  slideLabel label"
+      className="container   slideLabel label"
     >
       <label
         className="label"
@@ -684,11 +760,16 @@ exports[`[Component]: FormOne should match the Snapshot 1`] = `
         className="container tooltip"
         data-testid="tooltip-icon-What is Lorem Ipsum?"
       >
-        <img
-          alt="tooltip"
+        <span
           onClick={[Function]}
-          src="test-file-stub"
-        />
+          role="button"
+          tabIndex="0"
+        >
+          <img
+            alt="tooltip"
+            src="test-file-stub"
+          />
+        </span>
       </div>
     </div>
     <div

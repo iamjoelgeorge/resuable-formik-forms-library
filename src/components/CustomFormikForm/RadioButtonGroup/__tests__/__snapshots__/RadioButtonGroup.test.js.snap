@@ -11,7 +11,7 @@ exports[`[Component]: RadioButtonGroup should match the Snapshot 1`] = `
     className="container "
   >
     <div
-      className="container  slideLabel componentHeading"
+      className="container   slideLabel componentHeading"
     >
       <label
         className="label"
@@ -259,11 +259,16 @@ exports[`[Component]: RadioButtonGroup should match the Snapshot 1`] = `
           className="container tooltip"
           data-testid="tooltip-icon-Heading"
         >
-          <img
-            alt="tooltip"
+          <span
             onClick={[Function]}
-            src="test-file-stub"
-          />
+            role="button"
+            tabIndex="0"
+          >
+            <img
+              alt="tooltip"
+              src="test-file-stub"
+            />
+          </span>
         </div>
       </div>
     </div>
