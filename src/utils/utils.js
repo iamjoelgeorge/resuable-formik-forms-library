@@ -1,3 +1,4 @@
+import moment from 'moment-timezone';
 import { months } from '../constants/constants';
 
 /**
@@ -31,6 +32,19 @@ export const getFullDate = (fromDate, numOfDays, inTheFuture = true) => {
   }
 
   return new Date(newDate);
+};
+
+/**
+ *
+ * @param {Date} date should be JavaScript's Date object
+ * @returns
+ * The date parsed as a string in the following format: YYYY-MM-DD
+ * or null if no date is passed as the argument.
+ */
+export const getDateAsString = (date) => {
+  if (!date) return null;
+
+  return moment(new Date(date)).format('YYYY-MM-DD');
 };
 
 /**

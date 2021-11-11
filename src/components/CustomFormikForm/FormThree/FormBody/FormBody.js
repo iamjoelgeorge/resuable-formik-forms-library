@@ -1,4 +1,7 @@
 import React from 'react';
+
+import Tippy from '@tippyjs/react';
+
 import Button from '../../Button/Button';
 import Checkbox from '../../Checkbox/Checkbox';
 
@@ -15,7 +18,13 @@ const FormBody = (props) => {
         optionLabel='Checking this box will open the link in a new tab.'
         mainLabel='Test Label'
         isRequired
+        mainLabelTooltipBoxHeading='What is Lorem Ipsum?'
+        mainLabelTooltipBoxDescription='Lorem Ipsum is simply dummy text.'
       />
+
+      {/* <Tippy content={<span>Tooltip</span>}>
+        <button>My button</button>
+      </Tippy> */}
 
       <Button
         label='Open in new tab'

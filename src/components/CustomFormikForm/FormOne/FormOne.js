@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import styles from './FormOne.module.scss';
 import FormContainer from '../FormContainer/FormContainer';
@@ -89,8 +89,71 @@ const FormOne = () => {
     },
   ];
 
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////  
+  const testArrayOriginal = [
+    '=Please Select',
+    'Agriculture=Agriculture, Forestry & Fishing<default>',
+    'Tech',
+    'value=label',
+  ];
+
+  let testDropdownArrayDefaultOption = null;
+  let testDropdownArrayToUse = [];
+
+  const getOption = (item) => {
+    const itemSplitArray = item.split('=');
+    
+    const optionDetails =
+      itemSplitArray.length > 1 ? 'labelAndValue' : itemSplitArray.length === 1 ? 'onlyLabel' : '';
+
+    switch (optionDetails) {
+      case 'labelAndValue':
+        if (itemSplitArray[0] !== '') {
+          return {
+            label: itemSplitArray[1],
+            value: itemSplitArray[0],
+          };
+        } else {
+          return {
+            label: itemSplitArray[1],
+            value: '',
+          };
+        }
+
+      case 'onlyLabel':
+        return {
+          label: itemSplitArray[0],
+          value: itemSplitArray[0],
+        };
+
+      default:
+        return null;
+    }
+  };
+
+  let testArrayModified = testArrayOriginal.map((item) => {
+    if (item.toLowerCase().includes('<default>')) {
+      const modifiedItem = item.replace('<default>', '');
+
+      testDropdownArrayDefaultOption = getOption(modifiedItem);
+
+      return modifiedItem;
+    }
+
+    return item;
+  });
+
+  testArrayModified.forEach((item) => {
+    testDropdownArrayToUse.push(getOption(item));
+  });
+  
+  console.log(testDropdownArrayDefaultOption);
+  console.log(testDropdownArrayToUse);
+  //////////////////////////////////////////////////////////////////////////////////////////////////////
+
   const handleSubmit = (values, formikMethods) => {
-    // formikMethods.resetForm();
+    formikMethods.resetForm();
     console.log('Form 1 submitted:', values);
   };
 

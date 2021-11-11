@@ -5,6 +5,7 @@ import React from 'react';
 import styles from './FormThree.module.scss';
 import FormContainer from '../FormContainer/FormContainer';
 import FormBody from './FormBody/FormBody';
+import { getDateAsString } from '../../../utils/utils';
 
 const FormThree = () => {
   const initialValues = {
@@ -21,7 +22,7 @@ const FormThree = () => {
   ];
 
   const handleSubmit = (values) => console.log('Form 3 submitted:', values);
-
+  console.log(getDateAsString(new Date()))
   return (
     <FormContainer
       initialValues={initialValues}

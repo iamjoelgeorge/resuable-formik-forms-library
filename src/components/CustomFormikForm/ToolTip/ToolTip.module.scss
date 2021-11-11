@@ -14,9 +14,10 @@
   }
 
   .box {
-    position: absolute;
-    right: -28px;
-    bottom: 250%;
+    // position: absolute;
+    // right: -28px;
+    // left: calc(100% - 28px);
+    // bottom: 250%;
     padding: em(24) em(32);
     background-color: $tooltipBoxBackground;
     border-radius: 4px;
@@ -26,30 +27,30 @@
     max-width: em(385);
     z-index: 2;
 
-    &::after {
-      content: '';
-      top: 100%;
-      right: 21px;
-      border: 15px solid transparent;
-      border-top-color: $tooltipBoxBackground;
-      height: 0;
-      width: 0;
-      position: absolute;
-      pointer-events: none;
-      margin-left: -21px;
-    }
+    // &::after {
+    //   content: '';
+    //   top: 100%;
+    //   right: 21px;
+    //   border: 15px solid transparent;
+    //   border-top-color: $tooltipBoxBackground;
+    //   height: 0;
+    //   width: 0;
+    //   position: absolute;
+    //   pointer-events: none;
+    //   margin-left: -21px;
+    // }
 
-    &::before {
-      content: '';
-      position: absolute;
-      right: 25px;
-      bottom: -7px;
-      transform: rotate(45deg);
-      width: 25px;
-      height: 21px;
-      z-index: -1;
-      box-shadow: 4px 4px 3px -2px $shadowTwo;
-    }
+    // &::before {
+    //   content: '';
+    //   position: absolute;
+    //   right: 25px;
+    //   bottom: -7px;
+    //   transform: rotate(45deg);
+    //   width: 25px;
+    //   height: 21px;
+    //   z-index: -1;
+    //   box-shadow: 4px 4px 3px -2px $shadowTwo;
+    // }
 
     .closeButton {
       position: absolute;

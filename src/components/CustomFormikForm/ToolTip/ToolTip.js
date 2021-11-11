@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 
 import PropTypes from 'prop-types';
+import Tippy from '@tippyjs/react';
 
 import styles from './ToolTip.module.scss';
 import { joinClassNames } from '../../../utils/utils';
@@ -15,6 +16,12 @@ const ToolTip = (props) => {
 
   const [isBoxOpen, setIsBoxOpen, toggleTooltipBox] = useToggleDropdown(tooltipContainerRef);
 
+  if (isBoxOpen) {
+    setTimeout(() => {
+      console.log(tooltipBoxRef);
+    }, 500);
+  }
+
   const containerClasses = joinClassNames([styles.container, containerClass]);
 
   const renderDescription = () =>
@@ -24,27 +31,54 @@ const ToolTip = (props) => {
       <p className={styles.description}>{description}</p>
     ) : null;
 
+  const testTooltip = 
+    <div className={styles.box}>
+      <button className={styles.closeButton} onClick={toggleTooltipBox}>
+        <div className={styles.line}></div>
+        <div className={styles.line}></div>
+      </button>
+      {heading && <p className={styles.heading}>{heading}</p>}
+
+      {renderDescription()}
+    </div>
+
   return (
     <div
       data-testid={`tooltip-icon-${heading}`}
       ref={tooltipContainerRef}
       className={containerClasses}
     >
-      <span onClick={toggleTooltipBox} role='button' tabIndex="0">
-        <img src={ToolTipIcon} alt='tooltip' />
-      </span>
+      {/* <Tippy content={testTooltip} trigger="click">
+        <span
+          onClick={toggleTooltipBox}
+          role='button'
+          tabIndex='0'
+          aria-label='Help Tooltip'
+          aria-expanded='false'
+          aria-labelledby='mytooltipbutton-1 mytooltip-1'
+          className='js-tooltipAccessor'
+        >
+          <img src={ToolTipIcon} alt='tooltip button' />
+        </span>
+      </Tippy> */}
 
-      {isBoxOpen && (
-        <div ref={tooltipBoxRef} className={styles.box}>
-          <button className={styles.closeButton} onClick={toggleTooltipBox}>
-            <div className={styles.line}></div>
-            <div className={styles.line}></div>
-          </button>
-          {heading && <p className={styles.heading}>{heading}</p>}
+      {/* {isBoxOpen && ( */}
+      <div
+        ref={tooltipBoxRef}
+        id='mytooltip-1'
+        className={`js-tooltipContent css-tooltip ${styles.box}`}
+        style={{ visibility: 'hidden' }}
+        role='tooltip'
+      >
+        <button className={styles.closeButton} onClick={toggleTooltipBox}>
+          <div className={styles.line}></div>
+          <div className={styles.line}></div>
+        </button>
+        {heading && <p className={styles.heading}>{heading}</p>}
 
-          {renderDescription()}
-        </div>
-      )}
+        {renderDescription()}
+      </div>
+      {/* )} */}
     </div>
   );
 };
